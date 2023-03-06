@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap");
+
+.app {
+  color: rgb(23, 23, 23);
+  font-family: "Raleway", sans-serif;
+  background-color: rgba(247, 247, 247, 0.9);
+   
+}
+
+.main-navbar {
+  height: 5em;
+  background-color: rgba(247, 247, 247, 0.9);
+}
+
+.active-class {
+  background-color: rgba(233, 233, 233, 0.755);
+  text-decoration: none;
+  padding: 4px;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  color: rgba(19, 19, 19, 0.92);
+  border: #e2e2e244 solid 2px;
+  border-radius: 6px;
+}
+.inactive-class {
+  background-color: rgba(246, 246, 246, 0.366);
+  text-decoration: none;
+  padding: 4px;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  color: rgba(22, 22, 22, 0.556);
+  border: #e9e9e960 solid 2px;
+  border-radius: 6px;
+}
+
+.main-hero {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+.hero-background {
+  position: relative;
+}
+
+.hero-img {
+  opacity: 0.9;
+  width: 100vw;
+  height: 20em;
+}
+.hero-container {
+  position: absolute;
+  color: rgba(215, 215, 215, 0.856);
+  text-align: right;
+}
+.hero-logo {
+  width: 30em;
+  height: 17em;
+  padding: 1em;
+}
+.text-container {
+  display: flex;
+  justify-content: end;
+  flex-wrap: wrap;
+  margin-right: 3em;
+  font-size: 1rem;
+}
+@media screen and (max-width: 640px) {
+  .text-container {
+    font-size: small;
+  }
+}
+
+.about-card {
+  margin: 2em;
+}
+.about-image {
+  width: 22em;
+  height: 15em;
+  padding: 1em;
+  margin-top: 1em;
+}
+.about-button {
+  text-decoration: none;
+  
+}
+
+
+.main-footer {
+  background-color: rgba(222, 222, 222, 0.9);
+  height: 15em;
+
+}
+.footer-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
