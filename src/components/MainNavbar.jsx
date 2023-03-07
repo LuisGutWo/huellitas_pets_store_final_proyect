@@ -8,15 +8,14 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { NavLink } from "react-router-dom";
 import CreateUser from "../views/CreateUser";
 import LoginPage from "../views/LoginPage";
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import { Button } from "@mui/material";
-
 
 function MainNavbar() {
   return (
     <>
       {["lg"].map((expand) => (
-        <Navbar key={expand} expand={expand} className="main-navbar m-0">
+        <Navbar key={expand} expand={expand} className="main-navbar m-0" fixed="top">
           <Container fluid>
             <Navbar.Brand href="#">
               <NavLink to="/">
@@ -60,41 +59,34 @@ function MainNavbar() {
                   >
                     About
                   </NavLink>
+                  <NavLink
+                    to="/contact"
+                    href="#action3"
+                    className={({ isActive }) =>
+                      isActive ? "active-class" : "inactive-class"
+                    }
+                  >
+                    Contacto
+                  </NavLink>
                   <NavDropdown
                     title={<PermIdentityIcon />}
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
                   >
-                    <NavDropdown.Item href="#action3">
-                      <CreateUser />
-                      {/* <NavLink
-                        to="/create"
-                        className={({ isActive }) =>
-                          isActive ? "active-class" : "inactive-class"
-                        }
-                      >
-                        Crear Usuario
-                      </NavLink> */}
-                    </NavDropdown.Item>
                     <NavDropdown.Item href="#action4">
-                      <LoginPage />
-                      {/* <NavLink
-                        to="/loginPage"
-                        className={({ isActive }) =>
-                          isActive ? "active-class" : "inactive-class"
-                        }
-                      >
-                        Ingresar
-                      </NavLink> */}
+                      <CreateUser />
                     </NavDropdown.Item>
                     <NavDropdown.Item href="#action5">
-                      <NavLink
+                      <LoginPage />
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#action6">
+                      {/* <NavLink
                         to="/cart"
                         className={({ isActive }) =>
                           isActive ? "active-class" : "inactive-class"
                         }
                       >
                         🛒
-                      </NavLink>
+                      </NavLink> */}
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
@@ -105,7 +97,9 @@ function MainNavbar() {
                     className="m-3 me-0 p-2"
                     aria-label="Search"
                   />
-                  <Button color="primary" className="m-3 p-2">Buscar</Button>
+                  <Button color="primary" className="m-3 p-2">
+                    Buscar
+                  </Button>
                 </Form>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
+import { NavLink } from "react-router-dom";
 
 const CreateUser = () => {
   const [show, setShow] = useState(false);
@@ -11,17 +12,18 @@ const CreateUser = () => {
 
   return (
     <>
-      <Button variant="outline-primary" onClick={handleShow}>
+      <NavLink 
+      onClick={handleShow}
+      className={({ isActive }) => isActive ? "active-class" : "inactive-class"}>
         Crear usuario
-      </Button>
-
+      </NavLink>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Crea tu usuario</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Nombre</Form.Label>
               <Form.Control
                 type="text"
@@ -58,6 +60,6 @@ const CreateUser = () => {
       </Modal>
     </>
   );
-}
+};
 
 export default CreateUser;

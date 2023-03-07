@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import { NavLink } from 'react-router-dom';
 
 const LoginPage = () => {
   const [show, setShow] = useState(false);
@@ -11,9 +12,11 @@ const LoginPage = () => {
 
   return (
     <>
-      <Button variant="outline-primary" onClick={handleShow}>
+      <NavLink
+      onClick={handleShow}
+      className={({ isActive }) => isActive ? "active-class" : "inactive-class"}>
         Login
-      </Button>
+      </NavLink>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

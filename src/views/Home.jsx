@@ -1,12 +1,12 @@
 import React from "react";
 import HeroSection from "../components/HeroSection";
-import CardsSection from "./ProductsCardSection";
+import ProductsCardSection from "./ProductsCardSection";
 
 const Home = () => {
   return (
     <div>
       <HeroSection />
-      <CardsSection />
+      <ProductsCardSection />
     </div>
   );
 };
