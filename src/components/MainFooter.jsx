@@ -10,7 +10,7 @@ const MainFooter = () => {
         <Row>
           <Col className="footer-content">
             <img
-              src="src/assets/img/My project-1.png"
+              src="src/assets/img/huellitas_logo_dark.png"
               width="170"
               height="70"
               className="d-inline-block align-top"

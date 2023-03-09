@@ -5,25 +5,34 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
+
 import { NavLink } from "react-router-dom";
+import { Button } from "@mui/material";
+
+import PermIdentityIcon from "@mui/icons-material/PermIdentity";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+
 import CreateUser from "../views/CreateUser";
 import LoginPage from "../views/LoginPage";
-import PermIdentityIcon from "@mui/icons-material/PermIdentity";
-import { Button } from "@mui/material";
 
 function MainNavbar() {
   return (
     <>
       {["lg"].map((expand) => (
-        <Navbar key={expand} expand={expand} className="main-navbar m-0" fixed="top">
+        <Navbar
+          key={expand}
+          expand={expand}
+          className="main-navbar m-0"
+          fixed="top"
+        >
           <Container fluid>
             <Navbar.Brand href="#">
               <NavLink to="/">
                 <img
-                  src="src/assets/img/My project-1.png"
+                  src="src/assets/img/huellitas_logo_dark.png"
                   width="170"
                   height="70"
-                  className="d-inline-block align-top"
+                  className="card-image d-inline-block align-top"
                   alt=""
                 />
               </NavLink>
@@ -69,7 +78,7 @@ function MainNavbar() {
                     Contacto
                   </NavLink>
                   <NavDropdown
-                    title={<PermIdentityIcon />}
+                    title={<PermIdentityIcon className="card-image" />}
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
                   >
                     <NavDropdown.Item href="#action4">
@@ -78,17 +87,16 @@ function MainNavbar() {
                     <NavDropdown.Item href="#action5">
                       <LoginPage />
                     </NavDropdown.Item>
-                    <NavDropdown.Item href="#action6">
-                      {/* <NavLink
-                        to="/cart"
-                        className={({ isActive }) =>
-                          isActive ? "active-class" : "inactive-class"
-                        }
-                      >
-                        🛒
-                      </NavLink> */}
-                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#action6"></NavDropdown.Item>
                   </NavDropdown>
+                  <NavLink
+                    to="/cart"
+                    className={({ isActive }) =>
+                      isActive ? "active-class" : "inactive-class"
+                    }
+                  >
+                    <ShoppingCartIcon className="card-image" />
+                  </NavLink>
                 </Nav>
                 <Form className="d-flex">
                   <Form.Control

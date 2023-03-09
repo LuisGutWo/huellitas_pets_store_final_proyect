@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useProductsContext } from "../context/ProductsContext";
 import { useParams, NavLink } from "react-router-dom";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { Button } from "react-bootstrap";
 
 export default function Product() {
   const [product, setProduct] = useState();
@@ -25,32 +27,39 @@ export default function Product() {
   }
 
   return (
-    <div className="card-detail card bg-light m-5 p-3">
-      <div className="row">
-        <div className="col-md-4">
-          <img
-            src={product.img}
-            className="card-image img-fluid rounded-start"
-            alt="..."
-          />
-        </div>
-        <div className="col-md-8">
-          <div className="card-body text-start">
-            <h5 className="fs-3">{product.name} </h5>
-            <hr />
-            <p className="card-text">{product.desc}</p>
-            <p className="card-text">
-              <h5 className="text-center d-flex justify-content-between">
-                Precio: ${product.price}
-                <NavLink
-                  className="btn btn-warning"
-                  onClick={() => addProduct(product)}
-                  to="/cart"
-                >
-                  Añadir 🛒
-                </NavLink>
-              </h5>
-            </p>
+    <div className="container d-flex justify-content-center">
+      <div className="card">
+        <div className="row">
+          <div className="col-md-4 text-center">
+            <img
+              src={product.img}
+              className="card-image img-fluid rounded-start"
+              alt="..."
+            />
+            <NavLink to={"/products"} className="text-end">
+              <Button className="btn btn-secondary btn-sm mb-2">Volver</Button>
+            </NavLink>
+          </div>
+          <div className="col-md-8">
+            <div className="card-body text-start">
+              <h5 className="fs-3">{product.name} </h5>
+              <hr />
+              <p className="card-text">{product.desc}</p>
+              <p className="card-text">
+                <p className="text-center d-flex justify-content-between align-items-center text-primary m-0">
+                  <b>Precio: ${product.price}</b>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "active-class" : "inactive-class"
+                    }
+                    onClick={() => addProduct(product)}
+                    to="/cart"
+                  >
+                    <ShoppingCartIcon />
+                  </NavLink>
+                </p>
+              </p>
+            </div>
           </div>
         </div>
       </div>
