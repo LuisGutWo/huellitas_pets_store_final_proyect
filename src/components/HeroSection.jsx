@@ -11,7 +11,7 @@ const HeroSection = () => {
             <img
               src="src/assets/img/hero_mascotas.jpg"
               alt=""
-              className="hero-img img-fluid"
+              className="about-img img-fluid"
             />
           </div>
           <div className="newhero-container">

@@ -5,12 +5,35 @@
   font-family: "Raleway", sans-serif;
   background-color: #fffbf4;
 }
+.routes-section {
+  margin-top: 4rem;
+}
 
 /* Navbar Styles */
 .main-navbar {
-  height: 12%;
+  height: 4rem;
   background-color: #fff1e1;
 }
+.navbar-form {
+  display: flex;
+  overflow: visible;
+  flex-direction: column;
+  width: 18rem;
+  margin-top: 0.5rem;
+}
+.form-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.navbar-select{
+  margin: 0.7rem;
+  max-width: 100%;
+
+
+}
+
 
 .active-class {
   background-color: rgba(221, 221, 221, 0.755);
@@ -33,11 +56,14 @@
   border-radius: 6px;
 }
 
+
+
+
+
 /* Hero Section Styles */
 .main-hero {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 4.6rem;
   overflow: hidden;
 }
 .hero-img {
@@ -78,7 +104,7 @@
   align-items: flex-end;
   flex-wrap: wrap;
   margin-left: 2rem;
-  font-size: 3em;
+  font-size: 2em;
 }
 @media screen and (max-width: 640px) {
   .text-container {
@@ -90,7 +116,7 @@
   flex-wrap: wrap;
   text-align: end;
   margin-left: 2rem;
-  font-size: 3em;
+  font-size: 2em;
 }
 @media screen and (max-width: 640px) {
   .newtext-container {
@@ -98,21 +124,31 @@
   }
 }
 
+
+
+
 /* About section Styles */
 .about-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.about-card {
-  overflow: hidden;
   width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.about-img {
+  opacity: 0.9;
+  width: 100vw;
+  height: 100%;
 }
 .card-overlay {
+  position: absolute;
+  margin-left: 2rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 1.5rem;
 }
 .about-image {
   width: 30%;
@@ -120,6 +156,11 @@
 .about-button {
   text-decoration: none;
 }
+
+
+
+
+
 
 /* Contact Styles */
 .main-contact {
@@ -129,7 +170,6 @@
   align-items: flex-end;
   justify-content: flex-start;
   flex-wrap: wrap;
-  padding-top: 4.5rem;
 }
 .contact-container {
   position: absolute;
@@ -140,8 +180,7 @@
 
 /* Cards Products section */
 .products-section {
-  margin-top: 2rem;
-  padding-top: 4rem;
+  padding-top: 2rem;
 }
 .products-container {
   display: flex;
@@ -150,6 +189,12 @@
   align-items: flex-start;
   margin: 2em;
   gap: 5px;
+}
+.product-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
 }
 .card {
   overflow: hidden;
@@ -174,8 +219,11 @@
 }
 .cart-container {
   background-color: rgba(247, 247, 247, 0.971);
-  padding-top: 6rem;
+  padding-top: 2rem;
 }
+
+
+
 
 /* Footer Styles */
 .main-footer {

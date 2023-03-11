@@ -1,7 +1,8 @@
 import { NavLink } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 
-// import { useProductsContext } from "../context/ProductsContext";
+import { useProductsContext } from "../context/ProductsContext";
+// import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 export default function MainProductCard({ item }) {
   // const { addProduct } = useProductsContext();
@@ -13,7 +14,11 @@ export default function MainProductCard({ item }) {
       border="light"
     >
       <NavLink to={`/products/${item.id}`} className="m-2">
-        <Card.Img variant="top" className="card-image img-fluid" src={item.img} />
+        <Card.Img
+          variant="top"
+          className="card-image img-fluid"
+          src={item.img}
+        />
       </NavLink>
 
       <Card.Body className="m-0 p-0">
@@ -22,16 +27,15 @@ export default function MainProductCard({ item }) {
           {" "}
           <b>${item.price}</b>{" "}
         </Card.Text>
+        {/* {user ? (
+        <NavLink
+          to="/cart"
+          className={({isActive}) => isActive ? "active-class" : "inactive-class"}
+          onClick={() => addProduct(item)}
+        >
+          <ShoppingCartIcon />
+        </NavLink>) :  null } */}
 
-        {/* <div className="text-center" aria-hidden="true">
-          <NavLink
-            to="/cart"
-            className="btn btn-sm btn-light m-2"
-            onClick={() => addProduct(item)}
-          >
-            🛒
-          </NavLink>
-        </div> */}
       </Card.Body>
     </Card>
   );

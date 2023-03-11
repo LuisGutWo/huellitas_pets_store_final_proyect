@@ -1,38 +1,39 @@
-import { Button } from "@mui/material";
-import Card from "react-bootstrap/Card";
+import { Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 function About() {
   return (
-    <div className="container about-container">
-      <Card className="bg-light text-dark about-card">
-        <Card.Img
-          src="src/assets/img/perrito_fondo_rosado.jpg"
-          alt="Card image"
+    <div className="about-container bg-light text-dark">
+      <img
+        src="src/assets/img/perrito_fondo_rosado.jpg"
+        alt=""
+        className="about-img img-fluid"
+      />
+      <div className="card-overlay">
+        <h1>
+          En Huellitas lo mas
+          <br /> importante son tus
+          <br /> mascotas
+        </h1>
+        <h5 className="text-dark">
+          Por mas de 14 años 
+          <br /> nos preocupamos cada <br /> dia en ser tu mejor
+          aliado y amigo. <br />
+          En brindarte todo lo que necesitas <br /> para tu mascota <br />{" "}
+          Nuestros clientes nos avalan... <br />
+        </h5>
+        <img
+          src="src/assets/img/hero_gatito.jpg"
+          alt=""
+          className="about-image"
         />
-        <Card.ImgOverlay className="card-overlay">
-          <Card.Title className="fs-3">
-            En Huellitas lo mas
-            <br /> importante son tus
-            <br /> mascotas
-          </Card.Title>
-          <Card.Text>
-            Por mas de 14 años nos preocupamos cada <br /> dia en ser tu mejor
-            aliado y amigo. <br />
-            En brindarte todo lo que necesitas <br /> para tu mascota <br />{" "}
-            Nuestros clientes nos avalan... <br />
-          </Card.Text>
-          <Card.Text>Siempre estaremos gustosos de poder ayudarte</Card.Text>
-          <img
-            src="src/assets/img/hero_gatito.jpg"
-            alt=""
-            className="about-image"
-          />
-          <NavLink to="/products" className="about-button mt-2">
-            <Button variant="outlined">Ver Productos</Button>
-          </NavLink>
-        </Card.ImgOverlay>
-      </Card>
+        <NavLink to={"/products"}>
+          {" "}
+          <Button size="sm" className="about-button">
+            Ver mas
+          </Button>
+        </NavLink>
+      </div>
     </div>
   );
 }

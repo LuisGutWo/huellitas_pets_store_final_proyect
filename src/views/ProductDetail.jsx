@@ -4,7 +4,9 @@ import { useParams, NavLink } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Button } from "react-bootstrap";
 
-export default function Product() {
+export default function ProductDetail() {
+  const { id } = useParams(); 
+
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(true);
   const { addProduct } = useProductsContext();
@@ -14,7 +16,7 @@ export default function Product() {
   useEffect(() => {
     setLoading(true);
     fetch("/products.json")
-      .then((response) => response.json())
+      .then((response) => response.json({id}))
       .then((data) => {
         const product = data.find((item) => item.id === params.id);
         setProduct(product);
@@ -27,7 +29,7 @@ export default function Product() {
   }
 
   return (
-    <div className="container d-flex justify-content-center">
+    <div className="product-container">
       <div className="card">
         <div className="row">
           <div className="col-md-4 text-center">
@@ -37,7 +39,7 @@ export default function Product() {
               alt="..."
             />
             <NavLink to={"/products"} className="text-end">
-              <Button className="btn btn-secondary btn-sm mb-2">Volver</Button>
+              <Button className="btn btn-secondary btn-sm mt-3">Volver</Button>
             </NavLink>
           </div>
           <div className="col-md-8">
