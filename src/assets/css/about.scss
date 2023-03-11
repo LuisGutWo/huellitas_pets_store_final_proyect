@@ -1,0 +1,31 @@
+@use "styles";
+
+/* About section Styles */
+.about-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .about-img {
+    opacity: 0.9;
+    width: 100vw;
+    height: 100%;
+  }
+  .card-overlay {
+    position: absolute;
+    margin-left: 2rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  .about-image {
+    width: 30%;
+  }
+  .about-button {
+    text-decoration: none;
+  }

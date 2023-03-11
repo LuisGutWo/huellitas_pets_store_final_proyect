@@ -2,9 +2,13 @@ import { NavLink } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 
 import { useProductsContext } from "../context/ProductsContext";
+import { Button } from "react-bootstrap";
+import DeleteIcon from "@mui/icons-material/Delete";
+import SendIcon from "@mui/icons-material/Send";
 // import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
-export default function MainProductCard({ item }) {
+export default function MainProductCard({ item, selectFavorites }) {
+  const { favorites, addFavorites, removeFavorites } = useProductsContext();
   // const { addProduct } = useProductsContext();
 
   return (
@@ -27,6 +31,31 @@ export default function MainProductCard({ item }) {
           {" "}
           <b>${item.price}</b>{" "}
         </Card.Text>
+        {selectFavorites ? (
+          <Button
+            size="small"
+            onClick={() => {
+              removeFavorites(item.id);
+            }}
+            variant="contained"
+            color="error"
+          >
+            <DeleteIcon />
+          </Button>
+        ) : (
+          <Button
+            disabled={favorites.some((i) => i.id == item.id)}
+            onClick={() => {
+              addFavorites(item);
+            }}
+            size="small"
+            variant="contained"
+            color="primary"
+            sx={{ padding: 0.5 }}
+          >
+            <SendIcon />
+          </Button>
+        )}
         {/* {user ? (
         <NavLink
           to="/cart"

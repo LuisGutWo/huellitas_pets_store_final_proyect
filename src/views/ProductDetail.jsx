@@ -47,7 +47,7 @@ export default function ProductDetail() {
               <h5 className="fs-3">{product.name} </h5>
               <hr />
               <p className="card-text">{product.desc}</p>
-              <p className="card-text">
+              <div className="card-text">
                 <p className="text-center d-flex justify-content-between align-items-center text-primary m-0">
                   <b>Precio: ${product.price}</b>
                   <NavLink
@@ -60,7 +60,7 @@ export default function ProductDetail() {
                     <ShoppingCartIcon />
                   </NavLink>
                 </p>
-              </p>
+              </div>
             </div>
           </div>
         </div>

@@ -1,0 +1,28 @@
+@use "styles";
+
+
+
+/* Navbar Styles */
+.main-navbar {
+    height: 4rem;
+    background-color: #F7EFE5
+  }
+  .navbar-form {
+    display: flex;
+    overflow: visible;
+    flex-direction: column;
+    width: 18rem;
+    margin-top: 0.5rem;
+  }
+  .form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .navbar-select{
+    margin: 0.7rem;
+    max-width: 100%;
+  
+  
+  }

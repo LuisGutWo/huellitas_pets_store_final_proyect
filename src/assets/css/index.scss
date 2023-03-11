@@ -1,0 +1,45 @@
+@use "styles";
+@use "navbar";
+@use "hero";
+@use "about";
+@use "contact";
+@use "products";
+
+
+
+
+.app {
+  font-family: styles.$primary-font;
+  background-image: linear-gradient(to top, styles.$primary-color, rgb(255, 254, 244) 100%);
+}
+.routes-section {
+  margin-top: 4rem;
+}
+
+.active-class {
+  background-color: rgba(221, 221, 221, 0.755);
+  text-decoration: none;
+  padding: 4px;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  color: rgba(19, 19, 19, 0.92);
+  border: #e2e2e244 solid 2px;
+  border-radius: 6px;
+}
+.inactive-class {
+  background-color: rgba(246, 246, 246, 0.366);
+  text-decoration: none;
+  padding: 4px;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  color: rgba(22, 22, 22, 0.556);
+  border: #e9e9e960 solid 2px;
+  border-radius: 6px;
+}
+
+
+
+
+
+
+

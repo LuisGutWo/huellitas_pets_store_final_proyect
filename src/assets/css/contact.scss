@@ -1,0 +1,17 @@
+@use "styles";
+
+
+.main-contact {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.contact-container {
+  position: absolute;
+  color: styles.$primary-color;
+  text-align: start;
+  padding: 4rem;
+}

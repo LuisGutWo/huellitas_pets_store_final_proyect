@@ -10,10 +10,9 @@ import About from "./views/About";
 import CreateUser from "./views/CreateUser";
 import ProductsCardSection from "./views/ProductsCardSection";
 import ProductDetail from "./views/ProductDetail";
+import SelectFavorites from "./views/SelectFavorites";
 
 import Contact from "./views/Contact";
-
-import "./index.css";
 
 function App() {
   return (
@@ -29,6 +28,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/loginPage" element={<LoginPage />} />
           <Route path="/create" element={<CreateUser />} />
+          <Route path="/favorites" element={<SelectFavorites />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

@@ -1,9 +1,10 @@
 import { createContext, useContext, useState } from "react";
 
-export const CartContext = createContext();
+export const ProductsContext = createContext();
 
 export default function ProductsProvider({ children }) {
   const [cart, setCart] = useState([]);
+  const [favorites, setFavorites] = useState([]);
 
   const addProduct = (item) => {
     const itemExists = cart.find((i) => i.id === item.id);
@@ -37,13 +38,20 @@ export default function ProductsProvider({ children }) {
     return item ? item.count : 0;
   };
 
+  const addFavorites = (item) => {
+    setFavorites([...favorites, item]);
+  };
+  const removeFavorites = (id) => {
+    setFavorites(favorites.filter((item) => item.id != id));
+  };
+
   return (
-    <CartContext.Provider
-      value={{ cart, addProduct, removeProduct, totalCart, findItemCount }}
+    <ProductsContext.Provider
+      value={{ cart, addProduct, removeProduct, totalCart, findItemCount, favorites, addFavorites, removeFavorites }}
     >
       {children}
-    </CartContext.Provider>
+    </ProductsContext.Provider>
   );
 }
 
-export const useProductsContext = () => useContext(CartContext);
+export const useProductsContext = () => useContext(ProductsContext);

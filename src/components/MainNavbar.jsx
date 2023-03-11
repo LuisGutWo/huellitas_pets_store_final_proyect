@@ -14,6 +14,7 @@ import Loading from "./Loading";
 
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import NotFound from "../views/NotFound";
 
 export default function MainNavbar() {
@@ -133,6 +134,14 @@ export default function MainNavbar() {
                     }
                   >
                     <ShoppingCartIcon className="card-image" />
+                  </NavLink>
+                  <NavLink
+                    to="/favorites"
+                    className={({ isActive }) =>
+                      isActive ? "active-class" : "inactive-class"
+                    }
+                  >
+                    <FavoriteIcon />
                   </NavLink>
                 </Nav>
                 <Form className="navbar-form">
