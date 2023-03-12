@@ -4,7 +4,7 @@ import Card from "react-bootstrap/Card";
 import { useProductsContext } from "../context/ProductsContext";
 import { Button } from "react-bootstrap";
 import DeleteIcon from "@mui/icons-material/Delete";
-import SendIcon from "@mui/icons-material/Send";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 // import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 export default function MainProductCard({ item, selectFavorites }) {
@@ -13,7 +13,7 @@ export default function MainProductCard({ item, selectFavorites }) {
 
   return (
     <Card
-      className=" product-card text-center m-1 col-12 col-md-6 col-xl-3 p-0 overflow-hidden"
+      className="product-card m-1 col-12 col-md-6 col-xl-3"
       style={{ width: "14rem", height: "22rem" }}
       border="light"
     >
@@ -25,12 +25,11 @@ export default function MainProductCard({ item, selectFavorites }) {
         />
       </NavLink>
 
-      <Card.Body className="m-0 p-0">
-        <Card.Title className="text-dark fs-6 mt-0 m-3">{item.name}</Card.Title>
-        <Card.Text className="text-primary">
+      <Card.Body className="card-body">
+        <Card.Title className="text-dark text-start fs-6 mt-3">{item.name}</Card.Title>
+        <Card.Text className="text-info d-flex justify-content-between align-items-center gap-5">
           {" "}
           <b>${item.price}</b>{" "}
-        </Card.Text>
         {selectFavorites ? (
           <Button
             size="small"
@@ -50,21 +49,19 @@ export default function MainProductCard({ item, selectFavorites }) {
             }}
             size="small"
             variant="contained"
-            color="primary"
-            sx={{ padding: 0.5 }}
           >
-            <SendIcon />
+            <FavoriteIcon color="info" />
           </Button>
         )}
-        {/* {user ? (
+        </Card.Text>
+        {/* {user && (
         <NavLink
           to="/cart"
           className={({isActive}) => isActive ? "active-class" : "inactive-class"}
           onClick={() => addProduct(item)}
         >
           <ShoppingCartIcon />
-        </NavLink>) :  null } */}
-
+        </NavLink>)} */}
       </Card.Body>
     </Card>
   );

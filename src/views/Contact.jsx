@@ -39,7 +39,7 @@ const Contact = () => {
               <Form.Label>Cuéntanos que necesitas?</Form.Label>
               <Form.Control as="textarea" rows={3} />
             </Form.Group>
-            <Button>Enviar</Button>
+            <Button className="btn-info">Enviar</Button>
           </Form>
         </div>
       </div>

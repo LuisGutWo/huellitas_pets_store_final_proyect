@@ -4,16 +4,18 @@
 @use "about";
 @use "contact";
 @use "products";
+@use "footer";
+@use "cart";
 
 
 
 
 .app {
   font-family: styles.$primary-font;
-  background-image: linear-gradient(to top, styles.$primary-color, rgb(255, 254, 244) 100%);
+  background-color: styles.$primary-color;
 }
 .routes-section {
-  margin-top: 4rem;
+  margin-top: 0rem;
 }
 
 .active-class {

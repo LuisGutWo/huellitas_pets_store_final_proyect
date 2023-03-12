@@ -10,10 +10,10 @@ export default function Cart() {
   const { cart, totalCart } = useProductsContext();
 
   return (
-    <div className="cart-container container overflow-hidden">
-      <div className="d-flex justify-content-between align-items-center mt-4">
+    <div className="cart-container">
+      <div className="d-flex justify-content-between align-items-center gap-5">
         <h2 className="text-start m-2 text-dark">Detalle de tu pedido</h2>
-        <div className="alert alert-dark p-2 text-dark">
+        <div className="alert alert-info p-2 m-0 text-dark">
           {" "}
           <b>Total</b> $ {formatPrice(totalCart())}
         </div>
@@ -33,14 +33,14 @@ export default function Cart() {
           </li>
         )}
 
-        <li className="list-group-item text-end ps-4 bg-dark mb-5">
-          <b className="fs-5">
+        <li className="list-group-item text-end ps-4 bg-secondary mb-5">
+          {/* <b className="fs-5">
             Total : $ {totalCart().toLocaleString("de-DE")}
-          </b>
+          </b> */}
           <NavLink to={"/products"}>
-            <Button className="btn btn-secondary">Seguir comprando</Button>
+            <Button className="btn btn-info">Seguir comprando</Button>
           </NavLink>
-          <Button className="btn btn-light ms-3">Ir a Pagar</Button>
+          <Button className="btn btn-success ms-3">Ir a Pagar</Button>
         </li>
       </ul>
     </div>

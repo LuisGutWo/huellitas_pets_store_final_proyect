@@ -7,6 +7,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import Alert from "react-bootstrap/Alert";
 
 import CreateUser from "../views/CreateUser";
 import LoginPage from "../views/LoginPage";
@@ -14,8 +15,7 @@ import Loading from "./Loading";
 
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import NotFound from "../views/NotFound";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 export default function MainNavbar() {
   const [products, setProducts] = useState([]);
@@ -41,6 +41,10 @@ export default function MainNavbar() {
     getProduct();
   }, []);
 
+  const handleChange = (e) => {
+    setSelectProduct(e.target.value);
+    if (e.target.value) setError(false);
+  };
   const handleClick = () => {
     if (selectProduct) {
       navigate(`/products/${selectProduct}`);
@@ -49,16 +53,22 @@ export default function MainNavbar() {
     }
   };
 
-  const handleChange = (e) => {
-    setSelectProduct(e.target.value);
-    if (e.target.value) setError(false);
-  };
+  function AlertProductSelect() {
+    const [show, setShow] = useState(true);
+
+    if (show) {
+      return (
+        <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+          <p>Seleccione un producto!</p>
+        </Alert>
+      );
+    }
+  }
 
   if (loading) return <Loading />;
-  if (error) return <NotFound />;
 
   return (
-    <>
+    <div className="navbar-content">
       {["lg"].map((expand) => (
         <Navbar
           key={expand}
@@ -70,7 +80,7 @@ export default function MainNavbar() {
             <Navbar.Brand href="#">
               <img
                 src="src/assets/img/huellitas_logo_dark.png"
-                width="170"
+                width="180"
                 height="70"
                 className="card-image d-inline-block align-top"
                 alt=""
@@ -89,33 +99,35 @@ export default function MainNavbar() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end align-items-center flex-grow-1 pe-3 gap-3">
-                  <NavLink
-                    to="/"
-                    href="#action1"
-                    className={({ isActive }) =>
-                      isActive ? "active-class" : "inactive-class"
-                    }
-                  >
-                    Home
-                  </NavLink>
-                  <NavLink
-                    to="/about"
-                    href="#action2"
-                    className={({ isActive }) =>
-                      isActive ? "active-class" : "inactive-class"
-                    }
-                  >
-                    About
-                  </NavLink>
-                  <NavLink
-                    to="/contact"
-                    href="#action3"
-                    className={({ isActive }) =>
-                      isActive ? "active-class" : "inactive-class"
-                    }
-                  >
-                    Contacto
-                  </NavLink>
+                  <Form className="navbar-form">
+                    <div className="form-container">
+                      <Form.Select
+                        size="sm"
+                        className="bg-light navbar-select"
+                        onChange={handleChange}
+                      >
+                        <option value={""}>Productos</option>
+                        {products.map((product) => (
+                          <option key={product.name} value={product.id}>
+                            {product.name}
+                          </option>
+                        ))}
+                      </Form.Select>
+                      <Button
+                        variant="outline-info"
+                        size="small"
+                        style={{
+                          height: "1.7rem",
+                          width: "7rem",
+                          padding: "0px",
+                        }}
+                        onClick={handleClick}
+                      >
+                        Buscar
+                      </Button>
+                    </div>
+                    {error && <AlertProductSelect />}
+                  </Form>
                   <NavDropdown
                     title={<PermIdentityIcon className="card-image" />}
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
@@ -144,41 +156,41 @@ export default function MainNavbar() {
                     <FavoriteIcon />
                   </NavLink>
                 </Nav>
-                <Form className="navbar-form">
-                  <div className="form-container">
-                    <Form.Select
-                      size="sm"
-                      className="bg-light navbar-select"
-                      onChange={handleChange}
-                    >
-                      <option value={""}>Seleccione producto</option>
-                      {products.map((product) => (
-                        <option key={product.name} value={product.id}>
-                          {product.name}
-                        </option>
-                      ))}
-                    </Form.Select>
-                    <Button
-                      variant="outline-primary"
-                      size="small"
-                      onClick={handleClick}
-                    >
-                      Buscar
-                    </Button>
-                  </div>
-                  <div>
-                    {error && (
-                      <p className="alert alert-danger alert-sm">
-                        Seleccione un producto
-                      </p>
-                    )}
-                  </div>
-                </Form>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>
         </Navbar>
       ))}
-    </>
+
+      <Navbar className="second-navbar">
+        <NavLink
+          to="/"
+          href="#action1"
+          className={({ isActive }) =>
+            isActive ? "active-class" : "inactive-class"
+          }
+        >
+          <b>HOME</b>
+        </NavLink>
+        <NavLink
+          to="/about"
+          href="#action2"
+          className={({ isActive }) =>
+            isActive ? "active-class" : "inactive-class"
+          }
+        >
+          <b>ABOUT</b> 
+        </NavLink>
+        <NavLink
+          to="/contact"
+          href="#action3"
+          className={({ isActive }) =>
+            isActive ? "active-class" : "inactive-class"
+          }
+        >
+          <b>CONTACTO</b>
+        </NavLink>
+      </Navbar>
+    </div>
   );
 }

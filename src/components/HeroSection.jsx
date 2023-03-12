@@ -26,7 +26,7 @@ const HeroSection = () => {
               <br /> se merece
               <br /> y mucho mas!
             </h5>
-            <NavLink to={"/products"}> <Button size="sm">Ver mas</Button></NavLink>
+            <NavLink to={"/products"}> <Button size="sm" className="btn-info">Ver mas</Button></NavLink>
           </div>
         </div>
       </Carousel.Item>
@@ -50,7 +50,7 @@ const HeroSection = () => {
               <br />de tu casa
               <br />con todo lo que necesites
             </h5>
-            <NavLink to={"/products"} className="ms-5"> <Button size="sm">Ver mas</Button></NavLink>
+            <NavLink to={"/products"} className="ms-5"> <Button size="sm" className="btn-info">Ver mas</Button></NavLink>
           </div>
         </div>
       </Carousel.Item>
@@ -78,7 +78,7 @@ const HeroSection = () => {
               de productos pensados 
               <br /> en tu mascota.
             </h5>
-            <NavLink to={"/products"} className="ms-5"> <Button size="sm">Ver mas</Button></NavLink>
+            <NavLink to={"/products"} className="ms-5"> <Button size="sm" className="btn-info">Ver mas</Button></NavLink>
           </div>
         </div>
       </Carousel.Item>

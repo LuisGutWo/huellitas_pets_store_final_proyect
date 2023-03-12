@@ -10,12 +10,10 @@ export default function SelectFavorites() {
 
   return (
     <div className="cart-container container overflow-hidden">
-      <div className="d-flex justify-content-between align-items-center mt-4">
-        <h2 className="text-start m-2 text-dark">Tus Favoritos</h2>
-      </div>
+      <h2 className="m-2 text-dark">Tus Favoritos</h2>
       <hr className="text-dark mb-4 mt-1" />
       <div className="list-group">
-        <div className="d-flex flex-wrap container-card gap-3 mb-4">
+        <div className="d-flex flex-wrap gap-3 mb-4">
           {favorites.map((item) => (
             <MainProductCard key={item.id} item={item} selectFavorites />
           ))}
@@ -29,10 +27,10 @@ export default function SelectFavorites() {
             </h2>
           </li>
         )}
-        <NavLink to={"/products"}>
-          <Button className="btn btn-secondary">Seguir viendo</Button>
-        </NavLink>
       </div>
+      <NavLink to={"/products"}>
+        <Button className="btn" variant="outline-info">Seguir viendo</Button>
+      </NavLink>
     </div>
   );
 }

@@ -12,9 +12,12 @@ const CreateUser = () => {
 
   return (
     <>
-      <NavLink 
-      onClick={handleShow}
-      className={({ isActive }) => isActive ? "active-class" : "inactive-class"}>
+      <NavLink
+        onClick={handleShow}
+        className={({ isActive }) =>
+          isActive ? "active-class" : "inactive-class"
+        }
+      >
         Crear usuario
       </NavLink>
       <Modal show={show} onHide={handleClose}>
