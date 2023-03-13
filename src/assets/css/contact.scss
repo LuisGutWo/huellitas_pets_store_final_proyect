@@ -6,12 +6,19 @@
   overflow: hidden;
   display: flex;
   align-items: flex-end;
-  justify-content: flex-start;
+  justify-content: center;
   flex-wrap: wrap;
 }
 .contact-container {
   position: absolute;
-  color: styles.$primary-color;
-  text-align: start;
-  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 1rem;
+  max-width: 90%;  
+
 }
+  .contact-form{
+    width: 40%;
+  }

@@ -18,7 +18,7 @@ const MainFooter = () => {
             />
             <p className="footer-text">
               Tienda especializada en la importación, distribución y venta de
-              artículos <br /> para el cuidado de mascotas <br /> se realizan
+              artículos <br /> para el cuidado de mascotas. <br /> Se realizan
               envíos a todo Chile.{" "}
             </p>
             <img

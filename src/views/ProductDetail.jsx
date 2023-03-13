@@ -3,30 +3,31 @@ import { useProductsContext } from "../context/ProductsContext";
 import { useParams, NavLink } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Button } from "react-bootstrap";
+import { fakeLoading } from "../utils/fakeLoading";
+import Loading from "../components/Loading";
 
 export default function ProductDetail() {
-  const { id } = useParams(); 
-
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(true);
   const { addProduct } = useProductsContext();
+  const { id } = useParams(); 
 
   const params = useParams();
 
   useEffect(() => {
     setLoading(true);
+    fakeLoading(2000);
     fetch("/products.json")
       .then((response) => response.json({id}))
       .then((data) => {
         const product = data.find((item) => item.id === params.id);
         setProduct(product);
+        
       })
       .finally(() => setLoading(false));
   }, [params]);
 
-  if (loading) {
-    return <h1>Loading...</h1>;
-  }
+  if (loading) return <Loading />;
 
   return (
     <div className="product-container">

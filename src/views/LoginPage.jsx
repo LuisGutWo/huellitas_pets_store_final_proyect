@@ -32,7 +32,7 @@ const LoginPage = () => {
                 autoFocus
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
@@ -43,9 +43,6 @@ const LoginPage = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cerrar
-          </Button>
           <Button variant="primary" onClick={handleClose}>
             Login
           </Button>

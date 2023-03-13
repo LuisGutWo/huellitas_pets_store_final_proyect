@@ -34,7 +34,7 @@ const CreateUser = () => {
                 autoFocus
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
@@ -42,7 +42,7 @@ const CreateUser = () => {
                 autoFocus
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
@@ -53,9 +53,6 @@ const CreateUser = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            cerrar
-          </Button>
           <Button variant="primary" onClick={handleClose}>
             Guardar cambios
           </Button>

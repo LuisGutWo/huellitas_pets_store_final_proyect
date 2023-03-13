@@ -8,7 +8,7 @@ const Contact = () => {
       <div className="main-contact bg-black">
         <div>
           <img
-            src="src/assets/img/hero_perrito.jpg"
+            src="src/assets/img/gato_y_perro.jpeg"
             alt=""
             className="card-image img-fluid"
           />
@@ -19,7 +19,7 @@ const Contact = () => {
             alt=""
             className="hero-logo img-fluid"
           />
-          <Form className="text-dark h6">
+          <Form className="contact-form text-dark h6">
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Nombre</Form.Label>
               <Form.Control type="text" placeholder="Ingresar nombre" />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
 
@@ -16,6 +16,7 @@ import Loading from "./Loading";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useProductsContext } from "../context/ProductsContext";
 
 export default function MainNavbar() {
   const [products, setProducts] = useState([]);
@@ -45,7 +46,7 @@ export default function MainNavbar() {
     setSelectProduct(e.target.value);
     if (e.target.value) setError(false);
   };
-  const handleClick = () => {
+  const handleProductsClick = () => {
     if (selectProduct) {
       navigate(`/products/${selectProduct}`);
     } else {
@@ -121,7 +122,7 @@ export default function MainNavbar() {
                           width: "7rem",
                           padding: "0px",
                         }}
-                        onClick={handleClick}
+                        onClick={handleProductsClick}
                       >
                         Buscar
                       </Button>
@@ -153,7 +154,7 @@ export default function MainNavbar() {
                       isActive ? "active-class" : "inactive-class"
                     }
                   >
-                    <FavoriteIcon />
+                    <FavoriteIcon className="card-image" />
                   </NavLink>
                 </Nav>
               </Offcanvas.Body>
@@ -170,7 +171,7 @@ export default function MainNavbar() {
             isActive ? "active-class" : "inactive-class"
           }
         >
-          <b>HOME</b>
+          HOME
         </NavLink>
         <NavLink
           to="/about"
@@ -179,7 +180,7 @@ export default function MainNavbar() {
             isActive ? "active-class" : "inactive-class"
           }
         >
-          <b>ABOUT</b> 
+          ABOUT
         </NavLink>
         <NavLink
           to="/contact"
@@ -188,7 +189,7 @@ export default function MainNavbar() {
             isActive ? "active-class" : "inactive-class"
           }
         >
-          <b>CONTACTO</b>
+          CONTACTO
         </NavLink>
       </Navbar>
     </div>
