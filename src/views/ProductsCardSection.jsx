@@ -1,26 +1,28 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import MainProductCard from "../components/MainProductCard";
 import Loading from "../components/Loading";
 import NotFound from "../views/NotFound";
 import { fakeLoading } from "../utils/fakeLoading";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+
   const navigate = useNavigate();
 
   const getProducts = async () => {
+    setLoading(true);
+
     try {
-      setLoading(true);
       await fakeLoading();
-      const res = await fetch("products.json");
-      if (!res.ok) setError(true);
-      const data = await res.json();
+      const { data } = await axios.get("products.json");
       setProducts(data);
     } catch (error) {
       console.log(error);
+      <NotFound />;
       navigate("/products");
     }
     setLoading(false);
@@ -30,7 +32,6 @@ export default function Products() {
   }, []);
 
   if (loading) return <Loading />;
-  if (error) return <NotFound />;
 
   return (
     <div className="text-center">

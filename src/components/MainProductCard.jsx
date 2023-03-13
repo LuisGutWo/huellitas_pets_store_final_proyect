@@ -1,8 +1,9 @@
-import { NavLink } from "react-router-dom";
 import Card from "react-bootstrap/Card";
+import { NavLink } from "react-router-dom";
 
-import { useProductsContext } from "../context/ProductsContext";
 import { Button } from "react-bootstrap";
+import { useProductsContext } from "../context/ProductsContext";
+
 import DeleteIcon from "@mui/icons-material/Delete";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 // import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";

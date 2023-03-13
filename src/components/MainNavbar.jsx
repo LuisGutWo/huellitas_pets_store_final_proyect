@@ -16,7 +16,7 @@ import Loading from "./Loading";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useProductsContext } from "../context/ProductsContext";
+import axios from "axios";
 
 export default function MainNavbar() {
   const [products, setProducts] = useState([]);
@@ -30,9 +30,8 @@ export default function MainNavbar() {
     setLoading(true);
 
     try {
-      const res = await fetch("/products.json");
-      const productData = await res.json();
-      setProducts(productData);
+      const {data} = await axios.get("/products.json");
+      setProducts(data);
     } catch (error) {
       console.log(error.message);
     }

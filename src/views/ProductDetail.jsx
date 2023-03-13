@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { useProductsContext } from "../context/ProductsContext";
 import { useParams, NavLink } from "react-router-dom";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Button } from "react-bootstrap";
+
+import { useProductsContext } from "../context/ProductsContext";
 import { fakeLoading } from "../utils/fakeLoading";
 import Loading from "../components/Loading";
+
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 export default function ProductDetail() {
   const [product, setProduct] = useState();
@@ -14,9 +16,10 @@ export default function ProductDetail() {
 
   const params = useParams();
 
+  fakeLoading(2000);
+  
   useEffect(() => {
     setLoading(true);
-    fakeLoading(2000);
     fetch("/products.json")
       .then((response) => response.json({id}))
       .then((data) => {
