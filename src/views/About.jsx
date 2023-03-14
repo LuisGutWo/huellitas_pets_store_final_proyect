@@ -29,7 +29,7 @@ function About() {
         />
         <NavLink to={"/products"}>
           {" "}
-          <Button size="sm" className="about-button btn-info">
+          <Button size="sm" className="about-button btn-secondary">
             Ver mas
           </Button>
         </NavLink>

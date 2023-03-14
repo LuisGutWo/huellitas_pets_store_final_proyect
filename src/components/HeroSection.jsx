@@ -1,17 +1,18 @@
 import React from "react";
-import { Button, NavLink } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 
 const HeroSection = () => {
   return (
     <Carousel>
       <Carousel.Item>
-        <div className="main-hero bg-black">
+        <div className="main-hero">
           <div>
             <img
               src="src/assets/img/hero_mascotas.jpg"
               alt=""
-              className="about-img img-fluid"
+              className="hero-img img-fluid"
             />
           </div>
           <div className="newhero-container">
@@ -26,13 +27,17 @@ const HeroSection = () => {
               <br /> se merece
               <br /> y mucho mas!
             </h5>
-            <NavLink to={"/products"}> <Button size="sm" className="btn-info">Ver mas</Button></NavLink>
+            <NavLink
+              to={"/products"}
+            >
+              <Button className="btn btn-secondary btn-sm"> > Compre Ahora</Button>
+            </NavLink>
           </div>
         </div>
       </Carousel.Item>
       <Carousel.Item>
-        <div className="main-hero bg-black">
-          <div className="hero-background">
+        <div className="main-hero">
+          <div>
             <img
               src="src/assets/img/perrito_cachorro.jpg"
               alt=""
@@ -47,16 +52,23 @@ const HeroSection = () => {
             />
             <h5 className="text-container text-dark">
               Llegamos a la puerta
-              <br />de tu casa
-              <br />con todo lo que necesites
+              <br />
+              de tu casa
+              <br />
+              con todo lo que necesites
             </h5>
-            <NavLink to={"/products"} className="ms-5"> <Button size="sm" className="btn-info">Ver mas</Button></NavLink>
+            <NavLink
+              to={"/products"}
+              style={{ marginLeft: "2rem" }}
+            >
+              <Button className="btn btn-secondary btn-sm"> > Compre Ahora</Button>
+            </NavLink>
           </div>
         </div>
       </Carousel.Item>
       <Carousel.Item>
-        <div className="main-hero bg-black">
-          <div className="hero-background">
+        <div className="main-hero">
+          <div>
             <img
               src="src/assets/img/gato_portada.jpg"
               alt=""
@@ -68,17 +80,21 @@ const HeroSection = () => {
               src="src/assets/img/huellitas_logo_blanco.png"
               alt=""
               className="hero-logo img-fluid"
-              
             />
             <h5 className="text-container text-light">
               Te ofrecemos
               <br />
               una gran variedad
               <br />
-              de productos pensados 
+              de productos pensados
               <br /> en tu mascota.
             </h5>
-            <NavLink to={"/products"} className="ms-5"> <Button size="sm" className="btn-info">Ver mas</Button></NavLink>
+            <NavLink
+              to={"/products"}
+              style={{ marginLeft: "2rem" }}
+            >
+              <Button className="btn btn-secondary btn-sm"> > Compre Ahora</Button>
+            </NavLink>
           </div>
         </div>
       </Carousel.Item>

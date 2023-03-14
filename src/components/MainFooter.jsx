@@ -6,7 +6,11 @@ import { Col, Container, Row } from "react-bootstrap";
 const MainFooter = () => {
   return (
     <div className="main-footer">
-      <Container className="container p-3">
+      <div>
+        <img src="src/assets/img/fondo_juguetes.jpg" alt="" className="footer-image img-fluid" />
+      </div>
+
+      <Container className="footer-container container p-3">
         <Row>
           <Col className="footer-content">
             <img

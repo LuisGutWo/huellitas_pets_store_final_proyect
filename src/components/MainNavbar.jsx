@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
 
 import Container from "react-bootstrap/Container";
@@ -77,7 +77,7 @@ export default function MainNavbar() {
           fixed="top"
         >
           <Container fluid>
-            <Navbar.Brand href="#">
+            <Link to={"/"} href="#">
               <img
                 src="src/assets/img/huellitas_logo_dark.png"
                 width="180"
@@ -85,7 +85,7 @@ export default function MainNavbar() {
                 className="card-image d-inline-block align-top"
                 alt=""
               />
-            </Navbar.Brand>
+            </Link>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}

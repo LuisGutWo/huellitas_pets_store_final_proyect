@@ -1,1 +1,1 @@
-export const fakeLoading = (time = 1000) => new Promise((resolve) => setTimeout(() => resolve(), time ));
+export const fakeLoading = (time = 500) => new Promise((resolve) => setTimeout(() => resolve(), time ));

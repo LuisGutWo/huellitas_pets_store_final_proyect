@@ -2,19 +2,31 @@
 
 /* Footer Styles */
 .main-footer {
-  color: rgb(27, 27, 27);
-  background-image: url("src/assets/img/fondo_juguetes.jpg");
-  opacity: 0.9;
-  background-position: top;
-  background-repeat: no-repeat;
-  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.footer-image {
+  opacity: 0.5;
+  width: 100vw;
   max-height: 100vh;
+
+}
+
+.footer-container {
+  position: absolute;
 }
 
 .footer-content {
-  margin: 1em;
+  color: black;
+  margin: 0;
+
 }
 
 .footer-text {
-  font-size: 0.8em;
+
+  font-size: 0.9em;
 }

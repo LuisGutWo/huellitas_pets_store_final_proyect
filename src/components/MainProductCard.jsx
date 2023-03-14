@@ -39,6 +39,7 @@ export default function MainProductCard({ item, selectFavorites }) {
             }}
             variant="contained"
             color="error"
+            style={{ border: "0" }}
           >
             <DeleteIcon />
           </Button>
@@ -50,6 +51,7 @@ export default function MainProductCard({ item, selectFavorites }) {
             }}
             size="small"
             variant="contained"
+            style={{ border: "0" }}
           >
             <FavoriteIcon color="info" />
           </Button>
