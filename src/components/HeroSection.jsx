@@ -3,6 +3,8 @@ import { Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+
 const HeroSection = () => {
   return (
     <Carousel>
@@ -30,7 +32,7 @@ const HeroSection = () => {
             <NavLink
               to={"/products"}
             >
-              <Button className="btn btn-secondary btn-sm"> > Compre Ahora</Button>
+              <Button className="btn btn-secondary btn-sm"> <ArrowForwardIosIcon /> Compre Ahora</Button>
             </NavLink>
           </div>
         </div>
@@ -61,7 +63,7 @@ const HeroSection = () => {
               to={"/products"}
               style={{ marginLeft: "2rem" }}
             >
-              <Button className="btn btn-secondary btn-sm"> > Compre Ahora</Button>
+              <Button className="btn btn-secondary btn-sm"> <ArrowForwardIosIcon /> Compre Ahora</Button>
             </NavLink>
           </div>
         </div>
@@ -93,7 +95,7 @@ const HeroSection = () => {
               to={"/products"}
               style={{ marginLeft: "2rem" }}
             >
-              <Button className="btn btn-secondary btn-sm"> > Compre Ahora</Button>
+              <Button className="btn btn-secondary btn-sm"> <ArrowForwardIosIcon /> Compre Ahora</Button>
             </NavLink>
           </div>
         </div>
