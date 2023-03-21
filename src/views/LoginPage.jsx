@@ -1,55 +1,151 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
-import { NavLink } from 'react-router-dom';
+import { Formik } from "formik";
+import * as Yup from "yup";
+import { useEffect } from "react";
+import { login } from "../config/firebase";
+import { Link, useNavigate } from "react-router-dom";
+import { useUserContext } from "../context/UserContext";
 
-const LoginPage = () => {
-  const [show, setShow] = useState(false);
+import {
+  Avatar,
+  Box,
+  Button,
+  Grid,
+  TextField,
+  Typography,
+} from "@mui/material";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { LoadingButton } from "@mui/lab";
+import { BlurCircularTwoTone } from "@mui/icons-material";
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+const Login = () => {
+  const navigate = useNavigate();
+  const { user } = useUserContext();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/cart");
+    }
+  }, [user]);
+
+  const onSubmit = async (
+    { email, password },
+    { setSubmitting, setErrors, resetForm }
+  ) => {
+    try {
+      const credentialUser = await login({ email, password });
+      console.log(credentialUser);
+      resetForm();
+    } catch (error) {
+      console.log(error);
+      if (error.code === "auth/user-not-found") {
+        setErrors({ email: "Email no registrado" });
+      }
+      if (error.code === "auth/wrong-password") {
+        setErrors({ password: "Contraseña incorrecta" });
+      }
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().email("Email no válido").required("Email requerido"),
+    password: Yup.string()
+      .trim()
+      .min(6, "Mínimo 6 caracteres")
+      .required("Contraseña requerida"),
+  });
 
   return (
     <>
-      <NavLink
-      onClick={handleShow}
-      className={({ isActive }) => isActive ? "active-class" : "inactive-class"}>
-        Login
-      </NavLink>
+      <Box
+        sx={{
+          marginTop: 8,
+          marginBottom: 8,
+          maxWidth: 400,
+          mx: "auto",
+          textAlign: "center",
+          padding: 2,
+          backgroundColor: "Menu",
+          borderRadius: 6,
+          borderStyle: "groove",
+        }}
+      >
+        <Avatar sx={{ mx: "auto", bgcolor: "primary.main" }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Ingrese su usuario
+        </Typography>
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Ingrese a su cuenta</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="name@example.com"
-                autoFocus
+        <Formik
+          initialValues={{ email: "", password: "" }}
+          onSubmit={onSubmit}
+          validationSchema={validationSchema}
+        >
+          {({
+            handleChange,
+            handleSubmit,
+            values,
+            isSubmitting,
+            errors,
+            touched,
+            handleBlur,
+          }) => (
+            <Box onSubmit={handleSubmit} component="form" sx={{ mt: 1 }}>
+              <TextField
+                sx={{ mb: 3 }}
+                fullWidth
+                label="@Email"
+                id="email"
+                type="text"
+                placeholder="Ingrese email"
+                value={values.email}
+                onChange={handleChange}
+                name="email"
+                onBlur={handleBlur}
+                error={errors.email && touched.email}
+                helperText={errors.email && touched.email && errors.email}
               />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
+              <TextField
+                fullWidth
+                label="Contraseña"
+                id="password"
                 type="password"
-                placeholder="ingrese su clave"
-                autoFocus
+                placeholder="Ingrese contraseña"
+                value={values.password}
+                onChange={handleChange}
+                name="password"
+                onBlur={handleBlur}
+                error={errors.password && touched.password}
+                helperText={
+                  errors.password && touched.password && errors.password
+                }
               />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
-            Login
-          </Button>
-        </Modal.Footer>
-      </Modal>
+              <LoadingButton
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                fullWidth
+                type="submit"
+                disabled={isSubmitting}
+                loading={isSubmitting}
+              >
+                Acceder
+              </LoadingButton>
+
+              <Grid container>
+                <Grid item xs>
+                  <Button component={Link} to="/create">
+                    ¿No estas con nosotros? Registrate
+                  </Button>
+                </Grid>
+              </Grid>
+            </Box>
+          )}
+        </Formik>
+      </Box>
     </>
   );
-}
+};
 
-export default LoginPage;
+export default Login;

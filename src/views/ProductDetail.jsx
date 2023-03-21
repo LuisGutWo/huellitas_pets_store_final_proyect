@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import { useUserContext } from "../context/UserContext";
 
 import { useProductsContext } from "../context/ProductsContext";
 import { fakeLoading } from "../utils/fakeLoading";
@@ -12,20 +13,20 @@ export default function ProductDetail() {
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(true);
   const { addProduct } = useProductsContext();
-  const { id } = useParams(); 
+  const { id } = useParams();
 
   const params = useParams();
+  const { user } = useUserContext();
 
   fakeLoading(2000);
-  
+
   useEffect(() => {
     setLoading(true);
     fetch("/products.json")
-      .then((response) => response.json({id}))
+      .then((response) => response.json({ id }))
       .then((data) => {
         const product = data.find((item) => item.id === params.id);
         setProduct(product);
-        
       })
       .finally(() => setLoading(false));
   }, [params]);
@@ -54,15 +55,17 @@ export default function ProductDetail() {
               <div className="card-text">
                 <p className="text-center d-flex justify-content-between align-items-center text-primary m-0">
                   <b>Precio: ${product.price}</b>
-                  <NavLink
-                    className={({ isActive }) =>
-                      isActive ? "active-class" : "inactive-class"
-                    }
-                    onClick={() => addProduct(product)}
-                    to="/cart"
-                  >
-                    <ShoppingCartIcon />
-                  </NavLink>
+                  {user ? (
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive ? "active-class" : "inactive-class"
+                      }
+                      onClick={() => addProduct(product)}
+                      to="/cart"
+                    >
+                      <ShoppingCartIcon />
+                    </NavLink>
+                  ) : null}
                 </p>
               </div>
             </div>

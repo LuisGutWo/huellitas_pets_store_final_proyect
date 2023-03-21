@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
+import { logout } from "../config/firebase";
+import { useUserContext } from "../context/UserContext";
 
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Alert from "react-bootstrap/Alert";
 
-import CreateUser from "../views/CreateUser";
-import LoginPage from "../views/LoginPage";
 import Loading from "./Loading";
 
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
@@ -25,12 +24,13 @@ export default function MainNavbar() {
   const [error, setError] = useState(false);
 
   const navigate = useNavigate();
+  const { user } = useUserContext();
 
   const getProduct = async () => {
     setLoading(true);
 
     try {
-      const {data} = await axios.get("/products.json");
+      const { data } = await axios.get("/products.json");
       setProducts(data);
     } catch (error) {
       console.log(error.message);
@@ -64,6 +64,14 @@ export default function MainNavbar() {
       );
     }
   }
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   if (loading) return <Loading />;
 
@@ -127,34 +135,39 @@ export default function MainNavbar() {
                       </Button>
                     </div>
                     {error && <AlertProductSelect />}
-                  </Form>
-                  <NavDropdown
-                    title={<PermIdentityIcon className="card-image" />}
-                    id={`offcanvasNavbarDropdown-expand-${expand}`}
-                  >
-                    <NavDropdown.Item href="#action4">
-                      <CreateUser />
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="#action5">
-                      <LoginPage />
-                    </NavDropdown.Item>
-                  </NavDropdown>
+                  </Form>  
                   <NavLink
-                    to="/cart"
+                    to="/loginPage"
                     className={({ isActive }) =>
                       isActive ? "active-class" : "inactive-class"
                     }
                   >
-                    <ShoppingCartIcon className="card-image" />
+                    <PermIdentityIcon className="card-image" />
                   </NavLink>
-                  <NavLink
-                    to="/favorites"
-                    className={({ isActive }) =>
-                      isActive ? "active-class" : "inactive-class"
-                    }
-                  >
-                    <FavoriteIcon className="card-image" />
-                  </NavLink>
+
+                  {user ? (
+                    <>
+                      <Button onClick={handleLogout} variant="contained">
+                        Logout
+                      </Button>
+                      <NavLink
+                        to="/cart"
+                        className={({ isActive }) =>
+                          isActive ? "active-class" : "inactive-class"
+                        }
+                      >
+                        <ShoppingCartIcon className="card-image" />
+                      </NavLink>
+                      <NavLink
+                        to="/favorites"
+                        className={({ isActive }) =>
+                          isActive ? "active-class" : "inactive-class"
+                        }
+                      >
+                        <FavoriteIcon className="card-image" />
+                      </NavLink>
+                    </>
+                  ) : null}
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

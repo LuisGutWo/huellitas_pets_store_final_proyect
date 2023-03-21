@@ -1,65 +1,144 @@
-import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
-import { NavLink } from "react-router-dom";
+import { Formik } from "formik";
+import * as Yup from "yup";
+import { register } from "../config/firebase";
+import { useUserContext } from "../context/UserContext";
+import { useRedirectActiveUser } from "../hooks/useRedirectActiveUser";
+import { Link } from "react-router-dom";
 
-const CreateUser = () => {
-  const [show, setShow] = useState(false);
+import {
+  Avatar,
+  Box,
+  Button,
+  Grid,
+  TextField,
+  Typography,
+} from "@mui/material";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { LoadingButton } from "@mui/lab";
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+const Register = () => {
+  const { user } = useUserContext();
+
+  // hook
+  useRedirectActiveUser(user, "/cart");
+
+  const onSubmit = async (
+    { email, password },
+    { setSubmitting, setErrors, resetForm }
+  ) => {
+    try {
+      await register({ email, password });
+      console.log("usuario registrado");
+      resetForm();
+    } catch (error) {
+      console.log(error.code);
+      console.log(error.message);
+      if (error.code === "auth/email-already-in-use") {
+        setErrors({ email: "Correo actualmente en uso" });
+      }
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().email("Email no válido").required("Email obligatorio"),
+    password: Yup.string()
+      .trim()
+      .min(6, "Mínimo 6 carácteres")
+      .required("Password obligatorio"),
+  });
 
   return (
     <>
-      <NavLink
-        onClick={handleShow}
-        className={({ isActive }) =>
-          isActive ? "active-class" : "inactive-class"
-        }
+      <Box
+        sx={{
+          marginTop: 8,
+          marginBottom: 8,
+          maxWidth: 400,
+          mx: "auto",
+          textAlign: "center",
+          padding: 2,
+          backgroundColor: "Menu",
+          borderRadius: 6,
+          borderStyle: "groove",
+        }}
       >
-        Crear usuario
-      </NavLink>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Crea tu usuario</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Nombre</Form.Label>
-              <Form.Control
+        <Avatar sx={{ mx: "auto", bgcolor: "secondary.main" }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Crear nuevo usuario
+        </Typography>
+
+        <Formik
+          initialValues={{ email: "", password: "" }}
+          onSubmit={onSubmit}
+          validationSchema={validationSchema}
+        >
+          {({
+            handleChange,
+            handleSubmit,
+            values,
+            isSubmitting,
+            errors,
+            touched,
+            handleBlur,
+          }) => (
+            <Box onSubmit={handleSubmit} component="form" sx={{ mt: 1 }}>
+              <TextField
+                sx={{ mb: 3 }}
+                fullWidth
+                label="@Email"
+                id="email"
                 type="text"
-                placeholder="ingrese su nombre"
-                autoFocus
+                placeholder="Ingrese email"
+                value={values.email}
+                onChange={handleChange}
+                name="email"
+                onBlur={handleBlur}
+                error={errors.email && touched.email}
+                helperText={errors.email && touched.email && errors.email}
               />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="name@example.com"
-                autoFocus
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
+              <TextField
+                fullWidth
+                label="Contraseña"
+                id="password"
                 type="password"
-                placeholder="ingrese password"
-                autoFocus
+                placeholder="Ingrese contraseña"
+                value={values.password}
+                onChange={handleChange}
+                name="password"
+                onBlur={handleBlur}
+                error={errors.password && touched.password}
+                helperText={
+                  errors.password && touched.password && errors.password
+                }
               />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
-            Guardar cambios
-          </Button>
-        </Modal.Footer>
-      </Modal>
+              <LoadingButton
+                variant="contained"
+                color="secondary"
+                sx={{ mt: 3, mb: 2 }}
+                fullWidth
+                type="submit"
+                disabled={isSubmitting}
+                loading={isSubmitting}
+              >
+                Crear
+              </LoadingButton>
+              <Grid container>
+                <Grid item xs>
+                  <Button component={Link} to="/loginPage" color="secondary">
+                    ¿Estas con nosotros? Accede aquí
+                  </Button>
+                </Grid>
+              </Grid>
+            </Box>
+          )}
+        </Formik>
+      </Box>
     </>
   );
 };
 
-export default CreateUser;
+export default Register;
