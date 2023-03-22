@@ -7,13 +7,11 @@ import { useUserContext } from "../context/UserContext";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-// import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 export default function MainProductCard({ item, selectFavorites }) {
   const { favorites, addFavorites, removeFavorites } = useProductsContext();
 
   const { user } = useUserContext();
-  // const { addProduct } = useProductsContext();
 
   return (
     <Card
@@ -62,14 +60,6 @@ export default function MainProductCard({ item, selectFavorites }) {
             </Button>
           )}
         </Card.Text>
-        {/* {user && (
-        <NavLink
-          to="/cart"
-          className={({isActive}) => isActive ? "active-class" : "inactive-class"}
-          onClick={() => addProduct(item)}
-        >
-          <ShoppingCartIcon />
-        </NavLink>)} */}
       </Card.Body>
     </Card>
   );

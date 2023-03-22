@@ -94,6 +94,8 @@ export default function MainNavbar() {
                 alt=""
               />
             </Link>
+            
+
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
@@ -107,6 +109,9 @@ export default function MainNavbar() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end align-items-center flex-grow-1 pe-3 gap-3">
+                { user && <div className="d-flex align-items-baseline gap-2 mt-4">
+                  <h6>Bienvenido</h6><p>{user.email}</p>
+                </div> }
                   <Form className="navbar-form">
                     <div className="form-container">
                       <Form.Select
@@ -135,15 +140,17 @@ export default function MainNavbar() {
                       </Button>
                     </div>
                     {error && <AlertProductSelect />}
-                  </Form>  
-                  <NavLink
-                    to="/loginPage"
-                    className={({ isActive }) =>
-                      isActive ? "active-class" : "inactive-class"
-                    }
-                  >
-                    <PermIdentityIcon className="card-image" />
-                  </NavLink>
+                  </Form>
+                  {!user && (
+                    <NavLink
+                      to="/loginPage"
+                      className={({ isActive }) =>
+                        isActive ? "active-class" : "inactive-class"
+                      }
+                    >
+                      <PermIdentityIcon className="card-image" />
+                    </NavLink>
+                  )}
 
                   {user ? (
                     <>

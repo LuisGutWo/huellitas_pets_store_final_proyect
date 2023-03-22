@@ -1,9 +1,11 @@
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { login } from "../config/firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "../context/UserContext";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 import {
   Avatar,
@@ -15,15 +17,16 @@ import {
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { LoadingButton } from "@mui/lab";
-import { BlurCircularTwoTone } from "@mui/icons-material";
 
 const Login = () => {
+  const [showPsw, setShowPsw] = useState(false);
+
   const navigate = useNavigate();
   const { user } = useUserContext();
 
   useEffect(() => {
     if (user) {
-      navigate("/cart");
+      navigate("/");
     }
   }, [user]);
 
@@ -107,21 +110,30 @@ const Login = () => {
                 error={errors.email && touched.email}
                 helperText={errors.email && touched.email && errors.email}
               />
-              <TextField
-                fullWidth
-                label="Contraseña"
-                id="password"
-                type="password"
-                placeholder="Ingrese contraseña"
-                value={values.password}
-                onChange={handleChange}
-                name="password"
-                onBlur={handleBlur}
-                error={errors.password && touched.password}
-                helperText={
-                  errors.password && touched.password && errors.password
-                }
-              />
+              <div className="d-flex align-items-center justify-content-end">
+                <TextField
+                  fullWidth
+                  label="Contraseña"
+                  id="password"
+                  type={showPsw ? "text" : "password"}
+                  placeholder="Ingrese contraseña"
+                  value={values.password}
+                  onChange={handleChange}
+                  name="password"
+                  onBlur={handleBlur}
+                  error={errors.password && touched.password}
+                  helperText={
+                    errors.password && touched.password && errors.password
+                  }
+                />
+                <div
+                  style={{ position: "absolute", marginRight: 8 }}
+                  onClick={() => setShowPsw(!showPsw)}
+                >
+                  {showPsw ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                </div>
+              </div>
+
               <LoadingButton
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}

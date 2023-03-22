@@ -34,9 +34,6 @@ export default function Cart() {
         )}
 
         <li className="list-group-item text-end ps-4 bg-secondary mb-5">
-          {/* <b className="fs-5">
-            Total : $ {totalCart().toLocaleString("de-DE")}
-          </b> */}
           <NavLink to={"/products"}>
             <Button className="btn btn-info">Seguir comprando</Button>
           </NavLink>
