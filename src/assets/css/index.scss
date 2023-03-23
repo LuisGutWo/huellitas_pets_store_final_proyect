@@ -12,7 +12,10 @@
 
 .app {
   font-family: styles.$primary-font;
-  background-color: styles.$primary-color;
+  background-image: url(src/assets/img/fondo_huellitas.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .routes-section {
   margin-top: 0rem;
@@ -41,7 +44,7 @@
   border: solid 1px rgba(151, 151, 151, 0.563);
   padding: 4px;
   font-display: inherit;
-  color: rgba(7, 204, 89, 0.984);
+  color: rgb(37, 222, 114);
   border-radius: 6px;
 }
 .inactive-class-second {
@@ -50,7 +53,7 @@
   margin-top: 1rem;
   border: solid 1px rgba(236, 236, 236, 0.563);
   padding: 4px;
-  color: rgba(73, 73, 73, 0.563);
+  color: rgba(73, 73, 73, 0.929);
   border-radius: 6px;
 }
 

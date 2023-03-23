@@ -27,20 +27,24 @@
   -webkit-transition: 1s ease-in-out;
   transition: 1s ease-in-out;
 }
-
 .card-image:hover {
   -webkit-transform: scale(1.05);
   transform: scale(1.05);
 }
+
 
 .products-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
+  min-height: max-content;
   margin: 2em;
   gap: 5px;
 }
+// .img-card-detail{
+
+// }
 
 
 .product-card{
@@ -54,6 +58,12 @@
   transform: scale(1.02);
   transition: 0.4s ease-in-out;
   box-shadow: 0 0 8px #81818186;
+}
+.card-detail{
+  max-height: 20rem;
+  padding: 0;
+  
+
 }
 .card-body {
   display: flex;

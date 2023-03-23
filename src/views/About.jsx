@@ -5,12 +5,14 @@ import imagenes from "../assets/imagenes";
 function About() {
   return (
     <div className="about-container bg-light text-dark">
-      <img
-        src={imagenes[7].img}
-        alt=""
-        className="about-img img-fluid"
-      />
-      <div className="card-overlay">
+      <div>
+        <img
+          src={imagenes[7].img}
+          alt=""
+          className="about-img img-fluid"
+        />
+      </div>
+      <div className="card-overlay container">
         <h1>
           En Huellitas lo mas
           <br /> importante son tus

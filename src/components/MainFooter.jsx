@@ -7,10 +7,10 @@ import imagenes from "../assets/imagenes";
 const MainFooter = () => {
   return (
     <div className="main-footer">
+
       <div>
         <img src={imagenes[3].img} alt="" className="footer-image img-fluid" />
       </div>
-
       <Container className="footer-container container p-3">
         <Row>
           <Col className="footer-content">

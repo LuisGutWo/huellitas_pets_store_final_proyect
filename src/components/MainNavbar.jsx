@@ -83,6 +83,7 @@ export default function MainNavbar() {
           expand={expand}
           className="main-navbar m-0"
           fixed="top"
+          variant="dark"
         >
           <Container fluid>
             <Link to={"/"} href="#">
@@ -100,9 +101,11 @@ export default function MainNavbar() {
               id={`offcanvasNavbar-expand-${expand}`}
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               placement="end"
+              style={{ width: "15rem", backgroundColor: "black" }}
+              
             >
-              <Offcanvas.Header closeButton>
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+              <Offcanvas.Header closeButton className="btn btn-secondary">
+                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`} style={{ color: "white" }}>
                   Menu
                 </Offcanvas.Title>
               </Offcanvas.Header>
@@ -192,7 +195,7 @@ export default function MainNavbar() {
             isActive ? "active-class-second" : "inactive-class-second"
           }
         >
-          HOME
+          <b>HOME</b>  
         </NavLink>
         <NavLink
           to="/about"
@@ -201,7 +204,7 @@ export default function MainNavbar() {
             isActive ? "active-class-second" : "inactive-class-second"
           }
         >
-          ABOUT
+          <b>ABOUT</b>  
         </NavLink>
         <NavLink
           to="/contact"
@@ -210,7 +213,7 @@ export default function MainNavbar() {
             isActive ? "active-class-second" : "inactive-class-second"
           }
         >
-          CONTACTO
+          <b>CONTACTO</b>
         </NavLink>
       </Navbar>
     </div>

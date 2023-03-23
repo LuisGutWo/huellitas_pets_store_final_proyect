@@ -37,14 +37,14 @@ export default function ProductDetail() {
     <div className="product-container">
       <div className="card">
         <div className="row">
-          <div className="col-md-4 text-center">
+          <div className="img-card-detail col col-sm-3 text-center">
             <img
               src={product.img}
               className="card-image img-fluid rounded-start"
               alt="..."
             />
             <NavLink to={"/products"} className="text-end">
-              <Button className="btn btn-secondary btn-sm mt-3">Volver</Button>
+              <Button className="btn btn-secondary btn-sm mb-3">Volver</Button>
             </NavLink>
           </div>
           <div className="col-md-8">
