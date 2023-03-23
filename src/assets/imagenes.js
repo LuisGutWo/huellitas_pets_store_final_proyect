@@ -8,6 +8,7 @@ import huellitas_logo_dark from "./img/huellitas_logo_dark.png";
 import perrito_cachorro from "./img/perrito_cachorro.png";
 import perrito_fondo_rosado from "./img/perrito_fondo_rosado.png";
 import tarjetas_logo from "./img/tarjetas_logo.png";
+import fondo_huellitas from "./img/fondo_huellitas.jpg";
 
 
 export default [
@@ -50,5 +51,9 @@ export default [
     {
         "id": "I0010",
         "img": tarjetas_logo
+    },
+    {
+        "id": "I0011",
+        "img": fondo_huellitas
     }
 ]

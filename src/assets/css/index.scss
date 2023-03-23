@@ -12,11 +12,13 @@
 
 .app {
   font-family: styles.$primary-font;
-  background-image: url(src/assets/img/fondo_huellitas.jpg);
+  // background-color: styles.$primary-color;
+  background-image: url("/src/assets/img/fondo_huellitas.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .routes-section {
   margin-top: 0rem;
 }
