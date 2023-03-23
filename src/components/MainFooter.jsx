@@ -2,19 +2,20 @@ import React from "react";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import { Col, Container, Row } from "react-bootstrap";
+import imagenes from "../assets/imagenes";
 
 const MainFooter = () => {
   return (
     <div className="main-footer">
       <div>
-        <img src="src/assets/img/fondo_juguetes.jpg" alt="" className="footer-image img-fluid" />
+        <img src={imagenes[3].img} alt="" className="footer-image img-fluid" />
       </div>
 
       <Container className="footer-container container p-3">
         <Row>
           <Col className="footer-content">
             <img
-              src="src/assets/img/huellitas_logo_dark.png"
+              src="../src/assets/img/huellitas_logo_dark.png"
               width="172"
               height="70"
               className="d-inline-block align-top"
@@ -26,7 +27,7 @@ const MainFooter = () => {
               envíos a todo Chile.{" "}
             </p>
             <img
-              src="src/assets/img/tarjetas_logo.png"
+              src={imagenes[9].img}
               width="150"
               height="45"
               className="d-inline-block align-top"

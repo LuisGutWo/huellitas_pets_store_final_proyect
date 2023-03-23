@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
+import imagenes from "../assets/imagenes";
 
 const Contact = () => {
   return (
@@ -8,14 +9,14 @@ const Contact = () => {
       <div className="main-contact bg-black">
         <div>
           <img
-            src="src/assets/img/gato_y_perro.jpeg"
+            src={imagenes[4].img}
             alt=""
             className="card-image img-fluid"
           />
         </div>
         <div className="contact-container">
           <img
-            src="src/assets/img/huellitas_logo_dark.png"
+            src={imagenes[6].img}
             alt=""
             className="hero-logo img-fluid"
           />

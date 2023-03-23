@@ -13,7 +13,7 @@ export default function SelectFavorites() {
       <h2 className="m-2 text-dark">Tus Favoritos</h2>
       <hr className="text-dark mb-4 mt-1" />
       <div className="list-group">
-        <div className="d-flex flex-wrap gap-3 mb-4">
+        <div className="d-flex flex-wrap justify-content-center gap-3 mb-4">
           {favorites.map((item) => (
             <MainProductCard key={item.id} item={item} selectFavorites />
           ))}
@@ -29,7 +29,7 @@ export default function SelectFavorites() {
         )}
       </div>
       <NavLink to={"/products"}>
-        <Button className="btn" variant="outline-info">Seguir viendo</Button>
+        <Button className="btn" variant="info">Seguir viendo</Button>
       </NavLink>
     </div>
   );

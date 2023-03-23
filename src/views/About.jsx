@@ -1,11 +1,12 @@
 import { Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import imagenes from "../assets/imagenes";
 
 function About() {
   return (
     <div className="about-container bg-light text-dark">
       <img
-        src="src/assets/img/perrito_fondo_rosado.jpg"
+        src={imagenes[7].img}
         alt=""
         className="about-img img-fluid"
       />
@@ -23,7 +24,7 @@ function About() {
           Nuestros clientes nos avalan... <br />
         </h5>
         <img
-          src="src/assets/img/hero_gatito.jpg"
+          src={imagenes[8].img}
           alt=""
           className="about-image"
         />

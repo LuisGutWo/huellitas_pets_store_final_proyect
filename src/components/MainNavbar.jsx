@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
+import { useUserContext } from "../context/UserContext";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
 import { logout } from "../config/firebase";
-import { useUserContext } from "../context/UserContext";
+import axios from "axios";
 
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Alert from "react-bootstrap/Alert";
-
 import Loading from "./Loading";
+import imagenes from "../assets/imagenes";
 
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import axios from "axios";
 
 export default function MainNavbar() {
   const [products, setProducts] = useState([]);
@@ -87,14 +87,13 @@ export default function MainNavbar() {
           <Container fluid>
             <Link to={"/"} href="#">
               <img
-                src="src/assets/img/huellitas_logo_dark.png"
-                width="180"
-                height="70"
-                className="card-image d-inline-block align-top"
+                src={imagenes[5].img}
+                width="210"
+                height="65"
+                className="img-fluid"
                 alt=""
               />
             </Link>
-            
 
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
@@ -109,9 +108,12 @@ export default function MainNavbar() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end align-items-center flex-grow-1 pe-3 gap-3">
-                { user && <div className="d-flex align-items-baseline gap-2 mt-4">
-                  <h6>Bienvenido</h6><p>{user.email}</p>
-                </div> }
+                  {user && (
+                    <div className="d-flex align-items-baseline gap-2 mt-4 text-light">
+                      <h6>Bienvenido</h6>
+                      <p>{user.email}</p>
+                    </div>
+                  )}
                   <Form className="navbar-form">
                     <div className="form-container">
                       <Form.Select
@@ -130,9 +132,9 @@ export default function MainNavbar() {
                         variant="outline-info"
                         size="small"
                         style={{
-                          height: "1.7rem",
-                          width: "7rem",
-                          padding: "0px",
+                          height: "1.9rem",
+                          width: "8rem",
+                          padding: "1px",
                         }}
                         onClick={handleProductsClick}
                       >
@@ -154,9 +156,6 @@ export default function MainNavbar() {
 
                   {user ? (
                     <>
-                      <Button onClick={handleLogout} variant="contained">
-                        Logout
-                      </Button>
                       <NavLink
                         to="/cart"
                         className={({ isActive }) =>
@@ -173,6 +172,9 @@ export default function MainNavbar() {
                       >
                         <FavoriteIcon className="card-image" />
                       </NavLink>
+                      <Button onClick={handleLogout} variant="outline-info" className="btn btn-sm p-1 mt-1">
+                        Logout
+                      </Button>
                     </>
                   ) : null}
                 </Nav>
@@ -187,7 +189,7 @@ export default function MainNavbar() {
           to="/"
           href="#action1"
           className={({ isActive }) =>
-            isActive ? "active-class" : "inactive-class"
+            isActive ? "active-class-second" : "inactive-class-second"
           }
         >
           HOME
@@ -196,7 +198,7 @@ export default function MainNavbar() {
           to="/about"
           href="#action2"
           className={({ isActive }) =>
-            isActive ? "active-class" : "inactive-class"
+            isActive ? "active-class-second" : "inactive-class-second"
           }
         >
           ABOUT
@@ -205,7 +207,7 @@ export default function MainNavbar() {
           to="/contact"
           href="#action3"
           className={({ isActive }) =>
-            isActive ? "active-class" : "inactive-class"
+            isActive ? "active-class-second" : "inactive-class-second"
           }
         >
           CONTACTO

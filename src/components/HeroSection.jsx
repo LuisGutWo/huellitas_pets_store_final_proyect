@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
+import imagenes from "../assets/imagenes";
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
@@ -12,14 +13,14 @@ const HeroSection = () => {
         <div className="main-hero">
           <div>
             <img
-              src="src/assets/img/hero_mascotas.jpg"
+              src={imagenes[0].img}
               alt=""
               className="hero-img img-fluid"
             />
           </div>
           <div className="newhero-container">
             <img
-              src="src/assets/img/huellitas_logo_blanco.png"
+              src={imagenes[5].img}
               alt=""
               className="hero-logo img-fluid"
             />
@@ -41,14 +42,14 @@ const HeroSection = () => {
         <div className="main-hero">
           <div>
             <img
-              src="src/assets/img/perrito_cachorro.jpg"
+              src={imagenes[2].img}
               alt=""
               className="hero-img img-fluid"
             />
           </div>
           <div className="hero-container">
             <img
-              src="src/assets/img/huellitas_logo_dark.png"
+              src={imagenes[6].img}
               alt=""
               className="hero-logo img-fluid"
             />
@@ -72,14 +73,14 @@ const HeroSection = () => {
         <div className="main-hero">
           <div>
             <img
-              src="src/assets/img/gato_portada.jpg"
+              src={imagenes[1].img}
               alt=""
               className="hero-img img-fluid"
             />
           </div>
           <div className="hero-container">
             <img
-              src="src/assets/img/huellitas_logo_blanco.png"
+              src={imagenes[5].img}
               alt=""
               className="hero-logo img-fluid"
             />

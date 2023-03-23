@@ -9,8 +9,7 @@
 }
 
 .main-navbar {
-  height: 12%;
-  background-color: #F9F3DF;
+  background-color: #191127f4;
 }
 
 .navbar-form {
@@ -38,8 +37,7 @@
   display: flex;
   justify-content: center;
   gap: 2rem;
-  align-items: flex-end;
-  padding: 8rem 0rem 0rem 0rem;
-  height: 7rem;
+  align-items: center;
+  padding: 5.5rem 0rem 0rem 0rem;
   background-color: styles.$secondary-color;
 }

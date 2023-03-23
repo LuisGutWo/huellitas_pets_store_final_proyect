@@ -11,10 +11,15 @@ import CreateUser from "./views/CreateUser";
 import ProductsCardSection from "./views/ProductsCardSection";
 import ProductDetail from "./views/ProductDetail";
 import SelectFavorites from "./views/SelectFavorites";
+import { useUserContext } from "./context/UserContext";
 
 import Contact from "./views/Contact";
 
 function App() {
+  const {user} = useUserContext();
+
+
+
   return (
     <div className="app">
       <MainNavbar />
@@ -23,12 +28,12 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<ProductsCardSection />} />
           <Route path="/products/:id" element={<ProductDetail />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={user? <Cart /> : <LoginPage />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/loginPage" element={<LoginPage />} />
           <Route path="/create" element={<CreateUser />} />
-          <Route path="/favorites" element={<SelectFavorites />} />
+          <Route path="/favorites" element={user? <SelectFavorites /> : <LoginPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
