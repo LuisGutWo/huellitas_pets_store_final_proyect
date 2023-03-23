@@ -1,6 +1,4 @@
-# Titulo del Proyecto
-
-* Huellitas Pets Store
+# Huellitas Pets Store
 
 ## Descripción
 
