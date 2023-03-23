@@ -15,7 +15,7 @@ const MainFooter = () => {
         <Row>
           <Col className="footer-content">
             <img
-              src="../src/assets/img/huellitas_logo_dark.png"
+              src={imagenes[6].img}
               width="172"
               height="70"
               className="d-inline-block align-top"
