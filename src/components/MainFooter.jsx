@@ -1,23 +1,31 @@
 import React from "react";
+import { Col, Container, Row } from "react-bootstrap";
+
+import imagenes from "../assets/imagenes";
+
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import { Col, Container, Row } from "react-bootstrap";
-import imagenes from "../assets/imagenes";
 
 const MainFooter = () => {
   return (
     <div className="main-footer">
-
-      <div>
+      <div className="footer-hero">
         <img src={imagenes[3].img} alt="" className="footer-image img-fluid" />
+
+        <img
+          src={imagenes[11].img}
+          alt=""
+          className="footer-image-vet img-fluid"
+        />
       </div>
-      <Container className="footer-container container p-3">
+
+      <Container className="footer-container">
         <Row>
           <Col className="footer-content">
             <img
-              src={imagenes[6].img}
+              src={imagenes[5].img}
               width="172"
-              height="70"
+              height="60"
               className="d-inline-block align-top"
               alt=""
             />

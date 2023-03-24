@@ -44,7 +44,7 @@ export default function ProductDetail() {
               alt="..."
             />
             <NavLink to={"/products"} className="text-end">
-              <Button className="btn btn-secondary btn-sm mb-3">Volver</Button>
+              <Button className="btn btn-secondary btn-sm mt-2">Volver</Button>
             </NavLink>
           </div>
           <div className="col-md-8">

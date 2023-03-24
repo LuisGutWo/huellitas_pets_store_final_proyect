@@ -5,46 +5,33 @@ import imagenes from "../assets/imagenes";
 
 const Contact = () => {
   return (
-    <div>
-      <div className="main-contact bg-black">
-        <div>
-          <img
-            src={imagenes[4].img}
-            alt=""
-            className="card-image img-fluid"
-          />
-        </div>
-        <div className="contact-container">
-          <img
-            src={imagenes[6].img}
-            alt=""
-            className="hero-logo img-fluid"
-          />
-          <Form className="contact-form text-dark h6">
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+    <>
+      <article className="main-contact">
+        <img src={imagenes[4].img} alt="" className="img-fluid contact-img" />
+        <section className="contact-container">
+          <img src={imagenes[6].img} alt="" className="img-fluid" style={{ width: "13rem" }} />
+          <Form className="contact-form">
+            <Form.Group className="mb-3">
               <Form.Label>Nombre</Form.Label>
               <Form.Control type="text" placeholder="Ingresar nombre" />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3">
               <Form.Label>Teléfono</Form.Label>
               <Form.Control type="number" placeholder="Numero telefónico" />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3">
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" placeholder="nombre@ejemplo.com" />
             </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
+            <Form.Group className="mb-3">
               <Form.Label>Cuéntanos que necesitas?</Form.Label>
-              <Form.Control as="textarea" rows={3} />
+              <Form.Control as="textarea" />
             </Form.Group>
             <Button className="btn-info">Enviar</Button>
           </Form>
-        </div>
-      </div>
-    </div>
+        </section>
+      </article>
+    </>
   );
 };
 

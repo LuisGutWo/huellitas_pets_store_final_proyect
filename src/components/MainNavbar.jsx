@@ -112,7 +112,7 @@ export default function MainNavbar() {
               <Offcanvas.Body>
                 <Nav className="justify-content-end align-items-center flex-grow-1 pe-3 gap-3">
                   {user && (
-                    <div className="d-flex align-items-baseline gap-2 mt-4 text-light">
+                    <div className="d-flex flex-wrap  align-items-baseline gap-2 mt-4 text-light">
                       <h6>Bienvenido</h6>
                       <p>{user.email}</p>
                     </div>

@@ -1,9 +1,11 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
+import { Button } from "react-bootstrap";
+
 import { useProductsContext } from "../context/ProductsContext";
 import CartItem from "../components/CartItem";
-import { Button } from "react-bootstrap";
 import { formatPrice } from "../utils/formatPrice";
-import { NavLink } from "react-router-dom";
+
 import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
 
 export default function Cart() {
@@ -12,7 +14,9 @@ export default function Cart() {
   return (
     <div className="cart-container">
       <div className="d-flex justify-content-between align-items-center gap-5">
-        <h2 className="text-start m-2 text-dark">Detalle de tu pedido</h2>
+        <h2 className="text-start m-2 text-dark">
+          <b>Detalle de tu pedido</b>
+        </h2>
         <div className="alert alert-info p-2 m-0 text-dark">
           {" "}
           <b>Total</b> $ {formatPrice(totalCart())}
@@ -26,7 +30,14 @@ export default function Cart() {
 
         {cart.length === 0 && (
           <li className="list-group-item text-center">
-            <h1>Tu Carrito esta vacío</h1>
+            <h4>Tu Carrito esta vacío</h4>
+            <img
+              src="src/assets/img/emoticon_gatito.png"
+              alt=""
+              className="img-fluid"
+              style={{ width: "8rem" }}
+            />
+
             <h2 className="fs-2">
               <ProductionQuantityLimitsIcon />
             </h2>
@@ -35,9 +46,16 @@ export default function Cart() {
 
         <li className="list-group-item text-end ps-4 bg-secondary mb-5">
           <NavLink to={"/products"}>
-            <Button className="btn btn-info">Seguir comprando</Button>
+            {cart.length === 0 ? (
+              <Button className="btn btn-info">Seleccionar productos</Button>
+            ) : (
+              <Button className="btn btn-info">Seguir comprando</Button>
+            )}
           </NavLink>
-          <Button className="btn btn-success ms-3">Ir a Pagar</Button>
+
+          {cart.length !== 0 && (
+            <Button className="btn btn-success ms-3">Ir a Pagar</Button>
+          )}
         </li>
       </ul>
     </div>

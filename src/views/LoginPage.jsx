@@ -1,9 +1,11 @@
-import { Formik } from "formik";
-import * as Yup from "yup";
 import { useEffect, useState } from "react";
-import { login } from "../config/firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "../context/UserContext";
+
+import { Formik } from "formik";
+import * as Yup from "yup";
+import { login } from "../config/firebase";
+
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
@@ -17,12 +19,16 @@ import {
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { LoadingButton } from "@mui/lab";
+import Loading from "../components/Loading";
+import { fakeLoading } from "../utils/fakeLoading";
 
 const Login = () => {
   const [showPsw, setShowPsw] = useState(false);
 
   const navigate = useNavigate();
   const { user } = useUserContext();
+
+  fakeLoading(3000);
 
   useEffect(() => {
     if (user) {
@@ -58,6 +64,10 @@ const Login = () => {
       .min(6, "Mínimo 6 caracteres")
       .required("Contraseña requerida"),
   });
+
+  {
+    user && <Loading />;
+  }
 
   return (
     <>
