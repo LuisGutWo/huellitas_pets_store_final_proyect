@@ -2,7 +2,7 @@
 
 ## Descripción
 
-* Tienda de accesorios para mascotas, trabajo final realizado dentro del BootCamp de la Academia Desafió Latam como proyecto final de la carrera Front-End React.
+* Tienda de accesorios para mascotas elaborado con Json y diseño propio combinando librerias de estilos CSS como React-Bootstrap y Material UI, consumo de API's por medio de Axios, Formik, Yup y Firebase. Trabajo realizado como proyecto final del BootCamp Front-End React, Academia Desafió Latam.
 
 ### Dependencias
 
@@ -18,7 +18,7 @@
 
 ## Deploy
 
-* [Deployed by Netlify](https://huellitas-pet-store.netlify.app/)
+* [Deployed by Netlify](https://huellitas-petshop.netlify.app/)
 
 ## Video Cuestionario proyecto final
 
