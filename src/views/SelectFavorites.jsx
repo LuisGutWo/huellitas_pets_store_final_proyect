@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 
 import { useProductsContext } from "../context/ProductsContext";
 import MainProductCard from "../components/MainProductCard";
+import imagenes from "../assets/imagenes";
 
 export default function SelectFavorites() {
   const { favorites } = useProductsContext();
@@ -24,7 +25,7 @@ export default function SelectFavorites() {
           <li className="text-center">
             <h1>Aun no tienes favoritos</h1>
             <img
-              src="src/assets/img/emoticon_gatito.png"
+              src={imagenes[12].img}
               alt=""
               style={{ width: "8rem" }}
             />

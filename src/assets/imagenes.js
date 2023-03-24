@@ -10,6 +10,7 @@ import perrito_fondo_rosado from "./img/perrito_fondo_rosado.png";
 import tarjetas_logo from "./img/tarjetas_logo.png";
 import fondo_huellitas from "./img/fondo_huellitas.jpg";
 import doggy_veterinario from "./img/doggy_veterinario.jpg";
+import emoticon_gatito from "./img/emoticon_gatito.png";
 
 
 export default [
@@ -60,5 +61,9 @@ export default [
     {
         "id": "I0012",
         "img": doggy_veterinario
+    },
+    {
+        "id": "I0013",
+        "img": emoticon_gatito
     }
 ]

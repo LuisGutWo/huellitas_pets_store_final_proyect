@@ -7,6 +7,7 @@ import CartItem from "../components/CartItem";
 import { formatPrice } from "../utils/formatPrice";
 
 import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
+import imagenes from "../assets/imagenes";
 
 export default function Cart() {
   const { cart, totalCart } = useProductsContext();
@@ -32,7 +33,7 @@ export default function Cart() {
           <li className="list-group-item text-center">
             <h4>Tu Carrito esta vacío</h4>
             <img
-              src="src/assets/img/emoticon_gatito.png"
+              src={imagenes[12].img}
               alt=""
               className="img-fluid"
               style={{ width: "8rem" }}
