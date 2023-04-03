@@ -2,7 +2,7 @@
 
 ## Descripción
 
-* Tienda de accesorios para mascotas elaborado con Json y diseño propio combinando librerias de estilos CSS como React-Bootstrap y Material UI, consumo de API's por medio de Axios, Formik, Yup y Firebase. Trabajo realizado como proyecto final del BootCamp Front-End React, Academia Desafió Latam.
+* Tienda de accesorios para mascotas elaborado con Json y diseño propio combinando librerías de estilos CSS como React-Bootstrap y Material UI, consumo de API's por medio de Axios, Formik, Yup y Firebase. Trabajo realizado como proyecto final del BootCamp Front-End React, Academia Desafió Latam.
 
 ### Dependencias
 

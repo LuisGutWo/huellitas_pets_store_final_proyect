@@ -5,7 +5,8 @@
     "img": "/bolso_transporte_mascota.jpg",
     "name": "Bolso Transporte",
     "price": 29900,
-    "tipo": "gato"
+    "tipo": "gato",
+    "quantity": "1"
   },
   {
     "desc": "Alimento para gatos Animal Planet, composición principal a base de proteína de pescado y fibras naturales, bajo en sodio y con alto contenido de vitaminas",
@@ -13,7 +14,8 @@
     "img": "/alimento_para_gatos.jpg",
     "name": "Animal Planet alimento para gatos adultos",
     "price": 12900,
-    "tipo": "gato"
+    "tipo": "gato",
+    "quantity": "1"
   },
   {
     "desc": "Arena para gatos con aglutinante y neutralizador de olores. Aromas Lavanda, Limón y Manzana verde",
@@ -21,7 +23,8 @@
     "img": "/arena_para_gatos.jpg",
     "name": "Arena para gatos",
     "price": 29900,
-    "tipo": "gato"
+    "tipo": "gato",
+    "quantity": "1"
   },
   {
     "desc": "Hierba Gatera liofilizada, garantizamos que es de libre consumo para su gato y eficiente para calmar o acostumbrar a su gato que cambie ciertas costumbres o rutinas",
@@ -29,7 +32,8 @@
     "img": "/hierba_gatera.jpg",
     "name": "Hierba Gatera",
     "price": 8000,
-    "tipo": "gato"
+    "tipo": "gato",
+    "quantity": "1"
   },
   {
     "desc": "Juguetes de plumas para que puedas compartir mas momentos inolvidables con tu gato. Alta resistencia y seguro de manipular.",
@@ -37,7 +41,8 @@
     "img": "/juguetes_gatos.jpg",
     "name": "Bolos Transporte",
     "price": 5000,
-    "tipo": "gato"
+    "tipo": "gato",
+    "quantity": "1"
   },
   {
     "desc": "Alimento para gatos adultos Cat Chow de Purina, bajo en sodio y poco porcentaje de cereales. Probioticos que refuerzan la salud de tu gato",
@@ -45,7 +50,8 @@
     "img": "/cat_chow_comida.jpg",
     "name": "Cat Chow gatos adultos",
     "price": 12900,
-    "tipo": "gato"
+    "tipo": "gato",
+    "quantity": "1"
   },
   {
     "desc": "Solución Fiprokill hecho con compuestos orgánicos para controlar plagas como garrapatas y pulgas. Formato spry rociador",
@@ -53,7 +59,8 @@
     "img":"/fiprokill_mata_pulgas.jpg",
     "name": "Fiprokill control de plagas",
     "price": 16990,
-    "tipo": "gato"
+    "tipo": "gato",
+    "quantity": "1"
   },
   {
     "desc": "Exclusiva mochila transportadora con ventana y buena ventilación. Muy fácil de transportar.",
@@ -61,7 +68,8 @@
     "img": "/mochila_transportadora.jpg",
     "name": "Mochila Transportadora",
     "price": 35900,
-    "tipo": "gato"
+    "tipo": "gato",
+    "quantity": "1"
   },
   {
     "desc": "Platos para alimento de mascotas de melamina y precioso diseño",
@@ -69,7 +77,8 @@
     "img": "/platos_para_mascotas.jpg",
     "name": "Platos para Mascotas",
     "price": 6000,
-    "tipo": "perro"
+    "tipo": "perro",
+    "quantity": "1"
   },
   {
     "desc": "Alimento para perros adultos Animal Planet, alto en fibras y vitaminas para brindarle una mejor salud a su perro",
@@ -77,7 +86,8 @@
     "img": "/comida_para_perros.jpg",
     "name": "Animal Planet perros adultos",
     "price": 24900,
-    "tipo": "perro"
+    "tipo": "perro",
+    "quantity": "1"
   },
   {
     "desc": "Alimento para perros adultos Dog Chow, el prestigio de Purina nos trae este alimento premium elaborado con los mejores insumos y proteínas para entregarle vitalidad y energía a su perrito",
@@ -85,7 +95,8 @@
     "img": "/dog_chow_perros.jpg",
     "name": "Dog Chow perros adultos",
     "price": 34900,
-    "tipo": "perro"
+    "tipo": "perro",
+    "quantity": "1"
   },
   {
     "desc": "Solución para la limpieza efectiva de tus mascotas, hecho en su totalidad con compuestos orgánicos que limpiaran profundamente la cavidad bucal de su mascota.",
@@ -93,7 +104,8 @@
     "img": "/solucion_dental_mascotas.jpg",
     "name": "Bioline Solución dental",
     "price": 18900,
-    "tipo": "perro"
+    "tipo": "perro",
+    "quantity": "1"
   },
   {
     "desc": "Grageas masticables que ayudan al control de plagas como pulgas y garrapatas",
@@ -101,7 +113,8 @@
     "img": "/desparacitador_perros.jpg",
     "name": "Bravecto",
     "price": 12900,
-    "tipo": "perro"
+    "tipo": "perro",
+    "quantity": "1"
   },
   {
     "desc": "Shampoo hipoalergénico para uso frecuente, tiene Ph balanceado y recomendado para perros con pieles sensibles.",
@@ -109,7 +122,8 @@
     "img": "/shampoo_perros.jpg",
     "name": "Canish Shampoo Hipoalergénico",
     "price": 6900,
-    "tipo": "perro"
+    "tipo": "perro",
+    "quantity": "1"
   },
   {
     "desc": "Correa retráctil de gran resistencia y seguro para amos y mascotas",
@@ -117,7 +131,8 @@
     "img": "/correa_retractil_mascotas.jpg",
     "name": "Correa Retráctil",
     "price": 10900,
-    "tipo": "perro"
+    "tipo": "perro",
+    "quantity": "1"
   },
   {
     "desc": "Bebedero portátil de diseño muy innovador y muy fácil de transportar y amigable para su mascota. Ideal para perros de pequeño o mediano tamaño",
@@ -125,7 +140,8 @@
     "img": "/bebedero_portatil.jpg",
     "name": "Bebedero Portátil",
     "price": 4900,
-    "tipo": "perro"
+    "tipo": "perro",
+    "quantity": "1"
   },
   {
     "desc": "Peine de doble tipo de cerdas que ayudan a masajear y a la vez a limpiar la carga de pelitos en tu mascota",
@@ -133,7 +149,8 @@
     "img": "/peine_mascotas.jpg",
     "name": "Peine Doble para Mascotas",
     "price": 3800,
-    "tipo": "perro"
+    "tipo": "perro",
+    "quantity": "1"
   },
   {
     "desc": "Alimento Cann para perros adultos, su composición a base de proteína animal refuerza el sistema inmune de su perro dándole mas vitalidad y salud.",
@@ -141,7 +158,8 @@
     "img": "/can_alimento_para_perros.jpg",
     "name": "Cann alimento perro adulto",
     "price": 26900,
-    "tipo": "perro"
+    "tipo": "perro",
+    "quantity": "1"
   },
   {
     "desc": "Canil especial para transporte de mascotas, cumple con la norma internacional para transporte aéreo y marítimo. Materiales muy resistentes y gran seguridad para su preciada mascota",
@@ -149,6 +167,7 @@
     "img": "/canil_transporte_mascotas.jpg",
     "name": "Canil para Transporte",
     "price": 40000,
-    "tipo": "perro"
+    "tipo": "perro",
+    "quantity": "1"
   } 
 ]

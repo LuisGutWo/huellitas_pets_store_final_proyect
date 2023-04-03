@@ -16,7 +16,7 @@ export default function MainProductCard({ item, selectFavorites }) {
   return (
     <Card
       className="product-card m-1 col-12 col-md-6 col-xl-3"
-      style={{ width: "14rem", height: "22rem" }}
+      style={{ width: "14rem", height: "22rem", borderRadius: "10px" }}
       border="light"
     >
       <NavLink to={`/products/${item.id}`} className="m-2">
@@ -41,7 +41,6 @@ export default function MainProductCard({ item, selectFavorites }) {
                 removeFavorites(item.id);
               }}
               variant="contained"
-              color="error"
               style={{ border: "0" }}
             >
               <DeleteIcon />
@@ -54,6 +53,7 @@ export default function MainProductCard({ item, selectFavorites }) {
               }}
               size="small"
               variant="contained"
+              color="error"
               style={{ border: "0" }}
             >
               <FavoriteIcon color="info" />

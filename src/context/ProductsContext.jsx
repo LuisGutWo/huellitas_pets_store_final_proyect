@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { PureComponent, createContext, useContext, useState } from "react";
 
 export const ProductsContext = createContext();
 
@@ -44,6 +44,12 @@ export default function ProductsContextProvider({ children }) {
   const removeFavorites = (id) => {
     setFavorites(favorites.filter((item) => item.id != id));
   };
+
+  // const onCleanCart = () => {
+	// 	setAllProducts([]);
+	// 	setTotal(0);
+	// 	setCountProducts(0);
+	// };
 
   return (
     <ProductsContext.Provider

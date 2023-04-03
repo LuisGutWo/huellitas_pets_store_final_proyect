@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useUserContext } from "../context/UserContext";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
+import { useProductsContext } from "../context/ProductsContext";
 import { logout } from "../config/firebase";
 import axios from "axios";
 
@@ -22,6 +23,8 @@ export default function MainNavbar() {
   const [loading, setLoading] = useState(false);
   const [selectProduct, setSelectProduct] = useState("");
   const [error, setError] = useState(false);
+
+  const { findItemCount } = useProductsContext();
 
   const navigate = useNavigate();
   const { user } = useUserContext();
@@ -58,7 +61,12 @@ export default function MainNavbar() {
 
     if (show) {
       return (
-        <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+        <Alert
+          variant="danger"
+          className="position-absolute mt-5"
+          onClose={() => setShow(false)}
+          dismissible
+        >
           <p>Seleccione un producto!</p>
         </Alert>
       );
@@ -102,10 +110,12 @@ export default function MainNavbar() {
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               placement="end"
               style={{ width: "15rem", backgroundColor: "black" }}
-              
             >
               <Offcanvas.Header closeButton className="btn btn-secondary">
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`} style={{ color: "white" }}>
+                <Offcanvas.Title
+                  id={`offcanvasNavbarLabel-expand-${expand}`}
+                  style={{ color: "white" }}
+                >
                   Menu
                 </Offcanvas.Title>
               </Offcanvas.Header>
@@ -144,7 +154,7 @@ export default function MainNavbar() {
                         Buscar
                       </Button>
                     </div>
-                    {error && <AlertProductSelect />}
+                    {!error ? "" : <AlertProductSelect />}
                   </Form>
                   {!user && (
                     <NavLink
@@ -159,14 +169,20 @@ export default function MainNavbar() {
 
                   {user ? (
                     <>
-                      <NavLink
-                        to="/cart"
-                        className={({ isActive }) =>
-                          isActive ? "active-class" : "inactive-class"
-                        }
-                      >
-                        <ShoppingCartIcon className="card-image" />
-                      </NavLink>
+                      <div className="container-icon">
+                        <NavLink
+                          to="/cart"
+                          className={({ isActive }) =>
+                            isActive ? "active-class" : "inactive-class"
+                          }
+                        >
+                          <ShoppingCartIcon className="card-image icon-cart" />
+                          <div className="count-products">
+                            <span id="contador-productos">{products.length}</span>
+                          </div>
+                        </NavLink>
+                      </div>
+
                       <NavLink
                         to="/favorites"
                         className={({ isActive }) =>
@@ -175,7 +191,11 @@ export default function MainNavbar() {
                       >
                         <FavoriteIcon className="card-image" />
                       </NavLink>
-                      <Button onClick={handleLogout} variant="outline-info" className="btn btn-sm p-1 mt-1">
+                      <Button
+                        onClick={handleLogout}
+                        variant="outline-info"
+                        className="btn btn-sm p-1 mt-1"
+                      >
                         Logout
                       </Button>
                     </>
@@ -195,7 +215,7 @@ export default function MainNavbar() {
             isActive ? "active-class-second" : "inactive-class-second"
           }
         >
-          <b>HOME</b>  
+          <b>HOME</b>
         </NavLink>
         <NavLink
           to="/about"
@@ -204,7 +224,7 @@ export default function MainNavbar() {
             isActive ? "active-class-second" : "inactive-class-second"
           }
         >
-          <b>ABOUT</b>  
+          <b>ABOUT</b>
         </NavLink>
         <NavLink
           to="/contact"

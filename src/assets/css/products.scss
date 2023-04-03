@@ -1,38 +1,6 @@
 @use "styles";
 
-/* Cards Products section */
-.products-section {
-  padding-top: 2rem;
-}
-
-.product-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-
-}
-
-.card {
-  overflow: hidden;
-  max-width: 80%;
-  height: 55%;
-  padding: 1rem;
-}
-
-.card-image {
-  position: relative;
-  -webkit-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition: 1s ease-in-out;
-  transition: 1s ease-in-out;
-}
-.card-image:hover {
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-
+/* Products Card section */
 .products-container {
   display: flex;
   flex-wrap: wrap;
@@ -42,11 +10,9 @@
   margin: 2em;
   gap: 5px;
 }
-// .img-card-detail{
-
-// }
 
 
+// Main Product Card 
 .product-card{
   overflow: hidden;
   padding: 0.5rem;
@@ -59,11 +25,16 @@
   transition: 0.4s ease-in-out;
   box-shadow: 0 0 8px #81818186;
 }
-.card-detail{
-  max-height: 20rem;
-  padding: 0;
-  
-
+.card-image {
+  position: relative;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
+}
+.card-image:hover {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
 }
 .card-body {
   display: flex;
@@ -72,4 +43,61 @@
   margin: 0rem;
   padding: 0.3rem;
 }
+
+// Product Detail Section
+// Incluye card-image
+.card {
+  display: flex;
+  align-items: center;
+  width: 75vw;
+  max-width: 650px;
+  padding: 50px 30px 50px 20px;
+  background: #ffffff;
+  border-radius: 24px;
+}
+.card-image-detail {
+  max-width: 280px;
+  width: 28vw;
+  height: 300px;
+  object-fit: cover;
+  margin-left: -60px;
+  margin-right: 30px;
+  border-radius: inherit;
+  box-shadow: 0 60px 40px rgb(0 0 0 / 8%);
+}
+.button-card-detail{
+  border: 0;
+  background: #5448de;
+  color: #f8f8f8;
+  font-family: inherit;
+  padding: 16px 26px;
+  font-size: 16px;
+  border-radius: 40px;
+  text-decoration: none;
+}
+.button-class {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+@media (width <= 740px) {
+  .card {
+    flex-direction: column;
+    text-align: center;
+    margin: 0 40px;
+    padding-left: 50px;
+    padding-right: 50px;
+    width: 100%;
+  }
+  .card-image-detail{
+    margin: -100px 0 30px 0;
+    width: 100%;
+    max-width: 1000px;
+  }
+}
+
+
+
 

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams, NavLink } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Overlay, Tooltip } from "react-bootstrap";
 import { useUserContext } from "../context/UserContext";
 
 import { useProductsContext } from "../context/ProductsContext";
@@ -12,10 +12,13 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 export default function ProductDetail() {
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(true);
-  const { addProduct } = useProductsContext();
-  const { id } = useParams();
+  const [show, setShow] = useState(false);
+  const target = useRef(null);
 
   const params = useParams();
+  const { id } = useParams();
+
+  const { addProduct } = useProductsContext();
   const { user } = useUserContext();
 
   fakeLoading(2000);
@@ -31,10 +34,15 @@ export default function ProductDetail() {
       .finally(() => setLoading(false));
   }, [params]);
 
+  function addButtonShoppingCart() {
+    addProduct(product);
+    setShow(!show);
+  }
+
   if (loading) return <Loading />;
 
   return (
-    <div className="product-container">
+    <div className="products-container">
       <div className="card">
         <div className="row">
           <div className="img-card-detail col col-sm-3 text-center">
@@ -54,17 +62,26 @@ export default function ProductDetail() {
               <p className="card-text">{product.desc}</p>
               <div className="card-text">
                 <p className="text-center d-flex justify-content-between align-items-center text-primary m-0">
-                  <b>Precio: ${product.price}</b>
+                  <b>$ {product.price}</b>
                   {user ? (
-                    <NavLink
-                      className={({ isActive }) =>
-                        isActive ? "active-class" : "inactive-class"
-                      }
-                      onClick={() => addProduct(product)}
-                      to="/cart"
-                    >
-                      <ShoppingCartIcon />
-                    </NavLink>
+                    <>
+                      <Button className="button-class" ref={target} onClick={addButtonShoppingCart} style={{ width: "2rem", height: "2rem" }}>
+                        <ShoppingCartIcon
+                          style={{ fontSize: "1.3rem" }}
+                        />
+                      </Button>
+                      <Overlay
+                        target={target.current}
+                        show={show}
+                        placement="left"
+                      >
+                        {(props) => (
+                          <Tooltip id="overlay-example" {...props}>
+                            Producto agregado 😎
+                          </Tooltip>
+                        )}
+                      </Overlay>
+                    </>
                   ) : null}
                 </p>
               </div>
