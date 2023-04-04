@@ -18,13 +18,13 @@ import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-export default function MainNavbar() {
+export default function MainNavbar({ item }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectProduct, setSelectProduct] = useState("");
   const [error, setError] = useState(false);
 
-  const { findItemCount } = useProductsContext();
+  const { totalItemProducts } = useProductsContext();
 
   const navigate = useNavigate();
   const { user } = useUserContext();
@@ -123,8 +123,8 @@ export default function MainNavbar() {
                 <Nav className="justify-content-end align-items-center flex-grow-1 pe-3 gap-3">
                   {user && (
                     <div className="d-flex flex-wrap  align-items-baseline gap-2 mt-4 text-light">
-                      <h6>Bienvenido</h6>
-                      <p>{user.email}</p>
+                      <h5>Bienvenido!</h5>
+                      <small>{user.email}</small>
                     </div>
                   )}
                   <Form className="navbar-form">
@@ -178,7 +178,7 @@ export default function MainNavbar() {
                         >
                           <ShoppingCartIcon className="card-image icon-cart" />
                           <div className="count-products">
-                            <span id="contador-productos">{products.length}</span>
+                            <span id="contador-productos">{totalItemProducts(item)}</span>
                           </div>
                         </NavLink>
                       </div>

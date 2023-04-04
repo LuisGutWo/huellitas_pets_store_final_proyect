@@ -64,9 +64,9 @@ const Register = () => {
           mx: "auto",
           textAlign: "center",
           padding: 2,
-          backgroundColor: "Menu",
-          borderRadius: 6,
-          borderStyle: "groove",
+          backgroundColor: "#00000030",
+          borderRadius: 4,
+          borderStyle: "solid",
         }}
       >
         <Avatar sx={{ mx: "auto", bgcolor: "secondary.main" }}>
@@ -92,7 +92,7 @@ const Register = () => {
           }) => (
             <Box onSubmit={handleSubmit} component="form" sx={{ mt: 1 }}>
               <TextField
-                sx={{ mb: 3 }}
+                sx={{ mb: 3, backgroundColor: "ButtonShadow" }}
                 fullWidth
                 label="@Email"
                 id="email"
@@ -107,6 +107,7 @@ const Register = () => {
               />
               <div className="d-flex align-items-center justify-content-end">
                 <TextField
+                  sx={{ backgroundColor: "ButtonShadow" }}
                   fullWidth
                   label="Contraseña"
                   id="password"

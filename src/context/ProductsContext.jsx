@@ -1,4 +1,4 @@
-import { PureComponent, createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 export const ProductsContext = createContext();
 
@@ -29,9 +29,20 @@ export default function ProductsContextProvider({ children }) {
     }
   };
 
+  const totalItemProducts = () => {
+    return cart.reduce((acc, item) => acc + item.count, 0);
+    };
+    
+
   const totalCart = () => {
     return cart.reduce((acc, item) => acc + item.price * item.count, 0);
   };
+
+  const onCleanCart = () => {
+		setCart([]);
+		totalCart(0);
+		totalItemProducts(0);
+	};
 
   const findItemCount = (id) => {
     const item = cart.find((i) => i.id === id);
@@ -45,15 +56,10 @@ export default function ProductsContextProvider({ children }) {
     setFavorites(favorites.filter((item) => item.id != id));
   };
 
-  // const onCleanCart = () => {
-	// 	setAllProducts([]);
-	// 	setTotal(0);
-	// 	setCountProducts(0);
-	// };
 
   return (
     <ProductsContext.Provider
-      value={{ cart, addProduct, removeProduct, totalCart, findItemCount, favorites, addFavorites, removeFavorites }}
+      value={{ cart, addProduct, removeProduct, totalItemProducts, totalCart, onCleanCart, findItemCount, favorites, addFavorites, removeFavorites }}
     >
       {children}
     </ProductsContext.Provider>
