@@ -3,13 +3,18 @@
 
 
 /* Navbar Styles */
-.navbar-content {
-  display: flex;
-  flex-direction: column;
+header {
+  height: 100%;
+ 
 }
 
 .main-navbar {
   background-color: #191127f4;
+  height: 4rem;
+  overflow: hidden;
+}
+.header-container{
+  height: 100%;
 }
 
 .navbar-form {
@@ -17,7 +22,6 @@
   overflow: visible;
   flex-direction: column;
   width: 13rem;
-  margin-top: 0.5rem;
 }
 
 .form-container {
@@ -29,16 +33,26 @@
 .navbar-select {
   margin: 0.7rem;
   max-width: 100%;
+  background-color: rgba(39, 39, 39, 0.655);
+  color: rgb(255, 255, 255);
+}
 
-
+.search-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: #191127f4;
+  width: 1.9rem;
+  height: 1.9rem;
 }
 
 .second-navbar {
+  height: 9rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: flex-end;
   gap: 2rem;
-  align-items: center;
-  padding: 5.5rem 0rem 0rem 0rem;
   background-color: styles.$secondary-color;
   opacity: 0.7;
 }

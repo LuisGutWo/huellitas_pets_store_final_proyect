@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 
-import MainNavbar from "./components/MainNavbar";
+import MainHeader from "./components/MainHeader";
 import MainFooter from "./components/MainFooter";
 import Home from "./views/Home";
 import LoginPage from "./views/LoginPage";
@@ -15,6 +15,7 @@ import { useUserContext } from "./context/UserContext";
 
 import Contact from "./views/Contact";
 
+
 function App() {
   const {user} = useUserContext();
 
@@ -22,7 +23,7 @@ function App() {
 
   return (
     <div className="app">
-      <MainNavbar />
+      <MainHeader />
       <div className="routes-section">
         <Routes>
           <Route path="/" element={<Home />} />

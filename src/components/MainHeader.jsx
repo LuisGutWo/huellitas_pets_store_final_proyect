@@ -17,8 +17,9 @@ import imagenes from "../assets/imagenes";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import SearchIcon from "@mui/icons-material/Search";
 
-export default function MainNavbar({ item }) {
+export default function MainHeader({ item }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectProduct, setSelectProduct] = useState("");
@@ -29,7 +30,7 @@ export default function MainNavbar({ item }) {
   const navigate = useNavigate();
   const { user } = useUserContext();
 
-  const getProduct = async () => {
+  const getProducts = async () => {
     setLoading(true);
 
     try {
@@ -41,10 +42,10 @@ export default function MainNavbar({ item }) {
     setLoading(false);
   };
   useEffect(() => {
-    getProduct();
+    getProducts();
   }, []);
 
-  const handleChange = (e) => {
+  const handleProductsChange = (e) => {
     setSelectProduct(e.target.value);
     if (e.target.value) setError(false);
   };
@@ -73,7 +74,7 @@ export default function MainNavbar({ item }) {
     }
   }
 
-  const handleLogout = async () => {
+  const handleUserLogout = async () => {
     try {
       await logout();
     } catch (error) {
@@ -84,7 +85,7 @@ export default function MainNavbar({ item }) {
   if (loading) return <Loading />;
 
   return (
-    <div className="navbar-content">
+    <header>
       {["lg"].map((expand) => (
         <Navbar
           key={expand}
@@ -93,12 +94,12 @@ export default function MainNavbar({ item }) {
           fixed="top"
           variant="dark"
         >
-          <Container fluid>
+          <Container fluid className="header-container">
             <Link to={"/"} href="#">
               <img
                 src={imagenes[5].img}
-                width="210"
-                height="65"
+                width="180"
+                height="40"
                 className="img-fluid"
                 alt=""
               />
@@ -121,41 +122,6 @@ export default function MainNavbar({ item }) {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end align-items-center flex-grow-1 pe-3 gap-3">
-                  {user && (
-                    <div className="d-flex flex-wrap  align-items-baseline gap-2 mt-4 text-light">
-                      <h5>Bienvenido!</h5>
-                      <small>{user.email}</small>
-                    </div>
-                  )}
-                  <Form className="navbar-form">
-                    <div className="form-container">
-                      <Form.Select
-                        size="sm"
-                        className="bg-light navbar-select"
-                        onChange={handleChange}
-                      >
-                        <option value={""}>Productos</option>
-                        {products.map((product) => (
-                          <option key={product.name} value={product.id}>
-                            {product.name}
-                          </option>
-                        ))}
-                      </Form.Select>
-                      <Button
-                        variant="outline-info"
-                        size="small"
-                        style={{
-                          height: "1.9rem",
-                          width: "8rem",
-                          padding: "1px",
-                        }}
-                        onClick={handleProductsClick}
-                      >
-                        Buscar
-                      </Button>
-                    </div>
-                    {!error ? "" : <AlertProductSelect />}
-                  </Form>
                   {!user && (
                     <NavLink
                       to="/loginPage"
@@ -169,20 +135,6 @@ export default function MainNavbar({ item }) {
 
                   {user ? (
                     <>
-                      <div className="container-icon">
-                        <NavLink
-                          to="/cart"
-                          className={({ isActive }) =>
-                            isActive ? "active-class" : "inactive-class"
-                          }
-                        >
-                          <ShoppingCartIcon className="card-image icon-cart" />
-                          <div className="count-products">
-                            <span id="contador-productos">{totalItemProducts(item)}</span>
-                          </div>
-                        </NavLink>
-                      </div>
-
                       <NavLink
                         to="/favorites"
                         className={({ isActive }) =>
@@ -191,14 +143,32 @@ export default function MainNavbar({ item }) {
                       >
                         <FavoriteIcon className="card-image" />
                       </NavLink>
-                      <Button
-                        onClick={handleLogout}
-                        variant="outline-info"
-                        className="btn btn-sm p-1 mt-1"
-                      >
-                        Logout
-                      </Button>
                     </>
+                  ) : null}
+
+                  <div className="container-icon">
+                    <NavLink
+                      to="/cart"
+                      className={({ isActive }) =>
+                        isActive ? "active-class" : "inactive-class"
+                      }
+                    >
+                      <ShoppingCartIcon className="card-image icon-cart" />
+                      <div className="count-products">
+                        <span id="contador-productos">
+                          {totalItemProducts(item)}
+                        </span>
+                      </div>
+                    </NavLink>
+                  </div>
+                  {user ? (
+                    <Button
+                      onClick={handleUserLogout}
+                      variant="outline-info"
+                      className="btn btn-sm p-2 rounded-4"
+                    >
+                      Logout
+                    </Button>
                   ) : null}
                 </Nav>
               </Offcanvas.Body>
@@ -207,35 +177,67 @@ export default function MainNavbar({ item }) {
         </Navbar>
       ))}
 
-      <Navbar className="second-navbar">
-        <NavLink
-          to="/"
-          href="#action1"
-          className={({ isActive }) =>
-            isActive ? "active-class-second" : "inactive-class-second"
-          }
-        >
-          <b>HOME</b>
-        </NavLink>
-        <NavLink
-          to="/about"
-          href="#action2"
-          className={({ isActive }) =>
-            isActive ? "active-class-second" : "inactive-class-second"
-          }
-        >
-          <b>ABOUT</b>
-        </NavLink>
-        <NavLink
-          to="/contact"
-          href="#action3"
-          className={({ isActive }) =>
-            isActive ? "active-class-second" : "inactive-class-second"
-          }
-        >
-          <b>CONTACTO</b>
-        </NavLink>
+      <Navbar className="second-navbar ps-3 pe-3">
+        <section className="pb-2">
+          {user && (
+            <div className="d-flex flex-wrap  align-items-baseline gap-2 mt-4 text-dark">
+              <h5>Bienvenido!</h5>
+              <small>{user.email}</small>
+            </div>
+          )}
+        </section>
+        <section className="pb-2">
+          <NavLink
+            to="/"
+            href="#action1"
+            className={({ isActive }) =>
+              isActive ? "active-class-second" : "inactive-class-second"
+            }
+          >
+            <b>HOME</b>
+          </NavLink>
+          <NavLink
+            to="/about"
+            href="#action2"
+            className={({ isActive }) =>
+              isActive ? "active-class-second" : "inactive-class-second"
+            }
+          >
+            <b>ABOUT</b>
+          </NavLink>
+          <NavLink
+            to="/contact"
+            href="#action3"
+            className={({ isActive }) =>
+              isActive ? "active-class-second" : "inactive-class-second"
+            }
+          >
+            <b>CONTACTO</b>
+          </NavLink>
+        </section>
+        <section>
+          <Form className="navbar-form">
+            <div className="form-container">
+              <Form.Select
+                size="sm"
+                className="navbar-select"
+                onChange={handleProductsChange}
+              >
+                <option value={""}>Productos</option>
+                {products.map((product) => (
+                  <option key={product.name} value={product.id}>
+                    {product.name}
+                  </option>
+                ))}
+              </Form.Select>
+              <Button className="search-button" onClick={handleProductsClick}>
+                <SearchIcon />
+              </Button>
+            </div>
+            {!error ? "" : <AlertProductSelect />}
+          </Form>
+        </section>
       </Navbar>
-    </div>
+    </header>
   );
 }
