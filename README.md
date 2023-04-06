@@ -18,7 +18,7 @@
 
 ## Deploy
 
-* [Deployed by Netlify](https://huellitas-petshop.netlify.app/)
+* [Deployed by Netlify](https://helpful-pudding-2fa5fc.netlify.app/)
 
 ## Video Cuestionario proyecto final
 
