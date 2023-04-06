@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "../context/UserContext";
+import Loading from "../components/Loading";
+import { fakeLoading } from "../utils/fakeLoading";
 
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -19,10 +21,10 @@ import {
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { LoadingButton } from "@mui/lab";
-import Loading from "../components/Loading";
-import { fakeLoading } from "../utils/fakeLoading";
 
-const Login = () => {
+
+
+const LoginUserPage = () => {
   const [showPsw, setShowPsw] = useState(false);
 
   const navigate = useNavigate();
@@ -79,7 +81,7 @@ const Login = () => {
           mx: "auto",
           textAlign: "center",
           padding: 2,
-          backgroundColor: "#00000030",
+          backgroundColor: "#10101040",
           borderRadius: 4,
           borderStyle: "solid",
         }}
@@ -171,4 +173,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginUserPage;

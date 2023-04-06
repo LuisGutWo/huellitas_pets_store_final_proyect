@@ -154,11 +154,13 @@ export default function MainHeader({ item }) {
                       }
                     >
                       <ShoppingCartIcon className="card-image icon-cart" />
-                      <div className="count-products">
-                        <span id="contador-productos">
-                          {totalItemProducts(item)}
-                        </span>
-                      </div>
+                      {user && (
+                        <div className="count-products">
+                          <span id="contador-productos">
+                            {totalItemProducts(item)}
+                          </span>
+                        </div>
+                      )}
                     </NavLink>
                   </div>
                   {user ? (

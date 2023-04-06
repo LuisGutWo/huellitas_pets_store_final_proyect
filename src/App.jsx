@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import MainHeader from "./components/MainHeader";
 import MainFooter from "./components/MainFooter";
 import Home from "./views/Home";
-import LoginPage from "./views/LoginPage";
+import LoginUserPage from "./views/LoginUserPage";
 import Cart from "./views/Cart";
 import NotFound from "./views/NotFound";
 import About from "./views/About";
@@ -29,12 +29,12 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<ProductsCardSection />} />
           <Route path="/products/:id" element={<ProductDetail />} />
-          <Route path="/cart" element={user? <Cart /> : <LoginPage />} />
+          <Route path="/cart" element={user? <Cart /> : <LoginUserPage />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
-          <Route path="/loginPage" element={<LoginPage />} />
+          <Route path="/loginPage" element={<LoginUserPage />} />
           <Route path="/create" element={<CreateUser />} />
-          <Route path="/favorites" element={user? <SelectFavorites /> : <LoginPage />} />
+          <Route path="/favorites" element={user? <SelectFavorites /> : <LoginUserPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

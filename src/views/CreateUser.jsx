@@ -64,7 +64,7 @@ const Register = () => {
           mx: "auto",
           textAlign: "center",
           padding: 2,
-          backgroundColor: "#00000030",
+          backgroundColor: "#10101040",
           borderRadius: 4,
           borderStyle: "solid",
         }}

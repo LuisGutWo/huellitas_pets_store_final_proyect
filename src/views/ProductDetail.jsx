@@ -1,7 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams, NavLink } from "react-router-dom";
-import { Button, Overlay, Tooltip } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useUserContext } from "../context/UserContext";
+import Modal from "react-bootstrap/Modal";
 
 import { useProductsContext } from "../context/ProductsContext";
 import { fakeLoading } from "../utils/fakeLoading";
@@ -14,6 +15,9 @@ export default function ProductDetail() {
   const [loading, setLoading] = useState(true);
   const [show, setShow] = useState(false);
   const target = useRef(null);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const params = useParams();
   const { id } = useParams();
@@ -36,7 +40,7 @@ export default function ProductDetail() {
 
   function addButtonShoppingCart() {
     addProduct(product);
-    setShow(!show);
+    handleShow(!show);
   }
 
   if (loading) return <Loading />;
@@ -65,22 +69,24 @@ export default function ProductDetail() {
                   <b>$ {product.price}</b>
                   {user ? (
                     <>
-                      <Button className="button-class" ref={target} onClick={addButtonShoppingCart} style={{ width: "2rem", height: "2rem" }}>
-                        <ShoppingCartIcon
-                          style={{ fontSize: "1.3rem" }}
-                        />
-                      </Button>
-                      <Overlay
-                        target={target.current}
-                        show={show}
-                        placement="left"
+                      <Button
+                        className="button-class"
+                        ref={target}
+                        onClick={addButtonShoppingCart}
+                        style={{ width: "2rem", height: "2rem" }}
                       >
-                        {(props) => (
-                          <Tooltip id="overlay-example" {...props}>
-                            Producto agregado 😎
-                          </Tooltip>
-                        )}
-                      </Overlay>
+                        <ShoppingCartIcon style={{ fontSize: "1.3rem" }} />
+                      </Button>
+                      <Modal show={show} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                          <Modal.Title>Producto agregado 😎</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Footer>
+                          <Button variant="secondary" onClick={handleClose}>
+                            Cerrar
+                          </Button>
+                        </Modal.Footer>
+                      </Modal>
                     </>
                   ) : null}
                 </p>
