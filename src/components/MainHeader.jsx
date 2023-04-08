@@ -11,6 +11,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Alert from "react-bootstrap/Alert";
+import Modal from "react-bootstrap/Modal";
 import Loading from "./Loading";
 import imagenes from "../assets/imagenes";
 
@@ -24,6 +25,11 @@ export default function MainHeader({ item }) {
   const [loading, setLoading] = useState(false);
   const [selectProduct, setSelectProduct] = useState("");
   const [error, setError] = useState(false);
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const { totalItemProducts } = useProductsContext();
 
@@ -57,23 +63,6 @@ export default function MainHeader({ item }) {
     }
   };
 
-  function AlertProductSelect() {
-    const [show, setShow] = useState(true);
-
-    if (show) {
-      return (
-        <Alert
-          variant="danger"
-          className="position-absolute mt-5"
-          onClose={() => setShow(false)}
-          dismissible
-        >
-          <p>Seleccione un producto!</p>
-        </Alert>
-      );
-    }
-  }
-
   const handleUserLogout = async () => {
     try {
       await logout();
@@ -81,6 +70,11 @@ export default function MainHeader({ item }) {
       console.log(error);
     }
   };
+
+  function addButtonModalSearch() {
+    handleProductsClick(products);
+    handleShow(!show);
+  }
 
   if (loading) return <Loading />;
 
@@ -94,7 +88,7 @@ export default function MainHeader({ item }) {
           fixed="top"
           variant="dark"
         >
-          <Container fluid className="header-container">
+          <Container className="header-container">
             <Link to={"/"} href="#">
               <img
                 src={imagenes[5].img}
@@ -182,13 +176,13 @@ export default function MainHeader({ item }) {
       <Navbar className="second-navbar ps-3 pe-3">
         <section className="pb-2">
           {user && (
-            <div className="d-flex flex-wrap  align-items-baseline gap-2 mt-4 text-dark">
-              <h5>Bienvenido!</h5>
-              <small>{user.email}</small>
+            <div className="d-flex flex-column align-items-baseline text-dark">
+              <h5 className="p-0 m-0">Bienvenido! 🖐🏼</h5>
+              <small className="text-header-name">{user.email}</small>
             </div>
           )}
         </section>
-        <section className="pb-2">
+        <section className="second-navbar-buttons">
           <NavLink
             to="/"
             href="#action1"
@@ -232,11 +226,25 @@ export default function MainHeader({ item }) {
                   </option>
                 ))}
               </Form.Select>
-              <Button className="search-button" onClick={handleProductsClick}>
+              <Button className="search-button" onClick={addButtonModalSearch}>
                 <SearchIcon />
               </Button>
             </div>
-            {!error ? "" : <AlertProductSelect />}
+            {!error ? (
+              ""
+            ) : (
+              <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Elige algún producto</Modal.Title>
+                </Modal.Header>
+
+                <Modal.Footer>
+                  <Button variant="danger" onClick={handleClose}>
+                    Close
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+            )}
           </Form>
         </section>
       </Navbar>

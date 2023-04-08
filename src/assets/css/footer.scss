@@ -1,4 +1,4 @@
-@use "styles";
+ @use "styles";
 
 /* Footer Styles */
 .main-footer {
@@ -10,6 +10,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  overflow: hidden;
 
 }
 

@@ -6,13 +6,13 @@ export default function CartItem({ item }) {
 
   return (
     <li className="list-group-item">
-      <div className="d-flex justify-content-between align-items-center">
-        <div className="d-flex">
+      <div className="d-flex justify-content-center flex-wrap align-items-center gap-5">
+        <div className="d-flex flex-wrap">
           <img className="me-3" src={item.img} alt="Product" width="100" />
-          <h3 className="mt-3 p-2 fs-5">{item.name}</h3>
+          <h3 className="cart-title-product">{item.name}</h3>
         </div>
-        <div className="d-flex gap-1">
-          <small className="text-muted p-2">${formatPrice(item.price)}</small>
+        <div className="d-flex align-items-center justify-content-center gap-1">
+          <small className="text-muted p-2 ms-5">${formatPrice(item.price)}</small>
           <button
             className="btn btn-outline-danger btn-sm"
             onClick={() => removeProduct(item)}

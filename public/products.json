@@ -4,8 +4,8 @@
     "id": "P001",
     "img": "/bolso_transporte_mascota.jpg",
     "name": "Bolso Transporte",
-    "price": 29900,
-    "tipo": "gato",
+    "price": 22900,
+    "category": "gato",
     "quantity": "1"
   },
   {
@@ -14,7 +14,7 @@
     "img": "/alimento_para_gatos.jpg",
     "name": "Animal Planet alimento para gatos adultos",
     "price": 12900,
-    "tipo": "gato",
+    "category": "gato",
     "quantity": "1"
   },
   {
@@ -22,8 +22,8 @@
     "id": "P003",
     "img": "/arena_para_gatos.jpg",
     "name": "Arena para gatos",
-    "price": 29900,
-    "tipo": "gato",
+    "price": 7900,
+    "category": "gato",
     "quantity": "1"
   },
   {
@@ -32,16 +32,16 @@
     "img": "/hierba_gatera.jpg",
     "name": "Hierba Gatera",
     "price": 8000,
-    "tipo": "gato",
+    "category": "gato",
     "quantity": "1"
   },
   {
     "desc": "Juguetes de plumas para que puedas compartir mas momentos inolvidables con tu gato. Alta resistencia y seguro de manipular.",
     "id": "P005",
     "img": "/juguetes_gatos.jpg",
-    "name": "Bolos Transporte",
+    "name": "Juguete de Plumas",
     "price": 5000,
-    "tipo": "gato",
+    "category": "gato",
     "quantity": "1"
   },
   {
@@ -49,8 +49,8 @@
     "id": "P006",
     "img": "/cat_chow_comida.jpg",
     "name": "Cat Chow gatos adultos",
-    "price": 12900,
-    "tipo": "gato",
+    "price": 22900,
+    "category": "gato",
     "quantity": "1"
   },
   {
@@ -58,8 +58,8 @@
     "id": "P007",
     "img":"/fiprokill_mata_pulgas.jpg",
     "name": "Fiprokill control de plagas",
-    "price": 16990,
-    "tipo": "gato",
+    "price": 7900,
+    "category": "gato",
     "quantity": "1"
   },
   {
@@ -67,8 +67,8 @@
     "id": "P008",
     "img": "/mochila_transportadora.jpg",
     "name": "Mochila Transportadora",
-    "price": 35900,
-    "tipo": "gato",
+    "price": 60900,
+    "category": "gato",
     "quantity": "1"
   },
   {
@@ -77,7 +77,7 @@
     "img": "/platos_para_mascotas.jpg",
     "name": "Platos para Mascotas",
     "price": 6000,
-    "tipo": "perro",
+    "category": "perro",
     "quantity": "1"
   },
   {
@@ -85,8 +85,8 @@
     "id": "P0010",
     "img": "/comida_para_perros.jpg",
     "name": "Animal Planet perros adultos",
-    "price": 24900,
-    "tipo": "perro",
+    "price": 19900,
+    "category": "perro",
     "quantity": "1"
   },
   {
@@ -94,8 +94,8 @@
     "id": "P0011",
     "img": "/dog_chow_perros.jpg",
     "name": "Dog Chow perros adultos",
-    "price": 34900,
-    "tipo": "perro",
+    "price": 26900,
+    "category": "perro",
     "quantity": "1"
   },
   {
@@ -103,8 +103,8 @@
     "id": "P0012",
     "img": "/solucion_dental_mascotas.jpg",
     "name": "Bioline Solución dental",
-    "price": 18900,
-    "tipo": "perro",
+    "price": 7200,
+    "category": "perro",
     "quantity": "1"
   },
   {
@@ -113,7 +113,7 @@
     "img": "/desparacitador_perros.jpg",
     "name": "Bravecto",
     "price": 12900,
-    "tipo": "perro",
+    "category": "perro",
     "quantity": "1"
   },
   {
@@ -122,7 +122,7 @@
     "img": "/shampoo_perros.jpg",
     "name": "Canish Shampoo Hipoalergénico",
     "price": 6900,
-    "tipo": "perro",
+    "category": "perro",
     "quantity": "1"
   },
   {
@@ -131,7 +131,7 @@
     "img": "/correa_retractil_mascotas.jpg",
     "name": "Correa Retráctil",
     "price": 10900,
-    "tipo": "perro",
+    "category": "perro",
     "quantity": "1"
   },
   {
@@ -140,7 +140,7 @@
     "img": "/bebedero_portatil.jpg",
     "name": "Bebedero Portátil",
     "price": 4900,
-    "tipo": "perro",
+    "category": "perro",
     "quantity": "1"
   },
   {
@@ -149,7 +149,7 @@
     "img": "/peine_mascotas.jpg",
     "name": "Peine Doble para Mascotas",
     "price": 3800,
-    "tipo": "perro",
+    "category": "perro",
     "quantity": "1"
   },
   {
@@ -158,7 +158,7 @@
     "img": "/can_alimento_para_perros.jpg",
     "name": "Cann alimento perro adulto",
     "price": 26900,
-    "tipo": "perro",
+    "category": "perro",
     "quantity": "1"
   },
   {
@@ -166,8 +166,8 @@
     "id": "P0019",
     "img": "/canil_transporte_mascotas.jpg",
     "name": "Canil para Transporte",
-    "price": 40000,
-    "tipo": "perro",
+    "price": 120000,
+    "category": "perro",
     "quantity": "1"
   } 
 ]

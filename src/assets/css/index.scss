@@ -7,6 +7,7 @@
 @use "footer";
 @use "cart";
 @use "cart-icon";
+@use "notfound";
 
 
 .app {
@@ -16,10 +17,6 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-.routes-section {
-  margin-top: 0rem;
 }
 
 .active-class {

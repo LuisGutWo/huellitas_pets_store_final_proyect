@@ -7,6 +7,7 @@
   align-items: center;
   flex-wrap: wrap;
   overflow: hidden;
+  position: relative;
 }
 
 .contact-img {
@@ -27,6 +28,11 @@
   align-items: flex-end;
   flex-direction: column;
   flex-wrap: nowrap;
+
+  @media (max-width: 640px) {
+    font-size: clamp(1rem, 1.5vw, 2rem);
+    min-height: 100vh;
+    }
 
 }
 

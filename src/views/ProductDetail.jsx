@@ -79,7 +79,9 @@ export default function ProductDetail() {
                       </Button>
                       <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>
-                          <Modal.Title>Producto agregado 😎</Modal.Title>
+                          <Modal.Title>
+                            Producto agregado al carrito 😎
+                          </Modal.Title>
                         </Modal.Header>
                         <Modal.Footer>
                           <Button variant="secondary" onClick={handleClose}>

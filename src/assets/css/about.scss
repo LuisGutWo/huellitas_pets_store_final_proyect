@@ -9,6 +9,7 @@
     overflow: hidden;
     min-height: 100%;
     position: relative;
+    overflow: hidden;
   }
   .about-img {
     opacity: 0.9;
@@ -24,8 +25,12 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: flex-start;
-    gap: 1.5rem;
+    gap: auto;
     overflow: hidden;
+
+    @media (max-width: 640px) {
+      font-size: clamp(1rem, 1.5vw, 2rem);
+      }
   }
   .about-image {
     width: 30%;

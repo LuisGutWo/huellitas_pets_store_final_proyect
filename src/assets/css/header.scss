@@ -9,12 +9,25 @@ header {
 }
 
 .main-navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
   background-color: #191127f4;
-  height: 4rem;
+  height: 5rem;
   overflow: hidden;
 }
 .header-container{
   height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-left: 32vw;
+
+  @media (max-width: 520px){
+    padding-left: 5vw;
+
+  }
+  
 }
 
 .navbar-form {
@@ -48,11 +61,36 @@ header {
 }
 
 .second-navbar {
-  height: 9rem;
+  height: 10rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: flex-end;
   gap: 2rem;
   background-color: styles.$secondary-color;
   opacity: 0.7;
+
+  @media (max-width: 520px) {
+    align-items: flex-end;
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 0rem;
+    padding-top: 4rem;
+    height: 18rem;
+    width: 100%;
+    
+    
+  }
+}
+.second-navbar-buttons{
+  padding-bottom: 1rem;
+
+  @media (max-width: 520px) {
+    padding-top: 1rem;
+    padding-bottom: 0;
+  }
+}
+
+.text-header-name{
+  color: rgb(42, 24, 180);
+  text-decoration: overline;
 }

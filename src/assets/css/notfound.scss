@@ -1,0 +1,44 @@
+@use "styles";
+
+/*======================
+    404 page
+=======================*/
+
+
+.page-404 {
+    padding: 1rem 0rem 2rem 6rem;
+    background: #fff;
+    font-family: 'Arvo', serif;
+      
+    img {
+        width: 100%;
+    }
+}
+
+
+.four-zero-four-bg {
+
+    background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+    height: 400px;
+    background-position: center;
+
+    h1 {
+        font-size: 80px;
+    }
+
+    h3 {
+        font-size: 80px;
+    }
+}
+
+.link-404 {
+    color: #fff !important;
+    padding: 10px 20px;
+    background: #39ac31;
+    margin: 20px 0;
+    display: inline-block;
+}
+
+.contant-box-404 {
+    margin-top: -50px;
+}

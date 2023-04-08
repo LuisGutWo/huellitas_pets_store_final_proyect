@@ -1,5 +1,27 @@
 @use "styles";
 
+
+.products-section-title{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+
+  padding-bottom: 0;
+}
+
+.products-select{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: flex-start;
+}
+.main-product-select{
+  width: 10rem;
+  margin-right: 2rem;
+}
+
 /* Products Card section */
 .products-container {
   display: flex;
@@ -14,16 +36,19 @@
 
 // Main Product Card 
 .product-card{
-  overflow: hidden;
-  padding: 0.5rem;
-  height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
+
+  opacity:0.9;
+  overflow: hidden;
+  padding: 0.5rem;
+  height: 65vh;
 }
 .product-card:hover {
   transform: scale(1.02);
   transition: 0.4s ease-in-out;
-  box-shadow: 0 0 8px #81818186;
+  box-shadow: 0 0 8px #33333386;
 }
 .card-image {
   position: relative;
