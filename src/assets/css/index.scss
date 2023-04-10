@@ -8,6 +8,7 @@
 @use "cart";
 @use "cart-icon";
 @use "notfound";
+@use "blog";
 
 
 .app {
@@ -17,6 +18,13 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .active-class {

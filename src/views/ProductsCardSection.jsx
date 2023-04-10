@@ -33,12 +33,9 @@ export default function Products() {
   }, []);
 
   function filterResult(item) {
-    const res = products.filter((data) => {
-      return data.category === item;
-    });
+    const res = products.filter((data) => { return data.category === item });
     setProducts(res);
   }
-
   console.log(filterResult);
 
   if (loading) return <Loading />;
@@ -82,7 +79,6 @@ export default function Products() {
             <MainProductCard
               key={item.id}
               item={item}
-              category={item.category}
             />
           );
         })}

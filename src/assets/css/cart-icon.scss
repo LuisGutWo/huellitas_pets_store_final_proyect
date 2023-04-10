@@ -9,19 +9,20 @@
 	bottom: 55%;
 	left: 50%;
 
-	background-color: #f7f7f7;
+	background-color: #ffffff;
 	color: rgb(0, 0, 0);
-	border: solid black 1px;
-	width: 16px;
-	height: 16px;
+	border: solid black 1.5px;
+	width: 18px;
+	height: 18px;
 
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-end;
 	border-radius: 50%;
 }
 
 #contador-productos {
-	font-size: 10px;
+	font-size: 0.8rem;
+	font-weight: bold;
 }
 

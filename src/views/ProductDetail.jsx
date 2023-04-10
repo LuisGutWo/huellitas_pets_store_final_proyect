@@ -73,14 +73,14 @@ export default function ProductDetail() {
                         className="button-class"
                         ref={target}
                         onClick={addButtonShoppingCart}
-                        style={{ width: "2rem", height: "2rem" }}
-                      >
+                        style={{ width: "50%", height: "2rem" }}
+                      >Añadir al carrito 
                         <ShoppingCartIcon style={{ fontSize: "1.3rem" }} />
                       </Button>
                       <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>
                           <Modal.Title>
-                            Producto agregado al carrito 😎
+                            <b>{product.name}</b>! se agrego al carrito 😎
                           </Modal.Title>
                         </Modal.Header>
                         <Modal.Footer>

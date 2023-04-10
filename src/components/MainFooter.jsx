@@ -8,17 +8,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 
 const MainFooter = () => {
   return (
-    <div className="main-footer">
-      <div className="footer-hero">
-        <img src={imagenes[3].img} alt="" className="footer-image img-fluid" />
-
-        <img
-          src={imagenes[11].img}
-          alt=""
-          className="footer-image-vet img-fluid"
-        />
-      </div>
-
+    <footer>
       <Container className="footer-container">
         <Row>
           <Col className="footer-content">
@@ -68,7 +58,7 @@ const MainFooter = () => {
           </Col>
         </Row>
       </Container>
-    </div>
+    </footer>
   );
 };
 

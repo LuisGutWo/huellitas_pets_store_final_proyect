@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Card from "react-bootstrap/Card";
 import { NavLink } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
@@ -9,18 +9,27 @@ import { useUserContext } from "../context/UserContext";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 export default function MainProductCard({ item, selectFavorites }) {
-  const { favorites, addFavorites, removeFavorites } = useProductsContext();
+  const { addFavorites, removeFavorites, addProduct } = useProductsContext();
 
-  const [show, setShow] = useState(false);
+  const [showCart, setShowCart] = useState(false);
+  const [showFavorite, setShowFavorite] = useState(false);
+  const target = useRef(null);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleCloseCart = () => setShowCart(false);
+  const handleCloseFavorite = () => setShowFavorite(false);
+  const handleShowCart = () => setShowCart(true);
+  const handleShowFavorite = () => setShowFavorite(true);
 
+  function handleShoppingCart() {
+    addProduct(item);
+    handleShowCart(!showCart);
+  }
   function handleProductButton() {
     addFavorites(item);
-    handleShow(!show);
+    handleShowFavorite(!showFavorite);
   }
 
   const { user } = useUserContext();
@@ -28,7 +37,7 @@ export default function MainProductCard({ item, selectFavorites }) {
   return (
     <Card
       className="product-card m-1 col-12 col-md-6 col-xl-3"
-      style={{ width: "14rem", borderRadius: "7px", backgroundColor: "Menu" }}
+      style={{ width: "14rem", borderRadius: "7px", padding: "1rem" }}
       border="light"
     >
       <NavLink to={`/products/${item.id}`} className="m-2">
@@ -40,12 +49,46 @@ export default function MainProductCard({ item, selectFavorites }) {
       </NavLink>
 
       <Card.Body className="card-body">
-        <Card.Title className="text-dark text-start fs-6 mt-3">
+        <Card.Title className="text-dark text-start fs-6 mt-1">
           {item.name}
         </Card.Title>
-        <Card.Text className="text-info d-flex justify-content-between align-items-center gap-5">
-          {" "}
+        <Card.Text className="text-info text-center">
           <b>${item.price}</b>
+        </Card.Text>
+      </Card.Body>
+
+      <div className="card-footer">
+        <div className="card-cart-icon">
+          <Button
+            className="button-class"
+            ref={target}
+            onClick={handleShoppingCart}
+            style={{
+              width: "100%",
+              height: "2rem",
+              fontSize: "10px",
+              marginRight: "3rem",
+            }}
+          >
+            Añadir al carrito
+            <ShoppingCartIcon
+              style={{ fontSize: "1rem", paddingLeft: "0.1rem" }}
+            />
+          </Button>
+          <Modal show={showCart} onHide={handleCloseCart}>
+            <Modal.Header closeButton>
+              <Modal.Title>
+                <b>{item.name}</b>! se agrego al carrito 😎
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleCloseCart}>
+                Cerrar
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
+        <div className="card-favorite-icon">
           {selectFavorites ? (
             <Button
               size="small"
@@ -59,39 +102,37 @@ export default function MainProductCard({ item, selectFavorites }) {
             </Button>
           ) : (
             <>
-              <Button
-                disabled={favorites.some((i) => i.id == item.id)}
+              <NavLink
                 onClick={handleProductButton}
                 size="small"
                 variant="contained"
                 className={({ isActive }) =>
-                  isActive ? "active-class" : "inactive-class"
+                  isActive ? "inactive-class-second" : "active-class-second"
                 }
               >
-                <FavoriteIcon color="info" />
-              </Button>
+                <FavoriteIcon />
+              </NavLink>
+
               {user ? (
-                <Modal show={show} onHide={handleClose}>
+                <Modal show={showFavorite} onHide={handleCloseFavorite}>
                   <Modal.Header closeButton>
                     <Modal.Title>
-                      Se agrego: <b>{item.name}</b> a favoritos
+                      <b>{item.name}</b>! se agrego a favoritos 🥰
                     </Modal.Title>
                   </Modal.Header>
-
                   <Modal.Footer>
-                    <Button variant="info" onClick={handleClose}>
+                    <Button variant="info" onClick={handleCloseFavorite}>
                       Close
                     </Button>
                   </Modal.Footer>
                 </Modal>
               ) : (
-                <Modal show={show} onHide={handleClose}>
+                <Modal show={showFavorite} onHide={handleCloseFavorite}>
                   <Modal.Header closeButton>
                     <Modal.Title>Ingrese para acceder a favoritos</Modal.Title>
                   </Modal.Header>
-
                   <Modal.Footer>
-                    <Button variant="info" onClick={handleClose}>
+                    <Button variant="info" onClick={handleCloseFavorite}>
                       Close
                     </Button>
                   </Modal.Footer>
@@ -99,8 +140,8 @@ export default function MainProductCard({ item, selectFavorites }) {
               )}
             </>
           )}
-        </Card.Text>
-      </Card.Body>
+        </div>
+      </div>
     </Card>
   );
 }

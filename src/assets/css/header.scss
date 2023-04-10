@@ -5,29 +5,35 @@
 /* Navbar Styles */
 header {
   height: 100%;
- 
+  width: 100%;
+  margin-top: 9rem;
+  background-color: styles.$secondary-color;
 }
 
 .main-navbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
   background-color: #191127f4;
-  height: 5rem;
-  overflow: hidden;
-}
-.header-container{
-  height: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  padding-left: 32vw;
+  margin: 0rem 2rem 0rem 2rem;
+  height: 9rem;
+  overflow: hidden;
+  width: 100%;
+}
 
-  @media (max-width: 520px){
-    padding-left: 5vw;
+.header-container {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 
+  @media (max-width: 720px) {
+    .navbar-form {
+      display: none;
+    }
   }
-  
 }
 
 .navbar-form {
@@ -46,7 +52,7 @@ header {
 .navbar-select {
   margin: 0.7rem;
   max-width: 100%;
-  background-color: rgba(39, 39, 39, 0.655);
+  background-color: rgba(54, 54, 54, 0.655);
   color: rgb(255, 255, 255);
 }
 
@@ -60,37 +66,56 @@ header {
   height: 1.9rem;
 }
 
-.second-navbar {
-  height: 10rem;
+.header-logo {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 18%;
+}
+
+.navbar-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+  height: 3rem;
+  width: 5rem;
+}
+
+.second-navbar {
+  height: 4rem;
+  width: 100%;
+  padding: 0rem 7rem 0rem 7rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: flex-end;
-  gap: 2rem;
-  background-color: styles.$secondary-color;
-  opacity: 0.7;
+  opacity: 0.9;
 
   @media (max-width: 520px) {
     align-items: flex-end;
     justify-content: center;
     flex-wrap: wrap;
     row-gap: 0rem;
-    padding-top: 4rem;
-    height: 18rem;
-    width: 100%;
-    
-    
+    padding-top: 9rem;
+    height: 17rem;
   }
 }
-.second-navbar-buttons{
-  padding-bottom: 1rem;
+
+.second-navbar-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 4px;
 
   @media (max-width: 520px) {
-    padding-top: 1rem;
-    padding-bottom: 0;
+    padding-bottom: 1rem;
+
   }
 }
 
-.text-header-name{
+.text-header-name {
   color: rgb(42, 24, 180);
   text-decoration: overline;
 }

@@ -15,26 +15,27 @@ import { useUserContext } from "./context/UserContext";
 
 import Contact from "./views/Contact";
 
-
 function App() {
-  const {user} = useUserContext();
-
-
+  const { user } = useUserContext();
 
   return (
     <div className="app">
       <MainHeader />
-      <div className="routes-section">
+
+      <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<ProductsCardSection />} />
           <Route path="/products/:id" element={<ProductDetail />} />
-          <Route path="/cart" element={user? <Cart /> : <LoginUserPage />} />
+          <Route path="/cart" element={user ? <Cart /> : <LoginUserPage />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/loginPage" element={<LoginUserPage />} />
           <Route path="/create" element={<CreateUser />} />
-          <Route path="/favorites" element={user? <SelectFavorites /> : <LoginUserPage />} />
+          <Route
+            path="/favorites"
+            element={user ? <SelectFavorites /> : <LoginUserPage />}
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

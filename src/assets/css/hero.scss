@@ -8,6 +8,7 @@
     align-items: center;
     flex-wrap: wrap;
     overflow: hidden;
+    margin-top: 2rem;
 
     @media (max-width: 520px) {
       font-size: clamp(1rem, 1.5vw, 2rem);

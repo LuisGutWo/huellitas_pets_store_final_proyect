@@ -75,14 +75,13 @@ const LoginUserPage = () => {
     <>
       <Box
         sx={{
-          marginTop: 8,
-          marginBottom: 8,
+          marginTop: 3,
           maxWidth: 400,
           mx: "auto",
           textAlign: "center",
-          padding: 2,
-          backgroundColor: "#10101040",
-          borderRadius: 4,
+          padding: 3,
+          backgroundColor: "#10008030",
+          borderRadius: 3,
           borderStyle: "solid",
         }}
       >

@@ -88,34 +88,84 @@ export default function MainHeader({ item }) {
           fixed="top"
           variant="dark"
         >
+          {/* Contenedor principal del Navbar */}
           <Container className="header-container">
-            <Link to={"/"} href="#">
+            {/* Buscador o Search del Navbar */}
+            <Form className="navbar-form">
+              <div className="form-container">
+                <Form.Select
+                  size="sm"
+                  className="navbar-select"
+                  onChange={handleProductsChange}
+                >
+                  <option value={""}>Productos</option>
+                  {products.map((product) => (
+                    <option key={product.name} value={product.id}>
+                      {product.name}
+                    </option>
+                  ))}
+                </Form.Select>
+                <Button
+                  className="search-button"
+                  onClick={addButtonModalSearch}
+                >
+                  <SearchIcon />
+                </Button>
+              </div>
+              {!error ? (
+                ""
+              ) : (
+                <Modal show={show} onHide={handleClose}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Elige algún producto</Modal.Title>
+                  </Modal.Header>
+
+                  <Modal.Footer>
+                    <Button variant="danger" onClick={handleClose}>
+                      Close
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+              )}
+            </Form>
+
+            {/* Logo Navbar */}
+            <Link to={"/"} href="#" className="header-logo">
               <img
                 src={imagenes[5].img}
-                width="180"
-                height="40"
-                className="img-fluid"
+                width="310"
+                className="img-fluid text-center"
                 alt=""
               />
             </Link>
 
-            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
+            {/* Toggler y Link del Navbar */}
+            <Navbar.Toggle
+              aria-controls={`offcanvasNavbar-expand-${expand}`}
+              style={{ width: "3rem" }}
+            />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               placement="end"
-              style={{ width: "15rem", backgroundColor: "black" }}
+              style={{
+                width: "9.5rem",
+                backgroundColor: "black",
+                alignItems: "flex-end",
+              }}
             >
               <Offcanvas.Header closeButton className="btn btn-secondary">
                 <Offcanvas.Title
                   id={`offcanvasNavbarLabel-expand-${expand}`}
-                  style={{ color: "white" }}
+                  style={{ color: "white", width: "16vw" }}
                 >
                   Menu
                 </Offcanvas.Title>
               </Offcanvas.Header>
-              <Offcanvas.Body>
-                <Nav className="justify-content-end align-items-center flex-grow-1 pe-3 gap-3">
+              <Offcanvas.Body
+                style={{ width: "10rem", justifyContent: "flex-end" }}
+              >
+                <Nav className="navbar-header">
                   {!user && (
                     <NavLink
                       to="/loginPage"
@@ -173,19 +223,11 @@ export default function MainHeader({ item }) {
         </Navbar>
       ))}
 
-      <Navbar className="second-navbar ps-3 pe-3">
-        <section className="pb-2">
-          {user && (
-            <div className="d-flex flex-column align-items-baseline text-dark">
-              <h5 className="p-0 m-0">Bienvenido! 🖐🏼</h5>
-              <small className="text-header-name">{user.email}</small>
-            </div>
-          )}
-        </section>
+      {/* Second Navbar */}
+      <Navbar defaultActiveKey="/home" className="second-navbar">
         <section className="second-navbar-buttons">
           <NavLink
             to="/"
-            href="#action1"
             className={({ isActive }) =>
               isActive ? "active-class-second" : "inactive-class-second"
             }
@@ -193,8 +235,8 @@ export default function MainHeader({ item }) {
             <b>HOME</b>
           </NavLink>
           <NavLink
+            eventKey="link-1"
             to="/about"
-            href="#action2"
             className={({ isActive }) =>
               isActive ? "active-class-second" : "inactive-class-second"
             }
@@ -202,8 +244,8 @@ export default function MainHeader({ item }) {
             <b>ABOUT</b>
           </NavLink>
           <NavLink
+            eventKey="link-2"
             to="/contact"
-            href="#action3"
             className={({ isActive }) =>
               isActive ? "active-class-second" : "inactive-class-second"
             }
@@ -211,41 +253,13 @@ export default function MainHeader({ item }) {
             <b>CONTACTO</b>
           </NavLink>
         </section>
-        <section>
-          <Form className="navbar-form">
-            <div className="form-container">
-              <Form.Select
-                size="sm"
-                className="navbar-select"
-                onChange={handleProductsChange}
-              >
-                <option value={""}>Productos</option>
-                {products.map((product) => (
-                  <option key={product.name} value={product.id}>
-                    {product.name}
-                  </option>
-                ))}
-              </Form.Select>
-              <Button className="search-button" onClick={addButtonModalSearch}>
-                <SearchIcon />
-              </Button>
+        <section className="pb-2">
+          {user && (
+            <div className="d-flex flex-column align-items-baseline text-dark">
+              <h5 className="p-0 m-0">Bienvenido! 🖐🏼</h5>
+              <small className="text-header-name">{user.email}</small>
             </div>
-            {!error ? (
-              ""
-            ) : (
-              <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                  <Modal.Title>Elige algún producto</Modal.Title>
-                </Modal.Header>
-
-                <Modal.Footer>
-                  <Button variant="danger" onClick={handleClose}>
-                    Close
-                  </Button>
-                </Modal.Footer>
-              </Modal>
-            )}
-          </Form>
+          )}
         </section>
       </Navbar>
     </header>
