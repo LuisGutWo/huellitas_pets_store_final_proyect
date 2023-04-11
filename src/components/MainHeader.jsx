@@ -10,7 +10,6 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import Alert from "react-bootstrap/Alert";
 import Modal from "react-bootstrap/Modal";
 import Loading from "./Loading";
 import imagenes from "../assets/imagenes";
@@ -27,9 +26,17 @@ export default function MainHeader({ item }) {
   const [error, setError] = useState(false);
 
   const [show, setShow] = useState(false);
+  const [showCart, setShowCart] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleCloseCart = () => setShowCart(false);
+  const handleShowCart = () => setShowCart(true);
+
+  const handleCloseLogin = () => setShowLogin(false);
+  const handleShowLogin = () => setShowLogin(true);
 
   const { totalItemProducts } = useProductsContext();
 
@@ -75,17 +82,25 @@ export default function MainHeader({ item }) {
     handleProductsClick(products);
     handleShow(!show);
   }
+  function addButtonModalCart() {
+    handleProductsClick(products);
+    handleShowCart(!showCart);
+  }
+  function addButtonModalLogin() {
+    handleProductsClick(products);
+    handleShowLogin(!showLogin);
+  }
 
   if (loading) return <Loading />;
 
   return (
-    <header>
+    <header className="fixed-top">
       {["lg"].map((expand) => (
         <Navbar
           key={expand}
           expand={expand}
           className="main-navbar m-0"
-          fixed="top"
+          // fixed="top"
           variant="dark"
         >
           {/* Contenedor principal del Navbar */}
@@ -117,7 +132,7 @@ export default function MainHeader({ item }) {
               ) : (
                 <Modal show={show} onHide={handleClose}>
                   <Modal.Header closeButton>
-                    <Modal.Title>Elige algún producto</Modal.Title>
+                    <Modal.Title>Elige algún producto 😉</Modal.Title>
                   </Modal.Header>
 
                   <Modal.Footer>
@@ -133,7 +148,7 @@ export default function MainHeader({ item }) {
             <Link to={"/"} href="#" className="header-logo">
               <img
                 src={imagenes[5].img}
-                width="310"
+                width="200"
                 className="img-fluid text-center"
                 alt=""
               />
@@ -167,14 +182,29 @@ export default function MainHeader({ item }) {
               >
                 <Nav className="navbar-header">
                   {!user && (
-                    <NavLink
-                      to="/loginPage"
-                      className={({ isActive }) =>
-                        isActive ? "active-class" : "inactive-class"
-                      }
-                    >
-                      <PermIdentityIcon className="card-image" />
-                    </NavLink>
+                    <>
+                      <NavLink
+                        to="/loginPage"
+                        className={({ isActive }) =>
+                          isActive ? "active-class" : "inactive-class"
+                        }
+                        onClick={addButtonModalLogin}
+                      >
+                        <PermIdentityIcon style={{ width: "1.2rem" }} />
+                      </NavLink>
+                      <Modal show={showLogin} onHide={handleCloseLogin}>
+                        <Modal.Header closeButton>
+                          <Modal.Title>
+                            Ingrese sus datos o Cree una cuenta nueva... 👀
+                          </Modal.Title>
+                        </Modal.Header>
+                        <Modal.Footer>
+                          <Button variant="danger" onClick={handleCloseLogin}>
+                            Close
+                          </Button>
+                        </Modal.Footer>
+                      </Modal>
+                    </>
                   )}
 
                   {user ? (
@@ -185,7 +215,7 @@ export default function MainHeader({ item }) {
                           isActive ? "active-class" : "inactive-class"
                         }
                       >
-                        <FavoriteIcon className="card-image" />
+                        <FavoriteIcon style={{ width: "1.2rem" }} />
                       </NavLink>
                     </>
                   ) : null}
@@ -196,8 +226,12 @@ export default function MainHeader({ item }) {
                       className={({ isActive }) =>
                         isActive ? "active-class" : "inactive-class"
                       }
+                      onClick={addButtonModalCart}
                     >
-                      <ShoppingCartIcon className="card-image icon-cart" />
+                      <ShoppingCartIcon
+                        className="icon-cart"
+                        style={{ width: "1.2rem" }}
+                      />
                       {user && (
                         <div className="count-products">
                           <span id="contador-productos">
@@ -206,8 +240,7 @@ export default function MainHeader({ item }) {
                         </div>
                       )}
                     </NavLink>
-                  </div>
-                  {user ? (
+                    {user ? (
                     <Button
                       onClick={handleUserLogout}
                       variant="outline-info"
@@ -215,7 +248,23 @@ export default function MainHeader({ item }) {
                     >
                       Logout
                     </Button>
-                  ) : null}
+                  ) : (
+                      <Modal show={showCart} onHide={handleCloseCart}>
+                        <Modal.Header closeButton>
+                          <Modal.Title>
+                            Ingresa para acceder al carrito de compra 🛒
+                          </Modal.Title>
+                        </Modal.Header>
+
+                        <Modal.Footer>
+                          <Button variant="danger" onClick={handleCloseCart}>
+                            Close
+                          </Button>
+                        </Modal.Footer>
+                      </Modal>
+                    )}
+                  </div>
+                  
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

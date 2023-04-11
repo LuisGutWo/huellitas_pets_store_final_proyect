@@ -4,19 +4,21 @@
 
 /* Navbar Styles */
 header {
-  height: 100%;
+  height: 9rem;
   width: 100%;
-  margin-top: 9rem;
-  background-color: styles.$secondary-color;
+  background-color: #ffffff;
+  background-image: radial-gradient(at top center, rgba(255, 255, 255, 0.549) 0%, rgba(0, 0, 0, 0.081) 100%), linear-gradient(to top, rgba(255, 255, 255, 0.412) 0%, rgba(200, 214, 221, 0.6) 100%);
+  background-blend-mode: normal, multiply;
 }
 
 .main-navbar {
+  background-image: linear-gradient(40deg, #191127 65%, #433826 90%);
   background-color: #191127f4;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0rem 2rem 0rem 2rem;
-  height: 9rem;
+  height: 5rem;
   overflow: hidden;
   width: 100%;
 }
@@ -40,19 +42,20 @@ header {
   display: flex;
   overflow: visible;
   flex-direction: column;
-  width: 13rem;
+  width: 10rem;
 }
 
 .form-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  gap: 5px;
 }
 
 .navbar-select {
-  margin: 0.7rem;
-  max-width: 100%;
-  background-color: rgba(54, 54, 54, 0.655);
+  height: 1.7rem;
+  max-width: 80%;
+  background-color: rgba(104, 104, 104, 0.655);
   color: rgb(255, 255, 255);
 }
 
@@ -84,8 +87,6 @@ header {
 }
 
 .second-navbar {
-  height: 4rem;
-  width: 100%;
   padding: 0rem 7rem 0rem 7rem;
   display: flex;
   flex-wrap: wrap;

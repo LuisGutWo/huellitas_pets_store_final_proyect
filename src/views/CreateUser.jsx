@@ -91,7 +91,7 @@ const Register = () => {
           }) => (
             <Box onSubmit={handleSubmit} component="form" sx={{ mt: 1 }}>
               <TextField
-                sx={{ mb: 3, backgroundColor: "ButtonShadow" }}
+                sx={{ mb: 3, backgroundColor: "ButtonShadow", borderRadius: "5px" }}
                 fullWidth
                 label="@Email"
                 id="email"
@@ -106,7 +106,7 @@ const Register = () => {
               />
               <div className="d-flex align-items-center justify-content-end">
                 <TextField
-                  sx={{ backgroundColor: "ButtonShadow" }}
+                  sx={{ backgroundColor: "ButtonShadow", borderRadius: "5px" }}
                   fullWidth
                   label="Contraseña"
                   id="password"
@@ -132,7 +132,7 @@ const Register = () => {
               <LoadingButton
                 variant="contained"
                 color="secondary"
-                sx={{ mt: 3, mb: 2 }}
+                sx={{ mt: 3, mb: 2, backgroundImage: "linear-gradient(45deg, #565b6b 0%, #901a7d 100%)" }}
                 fullWidth
                 type="submit"
                 disabled={isSubmitting}

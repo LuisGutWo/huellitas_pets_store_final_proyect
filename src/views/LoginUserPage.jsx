@@ -22,8 +22,6 @@ import {
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { LoadingButton } from "@mui/lab";
 
-
-
 const LoginUserPage = () => {
   const [showPsw, setShowPsw] = useState(false);
 
@@ -89,7 +87,7 @@ const LoginUserPage = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Ingrese su usuario
+          Ingrese usuario 🐱‍👤
         </Typography>
 
         <Formik
@@ -108,7 +106,11 @@ const LoginUserPage = () => {
           }) => (
             <Box onSubmit={handleSubmit} component="form" sx={{ mt: 1 }}>
               <TextField
-                sx={{ mb: 3, backgroundColor: "ButtonShadow" }}
+                sx={{
+                  mb: 3,
+                  backgroundColor: "ButtonShadow",
+                  borderRadius: "5px",
+                }}
                 fullWidth
                 label="@Email"
                 id="email"
@@ -123,7 +125,7 @@ const LoginUserPage = () => {
               />
               <div className="d-flex align-items-center justify-content-end">
                 <TextField
-                  sx={{ backgroundColor: "ButtonShadow" }}
+                  sx={{ backgroundColor: "ButtonShadow", borderRadius: "5px" }}
                   fullWidth
                   label="Contraseña"
                   id="password"
@@ -139,7 +141,7 @@ const LoginUserPage = () => {
                   }
                 />
                 <div
-                  style={{ position: "absolute", marginRight: 8 }}
+                  style={{ position: "absolute", marginRight: 10 }}
                   onClick={() => setShowPsw(!showPsw)}
                 >
                   {showPsw ? <VisibilityIcon /> : <VisibilityOffIcon />}
@@ -148,7 +150,7 @@ const LoginUserPage = () => {
 
               <LoadingButton
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                sx={{ mt: 3, mb: 2, backgroundImage: "linear-gradient(45deg, #567b6b 0%, #903a7d 100%)", }}
                 fullWidth
                 type="submit"
                 disabled={isSubmitting}

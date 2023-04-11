@@ -2,12 +2,17 @@
 
 .container-icon {
 	position: relative;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	gap: 1rem;
 }
 
 .count-products {
 	position: absolute;
-	bottom: 55%;
-	left: 50%;
+	bottom: 52%;
+	left: 11%;
 
 	background-color: #ffffff;
 	color: rgb(0, 0, 0);

@@ -6,7 +6,7 @@ export default function CartItem({ item }) {
 
   return (
     <li className="list-group-item">
-      <div className="d-flex justify-content-center flex-wrap align-items-center gap-5">
+      <div className="d-flex justify-content-between flex-wrap align-items-center gap-2">
         <div className="d-flex flex-wrap">
           <img className="me-3" src={item.img} alt="Product" width="100" />
           <h3 className="cart-title-product">{item.name}</h3>

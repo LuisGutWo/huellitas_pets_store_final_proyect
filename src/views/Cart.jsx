@@ -23,7 +23,6 @@ export default function Cart({ item }) {
           <b>Total:</b> $ {formatPrice(totalCart())}
         </div>
       </div>
-      <hr className="text-dark mb-4 mt-1" />
       <ul className="list-group">
         {cart.map((item) => (
           <CartItem key={item.id} item={item} />

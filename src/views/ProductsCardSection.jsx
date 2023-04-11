@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 import MainProductCard from "../components/MainProductCard";
 import Loading from "../components/Loading";
 import NotFound from "../views/NotFound";
 import { fakeLoading } from "../utils/fakeLoading";
 import axios from "axios";
-import { Button } from "react-bootstrap";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -33,7 +33,9 @@ export default function Products() {
   }, []);
 
   function filterResult(item) {
-    const res = products.filter((data) => { return data.category === item });
+    const res = products.filter((data) => {
+      return data.category === item;
+    });
     setProducts(res);
   }
   console.log(filterResult);
@@ -47,27 +49,29 @@ export default function Products() {
         <p>Explora esta perfecta selección</p>
       </div>
       <div className="products-select">
-        <Button
-          name="perro"
-          value={"perro"}
-          id="perro"
-          onClick={() => filterResult("perro")}
-          className="btn btn-secondary btn-sm mt-2"
-        >
-          Perros
-        </Button>
+        <NavLink onClick={() => filterResult("perro")}>
+          <Button
+            name="perro"
+            value={"perro"}
+            id="perro"
+            className="btn btn-secondary btn-sm mt-2"
+          >
+            Perros
+          </Button>
+        </NavLink>
 
-        <Button
-          name="gato"
-          value={"gato"}
-          id="gato"
-          onClick={() => filterResult("gato")}
-          className="btn btn-secondary btn-sm mt-2"
-        >
-          Gatos
-        </Button>
+        <NavLink onClick={() => filterResult("gato")}>
+          <Button
+            name="gato"
+            value={"gato"}
+            id="gato"
+            className="btn btn-secondary btn-sm mt-2"
+          >
+            Gatos
+          </Button>
+        </NavLink>
 
-        <NavLink to={"/products"} onClick={() => setProducts(categories)}>
+        <NavLink onClick={() => setProducts(categories)}>
           <Button className="btn btn-secondary btn-sm mt-2">Todos</Button>
         </NavLink>
       </div>
@@ -75,12 +79,7 @@ export default function Products() {
 
       <div className="products-container">
         {products.map((item) => {
-          return (
-            <MainProductCard
-              key={item.id}
-              item={item}
-            />
-          );
+          return <MainProductCard key={item.id} item={item} />;
         })}
       </div>
     </div>
