@@ -4,7 +4,7 @@
 
 /* Navbar Styles */
 header {
-  height: 9rem;
+  height: 8.5rem;
   width: 100%;
   background-color: #ffffff;
   background-image: radial-gradient(at top center, rgba(255, 255, 255, 0.549) 0%, rgba(0, 0, 0, 0.081) 100%), linear-gradient(to top, rgba(255, 255, 255, 0.412) 0%, rgba(200, 214, 221, 0.6) 100%);
@@ -12,7 +12,7 @@ header {
 }
 
 .main-navbar {
-  background-image: linear-gradient(40deg, #191127 65%, #433826 90%);
+  background-image: linear-gradient(40deg, #191127 78%, #433826 100%);
   background-color: #191127f4;
   display: flex;
   justify-content: center;
@@ -73,7 +73,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding-left: 18%;
+  padding-left: 25%;
 }
 
 .navbar-header {
@@ -82,8 +82,6 @@ header {
   align-items: center;
   gap: 1rem;
   margin: 0;
-  height: 3rem;
-  width: 5rem;
 }
 
 .second-navbar {
@@ -106,7 +104,9 @@ header {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  gap: 4px;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
 
   @media (max-width: 520px) {
     padding-bottom: 1rem;

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import NotFound from "./NotFound";
 
 import MainProductCard from "../components/MainProductCard";
 import Loading from "../components/Loading";
-import NotFound from "../views/NotFound";
 import { fakeLoading } from "../utils/fakeLoading";
 import axios from "axios";
 
@@ -23,8 +23,7 @@ export default function Products() {
       setProducts(data);
     } catch (error) {
       console.log(error);
-      <NotFound />;
-      navigate("/products");
+      navigate(<NotFound />);
     }
     setLoading(false);
   };
@@ -32,13 +31,18 @@ export default function Products() {
     getProducts();
   }, []);
 
+  const originalProducts = [...products];
+
   function filterResult(item) {
-    const res = products.filter((data) => {
-      return data.category === item;
-    });
-    setProducts(res);
+    try {
+      const filterData = originalProducts.filter((data) => {
+        return data.category === item;
+      });
+      setProducts(filterData);
+    } catch (error) {
+      navigate(<NotFound />);
+    }
   }
-  console.log(filterResult);
 
   if (loading) return <Loading />;
 
@@ -49,29 +53,21 @@ export default function Products() {
         <p>Explora esta perfecta selección</p>
       </div>
       <div className="products-select">
-        <NavLink onClick={() => filterResult("perro")}>
-          <Button
-            name="perro"
-            value={"perro"}
-            id="perro"
-            className="btn btn-secondary btn-sm mt-2"
-          >
-            Perros
-          </Button>
+        <NavLink
+          onClick={() => filterResult("perro")}
+          className="btn btn-secondary btn-sm mt-2"
+        >
+          Perros
         </NavLink>
 
-        <NavLink onClick={() => filterResult("gato")}>
-          <Button
-            name="gato"
-            value={"gato"}
-            id="gato"
-            className="btn btn-secondary btn-sm mt-2"
-          >
-            Gatos
-          </Button>
+        <NavLink
+          onClick={() => filterResult("gato")}
+          className="btn btn-secondary btn-sm mt-2"
+        >
+          Gatos
         </NavLink>
 
-        <NavLink onClick={() => setProducts(categories)}>
+        <NavLink onClick={() => setProducts(category)}>
           <Button className="btn btn-secondary btn-sm mt-2">Todos</Button>
         </NavLink>
       </div>

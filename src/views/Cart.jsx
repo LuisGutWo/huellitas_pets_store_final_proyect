@@ -18,7 +18,7 @@ export default function Cart({ item }) {
         <h2 className="text-start m-2 text-dark">
           <b>Detalle de tu pedido</b>
         </h2>
-        <div className="alert alert-info p-2 m-0 text-dark">
+        <div className="alert alert-light p-2 m-0 text-dark">
           {" "}
           <b>Total:</b> $ {formatPrice(totalCart())}
         </div>
@@ -43,7 +43,7 @@ export default function Cart({ item }) {
         {cart.length !== 0 && (
           <div className="cart-total">
             <p>total productos: {totalItemProducts(item)}</p>
-            <Button variant="danger" size="sm" onClick={onCleanCart}>
+            <Button variant="outline-danger" size="sm" onClick={onCleanCart}>
               Vaciar carrito
             </Button>
           </div>
@@ -52,18 +52,18 @@ export default function Cart({ item }) {
         <li className="cart-button-footer">
           <NavLink to={"/products"}>
             {cart.length === 0 ? (
-              <Button variant="danger" size="sm">
+              <Button >
                 Seleccionar productos
               </Button>
             ) : (
-              <Button variant="info" size="sm">
+              <Button variant="outline-light">
                 Seguir comprando
               </Button>
             )}
           </NavLink>
 
           {cart.length !== 0 && (
-            <Button variant="warning" size="sm">
+            <Button variant="dark" size="sm">
               Ir a Pagar
             </Button>
           )}

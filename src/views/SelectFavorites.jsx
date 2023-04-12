@@ -13,7 +13,6 @@ export default function SelectFavorites() {
       <h2 className="m-2 text-dark">
         <b>Tus Favoritos</b>
       </h2>
-      <hr className="text-dark mb-4 mt-1" />
       <div className="list-group">
         <div className="d-flex flex-wrap justify-content-center gap-3 mb-4">
           {favorites.map((item) => (
@@ -22,23 +21,19 @@ export default function SelectFavorites() {
         </div>
 
         {favorites.length === 0 && (
-          <li className="text-center">
+          <div className="text-center">
             <h1>Aun no tienes favoritos</h1>
-            <img
-              src={imagenes[12].img}
-              alt=""
-              style={{ width: "8rem" }}
-            />
-          </li>
+            <img src={imagenes[12].img} alt="" style={{ width: "8rem" }} />
+          </div>
         )}
       </div>
       <NavLink to={"/products"}>
         {favorites.length === 0 ? (
-          <Button className="btn m-4" variant="info">
+          <Button className="btn m-4" variant="outline-primary">
             Seleccionar favoritos
           </Button>
         ) : (
-          <Button className="btn m-4" variant="info">
+          <Button className="btn m-4" variant="outline-dark">
             Seguir viendo
           </Button>
         )}

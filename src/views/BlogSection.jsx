@@ -26,7 +26,7 @@ const BlogSection = () => {
           <div>
             <div className="footer-hero">
               <img
-                src={imagenes[3].img}
+                src={imagenes[2].img}
                 alt=""
                 className="footer-image img-fluid"
               />
@@ -42,7 +42,7 @@ const BlogSection = () => {
           <div>
             <div className="footer-hero">
               <img
-                src={imagenes[3].img}
+                src={imagenes[4].img}
                 alt=""
                 className="footer-image img-fluid"
               />

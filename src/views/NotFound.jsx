@@ -13,7 +13,7 @@ const NotFound = () => {
                   <h1 className="text-center ">404</h1>
                 </div>
 
-                <div className="contant-box-404">
+                <div className="constant-box-404">
                   <h3 className="h2">Parece que te perdiste</h3>
 
                   <p>Esta pagina no esta Disponible!</p>

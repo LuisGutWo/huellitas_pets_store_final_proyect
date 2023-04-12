@@ -22,31 +22,31 @@
   }
   .hero-container {
     position: absolute;
+    padding-left: 7rem;
     width: 100%;
     height: 100%;
-    // padding: 3rem 0rem 3rem 10rem;
-    margin-left: 12rem;
     display: flex;
-    justify-content: space-evenly;
+    gap: 1rem;
+    justify-content: center;
     align-items: flex-start;
     flex-direction: column;
     flex-wrap: nowrap;
   }
   .newhero-container {
     position: absolute;
+    padding-right: 4rem;
     width: 100%;
     height: 100%;
-    // padding: 3rem 14rem 3rem 0rem;
     margin-right: 12rem;
     display: flex;
-    justify-content: space-evenly;
+    gap: 1rem;
+    justify-content: center;
     align-items: flex-end;
     flex-direction: column;
     flex-wrap: nowrap;
   }
   .hero-logo {
-    width: 40%;
-    height: 28%;
+    width: 15rem;
   }
   .text-container {
     display: flex;

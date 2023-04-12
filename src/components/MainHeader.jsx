@@ -100,7 +100,6 @@ export default function MainHeader({ item }) {
           key={expand}
           expand={expand}
           className="main-navbar m-0"
-          // fixed="top"
           variant="dark"
         >
           {/* Contenedor principal del Navbar */}
@@ -241,14 +240,14 @@ export default function MainHeader({ item }) {
                       )}
                     </NavLink>
                     {user ? (
-                    <Button
-                      onClick={handleUserLogout}
-                      variant="outline-info"
-                      className="btn btn-sm p-2 rounded-4"
-                    >
-                      Logout
-                    </Button>
-                  ) : (
+                      <Button
+                        onClick={handleUserLogout}
+                        variant="outline-danger"
+                        className="btn btn-sm p-2 ms-2 rounded-4"
+                      >
+                        Logout
+                      </Button>
+                    ) : (
                       <Modal show={showCart} onHide={handleCloseCart}>
                         <Modal.Header closeButton>
                           <Modal.Title>
@@ -264,7 +263,6 @@ export default function MainHeader({ item }) {
                       </Modal>
                     )}
                   </div>
-                  
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
@@ -302,7 +300,7 @@ export default function MainHeader({ item }) {
             <b>CONTACTO</b>
           </NavLink>
         </section>
-        <section className="pb-2">
+        <section className="pb-3">
           {user && (
             <div className="d-flex flex-column align-items-baseline text-dark">
               <h5 className="p-0 m-0">Bienvenido! 🖐🏼</h5>
