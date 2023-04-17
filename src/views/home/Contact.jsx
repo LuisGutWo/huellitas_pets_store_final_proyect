@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import imagenes from "../assets/imagenes";
+import imagenes from "../../assets/imagenes";
 
 const Contact = () => {
   return (

@@ -4,7 +4,7 @@
 
 /* Navbar Styles */
 header {
-  height: 8.5rem;
+  height: 8.6rem;
   width: 100%;
   background-color: #ffffff;
   background-image: radial-gradient(at top center, rgba(255, 255, 255, 0.549) 0%, rgba(0, 0, 0, 0.081) 100%), linear-gradient(to top, rgba(255, 255, 255, 0.412) 0%, rgba(200, 214, 221, 0.6) 100%);
@@ -85,7 +85,7 @@ header {
 }
 
 .second-navbar {
-  padding: 0rem 7rem 0rem 7rem;
+  padding: 0rem 4.5rem 0rem 4.5rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -97,6 +97,10 @@ header {
     justify-content: center;
     flex-wrap: wrap;
     row-gap: 0rem;
+    
+    .offline-user-warning {
+      display: none;
+    }
   }
 }
 
@@ -107,6 +111,7 @@ header {
   justify-content: center;
   align-items: center;
   gap: 0.8rem;
+  font-size: 0.8rem;
 
   @media (max-width: 520px) {
     padding-bottom: 1rem;
@@ -117,4 +122,12 @@ header {
 .text-header-name {
   color: rgb(42, 24, 180);
   text-decoration: overline;
+}
+.offline-user-warning {
+  position: relative;
+  color: rgba(134, 2, 2, 0.752);
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
 }

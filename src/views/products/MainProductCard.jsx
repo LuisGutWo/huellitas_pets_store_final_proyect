@@ -1,11 +1,11 @@
 import React, { useState, useRef } from "react";
 import Card from "react-bootstrap/Card";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 
 import { Button } from "react-bootstrap";
-import { useProductsContext } from "../context/ProductsContext";
-import { useUserContext } from "../context/UserContext";
+import { useProductsContext } from "../../context/ProductsContext";
+import { useUserContext } from "../../context/UserContext";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -40,13 +40,13 @@ export default function MainProductCard({ item, selectFavorites }) {
       style={{ width: "14rem", borderRadius: "7px", padding: "1rem" }}
       border="light"
     >
-      <NavLink to={`/products/${item.id}`} className="m-2">
+      <Link to={`/products/${item.id}`} className="m-2">
         <Card.Img
           variant="top"
           className="card-image img-fluid"
           src={item.img}
         />
-      </NavLink>
+      </Link>
 
       <Card.Body className="card-body">
         <Card.Title className="text-dark text-start fs-6 mt-1">

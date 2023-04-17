@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useUserContext } from "../context/UserContext";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
-import { useProductsContext } from "../context/ProductsContext";
-import { logout } from "../config/firebase";
-import axios from "axios";
-
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
+
+import { useUserContext } from "../context/UserContext";
+import { useProductsContext } from "../context/ProductsContext";
+import { logout } from "../config/firebase";
+import axios from "axios";
+
 import Modal from "react-bootstrap/Modal";
-import Loading from "./Loading";
+import Loading from "../utils/Loading";
 import imagenes from "../assets/imagenes";
 
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
@@ -272,7 +273,7 @@ export default function MainHeader({ item }) {
 
       {/* Second Navbar */}
       <Navbar defaultActiveKey="/home" className="second-navbar">
-        <section className="second-navbar-buttons">
+        <div className="second-navbar-buttons">
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -280,6 +281,14 @@ export default function MainHeader({ item }) {
             }
           >
             <b>HOME</b>
+          </NavLink>
+          <NavLink
+            to="/products"
+            className={({ isActive }) =>
+              isActive ? "active-class-second" : "inactive-class-second"
+            }
+          >
+            <b>PRODUCTOS</b>
           </NavLink>
           <NavLink
             eventKey="link-1"
@@ -299,15 +308,19 @@ export default function MainHeader({ item }) {
           >
             <b>CONTACTO</b>
           </NavLink>
-        </section>
-        <section className="pb-3">
-          {user && (
+        </div>
+        <div className="pb-2">
+          {user ? (
             <div className="d-flex flex-column align-items-baseline text-dark">
               <h5 className="p-0 m-0">Bienvenido! 🖐🏼</h5>
               <small className="text-header-name">{user.email}</small>
             </div>
+          ) : (
+            <NavLink to={"/loginPage"} className={(isActive) => isActive ? "active-class" : "inactive-class"}>
+              <p className="offline-user-warning">User Offline</p>
+            </NavLink>
           )}
-        </section>
+        </div>
       </Navbar>
     </header>
   );

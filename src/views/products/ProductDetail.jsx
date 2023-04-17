@@ -1,12 +1,12 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import { useUserContext } from "../context/UserContext";
+import { useUserContext } from "../../context/UserContext";
 import Modal from "react-bootstrap/Modal";
 
-import { useProductsContext } from "../context/ProductsContext";
-import { fakeLoading } from "../utils/fakeLoading";
-import Loading from "../components/Loading";
+import { useProductsContext } from "../../context/ProductsContext";
+import { FakeLoading } from "../../utils/FakeLoading";
+import Loading from "../../utils/Loading";
 
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
@@ -25,7 +25,7 @@ export default function ProductDetail() {
   const { addProduct } = useProductsContext();
   const { user } = useUserContext();
 
-  fakeLoading(2000);
+  FakeLoading(2000);
 
   useEffect(() => {
     setLoading(true);
@@ -46,7 +46,7 @@ export default function ProductDetail() {
   if (loading) return <Loading />;
 
   return (
-    <div className="products-container">
+    <div className="container text-center p-5">
       <div className="card">
         <div className="row">
           <div className="img-card-detail col col-sm-3 text-center">

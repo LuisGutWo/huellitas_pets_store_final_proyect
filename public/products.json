@@ -1,173 +1,173 @@
 [
   {
-    "desc": "Bolso para transporte de mascotas, materiales amigables y practicas asas para un transporte seguro y cómodo",
     "id": "P001",
     "img": "/bolso_transporte_mascota.jpg",
     "name": "Bolso Transporte",
-    "price": 22900,
     "category": "gato",
+    "desc": "Bolso para transporte de mascotas, materiales amigables y practicas asas para un transporte seguro y cómodo",
+    "price": 22900,
     "quantity": "1"
   },
   {
-    "desc": "Alimento para gatos Animal Planet, composición principal a base de proteína de pescado y fibras naturales, bajo en sodio y con alto contenido de vitaminas",
     "id": "P002",
     "img": "/alimento_para_gatos.jpg",
     "name": "Animal Planet alimento para gatos adultos",
-    "price": 12900,
     "category": "gato",
+    "desc": "Alimento para gatos Animal Planet, composición principal a base de proteína de pescado y fibras naturales, bajo en sodio y con alto contenido de vitaminas",
+    "price": 12900,
     "quantity": "1"
   },
   {
-    "desc": "Arena para gatos con aglutinante y neutralizador de olores. Aromas Lavanda, Limón y Manzana verde",
     "id": "P003",
     "img": "/arena_para_gatos.jpg",
     "name": "Arena para gatos",
-    "price": 7900,
+    "desc": "Arena para gatos con aglutinante y neutralizador de olores. Aromas Lavanda, Limón y Manzana verde",
     "category": "gato",
+    "price": 7900,
     "quantity": "1"
   },
   {
-    "desc": "Hierba Gatera liofilizada, garantizamos que es de libre consumo para su gato y eficiente para calmar o acostumbrar a su gato que cambie ciertas costumbres o rutinas",
     "id": "P004",
     "img": "/hierba_gatera.jpg",
     "name": "Hierba Gatera",
-    "price": 8000,
     "category": "gato",
+    "desc": "Hierba Gatera liofilizada, garantizamos que es de libre consumo para su gato y eficiente para calmar o acostumbrar a su gato que cambie ciertas costumbres o rutinas",
+    "price": 8000,
     "quantity": "1"
   },
   {
-    "desc": "Juguetes de plumas para que puedas compartir mas momentos inolvidables con tu gato. Alta resistencia y seguro de manipular.",
     "id": "P005",
     "img": "/juguetes_gatos.jpg",
     "name": "Juguete de Plumas",
-    "price": 5000,
     "category": "gato",
+    "desc": "Juguetes de plumas para que puedas compartir mas momentos inolvidables con tu gato. Alta resistencia y seguro de manipular.",
+    "price": 5000,
     "quantity": "1"
   },
   {
-    "desc": "Alimento para gatos adultos Cat Chow de Purina, bajo en sodio y poco porcentaje de cereales. Probioticos que refuerzan la salud de tu gato",
     "id": "P006",
     "img": "/cat_chow_comida.jpg",
     "name": "Cat Chow gatos adultos",
-    "price": 22900,
     "category": "gato",
+    "desc": "Alimento para gatos adultos Cat Chow de Purina, bajo en sodio y poco porcentaje de cereales. Probioticos que refuerzan la salud de tu gato",
+    "price": 22900,
     "quantity": "1"
   },
   {
-    "desc": "Solución Fiprokill hecho con compuestos orgánicos para controlar plagas como garrapatas y pulgas. Formato spry rociador",
     "id": "P007",
     "img":"/fiprokill_mata_pulgas.jpg",
     "name": "Fiprokill control de plagas",
-    "price": 7900,
     "category": "gato",
+    "desc": "Solución Fiprokill hecho con compuestos orgánicos para controlar plagas como garrapatas y pulgas. Formato spry rociador",
+    "price": 7900,
     "quantity": "1"
   },
   {
-    "desc": "Exclusiva mochila transportadora con ventana y buena ventilación. Muy fácil de transportar.",
     "id": "P008",
     "img": "/mochila_transportadora.jpg",
     "name": "Mochila Transportadora",
-    "price": 60900,
     "category": "gato",
+    "desc": "Exclusiva mochila transportadora con ventana y buena ventilación. Muy fácil de transportar.",
+    "price": 60900,
     "quantity": "1"
   },
   {
-    "desc": "Platos para alimento de mascotas de melamina y precioso diseño",
     "id": "P009",
     "img": "/platos_para_mascotas.jpg",
     "name": "Platos para Mascotas",
-    "price": 6000,
     "category": "perro",
+    "desc": "Platos para alimento de mascotas de melamina y precioso diseño",
+    "price": 6000,
     "quantity": "1"
   },
   {
-    "desc": "Alimento para perros adultos Animal Planet, alto en fibras y vitaminas para brindarle una mejor salud a su perro",
     "id": "P0010",
     "img": "/comida_para_perros.jpg",
     "name": "Animal Planet perros adultos",
-    "price": 19900,
     "category": "perro",
+    "desc": "Alimento para perros adultos Animal Planet, alto en fibras y vitaminas para brindarle una mejor salud a su perro",
+    "price": 19900,
     "quantity": "1"
   },
   {
-    "desc": "Alimento para perros adultos Dog Chow, el prestigio de Purina nos trae este alimento premium elaborado con los mejores insumos y proteínas para entregarle vitalidad y energía a su perrito",
     "id": "P0011",
     "img": "/dog_chow_perros.jpg",
     "name": "Dog Chow perros adultos",
-    "price": 26900,
     "category": "perro",
+    "desc": "Alimento para perros adultos Dog Chow, el prestigio de Purina nos trae este alimento premium elaborado con los mejores insumos y proteínas para entregarle vitalidad y energía a su perrito",
+    "price": 26900,
     "quantity": "1"
   },
   {
-    "desc": "Solución para la limpieza efectiva de tus mascotas, hecho en su totalidad con compuestos orgánicos que limpiaran profundamente la cavidad bucal de su mascota.",
     "id": "P0012",
     "img": "/solucion_dental_mascotas.jpg",
     "name": "Bioline Solución dental",
-    "price": 7200,
     "category": "perro",
+    "desc": "Solución para la limpieza efectiva de tus mascotas, hecho en su totalidad con compuestos orgánicos que limpiaran profundamente la cavidad bucal de su mascota.",
+    "price": 7200,
     "quantity": "1"
   },
   {
-    "desc": "Grageas masticables que ayudan al control de plagas como pulgas y garrapatas",
     "id": "P0013",
     "img": "/desparacitador_perros.jpg",
     "name": "Bravecto",
-    "price": 12900,
     "category": "perro",
+    "desc": "Grageas masticables que ayudan al control de plagas como pulgas y garrapatas",
+    "price": 12900,
     "quantity": "1"
   },
   {
-    "desc": "Shampoo hipoalergénico para uso frecuente, tiene Ph balanceado y recomendado para perros con pieles sensibles.",
     "id": "P0014",
     "img": "/shampoo_perros.jpg",
     "name": "Canish Shampoo Hipoalergénico",
-    "price": 6900,
     "category": "perro",
+    "desc": "Shampoo hipoalergénico para uso frecuente, tiene Ph balanceado y recomendado para perros con pieles sensibles.",
+    "price": 6900,
     "quantity": "1"
   },
   {
-    "desc": "Correa retráctil de gran resistencia y seguro para amos y mascotas",
     "id": "P0015",
     "img": "/correa_retractil_mascotas.jpg",
     "name": "Correa Retráctil",
-    "price": 10900,
     "category": "perro",
+    "desc": "Correa retráctil de gran resistencia y seguro para amos y mascotas",
+    "price": 10900,
     "quantity": "1"
   },
   {
-    "desc": "Bebedero portátil de diseño muy innovador y muy fácil de transportar y amigable para su mascota. Ideal para perros de pequeño o mediano tamaño",
     "id": "P0016",
     "img": "/bebedero_portatil.jpg",
     "name": "Bebedero Portátil",
-    "price": 4900,
     "category": "perro",
+    "desc": "Bebedero portátil de diseño muy innovador y muy fácil de transportar y amigable para su mascota. Ideal para perros de pequeño o mediano tamaño",
+    "price": 4900,
     "quantity": "1"
   },
   {
-    "desc": "Peine de doble tipo de cerdas que ayudan a masajear y a la vez a limpiar la carga de pelitos en tu mascota",
     "id": "P0017",
     "img": "/peine_mascotas.jpg",
     "name": "Peine Doble para Mascotas",
-    "price": 3800,
     "category": "perro",
+    "desc": "Peine de doble tipo de cerdas que ayudan a masajear y a la vez a limpiar la carga de pelitos en tu mascota",
+    "price": 3800,
     "quantity": "1"
   },
   {
-    "desc": "Alimento Cann para perros adultos, su composición a base de proteína animal refuerza el sistema inmune de su perro dándole mas vitalidad y salud.",
     "id": "P0018",
     "img": "/can_alimento_para_perros.jpg",
     "name": "Cann alimento perro adulto",
-    "price": 26900,
     "category": "perro",
+    "desc": "Alimento Cann para perros adultos, su composición a base de proteína animal refuerza el sistema inmune de su perro dándole mas vitalidad y salud.",
+    "price": 26900,
     "quantity": "1"
   },
   {
-    "desc": "Canil especial para transporte de mascotas, cumple con la norma internacional para transporte aéreo y marítimo. Materiales muy resistentes y gran seguridad para su preciada mascota",
     "id": "P0019",
     "img": "/canil_transporte_mascotas.jpg",
     "name": "Canil para Transporte",
-    "price": 120000,
     "category": "perro",
+    "desc": "Canil especial para transporte de mascotas, cumple con la norma internacional para transporte aéreo y marítimo. Materiales muy resistentes y gran seguridad para su preciada mascota",
+    "price": 120000,
     "quantity": "1"
   } 
 ]

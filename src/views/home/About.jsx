@@ -1,6 +1,6 @@
 import { Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import imagenes from "../assets/imagenes";
+import imagenes from "../../assets/imagenes";
 
 function About() {
   return (

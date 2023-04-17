@@ -1,6 +1,6 @@
 import React from "react";
 import Carousel from "react-bootstrap/Carousel";
-import imagenes from "../assets/imagenes";
+import imagenes from "../../assets/imagenes";
 
 const BlogSection = () => {
   return (

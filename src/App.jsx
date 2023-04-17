@@ -1,19 +1,18 @@
 import { Route, Routes } from "react-router-dom";
-
-import MainHeader from "./components/MainHeader";
-import MainFooter from "./components/MainFooter";
-import Home from "./views/Home";
-import LoginUserPage from "./views/LoginUserPage";
-import Cart from "./views/Cart";
-import NotFound from "./views/NotFound";
-import About from "./views/About";
-import CreateUser from "./views/CreateUser";
-import ProductsCardSection from "./views/ProductsCardSection";
-import ProductDetail from "./views/ProductDetail";
-import SelectFavorites from "./views/SelectFavorites";
 import { useUserContext } from "./context/UserContext";
 
-import Contact from "./views/Contact";
+import Home from "./layout/Home";
+import MainHeader from "./components/MainHeader";
+import MainFooter from "./components/MainFooter";
+import LoginUserPage from "./views/log/LoginUserPage";
+import Cart from "./views/cart/Cart";
+import About from "./views/home/About";
+import CreateUser from "./views/log/CreateUser";
+import ProductsCardSection from "./views/products/ProductsCardSection";
+import ProductDetail from "./views/products/ProductDetail";
+import SelectFavorites from "./views/products/SelectFavorites";
+import Contact from "./views/home/Contact";
+import NotFound from "./utils/NotFound";
 
 function App() {
   const { user } = useUserContext();

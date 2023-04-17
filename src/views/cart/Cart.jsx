@@ -2,11 +2,11 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
-import { useProductsContext } from "../context/ProductsContext";
-import CartItem from "../components/CartItem";
-import { formatPrice } from "../utils/formatPrice";
+import { useProductsContext } from "../../context/ProductsContext";
+import CartItem from "./CartItem";
+import { formatPrice } from "../../utils/formatPrice";
 
-import imagenes from "../assets/imagenes";
+import imagenes from "../../assets/imagenes";
 
 export default function Cart({ item }) {
   const { cart, totalCart, totalItemProducts, onCleanCart } =

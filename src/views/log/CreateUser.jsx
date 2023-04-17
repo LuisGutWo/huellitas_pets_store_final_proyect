@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useUserContext } from "../context/UserContext";
-import Loading from "../components/Loading";
-import { fakeLoading } from "../utils/fakeLoading";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { login } from "../config/firebase";
+import { register } from "../../config/firebase";
+
+import { useUserContext } from "../../context/UserContext";
+import { useRedirectActiveUser } from "../../hooks/useRedirectActiveUser";
 
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
@@ -22,35 +22,27 @@ import {
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { LoadingButton } from "@mui/lab";
 
-const LoginUserPage = () => {
+const Register = () => {
   const [showPsw, setShowPsw] = useState(false);
 
-  const navigate = useNavigate();
   const { user } = useUserContext();
 
-  fakeLoading(3000);
-
-  useEffect(() => {
-    if (user) {
-      navigate("/");
-    }
-  }, [user]);
+  // hook
+  useRedirectActiveUser(user, "/");
 
   const onSubmit = async (
     { email, password },
     { setSubmitting, setErrors, resetForm }
   ) => {
     try {
-      const credentialUser = await login({ email, password });
-      console.log(credentialUser);
+      await register({ email, password });
+      console.log("usuario registrado");
       resetForm();
     } catch (error) {
-      console.log(error);
-      if (error.code === "auth/user-not-found") {
-        setErrors({ email: "Email no registrado" });
-      }
-      if (error.code === "auth/wrong-password") {
-        setErrors({ password: "Contraseña incorrecta" });
+      console.log(error.code);
+      console.log(error.message);
+      if (error.code === "auth/email-already-in-use") {
+        setErrors({ email: "Correo actualmente en uso" });
       }
     } finally {
       setSubmitting(false);
@@ -58,16 +50,12 @@ const LoginUserPage = () => {
   };
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email("Email no válido").required("Email requerido"),
+    email: Yup.string().email("Email no válido").required("Email obligatorio"),
     password: Yup.string()
       .trim()
-      .min(6, "Mínimo 6 caracteres")
-      .required("Contraseña requerida"),
+      .min(6, "Mínimo 6 carácteres")
+      .required("Password obligatorio"),
   });
-
-  {
-    user && <Loading />;
-  }
 
   return (
     <>
@@ -83,11 +71,11 @@ const LoginUserPage = () => {
           borderStyle: "solid",
         }}
       >
-        <Avatar sx={{ mx: "auto", bgcolor: "primary.main" }}>
+        <Avatar sx={{ mx: "auto", bgcolor: "secondary.main" }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Ingrese usuario 🐱‍👤
+          Crear nuevo usuario
         </Typography>
 
         <Formik
@@ -106,11 +94,7 @@ const LoginUserPage = () => {
           }) => (
             <Box onSubmit={handleSubmit} component="form" sx={{ mt: 1 }}>
               <TextField
-                sx={{
-                  mb: 3,
-                  backgroundColor: "ButtonShadow",
-                  borderRadius: "5px",
-                }}
+                sx={{ mb: 3, backgroundColor: "ButtonShadow", borderRadius: "5px" }}
                 fullWidth
                 label="@Email"
                 id="email"
@@ -141,7 +125,7 @@ const LoginUserPage = () => {
                   }
                 />
                 <div
-                  style={{ position: "absolute", marginRight: 10 }}
+                  style={{ position: "absolute", marginRight: 8 }}
                   onClick={() => setShowPsw(!showPsw)}
                 >
                   {showPsw ? <VisibilityIcon /> : <VisibilityOffIcon />}
@@ -150,19 +134,19 @@ const LoginUserPage = () => {
 
               <LoadingButton
                 variant="contained"
-                sx={{ mt: 3, mb: 2, backgroundImage: "linear-gradient(45deg, #567b6b 0%, #903a7d 100%)", }}
+                color="secondary"
+                sx={{ mt: 3, mb: 2, backgroundImage: "linear-gradient(45deg, #565b6b 0%, #901a7d 100%)" }}
                 fullWidth
                 type="submit"
                 disabled={isSubmitting}
                 loading={isSubmitting}
               >
-                Acceder
+                Crear
               </LoadingButton>
-
               <Grid container>
                 <Grid item xs>
-                  <Button component={Link} to="/create">
-                    ¿No estas con nosotros? Registrate
+                  <Button component={Link} to="/loginPage" color="secondary">
+                    ¿Estas con nosotros? Accede aquí
                   </Button>
                 </Grid>
               </Grid>
@@ -174,4 +158,4 @@ const LoginUserPage = () => {
   );
 };
 
-export default LoginUserPage;
+export default Register;

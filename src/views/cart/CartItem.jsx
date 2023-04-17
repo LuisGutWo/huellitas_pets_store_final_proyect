@@ -1,5 +1,5 @@
-import { useProductsContext } from "../context/ProductsContext";
-import { formatPrice } from "../utils/formatPrice";
+import { useProductsContext } from "../../context/ProductsContext";
+import { formatPrice } from "../../utils/formatPrice";
 
 export default function CartItem({ item }) {
   const { addProduct, removeProduct, findItemCount } = useProductsContext();
