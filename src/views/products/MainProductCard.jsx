@@ -37,7 +37,7 @@ export default function MainProductCard({ item, selectFavorites }) {
   return (
     <Card
       className="product-card m-1 col-12 col-md-6 col-xl-3"
-      style={{ width: "14rem", borderRadius: "7px", padding: "1rem" }}
+      style={{ height: "22rem", borderRadius: "7px", padding: "1rem" }}
       border="light"
     >
       <Link to={`/products/${item.id}`} className="m-2">
@@ -49,10 +49,8 @@ export default function MainProductCard({ item, selectFavorites }) {
       </Link>
 
       <Card.Body className="card-body">
-        <Card.Title className="text-dark text-start fs-6 mt-1">
-          {item.name}
-        </Card.Title>
-        <Card.Text className="text-info text-center">
+        <Card.Title className="card-body-title">{item.name}</Card.Title>
+        <Card.Text className="card-body-price">
           <b>${item.price}</b>
         </Card.Text>
       </Card.Body>
@@ -65,15 +63,13 @@ export default function MainProductCard({ item, selectFavorites }) {
             onClick={handleShoppingCart}
             style={{
               width: "100%",
-              height: "2rem",
-              fontSize: "10px",
-              marginRight: "3rem",
+              height: "1.8rem",
+              fontSize: "0.6rem",
+              marginRight: "2.5rem",
             }}
           >
-            Añadir al carrito
-            <ShoppingCartIcon
-              style={{ fontSize: "1rem", paddingLeft: "0.1rem" }}
-            />
+            Añadir al carro
+            <ShoppingCartIcon style={{ fontSize: "1rem" }} />
           </Button>
           <Modal show={showCart} onHide={handleCloseCart}>
             <Modal.Header closeButton>

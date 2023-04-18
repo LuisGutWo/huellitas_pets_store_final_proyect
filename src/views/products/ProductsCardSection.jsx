@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Form } from "react-bootstrap";
+import { Button, NavLink } from "react-bootstrap";
 
 import MainProductCard from "./MainProductCard";
 import Loading from "../../utils/Loading";
@@ -12,6 +12,8 @@ export default function Products() {
   const [filter, setFilter] = useState("all");
   const [loading, setLoading] = useState(false);
 
+  FakeLoading(2000);
+
   useEffect(() => {
     setLoading(true);
 
@@ -19,7 +21,7 @@ export default function Products() {
       .then((res) => res.json())
       .then((data) => {
         setData(data);
-        setCategories([...new Set(data.map((item) => item.category))]);
+        setCategories(["all", ...new Set(data.map((item) => item.category))]);
         setLoading(false);
       })
 
@@ -29,6 +31,8 @@ export default function Products() {
   const searchData = (item, search) => {
     return item.name.toLowerCase().includes(search.toLowerCase());
   };
+
+  FakeLoading(2000);
 
   const filteredData = () => {
     if (filter === "all") {
@@ -41,10 +45,9 @@ export default function Products() {
   };
 
   if (loading) return <Loading />;
-  if (loading) return <FakeLoading />;
 
   return (
-    <div className="products-main-container container text-center">
+    <div className="container text-center">
       {loading ? (
         <Loading />
       ) : (
@@ -54,28 +57,34 @@ export default function Products() {
             <p>conoce esta selección hecha para ti</p>
           </div>
           <div className="products-navbar">
-            <div className="products-select">
-              <h6>Categorías</h6>
-              <Form.Select
-                className="form-products-categories"
-                aria-label="Buscador por categoría"
-                value={filter}
-                onChange={(e) => setFilter(e.target.value)}
-                size="sm"
-              >
-                <option value="all">Todas</option>
-                {categories.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </Form.Select>
+            <div className="products-buttons">
+              {categories.map((category) => (
+                <NavLink
+                  key={category}
+                  to={`/categories/${category}`}
+                  onClick={() => setFilter(category)}
+                >
+                  <Button
+                    style={{ fontSize: "1rem", fontWeight: "bolder" }}
+                    variant="outline-secondary"
+                    color="white"
+                  >
+                    {category}
+                  </Button>
+                </NavLink>
+              ))}
             </div>
-            <div className="products-select">
-              <h6>Encuentra tu producto</h6>
+
+            <div>
               <input
                 type="text"
-                placeholder="productos"
+                style={{
+                  fontStyle: "italic",
+                  borderRadius: "5px",
+                  boxShadow: "unset",
+                  backgroundColor: "-moz-initial",
+                }}
+                placeholder="Buscar producto"
                 onChange={(e) => setSearch(e.target.value)}
               />
             </div>

@@ -65,7 +65,7 @@ export default function ProductDetail() {
               <hr />
               <p className="card-text">{product.desc}</p>
               <div className="card-text">
-                <p className="text-center d-flex justify-content-between align-items-center text-primary m-0">
+                <div className="footer-detail-card">
                   <b>$ {product.price}</b>
                   {user ? (
                     <>
@@ -73,7 +73,7 @@ export default function ProductDetail() {
                         className="button-class"
                         ref={target}
                         onClick={addButtonShoppingCart}
-                        style={{ width: "50%", height: "2rem" }}
+                        style={{ height: "2rem" }}
                       >Añadir al carrito 
                         <ShoppingCartIcon style={{ fontSize: "1.3rem" }} />
                       </Button>
@@ -91,7 +91,7 @@ export default function ProductDetail() {
                       </Modal>
                     </>
                   ) : null}
-                </p>
+                </div>
               </div>
             </div>
           </div>
