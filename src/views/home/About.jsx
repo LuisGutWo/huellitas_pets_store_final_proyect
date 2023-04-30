@@ -1,6 +1,5 @@
 import { Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import imagenes from "../../assets/imagenes";
 
 function About() {
   return (
@@ -8,7 +7,7 @@ function About() {
       <div className="about-container bg-light text-dark">
         <div>
           <img
-            src={imagenes[7].img}
+            src={"https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/perrito_fondo_rosado.png?alt=media&token=c0cee521-7c9d-4511-a1f8-44edfd8f66b6"}
             alt=""
             className="about-img img-fluid"
           />
@@ -27,12 +26,11 @@ function About() {
             Nuestros clientes nos avalan... <br />
           </h5>
           <img
-            src={imagenes[8].img}
+            src={"https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/hero_gatito.png?alt=media&token=7e600421-8a55-408f-a58c-6aefb6b87414"}
             alt=""
             className="about-image"
           />
           <NavLink to={"/products"}>
-            {" "}
             <Button size="sm" className="about-button btn-secondary">
               Ver mas
             </Button>

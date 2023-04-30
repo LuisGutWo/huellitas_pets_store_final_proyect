@@ -7,12 +7,12 @@ import {
 } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBZKkJq26vKF0Mxr5sTDOdfdVTKsm30h3g",
-    authDomain: "login-huellitas.firebaseapp.com",
-    projectId: "login-huellitas",
-    storageBucket: "login-huellitas.appspot.com",
-    messagingSenderId: "242266180522",
-    appId: "1:242266180522:web:466db61143f2f5b7f5f9d3"
+    apiKey: import.meta.env.VITE_API_KEY,
+    authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_APP_ID
 };
 
 const app = initializeApp(firebaseConfig);

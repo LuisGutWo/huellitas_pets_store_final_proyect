@@ -73,9 +73,15 @@ export default function MainProductCard({ item, selectFavorites }) {
           </Button>
           <Modal show={showCart} onHide={handleCloseCart}>
             <Modal.Header closeButton>
-              <Modal.Title>
-                <b>{item.name}</b>! se agrego al carrito 😎
-              </Modal.Title>
+              <Modal.Body>
+                {user ? (
+                  <div>
+                    <b>{item.name}</b>! se agrego al carrito 😎...
+                  </div>
+                ) : (
+                  "Ingrese para acceder al carrito"
+                )}
+              </Modal.Body>
             </Modal.Header>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleCloseCart}>
@@ -112,9 +118,9 @@ export default function MainProductCard({ item, selectFavorites }) {
               {user ? (
                 <Modal show={showFavorite} onHide={handleCloseFavorite}>
                   <Modal.Header closeButton>
-                    <Modal.Title>
+                    <Modal.Body>
                       <b>{item.name}</b>! se agrego a favoritos 🥰
-                    </Modal.Title>
+                    </Modal.Body>
                   </Modal.Header>
                   <Modal.Footer>
                     <Button variant="info" onClick={handleCloseFavorite}>
@@ -125,7 +131,7 @@ export default function MainProductCard({ item, selectFavorites }) {
               ) : (
                 <Modal show={showFavorite} onHide={handleCloseFavorite}>
                   <Modal.Header closeButton>
-                    <Modal.Title>Ingrese para acceder a favoritos</Modal.Title>
+                    <Modal.Body>Ingrese para acceder a favoritos</Modal.Body>
                   </Modal.Header>
                   <Modal.Footer>
                     <Button variant="info" onClick={handleCloseFavorite}>

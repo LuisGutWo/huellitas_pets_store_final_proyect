@@ -13,7 +13,6 @@ import axios from "axios";
 
 import Modal from "react-bootstrap/Modal";
 import Loading from "../utils/Loading";
-import imagenes from "../assets/imagenes";
 
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -48,7 +47,7 @@ export default function MainHeader({ item }) {
     setLoading(true);
 
     try {
-      const { data } = await axios.get("/products.json");
+      const { data } = await axios.get(import.meta.env.VITE_URL);
       setProducts(data);
     } catch (error) {
       console.log(error.message);
@@ -132,7 +131,7 @@ export default function MainHeader({ item }) {
               ) : (
                 <Modal show={show} onHide={handleClose}>
                   <Modal.Header closeButton>
-                    <Modal.Title>Elige algún producto 😉</Modal.Title>
+                    <Modal.Body>Elige algún producto 😉</Modal.Body>
                   </Modal.Header>
 
                   <Modal.Footer>
@@ -145,9 +144,11 @@ export default function MainHeader({ item }) {
             </Form>
 
             {/* Logo Navbar */}
-            <Link to={"/"} href="#" className="header-logo">
+            <Link to={"/"} className="header-logo">
               <img
-                src={imagenes[5].img}
+                src={
+                  "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/huellitas_logo_blanco.png?alt=media&token=1a021733-a8f1-4b0f-9f5b-d5ef83d24e22"
+                }
                 width="200"
                 className="img-fluid text-center"
                 alt=""
@@ -194,9 +195,9 @@ export default function MainHeader({ item }) {
                       </NavLink>
                       <Modal show={showLogin} onHide={handleCloseLogin}>
                         <Modal.Header closeButton>
-                          <Modal.Title>
+                          <Modal.Body>
                             Ingrese sus datos o Cree una cuenta nueva... 👀
-                          </Modal.Title>
+                          </Modal.Body>
                         </Modal.Header>
                         <Modal.Footer>
                           <Button variant="danger" onClick={handleCloseLogin}>
@@ -221,49 +222,76 @@ export default function MainHeader({ item }) {
                   ) : null}
 
                   <div className="container-icon">
-                    <NavLink
-                      to="/cart"
-                      className={({ isActive }) =>
-                        isActive ? "active-class" : "inactive-class"
-                      }
-                      onClick={addButtonModalCart}
-                    >
-                      <ShoppingCartIcon
-                        className="icon-cart"
-                        style={{ width: "1.2rem" }}
-                      />
-                      {user && (
-                        <div className="count-products">
-                          <span id="contador-productos">
-                            {totalItemProducts(item)}
-                          </span>
-                        </div>
-                      )}
-                    </NavLink>
-                    {user ? (
-                      <Button
-                        onClick={handleUserLogout}
-                        variant="outline-danger"
-                        className="btn btn-sm p-2 ms-2 rounded-4"
-                      >
-                        Logout
-                      </Button>
+                    {!user ? (
+                      <div>
+                        <NavLink
+                          to="/cart"
+                          className={({ isActive }) =>
+                            isActive ? "active-class" : "inactive-class"
+                          }
+                          onClick={addButtonModalCart}
+                        >
+                          <ShoppingCartIcon
+                            className="icon-cart"
+                            style={{ width: "1.2rem" }}
+                          />
+                          {user && (
+                            <div className="count-products">
+                              <span id="contador-productos">
+                                {totalItemProducts(item)}
+                              </span>
+                            </div>
+                          )}
+                        </NavLink>
+                        {!user && (
+                          <Modal show={showCart} onHide={handleCloseCart}>
+                            <Modal.Header closeButton>
+                              <Modal.Body>
+                                Ingrese para acceder al carrito... 👀
+                              </Modal.Body>
+                            </Modal.Header>
+                            <Modal.Footer>
+                              <Button
+                                variant="danger"
+                                onClick={handleCloseCart}
+                              >
+                                Close
+                              </Button>
+                            </Modal.Footer>
+                          </Modal>
+                        )}
+                      </div>
                     ) : (
-                      <Modal show={showCart} onHide={handleCloseCart}>
-                        <Modal.Header closeButton>
-                          <Modal.Title>
-                            Ingresa para acceder al carrito de compra 🛒
-                          </Modal.Title>
-                        </Modal.Header>
-
-                        <Modal.Footer>
-                          <Button variant="danger" onClick={handleCloseCart}>
-                            Close
-                          </Button>
-                        </Modal.Footer>
-                      </Modal>
+                      <NavLink
+                        to="/cart"
+                        className={({ isActive }) =>
+                          isActive ? "active-class" : "inactive-class"
+                        }
+                        onClick={addButtonModalCart}
+                      >
+                        <ShoppingCartIcon
+                          className="icon-cart"
+                          style={{ width: "1.2rem" }}
+                        />
+                        {user && (
+                          <div className="count-products">
+                            <span id="contador-productos">
+                              {totalItemProducts(item)}
+                            </span>
+                          </div>
+                        )}
+                      </NavLink>
                     )}
                   </div>
+                  {user && (
+                    <Button
+                      onClick={handleUserLogout}
+                      variant="outline-danger"
+                      className="btn btn-sm p-2 ms-2 rounded-4"
+                    >
+                      Logout
+                    </Button>
+                  )}
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
@@ -272,7 +300,7 @@ export default function MainHeader({ item }) {
       ))}
 
       {/* Second Navbar */}
-      <Navbar defaultActiveKey="/home" className="second-navbar">
+      <Navbar className="second-navbar">
         <div className="second-navbar-buttons">
           <NavLink
             to="/"
@@ -291,7 +319,6 @@ export default function MainHeader({ item }) {
             <b>PRODUCTOS</b>
           </NavLink>
           <NavLink
-            eventKey="link-1"
             to="/about"
             className={({ isActive }) =>
               isActive ? "active-class-second" : "inactive-class-second"
@@ -300,7 +327,6 @@ export default function MainHeader({ item }) {
             <b>ABOUT</b>
           </NavLink>
           <NavLink
-            eventKey="link-2"
             to="/contact"
             className={({ isActive }) =>
               isActive ? "active-class-second" : "inactive-class-second"
@@ -316,7 +342,12 @@ export default function MainHeader({ item }) {
               <small className="text-header-name">{user.email}</small>
             </div>
           ) : (
-            <NavLink to={"/loginPage"} className={(isActive) => isActive ? "active-class" : "inactive-class"}>
+            <NavLink
+              to={"/loginPage"}
+              className={(isActive) =>
+                isActive ? "active-class" : "inactive-class"
+              }
+            >
               <p className="offline-user-warning">User Offline</p>
             </NavLink>
           )}

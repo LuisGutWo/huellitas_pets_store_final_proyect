@@ -1,8 +1,6 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 
-import imagenes from "../assets/imagenes";
-
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import InstagramIcon from "@mui/icons-material/Instagram";
 
@@ -13,7 +11,9 @@ const MainFooter = () => {
         <Row>
           <Col className="footer-content">
             <img
-              src={imagenes[5].img}
+              src={
+                "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/huellitas_logo_blanco.png?alt=media&token=1a021733-a8f1-4b0f-9f5b-d5ef83d24e22"
+              }
               width="172"
               height="60"
               className="d-inline-block align-top"
@@ -25,7 +25,9 @@ const MainFooter = () => {
               envíos a todo Chile.{" "}
             </p>
             <img
-              src={imagenes[9].img}
+              src={
+                "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/tarjetas_logo.png?alt=media&token=6e33bc30-938c-4589-b0af-ea5750ffd5c7"
+              }
               width="150"
               height="45"
               className="d-inline-block align-top"

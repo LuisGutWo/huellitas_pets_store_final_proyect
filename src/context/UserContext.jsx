@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { createContext } from "react";
+import Loading from "../utils/Loading";
 
 // pertenece a config de firebase
 import { onAuthStateChanged } from "firebase/auth";
@@ -18,7 +19,7 @@ export default function UserContextProvider({ children }) {
     return unsuscribe;
   }, []);
 
-  if (user === false) return <p>Loading app...</p>;
+  if (user === false) return <Loading />;
 
   return (
     <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>

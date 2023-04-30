@@ -3,7 +3,6 @@ import { Button } from "react-bootstrap";
 
 import { useProductsContext } from "../../context/ProductsContext";
 import MainProductCard from "./MainProductCard";
-import imagenes from "../../assets/imagenes";
 
 export default function SelectFavorites() {
   const { favorites } = useProductsContext();
@@ -23,7 +22,13 @@ export default function SelectFavorites() {
         {favorites.length === 0 && (
           <div className="text-center">
             <h1>Aun no tienes favoritos</h1>
-            <img src={imagenes[12].img} alt="" style={{ width: "8rem" }} />
+            <img
+              src={
+                "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/emoticon_gatito.png?alt=media&token=f77e6efc-d1ab-4a07-b6b7-73e3f98ed959"
+              }
+              alt=""
+              style={{ width: "8rem" }}
+            />
           </div>
         )}
       </div>

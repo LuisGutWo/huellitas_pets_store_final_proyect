@@ -12,12 +12,12 @@ export default function Products() {
   const [filter, setFilter] = useState("all");
   const [loading, setLoading] = useState(false);
 
-  FakeLoading(2000);
+  FakeLoading(200);
 
   useEffect(() => {
     setLoading(true);
 
-    fetch("products.json")
+    fetch(import.meta.env.VITE_URL)
       .then((res) => res.json())
       .then((data) => {
         setData(data);
@@ -25,14 +25,12 @@ export default function Products() {
         setLoading(false);
       })
 
-      .finally(() => setLoading(false), 1000);
+      .finally(() => setLoading(false));
   }, []);
 
   const searchData = (item, search) => {
     return item.name.toLowerCase().includes(search.toLowerCase());
   };
-
-  FakeLoading(2000);
 
   const filteredData = () => {
     if (filter === "all") {
@@ -47,49 +45,50 @@ export default function Products() {
   if (loading) return <Loading />;
 
   return (
-    <div className="container text-center">
+    <div className="text-center">
+      <div className="products-section-title">
+        <h2>NUESTROS PRODUCTOS</h2>
+        <h5>Conoce esta selección hecha para ti</h5>
+      </div>
+      <div className="products-navbar">
+        <div className="products-buttons">
+          {categories.map((category) => (
+            <NavLink
+              key={category}
+              to={`/categories/${category}`}
+              onClick={() => setFilter(category)}
+            >
+              <Button
+                style={{ fontSize: "1rem", fontWeight: "bolder" }}
+                variant="outline-secondary"
+                color="white"
+              >
+                {category}
+              </Button>
+            </NavLink>
+          ))}
+        </div>
+
+        <div>
+          <input
+            type="text"
+            style={{
+              fontStyle: "italic",
+              borderRadius: "5px",
+              boxShadow: "unset",
+              backgroundColor: "-moz-initial",
+            }}
+            placeholder="Buscar producto"
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+      </div>
+
       {loading ? (
         <Loading />
       ) : (
         <div>
-          <div className="products-section-title">
-            <h2>NUESTROS PRODUCTOS</h2>
-            <p>conoce esta selección hecha para ti</p>
-          </div>
-          <div className="products-navbar">
-            <div className="products-buttons">
-              {categories.map((category) => (
-                <NavLink
-                  key={category}
-                  to={`/categories/${category}`}
-                  onClick={() => setFilter(category)}
-                >
-                  <Button
-                    style={{ fontSize: "1rem", fontWeight: "bolder" }}
-                    variant="outline-secondary"
-                    color="white"
-                  >
-                    {category}
-                  </Button>
-                </NavLink>
-              ))}
-            </div>
-
-            <div>
-              <input
-                type="text"
-                style={{
-                  fontStyle: "italic",
-                  borderRadius: "5px",
-                  boxShadow: "unset",
-                  backgroundColor: "-moz-initial",
-                }}
-                placeholder="Buscar producto"
-                onChange={(e) => setSearch(e.target.value)}
-              />
-            </div>
-          </div>
-          <div className="products-container">
+          <div className="container products-container">
             {filteredData().map((item) => {
               return <MainProductCard key={item.id} item={item} />;
             })}

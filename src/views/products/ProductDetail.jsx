@@ -29,7 +29,7 @@ export default function ProductDetail() {
 
   useEffect(() => {
     setLoading(true);
-    fetch("/products.json")
+    fetch(import.meta.env.VITE_URL)
       .then((response) => response.json({ id }))
       .then((data) => {
         const product = data.find((item) => item.id === params.id);

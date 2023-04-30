@@ -6,19 +6,26 @@
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  padding-top: 1rem;
-  margin: 2rem;
-  border: #566b6b solid 1px;
+
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/fondo_juguetes.png?alt=media&token=bced5ba8-2e9c-42d7-85c3-5aa8a644f173");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  padding: 3rem 0rem 2rem 0rem;
+  margin: 2rem 0rem 0rem 0rem;
+  // border: #99999967 solid 1px;
 
 }
 .products-navbar{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 2rem 2rem 0rem 2rem;
+  margin: 0rem 0rem 0rem 0rem;
   padding: 1rem;
   background-image: radial-gradient(at top center, rgba(255, 255, 255, 0.686) 0%, rgba(0, 0, 0, 0.081) 100%), linear-gradient(to top, rgba(255, 255, 255, 0.412) 0%, rgba(200, 214, 221, 0.766) 100%);
   background-blend-mode: normal, multiply;
+  // border: #99999967 solid 1px;
   border-radius: 3px;
 }
 .products-buttons{
@@ -38,10 +45,11 @@
 .products-container {
   display: flex;
   flex-wrap: wrap;
+  gap: 5px;
   justify-content: center;
   align-items: center;
   
-  padding-bottom: 2rem;
+  padding: 0rem 1.5rem 1rem 1.5rem;
   margin: 1em 1em 2em 1em;
   height: 100%;
   
