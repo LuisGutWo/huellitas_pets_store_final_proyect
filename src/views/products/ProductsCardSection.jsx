@@ -9,6 +9,7 @@ export default function Products() {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
   const [categories, setCategories] = useState([]);
+  const [types, setTypes] = useState([]);
   const [filter, setFilter] = useState("all");
   const [loading, setLoading] = useState(false);
 
@@ -22,6 +23,7 @@ export default function Products() {
       .then((data) => {
         setData(data);
         setCategories(["all", ...new Set(data.map((item) => item.category))]);
+        setTypes([ ...new Set(data.map((item) => item.type))]);
         setLoading(false);
       })
 
@@ -37,7 +39,7 @@ export default function Products() {
       return data.filter((item) => searchData(item, search));
     } else {
       return data
-        .filter((item) => item.category === filter)
+        .filter((item) => item.category === filter || item.type === filter)
         .filter((item) => searchData(item, search));
     }
   };
@@ -64,6 +66,21 @@ export default function Products() {
                 color="white"
               >
                 {category}
+              </Button>
+            </NavLink>
+          ))}
+          {types.map((type) => (
+            <NavLink
+              key={type}
+              to={`/types/${type}`}
+              onClick={() => setFilter(type)}
+            >
+              <Button
+                style={{ fontSize: "1rem", fontWeight: "bolder" }}
+                variant="outline-secondary"
+                color="white"
+              >
+                {type}
               </Button>
             </NavLink>
           ))}

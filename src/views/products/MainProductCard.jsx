@@ -43,7 +43,7 @@ export default function MainProductCard({ item, selectFavorites }) {
       <Link to={`/products/${item.id}`} className="m-2">
         <Card.Img
           variant="top"
-          className="card-image img-fluid"
+          className="card-image img-fluid p-3"
           src={item.img}
         />
       </Link>

@@ -4,8 +4,7 @@
 
 /* Navbar Styles */
 header {
-  height: 8.6rem;
-  width: 100%;
+  width: 100vw;
   background-color: #ffffff;
   background-image: radial-gradient(at top center, rgba(255, 255, 255, 0.549) 0%, rgba(0, 0, 0, 0.081) 100%), linear-gradient(to top, rgba(255, 255, 255, 0.412) 0%, rgba(200, 214, 221, 0.6) 100%);
   background-blend-mode: normal, multiply;
@@ -86,6 +85,8 @@ header {
 
 .second-navbar {
   padding: 0rem 4.5rem 0rem 4.5rem;
+  margin-top: 5rem;
+  background-color: #f2f2f2d4;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
