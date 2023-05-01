@@ -10,6 +10,7 @@ import { useUserContext } from "../../context/UserContext";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { motion } from "framer-motion";
 
 export default function MainProductCard({ item, selectFavorites }) {
   const { addFavorites, removeFavorites, addProduct } = useProductsContext();
@@ -36,12 +37,23 @@ export default function MainProductCard({ item, selectFavorites }) {
 
   return (
     <Card
-      className="product-card m-1 col-12 col-md-6 col-xl-3"
-      style={{ height: "22rem", borderRadius: "7px", padding: "1rem" }}
+      className="product-card"
+      style={{ width: "40%", borderRadius: "5px", padding: "0rem 1rem 1rem 0rem", margin: "0rem", height: "20rem" }}
       border="light"
     >
       <Link to={`/products/${item.id}`} className="m-2">
-        <Card.Img
+        <motion.img
+          initial={{
+            opacity: 0.7,
+          }}
+          animate={{
+            opacity: 1,
+            transition: { delay: 0.5, duration: 0.5 },
+          }}
+          exit={{
+            opacity: 0.7,
+            transition: { duration: 0.5 },
+          }}
           variant="top"
           className="card-image img-fluid p-3"
           src={item.img}
@@ -62,14 +74,14 @@ export default function MainProductCard({ item, selectFavorites }) {
             ref={target}
             onClick={handleShoppingCart}
             style={{
-              width: "100%",
+              width: "90%",
               height: "1.8rem",
               fontSize: "0.6rem",
-              marginRight: "2.5rem",
+              marginRight: "0rem",
             }}
           >
             Añadir al carro
-            <ShoppingCartIcon style={{ fontSize: "1rem" }} />
+            <ShoppingCartIcon style={{ fontSize: "0.8rem" }} />
           </Button>
           <Modal show={showCart} onHide={handleCloseCart}>
             <Modal.Header closeButton>

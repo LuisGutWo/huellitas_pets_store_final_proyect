@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Button, NavLink } from "react-bootstrap";
+import { NavLink, Navbar } from "react-bootstrap";
 
 import MainProductCard from "./MainProductCard";
 import Loading from "../../utils/Loading";
 import { FakeLoading } from "../../utils/FakeLoading";
+import { motion } from "framer-motion";
 
 export default function Products() {
   const [data, setData] = useState([]);
@@ -23,7 +24,7 @@ export default function Products() {
       .then((data) => {
         setData(data);
         setCategories(["all", ...new Set(data.map((item) => item.category))]);
-        setTypes([ ...new Set(data.map((item) => item.type))]);
+        setTypes([...new Set(data.map((item) => item.type))]);
         setLoading(false);
       })
 
@@ -47,26 +48,42 @@ export default function Products() {
   if (loading) return <Loading />;
 
   return (
-    <div className="text-center">
+    <motion.div
+      initial={{
+        opacity: 0.7,
+      }}
+      animate={{
+        opacity: 1,
+        transition: { delay: 0.5, duration: 0.5 },
+      }}
+      exit={{
+        opacity: 0.7,
+        transition: { duration: 0.5 },
+      }}
+      className="text-center"
+    >
       <div className="products-section-title">
-        <h2>NUESTROS PRODUCTOS</h2>
-        <h5>Conoce esta selección hecha para ti</h5>
+        <h3>NUESTROS PRODUCTOS</h3>
+        <h6>Conoce esta selección hecha para ti</h6>
       </div>
-      <div className="products-navbar">
+      <Navbar className="products-navbar">
         <div className="products-buttons">
           {categories.map((category) => (
             <NavLink
               key={category}
               to={`/categories/${category}`}
               onClick={() => setFilter(category)}
+              type="button"
+              className="btn btn-outline-secondary fs-6"
+              style={{
+                width: "6rem",
+                height: "1.6rem",
+                display: "flex",
+                justifyContent: "center",
+                alignContent: "flex-end",
+              }}
             >
-              <Button
-                style={{ fontSize: "1rem", fontWeight: "bolder" }}
-                variant="outline-secondary"
-                color="white"
-              >
-                {category}
-              </Button>
+              {category}
             </NavLink>
           ))}
           {types.map((type) => (
@@ -74,14 +91,17 @@ export default function Products() {
               key={type}
               to={`/types/${type}`}
               onClick={() => setFilter(type)}
+              type="button"
+              className="btn btn-outline-secondary fs-6"
+              style={{
+                width: "6rem",
+                height: "1.6rem",
+                display: "flex",
+                justifyContent: "center",
+                alignContent: "flex-end",
+              }}
             >
-              <Button
-                style={{ fontSize: "1rem", fontWeight: "bolder" }}
-                variant="outline-secondary"
-                color="white"
-              >
-                {type}
-              </Button>
+              {type}
             </NavLink>
           ))}
         </div>
@@ -92,14 +112,13 @@ export default function Products() {
             style={{
               fontStyle: "italic",
               borderRadius: "5px",
-              boxShadow: "unset",
-              backgroundColor: "-moz-initial",
+              backgroundColor: "Background",
             }}
             placeholder="Buscar producto"
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
-      </div>
+      </Navbar>
 
       {loading ? (
         <Loading />
@@ -112,6 +131,6 @@ export default function Products() {
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

@@ -4,7 +4,9 @@
 
 /* Navbar Styles */
 header {
-  width: 100vw;
+  min-height: 7rem;
+  height: 100%;
+  width: 100%;
   background-color: #ffffff;
   background-image: radial-gradient(at top center, rgba(255, 255, 255, 0.549) 0%, rgba(0, 0, 0, 0.081) 100%), linear-gradient(to top, rgba(255, 255, 255, 0.412) 0%, rgba(200, 214, 221, 0.6) 100%);
   background-blend-mode: normal, multiply;
@@ -17,18 +19,21 @@ header {
   justify-content: center;
   align-items: center;
   margin: 0rem 2rem 0rem 2rem;
-  height: 5rem;
+  height: 7rem;
   overflow: hidden;
   width: 100%;
 }
 
 .header-container {
-  height: 100%;
-  width: 100%;
-  margin: 0;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
+
+  height: 70%;
+  width: 100%;
+  margin: 1rem;
+  padding: 0rem 1rem 0rem 1rem;
 
   @media (max-width: 720px) {
     .navbar-form {
@@ -54,7 +59,7 @@ header {
 .navbar-select {
   height: 1.7rem;
   max-width: 80%;
-  background-color: rgba(104, 104, 104, 0.655);
+  background-color: rgba(125, 125, 125, 0.655);
   color: rgb(255, 255, 255);
 }
 
@@ -71,8 +76,8 @@ header {
 .header-logo {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding-left: 25%;
+  align-items: center;
+  width: 8rem;
 }
 
 .navbar-header {
@@ -84,21 +89,28 @@ header {
 }
 
 .second-navbar {
-  padding: 0rem 4.5rem 0rem 4.5rem;
-  margin-top: 5rem;
-  background-color: #f2f2f2d4;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-end;
-  opacity: 0.9;
+  width: 100%;
+  height: 4rem;
+  padding: 0rem 5rem 0rem 5rem;
+  background-color: #F0EFEF;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease-in-out;
 
   @media (max-width: 520px) {
     align-items: flex-end;
     justify-content: center;
     flex-wrap: wrap;
     row-gap: 0rem;
-    
+
     .offline-user-warning {
       display: none;
     }
@@ -121,13 +133,14 @@ header {
 }
 
 .text-header-name {
-  color: rgb(42, 24, 180);
+  color: rgb(44, 24, 202);
   text-decoration: overline;
 }
+
 .offline-user-warning {
   position: relative;
   color: rgba(134, 2, 2, 0.752);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
   text-decoration: none;
