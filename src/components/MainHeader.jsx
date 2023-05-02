@@ -141,7 +141,7 @@ export default function MainHeader({ item }) {
                 </Modal>
               )}
             </Form>
-            {/* Logo Navbar */}
+            {/* Header Navbar logo */}
             <Link to={"/"} className="header-logo">
               <img
                 src={
@@ -162,7 +162,7 @@ export default function MainHeader({ item }) {
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               placement="end"
               style={{
-                width: "9.5rem",
+                width: "30%",
                 backgroundColor: "black",
                 alignItems: "flex-end",
               }}
@@ -170,13 +170,15 @@ export default function MainHeader({ item }) {
               <Offcanvas.Header closeButton className="btn btn-secondary">
                 <Offcanvas.Title
                   id={`offcanvasNavbarLabel-expand-${expand}`}
-                  style={{ color: "white", width: "22vw" }}
+                  style={{ color: "white" }}
                 >
                   Menu
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body
-                style={{ width: "100%", justifyContent: "center" }}
+                
+                
+                style={{ width: "20%", justifyContent: "center" }}
               >
                 <Nav className="navbar-header">
                   {!user && (

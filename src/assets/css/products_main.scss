@@ -22,6 +22,15 @@
   height: 8rem;
   background-color: #F0EFEF;
 
+  @media (min-width: 768px) {
+    height: 6rem;
+    }
+  @media (min-width: 992px) {
+      display: flex;
+      justify-content: space-between;
+      padding: 0rem 1rem 0rem 1rem;
+      }
+
 
   .products-buttons {
     display: flex;
@@ -56,6 +65,15 @@
   align-content: center;
   justify-items: center;
   align-items: center;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+    
+    }
+  @media (min-width: 992px) {
+      grid-template-columns: repeat(4, 1fr);
+      
+      }
   
 
 }

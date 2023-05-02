@@ -16,6 +16,13 @@
     opacity: 0.9;
     width: 100vw;
     height: 60vh;
+
+    @media (min-width: 768px) {
+      height: 100vh;
+      }
+    @media (min-width: 992px) {
+        height: 100%;
+        }
   }
 
   .card-overlay {
@@ -33,10 +40,24 @@
     & h1 {
       font-size: 1.2rem;
       font-weight: bold;
+
+      @media (min-width: 768px) {
+        font-size: 1.5rem;
+        }
+      @media (min-width: 992px) {
+          font-size: 2rem;
+          }
     }
 
     & h5 {
       font-size: 0.6rem;
+
+      @media (min-width: 768px) {
+        font-size: 0.8rem;
+        }
+      @media (min-width: 992px) {
+          font-size: 1.1rem;
+          }
     }
 
     // @media (max-width: 640px) {
