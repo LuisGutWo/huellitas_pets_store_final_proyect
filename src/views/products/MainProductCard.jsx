@@ -38,7 +38,7 @@ export default function MainProductCard({ item, selectFavorites }) {
   return (
     <Card
       className="product-card"
-      style={{ width: "40%", borderRadius: "5px", padding: "0rem 1rem 1rem 0rem", margin: "0rem", height: "20rem" }}
+      style={{  borderRadius: "7px", margin: "0rem", height: "100%", marginTop: "2rem", padding: "0.5rem", overflow: "hidden" }}
       border="light"
     >
       <Link to={`/products/${item.id}`} className="m-2">
@@ -55,7 +55,7 @@ export default function MainProductCard({ item, selectFavorites }) {
             transition: { duration: 0.5 },
           }}
           variant="top"
-          className="card-image img-fluid p-3"
+          className="card-image img-fluid p-1"
           src={item.img}
         />
       </Link>

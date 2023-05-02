@@ -18,7 +18,7 @@ const Home = () => {
         opacity: 0.7,
         transition: { duration: 0.5 },
       }}
-      className="home-section"
+      className="mt-3"
     >
       <HeroSection />
       <ProductsCardSection />

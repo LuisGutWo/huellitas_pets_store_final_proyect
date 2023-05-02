@@ -13,10 +13,10 @@ export default function Cart({ item }) {
   return (
     <div className="cart-container">
       <div className="cart-header">
-        <h2 className="text-start m-2 text-dark">
+        <h2>
           <b>Detalle de tu pedido</b>
         </h2>
-        <div className="alert alert-light p-2 m-0 text-dark">
+        <div>
           {" "}
           <b>Total:</b> $ {formatPrice(totalCart())}
         </div>

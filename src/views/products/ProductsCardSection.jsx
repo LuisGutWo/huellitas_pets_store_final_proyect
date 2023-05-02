@@ -60,13 +60,16 @@ export default function Products() {
         opacity: 0.7,
         transition: { duration: 0.5 },
       }}
-      className="text-center"
+      className="text-center mt-6"
     >
-      <div className="products-section-title">
+      {/* Products Header */}
+      <div className="products-header">
         <h3>NUESTROS PRODUCTOS</h3>
         <h6>Conoce esta selección hecha para ti</h6>
       </div>
-      <Navbar className="products-navbar">
+
+      {/* Products Navbar */}
+      <section className="products-navbar">
         <div className="products-buttons">
           {categories.map((category) => (
             <NavLink
@@ -106,7 +109,7 @@ export default function Products() {
           ))}
         </div>
 
-        <div>
+        <div className="form-products-categories">
           <input
             type="text"
             style={{
@@ -118,7 +121,7 @@ export default function Products() {
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
-      </Navbar>
+      </section>
 
       {loading ? (
         <Loading />

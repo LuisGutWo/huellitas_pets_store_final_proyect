@@ -32,7 +32,7 @@ const HeroSection = () => {
             <NavLink
               to={"/products"}
             >
-              <Button className="btn btn-sm" variant="dark"> <ArrowForwardIosIcon /> Compre Ahora</Button>
+              <Button className="hero-button btn btn-sm" variant="dark"> <ArrowForwardIosIcon /> Compre Ahora</Button>
             </NavLink>
           </div>
         </div>
@@ -63,7 +63,7 @@ const HeroSection = () => {
               to={"/products"}
               style={{ marginLeft: "2rem" }}
             >
-              <Button className="btn btn-sm" variant="dark"> <ArrowForwardIosIcon /> Compre Ahora</Button>
+              <Button className="hero-button btn btn-sm" variant="dark"> <ArrowForwardIosIcon /> Compre Ahora</Button>
             </NavLink>
           </div>
         </div>
@@ -95,7 +95,7 @@ const HeroSection = () => {
               to={"/products"}
               style={{ marginLeft: "2rem" }}
             >
-              <Button className="btn btn-sm" variant="dark"> <ArrowForwardIosIcon /> Compre Ahora</Button>
+              <Button className="hero-button btn btn-sm" variant="dark"> <ArrowForwardIosIcon /> Compre Ahora</Button>
             </NavLink>
           </div>
         </div>

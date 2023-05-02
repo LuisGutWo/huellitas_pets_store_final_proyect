@@ -47,8 +47,8 @@ const MainNavbar = () => {
         </div>
         <div className="pb-2">
           {user ? (
-            <div className="d-flex flex-column align-items-baseline text-dark fs-6">
-              <h6 className="p-0 m-0">Bienvenido 🖐🏼</h6>
+            <div className="welcome-user-section">
+              <p className="m-0 text-dark">Bienvenido 🖐🏼</p>
               <small className="text-header-name">{user.email}</small>
             </div>
           ) : (
@@ -60,7 +60,7 @@ const MainNavbar = () => {
             >
               <motion.div
                 onClick={() => setIsActive(!isActive)}
-                animate={{
+                animate={{ 
                   rotate: isActive ? 180 : 360,
                 }}
                 className="offline-user-warning"

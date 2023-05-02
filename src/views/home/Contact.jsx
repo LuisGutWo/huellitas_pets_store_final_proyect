@@ -53,7 +53,7 @@ const Contact = () => {
             "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/gato_y_perro.png?alt=media&token=57c3a1cb-c492-487c-96f9-7adc684fb710"
           }
           alt=""
-          className="img-fluid contact-img"
+          className="contact-img"
         />
         <section className="contact-container">
           <img
@@ -62,7 +62,7 @@ const Contact = () => {
             }
             alt=""
             className="img-fluid"
-            style={{ width: "13rem", marginRight: "5rem" }}
+            style={{ width: "50%", padding: "0rem", margin: "0rem" }}
           />
           <Form ref={form} onSubmit={sendEmail} className="contact-form">
             <Form.Group className="mb-3">

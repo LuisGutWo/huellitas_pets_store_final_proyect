@@ -1,0 +1,61 @@
+@use "styles";
+
+
+.products-header {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/fondo_juguetes.png?alt=media&token=bced5ba8-2e9c-42d7-85c3-5aa8a644f173");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  padding: 2rem;
+  margin: 1.5rem 0rem 0rem 0rem;
+}
+
+.products-navbar {
+  overflow: hidden;
+  height: 8rem;
+  background-color: #F0EFEF;
+
+
+  .products-buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding: 1rem;
+  }
+
+  .form-products-categories {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+    font-size: 0.8rem;
+  }
+
+}
+
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+  padding: 0rem 1.2rem 1rem 1.2rem;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  
+
+}

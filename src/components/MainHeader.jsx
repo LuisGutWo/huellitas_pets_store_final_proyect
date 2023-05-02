@@ -147,7 +147,7 @@ export default function MainHeader({ item }) {
                 src={
                   "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/huellitas_logo_blanco.png?alt=media&token=1a021733-a8f1-4b0f-9f5b-d5ef83d24e22"
                 }
-                width="250"
+                width="100%"
                 className="img-fluid text-center"
                 alt=""
               />
@@ -170,13 +170,13 @@ export default function MainHeader({ item }) {
               <Offcanvas.Header closeButton className="btn btn-secondary">
                 <Offcanvas.Title
                   id={`offcanvasNavbarLabel-expand-${expand}`}
-                  style={{ color: "white", width: "16vw" }}
+                  style={{ color: "white", width: "22vw" }}
                 >
                   Menu
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body
-                style={{ width: "10rem", justifyContent: "flex-end" }}
+                style={{ width: "100%", justifyContent: "center" }}
               >
                 <Nav className="navbar-header">
                   {!user && (

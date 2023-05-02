@@ -3,14 +3,16 @@
 @use "hero";
 @use "about";
 @use "contact";
-@use "products";
+@use "products_main";
 @use "footer";
 @use "cart";
 @use "cart-icon";
 @use "notfound";
 @use "blog";
+@use "cards_products";
+@use "card_detail";
 
-
+//Main App Styles
 .app {
   font-family: styles.$primary-font;
   background-color: styles.$primary-color;
@@ -25,8 +27,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  &.container {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;  
+  }
 }
 
+
+// IsActive class
 .active-class {
   text-decoration: none;
   margin-bottom: 1rem;
