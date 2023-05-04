@@ -153,10 +153,7 @@ export default function MainHeader({ item }) {
               />
             </Link>
             {/* Toggler y Link del Navbar */}
-            <Navbar.Toggle
-              aria-controls={`offcanvasNavbar-expand-${expand}`}
-              style={{ width: "4rem" }}
-            />
+            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
@@ -164,10 +161,10 @@ export default function MainHeader({ item }) {
               style={{
                 width: "30%",
                 backgroundColor: "black",
-                alignItems: "flex-end",
+                alignItems: "end",
               }}
             >
-              <Offcanvas.Header closeButton className="btn btn-secondary">
+              <Offcanvas.Header closeButton>
                 <Offcanvas.Title
                   id={`offcanvasNavbarLabel-expand-${expand}`}
                   style={{ color: "white" }}
@@ -175,11 +172,7 @@ export default function MainHeader({ item }) {
                   Menu
                 </Offcanvas.Title>
               </Offcanvas.Header>
-              <Offcanvas.Body
-                
-                
-                style={{ width: "20%", justifyContent: "center" }}
-              >
+              <Offcanvas.Body style={{ justifyContent: "end", width: "100%" }}>
                 <Nav className="navbar-header">
                   {!user && (
                     <>
@@ -190,7 +183,9 @@ export default function MainHeader({ item }) {
                         }
                         onClick={addButtonModalLogin}
                       >
-                        <PermIdentityIcon style={{ width: "3rem", fontSize: "2rem" }} />
+                        <PermIdentityIcon
+                          style={{ width: "3rem", fontSize: "2rem" }}
+                        />
                       </NavLink>
                       <Modal show={showLogin} onHide={handleCloseLogin}>
                         <Modal.Header closeButton>
@@ -214,7 +209,9 @@ export default function MainHeader({ item }) {
                           isActive ? "active-class" : "inactive-class"
                         }
                       >
-                        <FavoriteIcon style={{ width: "3rem", fontSize: "2rem" }} />
+                        <FavoriteIcon
+                          style={{ width: "3rem", fontSize: "2rem" }}
+                        />
                       </NavLink>
                     </>
                   ) : null}

@@ -7,8 +7,8 @@
   align-items: center;
 
   gap: 0.2rem;
-  margin-top: 3rem;
-  width: 100vw;
+  margin-top: 1.5rem;
+  width: 100%;
   height: 100%;
 
   .cart-header {
@@ -19,33 +19,50 @@
     padding: 2rem 1rem 2rem 1rem;
     border-radius: 8px 8px 0px 0px;
     background-image: linear-gradient(120deg, #778ab66f 0%, #b75e61a2 100%);
-  
-    height: 100%;
-    width: 70%;
 
-    h2{
-      font-size: 1rem;
+    height: 5rem;
+    width: 80%;
+
+    @media (min-width: 992px) {
+      padding: 2rem 2rem 2rem 2rem;
+
     }
-    div{
+
+    h2 {
+      font-size: 0.9rem;
+
+      @media (min-width: 992px) {
+        font-size: 1.2rem;
+
+      }
+    }
+
+    div {
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: space-evenly;
       font-size: 0.6rem;
-      width: 48%;
-      padding: 0.3rem;
+      width: 35%;
+      padding: 0.2rem 0rem 0.2rem 0rem;
       border-radius: 6px;
 
       border: solid 1px black;
-      background-color: #191127;
+      background-color: #3c206c;
       color: whitesmoke;
+
+      @media (min-width: 992px) {
+        font-size: 0.9rem;
+        width: 20%;
+        padding: 0.2rem 0rem 0.2rem 0rem;
+
+      }
     }
 
-  
+
   }
+
   .list-group {
-    display: flex;
-    justify-content: space-between;
-    width: 70%;
+    width: 80%;
     border-radius: 0rem;
 
     .list-group-empty {
@@ -55,57 +72,45 @@
       align-items: center;
       width: 100%;
     }
+
     .cart-total {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: end;
-      height: 6rem;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
       padding: 1rem 1.5rem 1.2rem;
       background-image: linear-gradient(40deg, #191127 65%, #433826 90%);
       color: whitesmoke;
+
+      p {
+        margin: 0rem;
+      }
+
+      Button {
+        font-size: 0.7rem;
+      }
+
+
     }
+
     .cart-button-footer {
-      height: 4rem;
+      height: 100%;
       padding: 1.1rem;
       padding-right: 1.5rem;
       background-image: linear-gradient(120deg, #252b3bc8 70%, #b35c5fa2 100%);
       border-radius: 0px 0px 8px 8px;
-    
-    
+
+
       display: flex;
       justify-content: space-between;
       align-items: center;
-    
+
+      Button {
+        font-size: 0.8rem;
+      }
+
     }
   }
 
-
-
-
-
-
-
 }
-// .cart-title-product{
-//   display: flex;
-//   flex-direction: row;
-//   flex-wrap: wrap;
-//   justify-content: flex-start;
-//   align-items: center;
-//   margin: 0;
-//   padding: 0;
-//   font-size: 0.8rem;
-// }
-
-
-
-
-
-
-
-
-
-
-
-

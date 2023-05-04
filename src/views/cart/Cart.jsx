@@ -21,7 +21,7 @@ export default function Cart({ item }) {
           <b>Total:</b> $ {formatPrice(totalCart())}
         </div>
       </div>
-      <ul className="list-group">
+      <section className="list-group">
         {cart.map((item) => (
           <CartItem key={item.id} item={item} />
         ))}
@@ -54,7 +54,7 @@ export default function Cart({ item }) {
             {cart.length === 0 ? (
               <Button>Seleccionar productos</Button>
             ) : (
-              <Button variant="outline-light">Seguir comprando</Button>
+              <Button variant="outline-warning">Seguir comprando</Button>
             )}
           </NavLink>
 
@@ -64,7 +64,7 @@ export default function Cart({ item }) {
             </Button>
           )}
         </li>
-      </ul>
+      </section>
     </div>
   );
 }

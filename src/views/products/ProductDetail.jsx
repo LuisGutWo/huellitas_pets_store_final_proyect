@@ -46,7 +46,7 @@ export default function ProductDetail() {
   if (loading) return <Loading />;
 
   return (
-    <div className="container text-center p-5">
+    <div className="container p-5">
       <Card className="detail-card">
         <Card.Img
           src={product.img}
@@ -54,12 +54,12 @@ export default function ProductDetail() {
           alt="..."
         />
         <Card.Body>
-          <Card.Title className="fs-3">{product.name} </Card.Title>
+          <Card.Title className="card-title">{product.name} </Card.Title>
           <Card.Text className="card-text">{product.desc}</Card.Text>
-          <div>
+          <div className="card-price-button">
             <b>$ {product.price}</b>
             <NavLink to={"/products"} className="text-end">
-              <Button className="btn btn-secondary btn-sm mt-2">Volver</Button>
+              <Button className="btn btn-sm mt-2" variant="outline-primary">Volver</Button>
             </NavLink>
           </div>
 

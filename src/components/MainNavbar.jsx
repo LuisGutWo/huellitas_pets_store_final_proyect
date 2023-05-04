@@ -45,7 +45,7 @@ const MainNavbar = () => {
             <b>CONTACTO</b>
           </NavLink>
         </div>
-        <div className="p-3">
+        <div>
           {user ? (
             <div className="welcome-user-section">
               <p className="m-0 text-dark">Bienvenido 🖐🏼</p>
@@ -65,7 +65,7 @@ const MainNavbar = () => {
                 }}
                 className="offline-user-warning"
               >
-                User Offline
+              Offline
               </motion.div>
             </NavLink>
           )}

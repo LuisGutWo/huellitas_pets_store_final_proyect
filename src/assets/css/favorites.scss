@@ -1,0 +1,34 @@
+@use "styles";
+
+.favorites-main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem 0rem 1rem 0rem;
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    .favorites-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+        padding: 0rem 1.2rem 1rem 1.2rem;
+        justify-content: center;
+        align-content: center;
+        justify-items: center;
+        align-items: center;
+
+        @media (min-width: 768px) {
+            grid-template-columns: repeat(3, 1fr);
+
+        }
+
+        @media (min-width: 992px) {
+            grid-template-columns: repeat(4, 1fr);
+
+        }
+    }
+}

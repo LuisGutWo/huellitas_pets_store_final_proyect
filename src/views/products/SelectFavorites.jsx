@@ -8,26 +8,24 @@ export default function SelectFavorites() {
   const { favorites } = useProductsContext();
 
   return (
-    <div className="cart-container overflow-hidden">
-      <h2 className="m-2 text-dark">
+    <div className="favorites-main-container">
+      <h2>
         <b>Tus Favoritos</b>
       </h2>
-      <div className="list-group">
-        <div className="d-flex flex-wrap justify-content-center gap-3 mb-4">
-          {favorites.map((item) => (
-            <MainProductCard key={item.id} item={item} selectFavorites />
-          ))}
-        </div>
+      <div className="favorites-list">
+        {favorites.map((item) => (
+          <MainProductCard key={item.id} item={item} selectFavorites />
+        ))}
 
         {favorites.length === 0 && (
-          <div className="text-center">
+          <div className="d-flex flex-column align-items-center">
             <h1>Aun no tienes favoritos</h1>
             <img
               src={
                 "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/emoticon_gatito.png?alt=media&token=f77e6efc-d1ab-4a07-b6b7-73e3f98ed959"
               }
               alt=""
-              style={{ width: "8rem" }}
+              style={{ width: "35%" }}
             />
           </div>
         )}

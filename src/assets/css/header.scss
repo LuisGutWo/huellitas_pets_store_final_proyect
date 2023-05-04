@@ -59,8 +59,9 @@ header {
 .navbar-select {
   height: 1.7rem;
   max-width: 80%;
-  background-color: rgba(125, 125, 125, 0.655);
-  color: rgb(255, 255, 255);
+  background-color: rgba(240, 240, 240, 0.866);
+  color: rgb(40, 40, 40);
+  
 }
 
 .search-button {
@@ -81,12 +82,13 @@ header {
 
   @media (min-width: 768px) {
     width: 12rem;
-    }
-  @media (min-width: 992px) {
-      margin-left: 13rem;;
-      
-      }
   }
+
+  @media (min-width: 992px) {
+    margin-left: 25%;
+
+  }
+}
 
 .navbar-header {
   display: flex;
@@ -104,28 +106,29 @@ header {
   z-index: 1;
 
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   text-align: center;
   text-transform: uppercase;
 
-  height: 3.5rem;
   width: 100%;
+  height: 100%;
+  padding: 0rem;
   background-color: #F0EFEF;
-  color: rgb(255, 255, 255);
-  transition: background-color 0.2s ease-in-out;
 
-  // @media (max-width: 576px) {
-  //   align-items: flex-end;
-  //   justify-content: center;
-  //   flex-wrap: wrap;
-  //   row-gap: 0rem;
-  //   width: fit-content;
+  @media (max-width: 576px) {
+    .offline-user-warning {
+      display: none;
+    }
+  }
 
-  //   .offline-user-warning {
-  //     display: none;
-  //   }
-  // }
+  @media (min-width: 600px) {
+    flex-direction: row;
+
+  }
+
+
 }
 
 .second-navbar-buttons {
@@ -146,12 +149,12 @@ header {
   // }
 }
 
-.welcome-user-section{
+.welcome-user-section {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
 
   font-size: 0.6rem;
   font-weight: bold;
@@ -159,10 +162,11 @@ header {
   transition: background-color 0.2s ease-in-out;
 
   height: 100%;
-  width: 100vw;
+  width: 100%;
   padding: 0rem 1.2rem 0.4rem 0rem;
 
 }
+
 .text-header-name {
   color: rgb(44, 24, 202);
   text-decoration: none;
@@ -177,7 +181,8 @@ header {
   margin-bottom: 0.5rem;
   text-decoration: none;
 
-  @media (max-width: 576px){
-    font-size: 0.5rem;
+  @media (min-width: 600px) {
+    margin-right: 2rem;
   }
+
 }
