@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import { NavLink, Navbar } from "react-bootstrap";
+import { NavLink } from "react-bootstrap";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 import MainProductCard from "./MainProductCard";
 import Loading from "../../utils/Loading";
@@ -43,6 +45,28 @@ export default function Products() {
         .filter((item) => item.category === filter || item.type === filter)
         .filter((item) => searchData(item, search));
     }
+  };
+  const filteredProduct = filteredData().map((item) => (
+    <MainProductCard key={item.id} item={item} />
+  ));
+
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
   };
 
   if (loading) return <Loading />;
@@ -127,11 +151,12 @@ export default function Products() {
         <Loading />
       ) : (
         <div>
-          <div className="container products-container">
-            {filteredData().map((item) => {
-              return <MainProductCard key={item.id} item={item} />;
-            })}
-          </div>
+          <Carousel
+            responsive={responsive}
+            className="container products-container"
+          >
+            {filteredProduct}
+          </Carousel>
         </div>
       )}
     </motion.div>

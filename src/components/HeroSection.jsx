@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 
@@ -27,7 +26,7 @@ const HeroSection = () => {
               alt=""
               className="hero-logo img-fluid"
             />
-            <h5 className="text-container text-light">
+            <h5 className="text-container text-light text-end">
               ¡Tenemos
               <br /> lo que tu mascota
               <br /> se merece

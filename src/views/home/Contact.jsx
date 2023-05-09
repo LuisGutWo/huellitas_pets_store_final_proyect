@@ -62,7 +62,7 @@ const Contact = () => {
             }
             alt=""
             className="img-fluid"
-            style={{ width: "50%", padding: "0rem", margin: "0rem" }}
+            style={{ width: "30%", padding: "0rem", margin: "0rem" }}
           />
           <Form ref={form} onSubmit={sendEmail} className="contact-form">
             <Form.Group className="mb-3">
@@ -87,7 +87,7 @@ const Contact = () => {
             </Form.Group>
             <Button
               onClick={handleShowEmailSend}
-              className="btn-info"
+              className="about-button"
               type="submit"
               value="Send"
             >

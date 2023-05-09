@@ -1,18 +1,17 @@
-@use "styles";
-@use "header";
-@use "hero";
-@use "about";
-@use "contact";
-@use "products_main";
-@use "footer";
-@use "cart";
-@use "cart-icon";
-@use "notfound";
-@use "blog";
-@use "cards_products";
-@use "card_detail";
-@use "cart_product_card";
-@use "favorites";
+@use "./css/styles.scss";
+@use "./components/header.scss";
+@use "./components/hero.scss";
+@use "./views/home/about.scss";
+@use "./views/home/contact.scss";
+@use "./views/products/products_main.scss";
+@use "./components/footer.scss";
+@use "./views/cart/cart.scss";
+@use "./utils/notfound.scss";
+@use "./views/home/blog.scss";
+@use "./views/products/cards_products.scss";
+@use "./views/products/card_detail.scss";
+@use "./views/cart/cart_product_card.scss";
+@use "./views/products/favorites.scss";
 
 //Main App Styles
 .app {

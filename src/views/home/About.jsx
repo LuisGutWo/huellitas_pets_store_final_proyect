@@ -1,4 +1,3 @@
-import { Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { FakeLoading } from "../../utils/FakeLoading";
 import { motion } from "framer-motion";
@@ -20,7 +19,7 @@ function About() {
           opacity: 0.7,
           transition: { duration: 0.5 },
         }}
-        className="about-container bg-light text-dark"
+        className="about-container text-dark"
       >
         <div>
           <img
@@ -51,11 +50,7 @@ function About() {
             alt=""
             className="about-image"
           />
-          <NavLink to={"/products"}>
-            <Button size="sm" className="about-button btn-secondary">
-              Ver mas
-            </Button>
-          </NavLink>
+          <NavLink to={"/products"} className="about-button"> Ver mas</NavLink>
         </div>
       </motion.div>
     </>
