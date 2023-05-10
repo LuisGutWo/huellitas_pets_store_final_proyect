@@ -38,7 +38,7 @@ export default function MainProductCard({ item, selectFavorites }) {
   return (
     <Card
       className="product-card"
-      style={{  borderRadius: "7px", margin: "0rem", height: "100%", marginTop: "2rem", padding: "0.5rem", overflow: "hidden" }}
+      style={{  borderRadius: "7px", margin: "0.5rem", height: "90%", padding: "0.7rem", overflow: "hidden" }}
       border="light"
     >
       <Link to={`/products/${item.id}`} className="m-2">
@@ -76,12 +76,12 @@ export default function MainProductCard({ item, selectFavorites }) {
             style={{
               width: "90%",
               height: "1.8rem",
-              fontSize: "0.6rem",
+              fontSize: "60%",
               marginRight: "0rem",
             }}
           >
             Añadir al carro
-            <ShoppingCartIcon style={{ fontSize: "0.8rem" }} />
+            <ShoppingCartIcon style={{ fontSize: "100%" }} />
           </Button>
           <Modal show={showCart} onHide={handleCloseCart}>
             <Modal.Header closeButton>
@@ -124,7 +124,7 @@ export default function MainProductCard({ item, selectFavorites }) {
                   isActive ? "inactive-class-second" : "active-class-second"
                 }
               >
-                <FavoriteIcon />
+                <FavoriteIcon style={{ color: "#d6207b" }} />
               </NavLink>
 
               {user ? (

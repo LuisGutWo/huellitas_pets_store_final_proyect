@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "react-bootstrap";
+import { NavLink, Navbar } from "react-bootstrap";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
@@ -57,15 +57,15 @@ export default function Products() {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3,
+      items: 4,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 2,
+      items: 3,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 1,
+      items: 2,
     },
   };
 
@@ -94,21 +94,15 @@ export default function Products() {
 
       {/* Products Navbar */}
       <section className="products-navbar">
-        <div className="products-buttons">
+        <Navbar className="products-buttons">
           {categories.map((category) => (
             <NavLink
               key={category}
               to={`/categories/${category}`}
               onClick={() => setFilter(category)}
-              type="button"
-              className="btn btn-outline-secondary fs-6"
-              style={{
-                width: "6rem",
-                height: "1.6rem",
-                display: "flex",
-                justifyContent: "center",
-                alignContent: "flex-end",
-              }}
+              className={({ isActive }) =>
+                isActive ? "active-class-second" : "inactive-class-second"
+              }
             >
               {category}
             </NavLink>
@@ -118,20 +112,14 @@ export default function Products() {
               key={type}
               to={`/types/${type}`}
               onClick={() => setFilter(type)}
-              type="button"
-              className="btn btn-outline-secondary fs-6"
-              style={{
-                width: "6rem",
-                height: "1.6rem",
-                display: "flex",
-                justifyContent: "center",
-                alignContent: "flex-end",
-              }}
+              className={({ isActive }) =>
+                isActive ? "active-class-second" : "inactive-class-second"
+              }
             >
               {type}
             </NavLink>
           ))}
-        </div>
+        </Navbar>
 
         <div className="form-products-categories">
           <input
@@ -151,10 +139,7 @@ export default function Products() {
         <Loading />
       ) : (
         <div>
-          <Carousel
-            responsive={responsive}
-            className="container products-container"
-          >
+          <Carousel responsive={responsive} className="products-container">
             {filteredProduct}
           </Carousel>
         </div>

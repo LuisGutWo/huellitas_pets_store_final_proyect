@@ -6,14 +6,14 @@
 header {
   height: 100%;
   width: 100%;
-  background-color: #ffffff;
+  background-color: #917FB3;
   background-image: radial-gradient(at top center, rgba(255, 255, 255, 0.549) 0%, rgba(0, 0, 0, 0.081) 100%), linear-gradient(to top, rgba(255, 255, 255, 0.412) 0%, rgba(200, 214, 221, 0.6) 100%);
   background-blend-mode: normal, multiply;
 }
 
 .main-navbar {
-  background-image: linear-gradient(40deg, #191127 78%, #433826 100%);
-  background-color: #191127f4;
+  background-image: linear-gradient(40deg, #191127b0 78%, #433826c0 100%);
+  background-color: #2A2F4F;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -114,7 +114,7 @@ header {
   width: 100%;
   height: 100%;
   padding: 0rem;
-  background-color: #F0EFEF;
+  background-color: #917FB3;
 
   @media (max-width: 576px) {
     .offline-user-warning {
