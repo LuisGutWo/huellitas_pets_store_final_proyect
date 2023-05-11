@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import { NavLink, Navbar } from "react-bootstrap";
 import Carousel from "react-multi-carousel";
@@ -72,27 +73,14 @@ export default function Products() {
   if (loading) return <Loading />;
 
   return (
-    <motion.div
-      initial={{
-        opacity: 0.7,
-      }}
-      animate={{
-        opacity: 1,
-        transition: { delay: 0.5, duration: 0.5 },
-      }}
-      exit={{
-        opacity: 0.7,
-        transition: { duration: 0.5 },
-      }}
-      className="text-center mt-6"
-    >
+    <main>
       {/* Products Header */}
-      <div className="products-header">
+      <header className="products-header">
         <h3>NUESTROS PRODUCTOS</h3>
         <h6>Conoce esta selección hecha para ti</h6>
-      </div>
+      </header>
 
-      {/* Products Navbar */}
+      {/* Category Navbar */}
       <section className="products-navbar">
         <Navbar className="products-buttons">
           {categories.map((category) => (
@@ -100,9 +88,8 @@ export default function Products() {
               key={category}
               to={`/categories/${category}`}
               onClick={() => setFilter(category)}
-              className={({ isActive }) =>
-                isActive ? "active-class-second" : "inactive-class-second"
-              }
+              className="btn btn-outline-light"
+              style={{ width:"6rem" }}
             >
               {category}
             </NavLink>
@@ -112,16 +99,14 @@ export default function Products() {
               key={type}
               to={`/types/${type}`}
               onClick={() => setFilter(type)}
-              className={({ isActive }) =>
-                isActive ? "active-class-second" : "inactive-class-second"
-              }
+              className="btn btn-outline-light"
+              style={{ width:"6rem" }}
             >
               {type}
             </NavLink>
           ))}
         </Navbar>
-
-        <div className="form-products-categories">
+        <nav className="form-products-categories">
           <input
             type="text"
             style={{
@@ -132,18 +117,32 @@ export default function Products() {
             placeholder="Buscar producto"
             onChange={(e) => setSearch(e.target.value)}
           />
-        </div>
+        </nav>
       </section>
-
-      {loading ? (
-        <Loading />
-      ) : (
-        <div>
-          <Carousel responsive={responsive} className="products-container">
-            {filteredProduct}
-          </Carousel>
-        </div>
-      )}
-    </motion.div>
+      <motion.div
+        initial={{
+          opacity: 0.3,
+        }}
+        animate={{
+          opacity: 1,
+          transition: { delay: 0.5, duration: 0.7 },
+        }}
+        exit={{
+          opacity: 0.5,
+          transition: { duration: 0.7 },
+        }}
+        className="text-center mt-6"
+      >
+        {loading ? (
+          <Loading />
+        ) : (
+          <div>
+            <Carousel responsive={responsive} className="container products-container">
+              {filteredProduct}
+            </Carousel>
+          </div>
+        )}
+      </motion.div>
+    </main>
   );
 }

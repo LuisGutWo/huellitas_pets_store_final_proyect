@@ -106,7 +106,7 @@ export default function MainHeader({ item }) {
           <Container fluid className="header-container">
             {/* Buscador o Search del Navbar */}
             <Form className="navbar-form">
-              <div className="form-container">
+              <nav className="form-container">
                 <Form.Select
                   size="sm"
                   className="navbar-select"
@@ -125,7 +125,7 @@ export default function MainHeader({ item }) {
                 >
                   <SearchIcon />
                 </Button>
-              </div>
+              </nav>
               {!error ? (
                 ""
               ) : (
@@ -215,9 +215,9 @@ export default function MainHeader({ item }) {
                       </NavLink>
                     </>
                   ) : null}
-                  <div className="container-icon">
+                  <section className="container-icon">
                     {!user ? (
-                      <div>
+                      <>
                         <NavLink
                           to="/cart"
                           className={({ isActive }) =>
@@ -254,7 +254,7 @@ export default function MainHeader({ item }) {
                             </Modal.Footer>
                           </Modal>
                         )}
-                      </div>
+                      </>
                     ) : (
                       <NavLink
                         to="/cart"
@@ -276,7 +276,7 @@ export default function MainHeader({ item }) {
                         )}
                       </NavLink>
                     )}
-                  </div>
+                  </section>
                   {user && (
                     <Button
                       onClick={handleUserLogout}

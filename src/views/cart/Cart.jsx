@@ -11,16 +11,16 @@ export default function Cart({ item }) {
     useProductsContext();
 
   return (
-    <div className="cart-container">
-      <div className="cart-header">
+    <main className="cart-container">
+      <article className="cart-header">
         <h2>
           <b>Detalle de tu pedido</b>
         </h2>
-        <div>
+        <>
           {" "}
           <b>Total:</b> $ {formatPrice(totalCart())}
-        </div>
-      </div>
+        </>
+      </article>
       <section className="list-group">
         {cart.map((item) => (
           <CartItem key={item.id} item={item} />
@@ -41,12 +41,12 @@ export default function Cart({ item }) {
         )}
 
         {cart.length !== 0 && (
-          <div className="cart-total">
+          <section className="cart-total">
             <p>total productos: {totalItemProducts(item)}</p>
             <Button variant="outline-danger" size="sm" onClick={onCleanCart}>
               Vaciar carrito
             </Button>
-          </div>
+          </section>
         )}
 
         <li className="cart-button-footer">
@@ -65,6 +65,6 @@ export default function Cart({ item }) {
           )}
         </li>
       </section>
-    </div>
+    </main>
   );
 }

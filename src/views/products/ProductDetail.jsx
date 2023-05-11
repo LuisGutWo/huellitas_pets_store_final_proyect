@@ -46,7 +46,7 @@ export default function ProductDetail() {
   if (loading) return <Loading />;
 
   return (
-    <div className="container p-5">
+    <main className="container p-5">
       <Card className="detail-card">
         <Card.Img
           src={product.img}
@@ -90,6 +90,6 @@ export default function ProductDetail() {
           ) : null}
         </Card.Body>
       </Card>
-    </div>
+    </main>
   );
 }

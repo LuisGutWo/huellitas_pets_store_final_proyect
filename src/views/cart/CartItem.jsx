@@ -5,14 +5,14 @@ export default function CartItem({ item }) {
   const { addProduct, removeProduct, findItemCount } = useProductsContext();
 
   return (
-      <div className="cart-product-card">
-        <div className="cart-product-title">
+      <main className="cart-product-card">
+        <article className="cart-product-title">
           <img src={item.img} alt="Product" />
           <h3>{item.name}</h3>
-        </div>
-        <div className="cart-product-body">
+        </article>
+        <section className="cart-product-body">
           <small className="text-muted">${formatPrice(item.price)}</small>
-          <div className="cart-product-buttons">
+          <section className="cart-product-buttons">
             <button
               className="btn btn-outline-danger btn-sm"
               onClick={() => removeProduct(item)}
@@ -28,8 +28,8 @@ export default function CartItem({ item }) {
             >
               +
             </button>
-          </div>
-        </div>
-      </div>
+          </section>
+        </section>
+      </main>
   );
 }

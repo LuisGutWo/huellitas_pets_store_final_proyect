@@ -157,7 +157,6 @@ header {
 
   font-size: 0.6rem;
   font-weight: bold;
-  background-color: #F0EFEF;
   transition: background-color 0.2s ease-in-out;
 
   height: 100%;
@@ -167,14 +166,14 @@ header {
 }
 
 .text-header-name {
-  color: rgb(44, 24, 202);
+  color: rgb(251, 211, 255);
   text-decoration: none;
   font-size: 0.5rem;
 }
 
 .offline-user-warning {
   position: relative;
-  color: rgba(134, 2, 2, 0.752);
+  color: rgb(182, 0, 0);
   font-size: 0.8rem;
   font-weight: bold;
   margin-bottom: 0.5rem;

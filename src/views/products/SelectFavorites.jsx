@@ -8,17 +8,17 @@ export default function SelectFavorites() {
   const { favorites } = useProductsContext();
 
   return (
-    <div className="favorites-main-container">
+    <main className="favorites-main-container">
       <h2>
         <b>Tus Favoritos</b>
       </h2>
-      <div className="favorites-list">
+      <section className="favorites-list">
         {favorites.map((item) => (
           <MainProductCard key={item.id} item={item} selectFavorites />
         ))}
 
         {favorites.length === 0 && (
-          <div className="d-flex flex-column align-items-center">
+          <section className="d-flex flex-column align-items-center">
             <h1>Aun no tienes favoritos</h1>
             <img
               src={
@@ -27,9 +27,9 @@ export default function SelectFavorites() {
               alt=""
               style={{ width: "35%" }}
             />
-          </div>
+          </section>
         )}
-      </div>
+      </section>
       <NavLink to={"/products"}>
         {favorites.length === 0 ? (
           <Button className="btn m-4" variant="outline-primary">
@@ -41,6 +41,6 @@ export default function SelectFavorites() {
           </Button>
         )}
       </NavLink>
-    </div>
+    </main>
   );
 }

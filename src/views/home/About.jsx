@@ -21,7 +21,7 @@ function About() {
         }}
         className="about-container text-dark"
       >
-        <div>
+        <figure>
           <img
             src={
               "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/perrito_fondo_rosado.png?alt=media&token=c0cee521-7c9d-4511-a1f8-44edfd8f66b6"
@@ -29,8 +29,8 @@ function About() {
             alt=""
             className="about-img img-fluid"
           />
-        </div>
-        <div className="card-overlay container">
+        </figure>
+        <article className="card-overlay container">
           <h1>
             En Huellitas lo mas
             <br /> importante son tus
@@ -51,7 +51,7 @@ function About() {
             className="about-image"
           />
           <NavLink to={"/products"} className="about-button"> Ver mas</NavLink>
-        </div>
+        </article>
       </motion.div>
     </>
   );

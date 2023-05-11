@@ -11,7 +11,7 @@ const MainNavbar = () => {
   return (
     <>
       <Navbar className="second-navbar">
-        <div className="second-navbar-buttons">
+        <section className="second-navbar-buttons">
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -44,11 +44,11 @@ const MainNavbar = () => {
           >
             <b>CONTACTO</b>
           </NavLink>
-        </div>
-        <div>
+        </section>
+        <section>
           {user ? (
             <div className="welcome-user-section">
-              <p className="m-0 text-dark">Bienvenido 🖐🏼</p>
+              <p className="m-0 text-light">Bienvenido 🖐🏼</p>
               <small className="text-header-name">{user.email}</small>
             </div>
           ) : (
@@ -61,7 +61,7 @@ const MainNavbar = () => {
               <motion.div
                 onClick={() => setIsActive(!isActive)}
                 animate={{ 
-                  rotate: isActive ? 180 : 360,
+                  rotate: isActive ? 180 : 360, 
                 }}
                 className="offline-user-warning"
               >
@@ -69,7 +69,7 @@ const MainNavbar = () => {
               </motion.div>
             </NavLink>
           )}
-        </div>
+        </section>
       </Navbar>
     </>
   );

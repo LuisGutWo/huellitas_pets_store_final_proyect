@@ -38,7 +38,7 @@ export default function MainProductCard({ item, selectFavorites }) {
   return (
     <Card
       className="product-card"
-      style={{  borderRadius: "7px", margin: "0.5rem", height: "90%", padding: "0.7rem", overflow: "hidden" }}
+      style={{  borderRadius: "7px", margin: "0.5rem", overflow: "hidden", height:"100%"  }}
       border="light"
     >
       <Link to={`/products/${item.id}`} className="m-2">
@@ -67,8 +67,8 @@ export default function MainProductCard({ item, selectFavorites }) {
         </Card.Text>
       </Card.Body>
 
-      <div className="card-footer">
-        <div className="card-cart-icon">
+      <article className="card-footer">
+        <section className="card-cart-icon">
           <Button
             className="button-class"
             ref={target}
@@ -101,8 +101,8 @@ export default function MainProductCard({ item, selectFavorites }) {
               </Button>
             </Modal.Footer>
           </Modal>
-        </div>
-        <div className="card-favorite-icon">
+        </section>
+        <section className="card-favorite-icon">
           {selectFavorites ? (
             <Button
               size="small"
@@ -154,8 +154,8 @@ export default function MainProductCard({ item, selectFavorites }) {
               )}
             </>
           )}
-        </div>
-      </div>
+        </section>
+      </article>
     </Card>
   );
 }
