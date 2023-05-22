@@ -23,7 +23,7 @@ function App() {
       <MainHeader />
       <MainNavbar />
 
-      <div className="container">
+      <div className="app-container">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<ProductsCardSection />} />

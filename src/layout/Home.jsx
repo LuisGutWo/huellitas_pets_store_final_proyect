@@ -8,17 +8,17 @@ const Home = () => {
   return (
     <motion.div
       initial={{
-        opacity: 0.7,
+        opacity: 0,
       }}
       animate={{
         opacity: 1,
-        transition: { delay: 0.5, duration: 0.5 },
+        transition: { delay: 0.4, duration: 0.4 },
       }}
       exit={{
         opacity: 0.7,
         transition: { duration: 0.5 },
       }}
-      className="mt-3"
+      className="mt-0"
     >
       <HeroSection />
       <ProductsCardSection />

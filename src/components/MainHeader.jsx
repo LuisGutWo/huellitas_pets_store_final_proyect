@@ -104,6 +104,19 @@ export default function MainHeader({ item }) {
         >
           {/* Contenedor principal del Navbar */}
           <Container fluid className="header-container">
+
+            {/* Header Navbar logo */}
+            <Link to={"/"} className="header-logo">
+              <img
+                src={
+                  "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/huellitas_logo_blanco.png?alt=media&token=1a021733-a8f1-4b0f-9f5b-d5ef83d24e22"
+                }
+                className="img-fluid"
+                alt=""
+              />
+            </Link>
+
+
             {/* Buscador o Search del Navbar */}
             <Form className="navbar-form">
               <nav className="form-container">
@@ -141,27 +154,17 @@ export default function MainHeader({ item }) {
                 </Modal>
               )}
             </Form>
-            {/* Header Navbar logo */}
-            <Link to={"/"} className="header-logo">
-              <img
-                src={
-                  "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/huellitas_logo_blanco.png?alt=media&token=1a021733-a8f1-4b0f-9f5b-d5ef83d24e22"
-                }
-                width="100%"
-                className="img-fluid text-center"
-                alt=""
-              />
-            </Link>
+
             {/* Toggler y Link del Navbar */}
-            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
+            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} style={{ padding: "0.2rem", border: "0px", fontSize:"1rem", }} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               placement="end"
               style={{
-                width: "30%",
-                backgroundColor: "black",
-                alignItems: "end",
+                width: "50%",
+                backgroundColor: "#2A2F4F",
+                alignItems: "center",
               }}
             >
               <Offcanvas.Header closeButton>

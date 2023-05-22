@@ -6,16 +6,30 @@
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
+  align-content: flex-start;
 
   background-image: url("https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/fondo_juguetes.png?alt=media&token=bced5ba8-2e9c-42d7-85c3-5aa8a644f173");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 
-  padding: 2rem;
-  margin: 1.5rem 0rem 0rem 0rem;
+  padding: 1.5rem 0rem 1.2rem 2rem;
+  margin: 0;
+
+  & h3 {
+    font-size: 1rem;
+    text-align: start;
+    font-weight: bold;
+  }
+  & h6 {
+    font-size: 0.8rem;
+    margin: 0;
+  }
+
+
 }
+
+
 
 .products-navbar {
   overflow: hidden;
@@ -56,8 +70,8 @@
 }
 
 .products-container {
-  margin: 0rem 0rem 1rem 0rem;
-  height: 70vh;
+  padding: 1rem;
+  height: 100%;
   width: 100%;
   
 
@@ -72,6 +86,27 @@
   //     }
   
 
+}
+.products-header-discount {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-content: flex-start;
+
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/mascotas_background_new_accesories.jpeg?alt=media&token=f0e5f8c7-2ea6-47a8-9ddf-a6649a7dad59");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  padding: 1.5rem 0rem 1.2rem 2rem;
+  margin-top: 1rem;
+
+  & h2 {
+    font-size: 1rem;
+    text-align: center;
+    font-weight: bold;
+  }
 }
 .container-icon {
 	position: relative;

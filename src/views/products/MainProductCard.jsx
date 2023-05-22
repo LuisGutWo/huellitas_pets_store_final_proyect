@@ -38,24 +38,24 @@ export default function MainProductCard({ item, selectFavorites }) {
   return (
     <Card
       className="product-card"
-      style={{  borderRadius: "7px", margin: "0.5rem", overflow: "hidden", height:"100%"  }}
-      border="light"
+      // style={{  borderRadius: "7px", margin: "0.5rem", overflow: "hidden", height:"100%"  }}
+      // border="light"
     >
       <Link to={`/products/${item.id}`} className="m-2">
         <motion.img
           initial={{
-            opacity: 0.7,
+            opacity: 0,
           }}
           animate={{
             opacity: 1,
-            transition: { delay: 0.5, duration: 0.5 },
+            transition: { delay: 0.3, duration: 0.3 },
           }}
           exit={{
             opacity: 0.7,
             transition: { duration: 0.5 },
           }}
           variant="top"
-          className="card-image img-fluid p-1"
+          className="card-image"
           src={item.img}
         />
       </Link>

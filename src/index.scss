@@ -28,16 +28,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  &.container {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;  
-  }
+}
+.app-container {
+  margin-top: 0;
+  padding: 0px;
+  height: 100%;
+  width: 100%;  
 }
 
 
