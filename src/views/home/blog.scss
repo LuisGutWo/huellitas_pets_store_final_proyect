@@ -1,5 +1,24 @@
 @use "../../css/styles.scss";
 
+
+.blog-title{
+ display: flex;
+ justify-content: flex-start;
+ align-items: center;
+ background-image: url(https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/mascotas_background_new_accesories.jpeg?alt=media&token=f0e5f8c7-2ea6-47a8-9ddf-a6649a7dad59);
+ background-position: center;
+ background-size: cover;
+ background-repeat: no-repeat;
+ height: 5rem;
+ padding-left: 5rem;
+ margin: 0rem 0rem 1rem 0rem;
+
+ & h4 {
+  font-size: 1.5rem;
+ }
+
+}
+
 .blog-cards-group {
   display: flex;
   flex-direction: row;

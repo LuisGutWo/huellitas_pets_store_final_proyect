@@ -36,11 +36,7 @@ export default function MainProductCard({ item, selectFavorites }) {
   const { user } = useUserContext();
 
   return (
-    <Card
-      className="product-card"
-      // style={{  borderRadius: "7px", margin: "0.5rem", overflow: "hidden", height:"100%"  }}
-      // border="light"
-    >
+    <Card className="product-card">
       <Link to={`/products/${item.id}`} className="m-2">
         <motion.img
           initial={{

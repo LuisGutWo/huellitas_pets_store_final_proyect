@@ -6,9 +6,9 @@ import CardGroup from "react-bootstrap/CardGroup";
 const BlogSection = () => {
   return (
     <>
-      <h2 className="text-center mb-4 mt-5">
-        <strong>Blog</strong>
-      </h2>
+      <section className="blog-title">
+        <h4><strong>Blog</strong></h4>
+      </section>
 
       <Carousel slide>
         <Carousel.Item interval={4000}>

@@ -72,6 +72,20 @@ export default function Products() {
     <MainProductCard key={item.id} item={item} />
   ));
 
+
+  const filteredDataNews = () => {
+    if (filter === "news") {
+      return data.filter((item) => item.season === "news");
+    } else {
+      return data
+        .filter((item) => item.season === "news")
+        .filter((item) => searchData(item, search));
+    }
+  };
+  const filteredProductNews = filteredDataNews().map((item) => (
+    <MainProductCard key={item.id} item={item} />
+  ));
+
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -169,6 +183,11 @@ export default function Products() {
         </motion.div>
       </section>
 
+
+
+
+
+       {/* Carousel de productos */}
       <motion.div
         initial={{
           opacity: 0.3,
@@ -181,7 +200,7 @@ export default function Products() {
           opacity: 0.5,
           transition: { duration: 0.7 },
         }}
-        className="text-center"
+        className="products-carousel"
       >
         {loading ? (
           <Loading />
@@ -192,7 +211,7 @@ export default function Products() {
               additionalTransfrom={0}
               arrows={false}
               autoPlay
-              autoPlaySpeed={5000}
+              autoPlaySpeed={3000}
               customTransition="all 2s linear"
               centerMode={false}
               containerClass="container-with-dots"
@@ -220,6 +239,11 @@ export default function Products() {
           </div>
         )}
       </motion.div>
+
+
+
+
+    {/* Discount products carousel */}
       <section className="products-header-discount">
         <motion.div
           initial={{
@@ -234,7 +258,7 @@ export default function Products() {
             transition: { duration: 0.7 },
           }}
         >
-          <h2>DESCUENTOS</h2>
+          <h2>Descuentos</h2>
         </motion.div>
       </section>
       <motion.div
@@ -260,7 +284,7 @@ export default function Products() {
               additionalTransfrom={0}
               arrows={false}
               autoPlay
-              autoPlaySpeed={5000}
+              autoPlaySpeed={6000}
               customTransition="all 2s linear"
               centerMode={false}
               containerClass="container-with-dots"
@@ -284,6 +308,78 @@ export default function Products() {
               swipeable
             >
               {filteredProductDiscount}
+            </Carousel>
+          </div>
+        )}
+      </motion.div>
+
+
+
+      {/* News products carouse */}
+      <section className="products-header-news">
+        <motion.div
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+            transition: { delay: 0.9, duration: 0.9 },
+          }}
+          exit={{
+            opacity: 0.5,
+            transition: { duration: 0.7 },
+          }}
+        >
+          <h2>Novedades</h2>
+        </motion.div>
+      </section>
+      <motion.div
+        initial={{
+          opacity: 0.3,
+        }}
+        animate={{
+          opacity: 1,
+          transition: { delay: 0.5, duration: 0.7 },
+        }}
+        exit={{
+          opacity: 0.5,
+          transition: { duration: 0.7 },
+        }}
+        className="text-center"
+      >
+        {loading ? (
+          <Loading />
+        ) : (
+          <div>
+            <Carousel
+              responsive={responsive}
+              additionalTransfrom={0}
+              arrows={false}
+              autoPlay
+              autoPlaySpeed={7000}
+              customTransition="all 2s linear"
+              centerMode={false}
+              containerClass="container-with-dots"
+              draggable
+              focusOnSelect={false}
+              infinite
+              keyBoardControl
+              minimumTouchDrag={80}
+              pauseOnHover
+              renderArrowsWhenDisabled={false}
+              renderButtonGroupOutside={false}
+              renderDotsOutside={false}
+              className="container products-container"
+              rewind={false}
+              rewindWithAnimation={false}
+              rtl={false}
+              shouldResetAutoplay
+              showDots={false}
+              sliderClass=""
+              slidesToSlide
+              swipeable
+            >
+              {filteredProductNews}
             </Carousel>
           </div>
         )}

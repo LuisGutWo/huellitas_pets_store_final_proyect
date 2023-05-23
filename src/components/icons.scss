@@ -1,0 +1,57 @@
+@use "../css/styles.scss";
+
+.icons-title {
+    height: 2.2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2A2F4F;
+
+    & h5 {
+        font-size: 0.9rem;
+        font-weight: bold;
+        color: aliceblue;
+        margin: 0;
+    }
+
+}
+
+.icons-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    background-color: transparent;
+    margin: 2rem 0;
+
+    & .icons-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        & img {
+            width: 7rem;
+            height: 7rem;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+            -webkit-transition: 1s ease-in-out;
+            transition: 1s ease-in-out;
+
+            &:hover {
+                -webkit-transform: scale(1.1);
+                transform: scale(1.1);
+            }
+        }
+
+        & p {
+            font-size: 0.8rem;
+            color: #2A2F4F;
+            font-weight: bold;
+            margin-bottom: 1.2rem;
+        }
+    }
+}

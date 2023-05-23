@@ -12,15 +12,12 @@
 @use "./views/products/card_detail.scss";
 @use "./views/cart/cart_product_card.scss";
 @use "./views/products/favorites.scss";
+@use "./components/icons.scss";
 
 //Main App Styles
 .app {
   font-family: styles.$primary-font;
   background-color: #FDE2F3;
-  // background-image: url("https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/fondo_huellitas.jpg?alt=media&token=79e4597d-a748-4b2b-a9b1-c594974a27c7");
-  // background-position: center;
-  // background-repeat: no-repeat;
-  // background-size: cover;
   height: 100%;
   width: 100%;
 

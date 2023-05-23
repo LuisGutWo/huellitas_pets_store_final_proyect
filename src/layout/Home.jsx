@@ -3,6 +3,7 @@ import HeroSection from "../components/HeroSection";
 import ProductsCardSection from "../views/products/ProductsCardSection";
 import BlogSection from "../views/home/BlogSection";
 import { motion } from "framer-motion";
+import IconsSection from "../components/IconsSection";
 
 const Home = () => {
   return (
@@ -21,6 +22,7 @@ const Home = () => {
       className="mt-0"
     >
       <HeroSection />
+      <IconsSection />
       <ProductsCardSection />
       <BlogSection />
     </motion.div>
