@@ -20,7 +20,7 @@ const BlogSection = () => {
               />
               <Card.Body className="blog-card-body">
                 <Card.Title>Alimentos holísticos</Card.Title>
-                <Card.Text>
+                <Card.Text className="blog-card-text">
                   Las primeras investigaciones que se adentraron en la
                   elaboración de alimentos de alta gama comenzaron en 1982, y en
                   la actualidad, el mercado de alimentos para mascotas
@@ -35,7 +35,7 @@ const BlogSection = () => {
               />
               <Card.Body className="blog-card-body">
                 <Card.Title>Dia mundial de los animales</Card.Title>
-                <Card.Text>
+                <Card.Text className="blog-card-text">
                   El 4 de Octubre se celebra el dia internacional de los
                   animales en conmemoración de San Francisco de Asís. Este santo
                   que nació en 1182 en Italia y dejo...
@@ -53,7 +53,7 @@ const BlogSection = () => {
               />
               <Card.Body className="blog-card-body">
                 <Card.Title>¿Se aburren de su alimento?</Card.Title>
-                <Card.Text>
+                <Card.Text className="blog-card-text">
                   ¿Se aburrirá nuestra mascota si lo alimentamos siempre con la
                   misma dieta? La respuesta es no. El aburrimiento hacia los
                   alimentos es una característica humana. Los perros y los...
@@ -67,7 +67,7 @@ const BlogSection = () => {
               />
               <Card.Body className="blog-card-body">
                 <Card.Title>Tu perro y las altas temperaturas</Card.Title>
-                <Card.Text>
+                <Card.Text className="blog-card-text">
                   El verano es una gran época para disfrutar de sol, el calor y
                   refrescarse en las piletas y playas. Pero los perros, al igual
                   que las personas, pueden sufrir con las altas temperaturas
@@ -88,7 +88,7 @@ const BlogSection = () => {
                 <Card.Title>
                   El universo para la moda de las mascotas
                 </Card.Title>
-                <Card.Text>
+                <Card.Text className="blog-card-text">
                   Hoy las mascotas son un miembro mas de las familias en el
                   mundo. Su fidelidad, sus expresiones de cariño y, por su
                   puesto, la compañía que ofrecen, son suficientes para...
@@ -102,7 +102,7 @@ const BlogSection = () => {
               />
               <Card.Body className="blog-card-body">
                 <Card.Title>Las Mascotas y el Invierno</Card.Title>
-                <Card.Text>
+                <Card.Text className="blog-card-text">
                   Durante el invierno es imprescindible que limites el tiempo
                   que pasa tu mascota al ire libre. La mayoría de las mascotas
                   que viven en el interior no están acostumbradas a las bajas...
@@ -120,7 +120,7 @@ const BlogSection = () => {
               />
               <Card.Body className="blog-card-body">
                 <Card.Title>Cuidados básicos de tu mascota</Card.Title>
-                <Card.Text>
+                <Card.Text className="blog-card-text">
                   ¡Hola Adoptantes novatos! Vamos a dar un repaso por los puntos
                   básicos a tener en cuenta para los cuidados de tu animal de
                   compañía. Si quieres ser muy responsable, sigues estos
@@ -135,7 +135,7 @@ const BlogSection = () => {
               />
               <Card.Body className="blog-card-body">
                 <Card.Title>El Vinculo afectivo con los animales</Card.Title>
-                <Card.Text>
+                <Card.Text className="blog-card-text">
                   Convivir con perros y gatos ayuda a disminuir el estrés, la
                   tensión arterial y la frecuencia cardíaca. No sólo eso, los
                   estudios constatan que esa compañía mejora...

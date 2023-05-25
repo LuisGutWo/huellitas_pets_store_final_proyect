@@ -13,15 +13,12 @@ import ProductDetail from "./views/products/ProductDetail";
 import SelectFavorites from "./views/products/SelectFavorites";
 import Contact from "./views/home/Contact";
 import NotFound from "./utils/NotFound";
-import MainNavbar from "./components/MainNavbar";
-
 function App() {
   const { user } = useUserContext();
 
   return (
     <div className="app">
       <MainHeader />
-      <MainNavbar />
 
       <div className="app-container">
         <Routes>

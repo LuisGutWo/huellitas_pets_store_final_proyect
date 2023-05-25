@@ -15,7 +15,7 @@ export default function Products() {
   const [categories, setCategories] = useState([]);
   const [types, setTypes] = useState([]);
   const [discounts, setDiscounts] = useState([]);
-  const [news, setNews] = useState([]);
+  const [season, setSeason] = useState([]);
   const [featured, setFeatured] = useState([]);
   const [brand, setBrand] = useState([]);
   const [filter, setFilter] = useState("all");
@@ -33,7 +33,7 @@ export default function Products() {
         setCategories(["all", ...new Set(data.map((item) => item.category))]);
         setTypes([...new Set(data.map((item) => item.type))]);
         setDiscounts([...new Set(data.map((item) => item.promotion))]);
-        setNews([...new Set(data.map((item) => item.season))]);
+        setSeason([...new Set(data.map((item) => item.season))]);
         setFeatured([...new Set(data.map((item) => item.product))]);
         setBrand([...new Set(data.map((item) => item.brand))]);
         setLoading(false);
@@ -51,7 +51,7 @@ export default function Products() {
       return data.filter((item) => searchData(item, search));
     } else {
       return data
-        .filter((item) => item.category === filter || item.type === filter)
+        .filter((item) => item.category === filter || item.type === filter || item.season === filter || item.brand === filter)
         .filter((item) => searchData(item, search));
     }
   };
@@ -144,14 +144,14 @@ export default function Products() {
             transition: { duration: 0.7 },
           }}
         >
-          <Navbar className="products-buttons">
+          <Navbar className="products-buttons-section">
             {categories.map((category) => (
               <NavLink
                 key={category}
                 to={`/categories/${category}`}
                 onClick={() => setFilter(category)}
-                className="btn btn-outline-light"
-                style={{ width: "6rem" }}
+                className="category-buttons"
+                style={{ alignItems:"center" }}
               >
                 {category}
               </NavLink>
@@ -161,8 +161,7 @@ export default function Products() {
                 key={type}
                 to={`/types/${type}`}
                 onClick={() => setFilter(type)}
-                className="btn btn-outline-light"
-                style={{ width: "6rem" }}
+                className="category-buttons"
               >
                 {type}
               </NavLink>
@@ -244,146 +243,147 @@ export default function Products() {
 
 
     {/* Discount products carousel */}
-      <section className="products-header-discount">
+      <div className="main-featured-container">
+        <section className="products-header-discount">
+          <motion.div
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+              transition: { delay: 0.9, duration: 0.9 },
+            }}
+            exit={{
+              opacity: 0.5,
+              transition: { duration: 0.7 },
+            }}
+          >
+            <h2>Descuentos</h2>
+          </motion.div>
+        </section>
         <motion.div
           initial={{
-            opacity: 0,
+            opacity: 0.3,
           }}
           animate={{
             opacity: 1,
-            transition: { delay: 0.9, duration: 0.9 },
+            transition: { delay: 0.5, duration: 0.7 },
           }}
           exit={{
             opacity: 0.5,
             transition: { duration: 0.7 },
           }}
+          className="products-carousel-discount"
+        
         >
-          <h2>Descuentos</h2>
+          {loading ? (
+            <Loading />
+          ) : (
+            <div>
+              <Carousel
+                responsive={responsive}
+                additionalTransfrom={0}
+                arrows={false}
+                autoPlay
+                autoPlaySpeed={6000}
+                customTransition="all 2s linear"
+                centerMode={false}
+                containerClass="container-with-dots"
+                draggable
+                focusOnSelect={false}
+                infinite
+                keyBoardControl
+                minimumTouchDrag={80}
+                pauseOnHover
+                renderArrowsWhenDisabled={false}
+                renderButtonGroupOutside={false}
+                renderDotsOutside={false}
+                className="container products-carousel-featured"
+                rewind={false}
+                rewindWithAnimation={false}
+                rtl={false}
+                shouldResetAutoplay
+                showDots={false}
+                sliderClass="additionalTransfrom"
+                slidesToSlide
+                swipeable
+              >
+                {filteredProductDiscount}
+              </Carousel>
+            </div>
+          )}
         </motion.div>
-      </section>
-      <motion.div
-        initial={{
-          opacity: 0.3,
-        }}
-        animate={{
-          opacity: 1,
-          transition: { delay: 0.5, duration: 0.7 },
-        }}
-        exit={{
-          opacity: 0.5,
-          transition: { duration: 0.7 },
-        }}
-        className="text-center"
-      >
-        {loading ? (
-          <Loading />
-        ) : (
-          <div>
-            <Carousel
-              responsive={responsive}
-              additionalTransfrom={0}
-              arrows={false}
-              autoPlay
-              autoPlaySpeed={6000}
-              customTransition="all 2s linear"
-              centerMode={false}
-              containerClass="container-with-dots"
-              draggable
-              focusOnSelect={false}
-              infinite
-              keyBoardControl
-              minimumTouchDrag={80}
-              pauseOnHover
-              renderArrowsWhenDisabled={false}
-              renderButtonGroupOutside={false}
-              renderDotsOutside={false}
-              className="container products-container"
-              rewind={false}
-              rewindWithAnimation={false}
-              rtl={false}
-              shouldResetAutoplay
-              showDots={false}
-              sliderClass=""
-              slidesToSlide
-              swipeable
-            >
-              {filteredProductDiscount}
-            </Carousel>
-          </div>
-        )}
-      </motion.div>
-
-
-
-      {/* News products carouse */}
-      <section className="products-header-news">
+        {/* News products carouse */}
+        <section className="products-header-news">
+          <motion.div
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+              transition: { delay: 0.9, duration: 0.9 },
+            }}
+            exit={{
+              opacity: 0.5,
+              transition: { duration: 0.7 },
+            }}
+          >
+            <h2>Novedades</h2>
+          </motion.div>
+        </section>
         <motion.div
           initial={{
-            opacity: 0,
+            opacity: 0.3,
           }}
           animate={{
             opacity: 1,
-            transition: { delay: 0.9, duration: 0.9 },
+            transition: { delay: 0.5, duration: 0.7 },
           }}
           exit={{
             opacity: 0.5,
             transition: { duration: 0.7 },
           }}
+          className="products-carousel-discount"
+        
         >
-          <h2>Novedades</h2>
+          {loading ? (
+            <Loading />
+          ) : (
+            <div>
+              <Carousel
+                responsive={responsive}
+                additionalTransfrom={0}
+                arrows={false}
+                autoPlay
+                autoPlaySpeed={7000}
+                customTransition="all 2s linear"
+                centerMode={false}
+                containerClass="container-with-dots"
+                draggable
+                focusOnSelect={false}
+                infinite
+                keyBoardControl
+                minimumTouchDrag={80}
+                pauseOnHover
+                renderArrowsWhenDisabled={false}
+                renderButtonGroupOutside={false}
+                renderDotsOutside={false}
+                className="container products-carousel-featured"
+                rewind={false}
+                rewindWithAnimation={false}
+                rtl={false}
+                shouldResetAutoplay
+                showDots={false}
+                sliderClass=""
+                slidesToSlide
+                swipeable
+              >
+                {filteredProductNews}
+              </Carousel>
+            </div>
+          )}
         </motion.div>
-      </section>
-      <motion.div
-        initial={{
-          opacity: 0.3,
-        }}
-        animate={{
-          opacity: 1,
-          transition: { delay: 0.5, duration: 0.7 },
-        }}
-        exit={{
-          opacity: 0.5,
-          transition: { duration: 0.7 },
-        }}
-        className="text-center"
-      >
-        {loading ? (
-          <Loading />
-        ) : (
-          <div>
-            <Carousel
-              responsive={responsive}
-              additionalTransfrom={0}
-              arrows={false}
-              autoPlay
-              autoPlaySpeed={7000}
-              customTransition="all 2s linear"
-              centerMode={false}
-              containerClass="container-with-dots"
-              draggable
-              focusOnSelect={false}
-              infinite
-              keyBoardControl
-              minimumTouchDrag={80}
-              pauseOnHover
-              renderArrowsWhenDisabled={false}
-              renderButtonGroupOutside={false}
-              renderDotsOutside={false}
-              className="container products-container"
-              rewind={false}
-              rewindWithAnimation={false}
-              rtl={false}
-              shouldResetAutoplay
-              showDots={false}
-              sliderClass=""
-              slidesToSlide
-              swipeable
-            >
-              {filteredProductNews}
-            </Carousel>
-          </div>
-        )}
-      </motion.div>
+      </div>
     </main>
   );
 }
