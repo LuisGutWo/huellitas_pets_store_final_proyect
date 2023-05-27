@@ -7,7 +7,7 @@ const IconsSection = () => {
       <div className="icons-title">
         <h5>Comprando en Huellitas</h5>
       </div>
-      <div className="icons-container">
+      <div>
         <motion.div
           initial={{
             opacity: 0,
@@ -20,6 +20,7 @@ const IconsSection = () => {
             opacity: 0.7,
             transition: { duration: 0.5 },
           }}
+          className="icons-container"
         >
           <div className="icons-item">
             <img

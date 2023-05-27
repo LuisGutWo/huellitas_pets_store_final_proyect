@@ -27,7 +27,7 @@ export default function MainHeader({ item }) {
   const [showCart, setShowCart] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [isActive, setIsActive] = useState(false);
-  // const [sticky, setSticky] = useState(false);
+  const [sticky, setSticky] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -43,13 +43,13 @@ export default function MainHeader({ item }) {
   const navigate = useNavigate();
   const { user } = useUserContext();
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     setSticky(window.scrollY > 200);
-  //   };
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => window.removeEventListener("scroll", handleScroll);
-  // }, []);
+  useEffect(() => {
+    const handleScroll = () => {
+      setSticky(window.scrollY > 200);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const getProducts = async () => {
     setLoading(true);
@@ -102,7 +102,7 @@ export default function MainHeader({ item }) {
   if (loading) return <Loading />;
 
   return (
-    <header>
+    <header className={`${sticky ? "sticky" : ""}`}>
       {["lg"].map((expand) => (
         <Navbar
           key={expand}
@@ -165,12 +165,7 @@ export default function MainHeader({ item }) {
               id={`offcanvasNavbar-expand-${expand}`}
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               placement="end"
-              style={{
-                width: "140px",
-                height: "240px",
-                backgroundColor: "#2A2F4F",
-                alignItems: "center",
-              }}
+              className="offcanvas-nav"
             >
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title
@@ -182,9 +177,8 @@ export default function MainHeader({ item }) {
               </Offcanvas.Header>
               <Offcanvas.Body
                 className="offcanvas-body"
-                style={{ width: "100%" }}
               >
-                <Nav>
+                <Nav className="offcanvas-body-header">
                   {!user && (
                     <>
                       <NavLink
@@ -317,7 +311,7 @@ export default function MainHeader({ item }) {
               color: "transparent",
             }}
           />
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Collapse id="basic-navbar-nav" className="navbar-nav">
             <Nav>
               <NavLink
                 to="/"

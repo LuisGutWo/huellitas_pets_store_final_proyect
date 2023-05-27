@@ -36,7 +36,20 @@ export default function MainProductCard({ item, selectFavorites }) {
   const { user } = useUserContext();
 
   return (
-    <Card className="product-card">
+    <motion.Card
+      className="product-card"
+      initial={{
+        opacity: 0,
+      }}
+      animate={{
+        opacity: 1,
+        transition: { delay: 0.5, duration: 0.5 },
+      }}
+      exit={{
+        opacity: 0.7,
+        transition: { duration: 0.5 },
+      }}
+    >
       <Link to={`/products/${item.id}`} className="m-2">
         <motion.img
           initial={{
@@ -57,96 +70,110 @@ export default function MainProductCard({ item, selectFavorites }) {
       </Link>
 
       <Card.Body className="card-body">
-        <Card.Title className="card-body-title">{item.name}</Card.Title>
-        <Card.Text className="card-body-price">
-          <b>${item.price}</b>
-        </Card.Text>
-        <Card.Footer>
-          <section className="card-cart-icon">
-            <Button
-              className="button-class"
-              ref={target}
-              onClick={handleShoppingCart}
-            >
-              Añadir al carro
-              <ShoppingCartIcon style={{ fontSize: "3vw" }} />
-            </Button>
-            <Modal show={showCart} onHide={handleCloseCart}>
-              <Modal.Header closeButton>
-                <Modal.Body>
-                  {user ? (
-                    <div>
-                      <b>{item.name}</b>! se agrego al carrito 😎...
-                    </div>
-                  ) : (
-                    "Ingrese para acceder al carrito"
-                  )}
-                </Modal.Body>
-              </Modal.Header>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={handleCloseCart}>
-                  Cerrar
-                </Button>
-              </Modal.Footer>
-            </Modal>
-          </section>
-          <section className="card-favorite-icon">
-            {selectFavorites ? (
+        <motion.div
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+            transition: { delay: 1, duration: 1 },
+          }}
+          exit={{
+            opacity: 0.7,
+            transition: { duration: 0.5 },
+          }}
+          
+        >
+          <Card.Title className="card-body-title">{item.name}</Card.Title>
+          <Card.Text className="card-body-price">
+            <b>${item.price}</b>
+          </Card.Text>
+          <Card.Footer className="card-footer">
+            <section className="card-cart-icon">
               <Button
-                size="small"
-                onClick={() => {
-                  removeFavorites(item.id);
-                }}
-                variant="contained"
-                style={{ border: "0" }}
+                className="button-class"
+                ref={target}
+                onClick={handleShoppingCart}
               >
-                <DeleteIcon color="warning" />
+                Añadir al carro
+                <ShoppingCartIcon className="shopping-icon" />
               </Button>
-            ) : (
-              <>
-                <NavLink
-                  onClick={handleProductButton}
+              <Modal show={showCart} onHide={handleCloseCart}>
+                <Modal.Header closeButton>
+                  <Modal.Body>
+                    {user ? (
+                      <div>
+                        <b>{item.name}</b>! se agrego al carrito 😎...
+                      </div>
+                    ) : (
+                      "Ingrese para acceder al carrito"
+                    )}
+                  </Modal.Body>
+                </Modal.Header>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={handleCloseCart}>
+                    Cerrar
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+            </section>
+            <section className="card-favorite-icon">
+              {selectFavorites ? (
+                <Button
                   size="small"
+                  onClick={() => {
+                    removeFavorites(item.id);
+                  }}
                   variant="contained"
-                  className={({ isActive }) =>
-                    isActive ? "inactive-class-second" : "active-class-second"
-                  }
+                  style={{ border: "0" }}
                 >
-                  <FavoriteIcon style={{ color: "#d6207b" }} />
-                </NavLink>
-
-                {user ? (
-                  <Modal show={showFavorite} onHide={handleCloseFavorite}>
-                    <Modal.Header closeButton>
-                      <Modal.Body>
-                        <b>{item.name}</b>! se agrego a favoritos 🥰
-                      </Modal.Body>
-                    </Modal.Header>
-                    <Modal.Footer>
-                      <Button variant="info" onClick={handleCloseFavorite}>
-                        Close
-                      </Button>
-                    </Modal.Footer>
-                  </Modal>
-                ) : (
-                  <Modal show={showFavorite} onHide={handleCloseFavorite}>
-                    <Modal.Header closeButton>
-                      <Modal.Body>Ingrese para acceder a favoritos</Modal.Body>
-                    </Modal.Header>
-                    <Modal.Footer>
-                      <Button variant="info" onClick={handleCloseFavorite}>
-                        Close
-                      </Button>
-                    </Modal.Footer>
-                  </Modal>
-                )}
-              </>
-            )}
-          </section>
-        </Card.Footer>
+                  <DeleteIcon color="warning" />
+                </Button>
+              ) : (
+                <>
+                  <NavLink
+                    onClick={handleProductButton}
+                    size="small"
+                    variant="contained"
+                    className={({ isActive }) =>
+                      isActive ? "inactive-class-second" : "active-class-second"
+                    }
+                  >
+                    <FavoriteIcon style={{ color: "#d6207b" }} />
+                  </NavLink>
+                  {user ? (
+                    <Modal show={showFavorite} onHide={handleCloseFavorite}>
+                      <Modal.Header closeButton>
+                        <Modal.Body>
+                          <b>{item.name}</b>! se agrego a favoritos 🥰
+                        </Modal.Body>
+                      </Modal.Header>
+                      <Modal.Footer>
+                        <Button variant="info" onClick={handleCloseFavorite}>
+                          Close
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
+                  ) : (
+                    <Modal show={showFavorite} onHide={handleCloseFavorite}>
+                      <Modal.Header closeButton>
+                        <Modal.Body>
+                          Ingrese para acceder a favoritos
+                        </Modal.Body>
+                      </Modal.Header>
+                      <Modal.Footer>
+                        <Button variant="info" onClick={handleCloseFavorite}>
+                          Close
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
+                  )}
+                </>
+              )}
+            </section>
+          </Card.Footer>
+        </motion.div>
       </Card.Body>
-
-      {/* <article className="card-footer"></article> */}
-    </Card>
+    </motion.Card>
   );
 }

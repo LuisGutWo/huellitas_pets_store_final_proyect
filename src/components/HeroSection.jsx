@@ -10,7 +10,18 @@ const HeroSection = () => {
     <Carousel>
       <Carousel.Item>
         <section className="main-hero">
-          <img
+          <motion.img
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+              transition: { delay: 0.4, duration: 0.4 },
+            }}
+            exit={{
+              opacity: 0.7,
+              transition: { duration: 0.5 },
+            }}
             src={
               "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/hero_mascotas.png?alt=media&token=5fbc177a-da21-4d65-a4de-b7232ad85612"
             }
@@ -52,7 +63,18 @@ const HeroSection = () => {
       </Carousel.Item>
       <Carousel.Item>
         <section className="main-hero">
-          <img
+          <motion.img
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+              transition: { delay: 0.4, duration: 0.4 },
+            }}
+            exit={{
+              opacity: 0.7,
+              transition: { duration: 0.5 },
+            }}
             src={
               "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/perrito_cachorro.png?alt=media&token=3324764a-2adf-46b8-b611-f23225475b96"
             }
@@ -95,7 +117,18 @@ const HeroSection = () => {
       </Carousel.Item>
       <Carousel.Item>
         <section className="main-hero">
-          <img
+          <motion.img
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+              transition: { delay: 0.4, duration: 0.4 },
+            }}
+            exit={{
+              opacity: 0.7,
+              transition: { duration: 0.5 },
+            }}
             src={
               "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/gato_portada.png?alt=media&token=1ba95cc0-7014-4584-a50e-21adb58bdfa3"
             }

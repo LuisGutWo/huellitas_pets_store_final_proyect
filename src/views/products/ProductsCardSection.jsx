@@ -51,7 +51,13 @@ export default function Products() {
       return data.filter((item) => searchData(item, search));
     } else {
       return data
-        .filter((item) => item.category === filter || item.type === filter || item.season === filter || item.brand === filter)
+        .filter(
+          (item) =>
+            item.category === filter ||
+            item.type === filter ||
+            item.season === filter ||
+            item.brand === filter
+        )
         .filter((item) => searchData(item, search));
     }
   };
@@ -71,7 +77,6 @@ export default function Products() {
   const filteredProductDiscount = filteredDataDiscounts().map((item) => (
     <MainProductCard key={item.id} item={item} />
   ));
-
 
   const filteredDataNews = () => {
     if (filter === "news") {
@@ -151,7 +156,7 @@ export default function Products() {
                 to={`/categories/${category}`}
                 onClick={() => setFilter(category)}
                 className="category-buttons"
-                style={{ alignItems:"center" }}
+                style={{ alignItems: "center" }}
               >
                 {category}
               </NavLink>
@@ -182,11 +187,7 @@ export default function Products() {
         </motion.div>
       </section>
 
-
-
-
-
-       {/* Carousel de productos */}
+      {/* Carousel de productos */}
       <motion.div
         initial={{
           opacity: 0.3,
@@ -209,7 +210,7 @@ export default function Products() {
               responsive={responsive}
               additionalTransfrom={0}
               arrows={false}
-              autoPlay
+              autoPlay={false}
               autoPlaySpeed={3000}
               customTransition="all 2s linear"
               centerMode={false}
@@ -239,12 +240,9 @@ export default function Products() {
         )}
       </motion.div>
 
-
-
-
-    {/* Discount products carousel */}
+      {/* Discount products carousel */}
       <div className="main-featured-container">
-        <section className="products-header-discount">
+        <section>
           <motion.div
             initial={{
               opacity: 0,
@@ -257,6 +255,7 @@ export default function Products() {
               opacity: 0.5,
               transition: { duration: 0.7 },
             }}
+            className="products-header-discount"
           >
             <h2>Descuentos</h2>
           </motion.div>
@@ -274,7 +273,6 @@ export default function Products() {
             transition: { duration: 0.7 },
           }}
           className="products-carousel-discount"
-        
         >
           {loading ? (
             <Loading />
@@ -314,7 +312,7 @@ export default function Products() {
           )}
         </motion.div>
         {/* News products carouse */}
-        <section className="products-header-news">
+        <section>
           <motion.div
             initial={{
               opacity: 0,
@@ -327,6 +325,7 @@ export default function Products() {
               opacity: 0.5,
               transition: { duration: 0.7 },
             }}
+            className="products-header-news"
           >
             <h2>Novedades</h2>
           </motion.div>
@@ -344,7 +343,6 @@ export default function Products() {
             transition: { duration: 0.7 },
           }}
           className="products-carousel-discount"
-        
         >
           {loading ? (
             <Loading />
