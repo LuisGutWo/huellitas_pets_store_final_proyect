@@ -103,7 +103,7 @@ export default function MainHeader({ item }) {
 
   return (
     <header className={`${sticky ? "sticky" : ""}`}>
-      {["lg"].map((expand) => (
+      {["md"].map((expand) => (
         <Navbar
           key={expand}
           expand={expand}
@@ -299,12 +299,13 @@ export default function MainHeader({ item }) {
       ))}
 
       {/* second navbar */}
-      <Navbar expand="lg" className="second-navbar">
+      <Navbar expand="md" className="second-navbar">
         <Container className="second-navbar-buttons">
           <Navbar.Toggle
             aria-controls="basic-navbar-nav"
             style={{
               border: "0px",
+              width: "100%",
               fontSize: "0.8rem",
               alignContent: "center",
               padding: "5px",
@@ -382,7 +383,7 @@ export default function MainHeader({ item }) {
             <img
               src="https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/wa_chat_icon.png?alt=media&token=ce6cb743-6822-4223-9279-0bdd5efe6677"
               alt=""
-              style={{ width: "4rem" }}
+              className="wsp-image"
             />
           </a>
         </section>

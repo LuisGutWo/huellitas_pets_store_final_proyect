@@ -73,16 +73,7 @@ const LoginUserPage = () => {
   return (
     <>
       <Box
-        sx={{
-          marginTop: 3,
-          maxWidth: 400,
-          mx: "auto",
-          textAlign: "center",
-          padding: 3,
-          backgroundColor: "#10008030",
-          borderRadius: 3,
-          borderStyle: "solid",
-        }}
+        className="main-login-box"
       >
         <Avatar sx={{ mx: "auto", bgcolor: "primary.main" }}>
           <LockOutlinedIcon />

@@ -47,7 +47,7 @@ const HeroSection = () => {
                 "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/huellitas_logo_blanco.png?alt=media&token=1a021733-a8f1-4b0f-9f5b-d5ef83d24e22"
               }
               alt=""
-              className="hero-logo img-fluid"
+              className="img-fluid"
             />
             <h5 className="text-container text-light text-end">
               ¡Tenemos

@@ -52,7 +52,7 @@ export default function Cart({ item }) {
         <li className="cart-button-footer">
           <NavLink to={"/products"}>
             {cart.length === 0 ? (
-              <Button>Seleccionar productos</Button>
+              <Button>Volver a la Tienda</Button>
             ) : (
               <Button variant="outline-warning">Seguir comprando</Button>
             )}
@@ -60,7 +60,7 @@ export default function Cart({ item }) {
 
           {cart.length !== 0 && (
             <Button variant="dark" size="sm">
-              Ir a Pagar
+              Pagar
             </Button>
           )}
         </li>

@@ -13,6 +13,8 @@
 @use "./views/cart/cart_product_card.scss";
 @use "./views/products/favorites.scss";
 @use "./components/icons.scss";
+@use "./views/log/login.scss";
+@use "./views/products/mainProductsList.scss";
 
 //Main App Styles
 .app {
@@ -103,13 +105,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 3.5rem;
-  width: 3.5rem;
+  height: 3.2rem;
+  width: 3.2rem;
   top: 85%;
-  right: 80%;
+  right: 82%;
   z-index: 100;
   background-color: #566b6b70;
   border: none;
   border-radius: 50%;
+
+  @media (min-width: 768px) {
+    right: 89%;
+    height: 4rem;
+    width: 4rem;
+  }
+  @media (min-width: 1024px) {
+    right: 90%;
+    height: 5rem;
+    width: 5rem;
+  }
 
 }

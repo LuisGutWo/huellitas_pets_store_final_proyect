@@ -62,8 +62,14 @@
         justify-content: space-evenly;
         margin: 3rem;
         & .icons-item {
+            width: 30vw;
             & p {
-                font-size: 0.7rem;
+                height: 4rem;
+                display: flex;
+                justify-content: center;
+                text-align: center;
+                flex-wrap: wrap;
+                font-size: 1.2rem;
                 }
                 }
     }

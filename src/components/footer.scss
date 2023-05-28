@@ -7,19 +7,33 @@
    padding: 0;
    margin-top: 0;
    background-color: #2A2F4F;
-   & .footer-container {
-     padding: 2rem;
+ }
 
-     & .footer-content {
-       color: whitesmoke;
-       margin: 0;
-       height: 100%;
-     }
+ .footer-container {
+   padding: 2rem;
 
-     &.footer-text {
-       font-size: 0.7em;
-     }
+ }
+
+ .footer-content {
+   color: whitesmoke;
+   margin: 0;
+   height: 100%;
+
+   & h5 {
+     font-size: 4vw;
    }
 
+   & .footer-text {
+     font-size: 3vw;
+   }
+
+   @media (min-width: 768px){
+    & h5 {
+      font-size: 2vw;
+    }
+    & .footer-text {
+      font-size: 1.5vw;
+    }
+   }
 
  }

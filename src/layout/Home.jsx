@@ -4,6 +4,7 @@ import ProductsCardSection from "../views/products/ProductsCardSection";
 import BlogSection from "../views/home/BlogSection";
 import IconsSection from "../components/IconsSection";
 import BackToTopButton from "./BackToTopButton";
+import DiscountsProducts from "../views/products/DiscountsProducts";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <HeroSection />
       <IconsSection />
       <ProductsCardSection />
+      <DiscountsProducts />
       <BlogSection />
       <BackToTopButton />
     </>

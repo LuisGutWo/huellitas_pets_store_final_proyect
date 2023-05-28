@@ -53,7 +53,7 @@ export default function ProductDetail() {
           className="card-image img-fluid"
           alt="..."
         />
-        <Card.Body>
+        <Card.Body className="card-body-detail">
           <Card.Title className="card-title">{product.name} </Card.Title>
           <Card.Text className="card-text">{product.desc}</Card.Text>
           <div className="card-price-button">
@@ -69,10 +69,9 @@ export default function ProductDetail() {
                 className="button-class"
                 ref={target}
                 onClick={addButtonShoppingCart}
-                style={{ height: "2rem" }}
               >
                 Añadir al carrito
-                <ShoppingCartIcon style={{ fontSize: "1.3rem" }} />
+                <ShoppingCartIcon className="shopping-icon" />
               </Button>
               <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>

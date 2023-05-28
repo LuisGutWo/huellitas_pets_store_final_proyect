@@ -1,15 +1,16 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { NavLink, Navbar } from "react-bootstrap";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+import Card from "react-bootstrap/Card";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 import MainProductCard from "./MainProductCard";
 import Loading from "../../utils/Loading";
 import { FakeLoading } from "../../utils/FakeLoading";
 import { motion } from "framer-motion";
 
-export default function Products() {
+const MainProductsList = () => {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
   const [categories, setCategories] = useState([]);
@@ -52,28 +53,6 @@ export default function Products() {
         )
         .filter((item) => searchData(item, search));
     }
-  };
-  const filteredProduct = filteredData().map((item) => (
-    <MainProductCard key={item.id} item={item} />
-  ));
-
-  const responsive = {
-    superLargeDesktop: {
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 4,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 3,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 2,
-    },
   };
 
   if (loading) return <Loading />;
@@ -153,58 +132,15 @@ export default function Products() {
         </motion.div>
       </section>
 
-      {/* Carousel de productos */}
-      <motion.div
-        initial={{
-          opacity: 0.3,
-        }}
-        animate={{
-          opacity: 1,
-          transition: { delay: 0.5, duration: 0.7 },
-        }}
-        exit={{
-          opacity: 0.5,
-          transition: { duration: 0.7 },
-        }}
-        className="products-carousel"
-      >
-        {loading ? (
-          <Loading />
-        ) : (
-          <div>
-            <Carousel
-              responsive={responsive}
-              additionalTransfrom={0}
-              arrows={false}
-              autoPlay={false}
-              autoPlaySpeed={3000}
-              customTransition="all 2s linear"
-              centerMode={false}
-              containerClass="container-with-dots"
-              draggable
-              focusOnSelect={false}
-              infinite
-              keyBoardControl
-              minimumTouchDrag={80}
-              pauseOnHover
-              renderArrowsWhenDisabled={false}
-              renderButtonGroupOutside={false}
-              renderDotsOutside={false}
-              className="container products-container"
-              rewind={false}
-              rewindWithAnimation={false}
-              rtl={false}
-              shouldResetAutoplay
-              showDots={false}
-              sliderClass=""
-              slidesToSlide
-              swipeable
-            >
-              {filteredProduct}
-            </Carousel>
-          </div>
-        )}
-      </motion.div>
+      <section className="products-container-main">
+        <div className="main-container-card">
+          {filteredData().map((item) => (
+            <MainProductCard key={item.id} item={item} />
+          ))}
+        </div>
+      </section>
     </main>
   );
-}
+};
+
+export default MainProductsList;

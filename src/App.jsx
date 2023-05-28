@@ -8,11 +8,11 @@ import LoginUserPage from "./views/log/LoginUserPage";
 import Cart from "./views/cart/Cart";
 import About from "./views/home/About";
 import CreateUser from "./views/log/CreateUser";
-import ProductsCardSection from "./views/products/ProductsCardSection";
 import ProductDetail from "./views/products/ProductDetail";
 import SelectFavorites from "./views/products/SelectFavorites";
 import Contact from "./views/home/Contact";
 import NotFound from "./utils/NotFound";
+import MainProductsList from "./views/products/MainProductsList";
 function App() {
   const { user } = useUserContext();
 
@@ -23,7 +23,7 @@ function App() {
       <div className="app-container">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/products" element={<ProductsCardSection />} />
+          <Route path="/products" element={<MainProductsList />} />
           <Route path="/products/:id" element={<ProductDetail />} />
           <Route path="/cart" element={user ? <Cart /> : <LoginUserPage />} />
           <Route path="/contact" element={<Contact />} />

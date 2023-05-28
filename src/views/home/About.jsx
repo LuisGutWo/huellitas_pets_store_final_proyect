@@ -19,7 +19,7 @@ function About() {
           opacity: 0.7,
           transition: { duration: 0.5 },
         }}
-        className="about-container text-dark"
+        className="about-container"
       >
         <figure>
           <img
@@ -50,7 +50,7 @@ function About() {
             alt=""
             className="about-image"
           />
-          <NavLink to={"/products"} className="about-button"> Ver mas</NavLink>
+          <NavLink to={"/products"} className="about-button">Volver a la tienda</NavLink>
         </article>
       </motion.div>
     </>
