@@ -1,50 +1,150 @@
 @use "../../css/styles.scss";
 
+.contact-main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 50rem;
+}
+
 
 .main-contact {
-  margin-top: 2rem;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   overflow: hidden;
   position: relative;
 
-  .contact-img {
-    opacity: 0.9;
-    width: 100%;
+  & .contact-img {
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/gato_y_perro.png?alt=media&token=57c3a1cb-c492-487c-96f9-7adc684fb710);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
     height: 100%;
   }
 
-  .contact-container {
+  & .contact-container {
     position: absolute;
+    overflow: hidden;
+
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-end;
+
+    width: 90%;
+    height: 100%;
+    padding: 0rem;  
+  }
+
+
+  @media (min-width: 768px) {
+    height: 100rem;
+
+
+
+    & .contact-img{
+      width: 100%;
+      height: 100%;
+    }
+    & .contact-container{
+      width: 90%;
+    }
+  
+    }
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  text-align: end;
+
+  font-size: 3vw;
+  color: #000000;
+  @media (min-width: 768px){
+    font-size: 2.2vw;
+  }
+
+}
+
+.map-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #000000c7;
+  position: relative;
+
+  & .info-map {
+    position: absolute;
+    background: #000000c0;
+    top: 50%;
+    right: 50%;
+    z-index: 100;
+    width: 4rem;
+    padding: 1rem;
+    color: #fff;
+    font-size: 2vw;
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeIn 1s 1.5s;
+    animation-fill-mode: forwards;
+
+    span {
+      font-size: 16px;
+
+      span {
+        color: #ffd700;
+      }
+    }
+  }
+  & .map-wrap {
+    float: right;
+    width: 90%;
+    height: 90%;
+    margin: 0;
+  }
+  & .leaflet-container {
+    position: relative;
     width: 100%;
     height: 100%;
-    padding: 0rem 4rem 1rem 0rem;
-    overflow: hidden;
-
-    // @media (max-width: 640px) {
-    //   font-size: clamp(1rem, 1.5vw, 2rem);
-    //   min-height: 100vh;
-    //   }
-
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-      justify-content: space-evenly;
-      align-items: center;
-      text-align: end;
-     
-      font-size: 80%;
-      color: #000000;
-      
-    }
-
+    animation: backInRight 1s 1.2s;
+    animation-fill-mode: forwards;
+  }
+  @media (min-width: 768px){
+    height: 100rem;
+    
   }
 }
+
+
+
+
+
+
+
+// @media screen and (max-width: 1200px) {
+//   .map-wrap {
+//     float: none;
+//     margin: 0;
+//     width: 100%;
+//     height: 400px;
+//   }
+
+//   .info-map {
+//     display: none;
+//   }
+// }

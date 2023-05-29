@@ -1,6 +1,51 @@
 @use "../../css/styles.scss";
 
-.products-container-main{
+
+
+.products-list-header {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-content: flex-end;
+
+    background-image: url("https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/background_mascotas_morado.jpg?alt=media&token=5a806210-2470-4b93-803b-c27e058c47e5");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    padding: 2.5rem 1rem 2rem 2rem;
+    margin: 0;
+
+    & h3 {
+        font-size: 80%;
+        text-align: end;
+        font-weight: bold;
+        color: #f2f2f2;
+
+        @media (min-width: 768px) {
+            font-size: 3vw;
+        }
+    }
+
+    & h6 {
+        font-size: 60%;
+        margin: 0;
+        color: #f2f2f2;
+
+        @media (min-width: 768px) {
+            font-size: 1.8vw;
+        }
+    }
+
+    @media (min-width: 768px) {
+        height: 25vh;
+    }
+}
+
+
+
+.products-container-main {
     position: absolute;
     width: 100%;
     height: 100vh;
@@ -12,7 +57,7 @@
     padding: 2rem;
 }
 
-.main-container-card{
+.main-container-card {
     position: absolute;
     width: 90%;
     height: 90%;
@@ -24,8 +69,26 @@
     padding: 0;
     list-style: none;
 
-    & .product-card{
+    & .product-card {
         width: 40vw;
+    }
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(3, 1fr);
+        padding: 1rem;
+
+        & .product-card {
+            width: 95%;
+        }
+
+    }
+    @media (min-width: 1024px) {
+        grid-template-columns: repeat(4, 1fr);
+        width: 100%;
+
+        & .product-card {
+            width: 23vw;
+        }
+
     }
 
 }

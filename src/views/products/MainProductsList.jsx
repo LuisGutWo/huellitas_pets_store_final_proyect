@@ -1,12 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { NavLink, Navbar } from "react-bootstrap";
-import Card from "react-bootstrap/Card";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 
 import MainProductCard from "./MainProductCard";
 import Loading from "../../utils/Loading";
+import BackToTopButton from "../../layout/BackToTopButton";
 import { FakeLoading } from "../../utils/FakeLoading";
 import { motion } from "framer-motion";
 
@@ -60,7 +58,7 @@ const MainProductsList = () => {
   return (
     <main>
       {/* Products Header */}
-      <section className="products-header">
+      <section className="products-list-header">
         <motion.div
           initial={{
             opacity: 0,
@@ -139,6 +137,7 @@ const MainProductsList = () => {
           ))}
         </div>
       </section>
+      <BackToTopButton />
     </main>
   );
 };

@@ -102,7 +102,20 @@ export default function MainHeader({ item }) {
   if (loading) return <Loading />;
 
   return (
-    <header className={`${sticky ? "sticky" : ""}`}>
+    <motion.header
+      initial={{
+        opacity: 0,
+      }}
+      animate={{
+        opacity: 1,
+        transition: { delay: 0.5, duration: 0.5 },
+      }}
+      exit={{
+        opacity: 0.7,
+        transition: { duration: 0.5 },
+      }}
+      className={`${sticky ? "sticky" : ""}`}
+    >
       {["md"].map((expand) => (
         <Navbar
           key={expand}
@@ -159,7 +172,12 @@ export default function MainHeader({ item }) {
             {/* Toggler y Link del Navbar */}
             <Navbar.Toggle
               aria-controls={`offcanvasNavbar-expand-${expand}`}
-              style={{ padding: "4px", border: "0px", fontSize: "0.7rem", color: "transparent" }}
+              style={{
+                padding: "4px",
+                border: "0px",
+                fontSize: "0.7rem",
+                color: "transparent",
+              }}
             />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
@@ -175,9 +193,7 @@ export default function MainHeader({ item }) {
                   Menu
                 </Offcanvas.Title>
               </Offcanvas.Header>
-              <Offcanvas.Body
-                className="offcanvas-body"
-              >
+              <Offcanvas.Body className="offcanvas-body">
                 <Nav className="offcanvas-body-header">
                   {!user && (
                     <>
@@ -388,6 +404,6 @@ export default function MainHeader({ item }) {
           </a>
         </section>
       </Navbar>
-    </header>
+    </motion.header>
   );
 }

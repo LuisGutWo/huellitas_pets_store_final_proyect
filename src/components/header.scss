@@ -7,7 +7,10 @@ header {
   height: 100%;
   width: 100%;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
-  transition: .3s
+  transition: all 4s ease-in;
+  transition-delay: 0.7s;
+  transition-duration: 1s;
+  transition-property: all;
 }
 
 .sticky {
@@ -100,7 +103,6 @@ header {
   }
 }
 
-
 .offcanvas-body {
   display: flex;
   justify-content: flex-end;
@@ -109,10 +111,8 @@ header {
   margin: 0;
   width: 50%;
 
-
   & .offcanvas-body-header {
     background-color: transparent;
-
   }
 
   @media (min-width: 1024px) {
@@ -136,16 +136,12 @@ header {
   padding: 0;
   background-color: #917FB3;
 
-  @media (max-width: 576px) {
+  @media (max-width: 768px) {
     .offline-user-warning {
       display: none;
     }
   }
 
-  // @media (min-width: 600px) {
-  //   flex-direction: row;
-
-  // }
   & .second-navbar-buttons {
     display: flex;
     justify-content: center;
@@ -153,8 +149,6 @@ header {
 
     height: 100%;
     width: fit-content;
-
-
   }
 
   @media (min-width: 768px) {
@@ -164,10 +158,7 @@ header {
 
     & .second-navbar-buttons {
       width: 80%;
-
-
     }
-
   }
 
   @media (min-width: 1024px) {
@@ -177,13 +168,8 @@ header {
 
     & .second-navbar-buttons {
       width: 80%;
-
-
     }
-
   }
-
-
 }
 
 .navbar-nav {
@@ -202,8 +188,6 @@ header {
     font-size: 2vw;
   }
 }
-
-
 
 .welcome-user-section {
   display: flex;
@@ -231,23 +215,23 @@ header {
     font-size: 0.5rem;
   }
 
-  @media (min-width: 768px){
-    & .text-header-name{
+  @media (min-width: 768px) {
+    & .text-header-name {
       font-size: 0.6rem;
     }
   }
-  @media (min-width: 1024px){
+
+  @media (min-width: 1024px) {
     & p {
       font-size: 0.8rem;
     }
-    & .text-header-name{
+
+    & .text-header-name {
       font-size: 0.8rem;
     }
   }
 
 }
-
-
 
 .offline-user-warning {
   position: relative;
@@ -260,7 +244,6 @@ header {
   @media (min-width: 600px) {
     margin-right: 2rem;
   }
-
 }
 
 .btn-wsp {

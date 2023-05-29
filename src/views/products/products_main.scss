@@ -115,18 +115,12 @@
   padding: 0rem 1rem 0rem 1rem;
   height: 50vh;
   @media (min-width: 768px) {
-    height: 75vh;
+    height: 78vh;
     }
-  // @media (min-width: 992px) {
-  //     display: flex;
-  //     flex-direction: row;
-  //     flex-wrap: wrap;
-  //     justify-content: center;
-  //     align-items: center;
-  //     align-content: center;
-  //     padding: 1rem;
-  //     gap: 1rem;
-  //   }
+  @media (min-width: 1024px) {
+    height: 80vh;
+    }
+  
 
 }
 
@@ -160,10 +154,13 @@
 
 .products-carousel-discount {
   height: 100%;
-  padding: 0rem 2rem 0rem 2rem;
+  padding: 0rem 1rem 0rem 1rem;
 
   @media (min-width: 768px) {
-    height: 70vh;
+    height: 80vh;
+  }
+  @media (min-width: 1024px) {
+    height: 80vh;
   }
 
 }
@@ -199,6 +196,9 @@
 
   @media (min-width: 768px) {
     height: 70vh;
+  }
+  @media (min-width: 1024px) {
+    height: 75vh;
   }
 }
 

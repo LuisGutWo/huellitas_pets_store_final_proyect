@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
-import emailjs from "@emailjs/browser";
+import React, { useRef, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import Form from "react-bootstrap/Form";
+import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import { TextareaAutosize } from "@mui/material";
-import { useState } from "react";
 
 const Contact = () => {
   const [showEmailSend, setShowEmailSend] = useState(false);
@@ -46,15 +46,10 @@ const Contact = () => {
         opacity: 0.7,
         transition: { duration: 0.5 },
       }}
+      className="contact-main-container"
     >
       <article className="main-contact">
-        <img
-          src={
-            "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/gato_y_perro.png?alt=media&token=57c3a1cb-c492-487c-96f9-7adc684fb710"
-          }
-          alt=""
-          className="contact-img"
-        />
+        <section className="contact-img"></section>
         <section className="contact-container">
           <img
             src={
@@ -65,7 +60,7 @@ const Contact = () => {
             style={{ width: "30%", padding: "0rem", margin: "0rem" }}
           />
           <Form ref={form} onSubmit={sendEmail} className="contact-form">
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-1">
               <Form.Label>Nombre</Form.Label>
               <Form.Control
                 type="text"
@@ -73,7 +68,7 @@ const Contact = () => {
                 name="user_name"
               />
             </Form.Group>
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-1">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
@@ -81,7 +76,7 @@ const Contact = () => {
                 name="user_email"
               />
             </Form.Group>
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-1">
               <Form.Label>Cuéntanos que necesitas?</Form.Label>
               <Form.Control as={TextareaAutosize} name="message" />
             </Form.Group>
@@ -109,6 +104,23 @@ const Contact = () => {
           </Form>
         </section>
       </article>
+      <section className="map-section">
+        <div className="info-map">
+          Huellitas PetsStore,
+          <br />
+          Santiago de Chile,
+          <br />
+          <span>agutierrezwong@gmail.com</span>
+        </div>
+        <div className="map-wrap">
+        <MapContainer center={[-33.4365900, -70.6841300]} zoom={16}>
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            <Marker position={[-33.4365900, -70.6841300]}>
+              <Popup>Huellitas Pets Store</Popup>
+            </Marker>
+          </MapContainer>
+        </div>
+      </section>
     </motion.div>
   );
 };
