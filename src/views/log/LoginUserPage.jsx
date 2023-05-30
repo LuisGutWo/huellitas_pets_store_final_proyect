@@ -72,9 +72,7 @@ const LoginUserPage = () => {
 
   return (
     <>
-      <Box
-        className="main-login-box"
-      >
+      <Box className="main-login-box">
         <Avatar sx={{ mx: "auto", bgcolor: "primary.main" }}>
           <LockOutlinedIcon />
         </Avatar>
@@ -142,7 +140,12 @@ const LoginUserPage = () => {
 
               <LoadingButton
                 variant="contained"
-                sx={{ mt: 3, mb: 2, backgroundImage: "linear-gradient(45deg, #567b6b 0%, #903a7d 100%)", }}
+                sx={{
+                  mt: 3,
+                  mb: 2,
+                  backgroundImage:
+                    "linear-gradient(45deg, #567b6b 0%, #903a7d 100%)",
+                }}
                 fullWidth
                 type="submit"
                 disabled={isSubmitting}

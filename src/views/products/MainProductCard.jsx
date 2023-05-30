@@ -136,11 +136,6 @@ export default function MainProductCard({ item, selectFavorites }) {
                           Ingrese para acceder a favoritos
                         </Modal.Body>
                       </Modal.Header>
-                      <Modal.Footer>
-                        <Button variant="info" onClick={handleCloseFavorite}>
-                          Close
-                        </Button>
-                      </Modal.Footer>
                     </Modal>
                   )}
                 </>
