@@ -26,11 +26,11 @@
 
 ## Deploy
 
-* [Deployed by Netlify](https://huellitas-pets-store-new.netlify.app/)
+* [Deployed by Netlify](https://huellitas-new-pets-store.netlify.app/)
 
 ## Screen shot del proyecto
 
-![Huellitas Pet store](https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/huellitas_screenshot.png?alt=media&token=db2d98ec-8218-4b33-91c5-882aa4de2237)
+![Huellitas Pet store](public/new_screenshot.png)
 
 ## Video Cuestionario proyecto final
 
