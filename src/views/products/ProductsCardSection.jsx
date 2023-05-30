@@ -190,7 +190,7 @@ export default function Products() {
               renderArrowsWhenDisabled={false}
               renderButtonGroupOutside={false}
               renderDotsOutside={false}
-              className="container products-container"
+              className="products-container"
               rewind={false}
               rewindWithAnimation={false}
               rtl={false}

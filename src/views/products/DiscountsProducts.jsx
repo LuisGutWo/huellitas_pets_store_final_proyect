@@ -142,7 +142,7 @@ const DiscountsProducts = () => {
                 renderArrowsWhenDisabled={false}
                 renderButtonGroupOutside={false}
                 renderDotsOutside={false}
-                className="container products-carousel-featured"
+                className="products-carousel-featured"
                 rewind={false}
                 rewindWithAnimation={false}
                 rtl={false}
@@ -212,7 +212,7 @@ const DiscountsProducts = () => {
                 renderArrowsWhenDisabled={false}
                 renderButtonGroupOutside={false}
                 renderDotsOutside={false}
-                className="container products-carousel-featured"
+                className="products-carousel-featured"
                 rewind={false}
                 rewindWithAnimation={false}
                 rtl={false}

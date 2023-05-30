@@ -26,7 +26,7 @@
 
 ## Deploy
 
-* [Deployed by Netlify](https://huellitas-pets-store.netlify.app/)
+* [Deployed by Netlify](https://huellitas-pets-store-new.netlify.app/)
 
 ## Screen shot del proyecto
 
