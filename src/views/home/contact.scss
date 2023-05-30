@@ -42,7 +42,7 @@
 
     width: 90%;
     height: 100%;
-    padding: 0rem;  
+    padding: 0rem;
   }
 
 
@@ -51,15 +51,16 @@
 
 
 
-    & .contact-img{
+    & .contact-img {
       width: 100%;
       height: 100%;
     }
-    & .contact-container{
+
+    & .contact-container {
       width: 90%;
     }
-  
-    }
+
+  }
 }
 
 .contact-form {
@@ -72,7 +73,8 @@
 
   font-size: 3vw;
   color: #000000;
-  @media (min-width: 768px){
+
+  @media (min-width: 768px) {
     font-size: 2.2vw;
   }
 
@@ -81,54 +83,62 @@
 .map-section {
   display: flex;
   flex-direction: column;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
+  text-align: center;
+
   width: 100%;
-  height: 100%;
-  background-color: #000000c7;
-  position: relative;
+  height: 70%;
 
-  & .info-map {
-    position: absolute;
-    background: #000000c0;
-    top: 50%;
-    right: 50%;
-    z-index: 100;
-    width: 4rem;
-    padding: 1rem;
-    color: #fff;
-    font-size: 2vw;
-    font-weight: 300;
-    opacity: 0;
-    animation: fadeIn 1s 1.5s;
-    animation-fill-mode: forwards;
-
-    span {
-      font-size: 16px;
-
-      span {
-        color: #ffd700;
-      }
-    }
-  }
-  & .map-wrap {
-    float: right;
-    width: 90%;
-    height: 90%;
-    margin: 0;
-  }
-  & .leaflet-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    animation: backInRight 1s 1.2s;
-    animation-fill-mode: forwards;
-  }
-  @media (min-width: 768px){
+  @media (min-width: 768px) {
     height: 100rem;
-    
   }
 }
+
+.map-wrap {
+  position: relative !important;
+  float: right;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.leaflet-container {
+  position: relative !important;
+  opacity: 0.9;
+  width: 100%;
+  height: 100%;
+  animation: backInRight 1s 1.2s;
+  animation-fill-mode: forwards;
+}
+
+.info-map {
+  position: absolute !important;
+  top: 79%;
+  left: 16%;
+  width: 35%;
+  height: 10vh;
+  z-index: 100;
+  padding-top: 0.4rem;
+  background: #000000;
+  border-radius: 0.7rem;
+  box-shadow: 3px 5px 8px #141414cf;
+  color: #fff;
+  font-size: 3vw;
+  font-weight: 300;
+  animation: fadeIn 1s 1.5s;
+  animation-fill-mode: forwards;
+
+
+  & span {
+    font-size: 60%;
+    color: #ffd900;
+  }
+}
+
+
+
 
 
 

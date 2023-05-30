@@ -74,19 +74,19 @@
 
       width: 15%;
       height: 2rem;
-      font-size: 57%;
+      font-size: 50%;
       font-weight: bold;
       color: #1b0650;
-      background-color: #cfc4fad5;
-      border: 2px solid #8b71d7c5;
+      background-color: #e2ddf9d5;
+      border: 2px solid #67549fc5;
       box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.361);
-      border-radius: 50px;
+      border-radius: 5px;
 
       &:hover {
         color: #d2c8ff;
         background-color: #482351d4;
         border: 1px solid #7a66ffc1;
-        border-radius: 50px;
+        border-radius: 10px;
       }
 
       @media (min-width: 768px) {
@@ -208,33 +208,3 @@
 
 
 
-.container-icon {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-}
-
-.count-products {
-  position: absolute;
-  bottom: 52%;
-  left: 50%;
-
-  background-color: #ffffff;
-  color: rgb(0, 0, 0);
-  border: solid black 1.5px;
-  width: 20px;
-  height: 20px;
-
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  border-radius: 50%;
-}
-
-#contador-productos {
-  font-size: 0.9rem;
-  font-weight: bold;
-}

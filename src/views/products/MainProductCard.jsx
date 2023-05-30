@@ -17,7 +17,6 @@ export default function MainProductCard({ item, selectFavorites }) {
 
   const [showCart, setShowCart] = useState(false);
   const [showFavorite, setShowFavorite] = useState(false);
-  const [isActive, setIsActive] = useState(false);
   const target = useRef(null);
 
   const handleCloseCart = () => setShowCart(false);
@@ -96,11 +95,6 @@ export default function MainProductCard({ item, selectFavorites }) {
                     )}
                   </Modal.Body>
                 </Modal.Header>
-                <Modal.Footer>
-                  <Button variant="secondary" onClick={handleCloseCart}>
-                    Cerrar
-                  </Button>
-                </Modal.Footer>
               </Modal>
             </section>
             <section className="card-favorite-icon">
@@ -134,11 +128,6 @@ export default function MainProductCard({ item, selectFavorites }) {
                           <b>{item.name}</b>! se agrego a favoritos 🥰
                         </Modal.Body>
                       </Modal.Header>
-                      <Modal.Footer>
-                        <Button variant="info" onClick={handleCloseFavorite}>
-                          Close
-                        </Button>
-                      </Modal.Footer>
                     </Modal>
                   ) : (
                     <Modal show={showFavorite} onHide={handleCloseFavorite}>

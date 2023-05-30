@@ -59,7 +59,9 @@ export default function ProductDetail() {
           <div className="card-price-button">
             <b>$ {product.price}</b>
             <NavLink to={"/products"} className="text-end">
-              <Button className="btn btn-sm mt-2" variant="outline-primary">Volver</Button>
+              <Button className="btn btn-sm mt-2" variant="outline-primary">
+                Volver
+              </Button>
             </NavLink>
           </div>
 
@@ -79,11 +81,6 @@ export default function ProductDetail() {
                     <b>{product.name}</b>! se agrego al carrito 😎
                   </Modal.Title>
                 </Modal.Header>
-                <Modal.Footer>
-                  <Button variant="secondary" onClick={handleClose}>
-                    Cerrar
-                  </Button>
-                </Modal.Footer>
               </Modal>
             </>
           ) : null}

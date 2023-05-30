@@ -78,7 +78,7 @@ const MainProductsList = () => {
       </section>
 
       {/* Category Navbar */}
-      <section className="products-navbar">
+      <section className="main-products-navbar">
         <motion.div
           initial={{
             opacity: 0,
@@ -92,13 +92,13 @@ const MainProductsList = () => {
             transition: { duration: 0.7 },
           }}
         >
-          <Navbar className="products-buttons-section">
+          <Navbar className="main-products-buttons-section">
             {categories.map((category) => (
               <NavLink
                 key={category}
                 to={`/categories/${category}`}
                 onClick={() => setFilter(category)}
-                className="category-buttons"
+                className="main-category-buttons"
                 style={{ alignItems: "center" }}
               >
                 {category}
@@ -109,13 +109,13 @@ const MainProductsList = () => {
                 key={type}
                 to={`/types/${type}`}
                 onClick={() => setFilter(type)}
-                className="category-buttons"
+                className="main-category-buttons"
               >
                 {type}
               </NavLink>
             ))}
           </Navbar>
-          <nav className="form-products-categories">
+          <nav className="main-form-products-categories">
             <input
               type="text"
               style={{

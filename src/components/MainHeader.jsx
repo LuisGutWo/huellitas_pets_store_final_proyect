@@ -17,6 +17,7 @@ import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import SearchIcon from "@mui/icons-material/Search";
+import { dark } from "@mui/material/styles/createPalette";
 
 export default function MainHeader({ item }) {
   const [products, setProducts] = useState([]);
@@ -160,11 +161,6 @@ export default function MainHeader({ item }) {
                   <Modal.Header closeButton>
                     <Modal.Body>Elige algún producto 😉</Modal.Body>
                   </Modal.Header>
-                  <Modal.Footer>
-                    <Button variant="danger" onClick={handleClose}>
-                      Close
-                    </Button>
-                  </Modal.Footer>
                 </Modal>
               )}
             </Form>
@@ -214,11 +210,6 @@ export default function MainHeader({ item }) {
                             Ingrese sus datos o Cree una cuenta nueva... 👀
                           </Modal.Body>
                         </Modal.Header>
-                        <Modal.Footer>
-                          <Button variant="danger" onClick={handleCloseLogin}>
-                            Close
-                          </Button>
-                        </Modal.Footer>
                       </Modal>
                     </>
                   )}
@@ -265,14 +256,6 @@ export default function MainHeader({ item }) {
                                 Ingrese para acceder al carrito... 👀
                               </Modal.Body>
                             </Modal.Header>
-                            <Modal.Footer>
-                              <Button
-                                variant="danger"
-                                onClick={handleCloseCart}
-                              >
-                                Close
-                              </Button>
-                            </Modal.Footer>
                           </Modal>
                         )}
                       </>

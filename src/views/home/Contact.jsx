@@ -95,11 +95,6 @@ const Contact = () => {
                   Gracias
                 </Modal.Body>
               </Modal.Header>
-              <Modal.Footer>
-                <Button variant="info" onClick={handleCloseEmailSend}>
-                  Close
-                </Button>
-              </Modal.Footer>
             </Modal>
           </Form>
         </section>
@@ -113,9 +108,9 @@ const Contact = () => {
           <span>agutierrezwong@gmail.com</span>
         </div>
         <div className="map-wrap">
-        <MapContainer center={[-33.4365900, -70.6841300]} zoom={16}>
+          <MapContainer center={[-33.43659, -70.68413]} zoom={16}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            <Marker position={[-33.4365900, -70.6841300]}>
+            <Marker position={[-33.43659, -70.68413]}>
               <Popup>Huellitas Pets Store</Popup>
             </Marker>
           </MapContainer>
