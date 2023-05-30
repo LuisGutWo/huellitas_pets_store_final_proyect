@@ -23,6 +23,13 @@ header {
   background-color: #2A2F4F;
   height: 100%;
   width: 100%;
+
+  @media (min-width: 768px) {
+    height: 11vh;
+  }
+  @media (min-width: 1440px) {
+    height: 15vh;
+  }
 }
 
 .navbar-container {
@@ -33,11 +40,17 @@ header {
   height: 100%;
   width: 100%;
 
-  @media (min-width: 1024px) {}
 }
 
 .header-logo img {
   width: 26vw;
+
+  @media (min-width: 768px) {
+    width: 30vh;
+  }
+  @media (min-width: 1440px) {
+    width: 35vh;
+  }
 }
 
 .navbar-form {
@@ -72,14 +85,20 @@ header {
   @media (min-width: 768px) {
     & .navbar-select {
       width: 10rem;
-      margin-left: 5rem;
+      margin-left: 8rem;
     }
   }
 
   @media (min-width: 1024px) {
     & .navbar-select {
       width: 15rem;
-      margin-left: 7rem;
+      margin-left: 13rem;
+    }
+  }
+  @media (min-width: 1440px) {
+    & .navbar-select {
+      width: 15rem;
+      margin-left: 23rem;
     }
   }
 }
@@ -168,6 +187,10 @@ header {
       width: 80%;
     }
   }
+
+  @media (min-width: 1440px) {
+    height: 11vh;
+  }
 }
 
 .navbar-nav {
@@ -179,11 +202,16 @@ header {
   gap: 1rem;
 
   @media (min-width: 768px) {
-    font-size: 1.5vw;
+    font-size: 1.7vw;
+    height: 8vh;
   }
 
   @media (min-width: 1024px) {
-    font-size: 2vw;
+    font-size: 1.5vw;
+  }
+  @media (min-width: 1440px) {
+    font-size: 1.2vw;
+    height: 100%;
   }
 }
 

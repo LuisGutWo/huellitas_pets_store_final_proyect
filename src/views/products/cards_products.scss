@@ -41,6 +41,13 @@
         margin: 0;
         padding: 0.5rem;
     }
+    @media (min-width: 1440px) {
+        height: 72vh;
+        width: 20vw;
+        margin: 0;
+        padding: 0.5rem;
+
+    }
 }
 
 .card-image {
@@ -70,6 +77,12 @@
         height: fit-content;
         padding-top: 1rem;
     }
+    @media (min-width: 1440px) {
+        width: 9vw;
+        height: fit-content;
+        padding-top: 1rem;
+    }
+    
 }
 
 .card-body {
@@ -228,6 +241,27 @@
         & .button-class {
             width: 70%;
             font-size: 70%;
+        }
+    }
+    @media (min-width: 1440px) {
+        height: 30%;
+
+
+        & .card-button-add {
+            width: 60%;
+            height: 100%;
+            padding-left: 0rem;
+
+            & .button-class {
+                width: 18vw;
+                height: 4.2vh;
+                font-size: 1vw;
+                margin-right: 1rem;
+
+                & .shopping-icon {
+                    font-size: 1vw;
+                }
+            }
         }
     }
 }

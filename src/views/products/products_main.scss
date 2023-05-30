@@ -29,13 +29,27 @@
   & h6 {
     font-size: 60%;
     margin: 0;
-
-    @media (min-width: 768px) {
-      font-size: 1.8vw;
-    }
   }
   @media (min-width: 768px) {
     height: 25vh;
+    & h6 {
+      font-size: 1.8vw;
+
+    }
+  }
+  @media (min-width: 1024px) {
+    height: 30vh;
+    & h6 {
+      font-size: 1.5vw;
+
+    }
+  }
+  @media (min-width: 1440px) {
+    height: 38vh;
+    & h6 {
+      font-size: 1.8vw;
+
+    }
   }
 }
 

@@ -44,6 +44,7 @@
   @media (min-width: 768px) {
     padding: 3.5rem 0rem 0rem 7rem;
   }
+
   @media (min-width: 1024px) {
     padding: 4rem 0rem 0rem 9rem;
   }
@@ -70,6 +71,7 @@
   @media (min-width: 768px) {
     padding: 0rem 6rem 1.2rem 0rem;
   }
+
   @media (min-width: 1024px) {
     padding: 0rem 10rem 1.2rem 0rem;
   }
@@ -86,6 +88,7 @@
   @media (min-width: 768px) {
     font-size: 100%;
   }
+
   @media (min-width: 1024px) {
     font-size: 3vw;
   }
@@ -113,7 +116,15 @@
     padding: 2%;
     font-size: 70%;
   }
+
   @media (min-width: 1024px) {
     font-size: 100%;
+  }
+
+  @media (min-width: 1440px) {
+    width: 13%;
+    height: 7%;
+    padding: 2%;
+    font-size: 88%;
   }
 }

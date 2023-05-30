@@ -48,6 +48,10 @@
         width: 25vw;
 
       }
+      @media (min-width: 1440px) {
+        width: 20vw;
+
+      }
     }
 
     & .about-button {
@@ -100,6 +104,16 @@
         margin-top: 2rem;
         font-size: 3vw;
         width: 28vw;
+        height: 2.5rem;
+
+      }
+    }
+    @media (min-width: 1440px) {
+
+      & .about-button {
+        margin-top: 2rem;
+        font-size: 1.5vw;
+        width: 15vw;
         height: 2.5rem;
 
       }
