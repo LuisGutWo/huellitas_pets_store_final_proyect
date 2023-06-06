@@ -49,9 +49,9 @@ export default function MainProductCard({ item, selectFavorites }) {
         transition: { duration: 0.5 },
       }}
     >
-      <Card className="product-card">
+      <Card style={{ width: "100%", height: "100%" }} className="product-card">
         <Link to={`/products/${item.id}`} className="m-2">
-          <Card.Img variant="top" className="card-image" src={item.img} />
+          <Card.Img variant="top" src={item.img} className="card-image" />
         </Link>
         <motion.div
           initial={{
@@ -67,7 +67,7 @@ export default function MainProductCard({ item, selectFavorites }) {
           }}
           style={{ height: "35%" }}
         >
-          <Card.Body className="card-body">
+          <Card.Body>
             <Card.Title className="card-body-title">{item.name}</Card.Title>
             <Card.Text className="card-body-price">
               <b>${item.price}</b>

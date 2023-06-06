@@ -77,7 +77,7 @@ const LoginUserPage = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Ingrese usuario 🐱‍👤
+          Ingrese usuario 
         </Typography>
 
         <Formik

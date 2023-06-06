@@ -166,7 +166,6 @@ export default function Products() {
           opacity: 0.5,
           transition: { duration: 0.7 },
         }}
-        className="products-carousel"
       >
         {loading ? (
           <Loading />

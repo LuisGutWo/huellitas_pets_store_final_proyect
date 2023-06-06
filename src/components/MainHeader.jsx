@@ -17,7 +17,6 @@ import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import SearchIcon from "@mui/icons-material/Search";
-import { dark } from "@mui/material/styles/createPalette";
 
 export default function MainHeader({ item }) {
   const [products, setProducts] = useState([]);
@@ -125,7 +124,7 @@ export default function MainHeader({ item }) {
           variant="dark"
         >
           {/* Contenedor principal del Navbar */}
-          <Container fluid className="navbar-container">
+          <Container fluid>
             {/* Header Navbar logo */}
             <Link to={"/"} className="header-logo">
               <img
@@ -172,25 +171,24 @@ export default function MainHeader({ item }) {
                 padding: "4px",
                 border: "0px",
                 fontSize: "0.7rem",
-                color: "transparent",
               }}
             />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               placement="end"
-              className="offcanvas-nav"
+              style={{ width: "50%", height: "50%" }}
             >
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title
                   id={`offcanvasNavbarLabel-expand-${expand}`}
-                  style={{ color: "white" }}
+                  style={{ color: "black" }}
                 >
                   Menu
                 </Offcanvas.Title>
               </Offcanvas.Header>
-              <Offcanvas.Body className="offcanvas-body">
-                <Nav className="offcanvas-body-header">
+              <Offcanvas.Body>
+                <Nav style={{ backgroundColor: "transparent", width: "50%" }}>
                   {!user && (
                     <>
                       <NavLink
@@ -201,7 +199,11 @@ export default function MainHeader({ item }) {
                         onClick={addButtonModalLogin}
                       >
                         <PermIdentityIcon
-                          style={{ width: "3rem", fontSize: "2rem" }}
+                          style={{
+                            width: "3rem",
+                            fontSize: "2rem",
+                            color: "GrayText",
+                          }}
                         />
                       </NavLink>
                       <Modal show={showLogin} onHide={handleCloseLogin}>
@@ -239,7 +241,11 @@ export default function MainHeader({ item }) {
                         >
                           <ShoppingCartIcon
                             className="icon-cart"
-                            style={{ width: "3rem", fontSize: "1.8rem" }}
+                            style={{
+                              width: "3rem",
+                              fontSize: "1.8rem",
+                              color: "GrayText",
+                            }}
                           />
                           {user && (
                             <div className="count-products">
@@ -298,20 +304,18 @@ export default function MainHeader({ item }) {
       ))}
 
       {/* second navbar */}
-      <Navbar expand="md" className="second-navbar">
+      <Navbar collapseOnSelect expand="md" className="second-navbar">
         <Container className="second-navbar-buttons">
           <Navbar.Toggle
-            aria-controls="basic-navbar-nav"
+            aria-controls="responsive-navbar-nav"
             style={{
               border: "0px",
-              width: "100%",
               fontSize: "0.8rem",
-              alignContent: "center",
               padding: "5px",
               color: "transparent",
             }}
           />
-          <Navbar.Collapse id="basic-navbar-nav" className="navbar-nav">
+          <Navbar.Collapse id="responsive-navbar-nav" className="navbar-nav w-7">
             <Nav>
               <NavLink
                 to="/"

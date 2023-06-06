@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { NavLink, Navbar } from "react-bootstrap";
+import { NavLink, Navbar, Row, Col } from "react-bootstrap";
 
 import MainProductCard from "./MainProductCard";
 import Loading from "../../utils/Loading";
@@ -130,13 +130,13 @@ const MainProductsList = () => {
         </motion.div>
       </section>
 
-      <section className="products-container-main">
-        <div className="main-container-card">
-          {filteredData().map((item) => (
+      <Row xs={2} md={3} lg={4} className="p-2 g-2 mt-1 d-flex justify-content-center align-items-start align-content-center justify-self-center justify-items-center">
+        {filteredData().map((item) => (
+          <Col>
             <MainProductCard key={item.id} item={item} />
-          ))}
-        </div>
-      </section>
+          </Col>
+        ))}
+      </Row>
       <BackToTopButton />
     </main>
   );

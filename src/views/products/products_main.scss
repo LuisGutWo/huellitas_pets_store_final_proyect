@@ -30,22 +30,28 @@
     font-size: 60%;
     margin: 0;
   }
+
   @media (min-width: 768px) {
     height: 25vh;
+
     & h6 {
       font-size: 1.8vw;
 
     }
   }
+
   @media (min-width: 1024px) {
     height: 30vh;
+
     & h6 {
       font-size: 1.5vw;
 
     }
   }
+
   @media (min-width: 1440px) {
     height: 38vh;
+
     & h6 {
       font-size: 1.8vw;
 
@@ -124,26 +130,6 @@
 
 }
 
-.products-carousel {
-  background-color: #E5BEEC;
-  padding: 0rem 1rem 0rem 1rem;
-  height: 50vh;
-  @media (min-width: 768px) {
-    height: 55vh;
-    }
-  @media (min-width: 1024px) {
-    height: 55vh;
-    }
-  @media (min-width: 1440px) {
-    height: 55vh;
-    }
-  @media (min-width: 2560px) {
-    height: 86vh;
-    }
-  
-
-}
-
 .products-container {
   background-color: #E5BEEC;
   padding: 1rem;
@@ -151,9 +137,46 @@
   height: 100%;
   width: 100%;
 
-  @media(min-width: 2560px){
-  
-  }
+}
+
+.discount-container {
+  position: relative;
+  background: #2c3e50;
+  height: 100%;
+
+}
+
+.wave {
+  position: absolute;
+  height: 40px;
+  width: 100%;
+  background: #E5BEEC;
+  bottom: 100%;
+}
+
+.wave::before,
+.wave::after {
+  content: "";
+  display: block;
+  position: absolute;
+  border-radius: 100% 50%;
+}
+
+.wave::before {
+  overflow: hidden;
+  width: 55%;
+  height: 109%;
+  background-color: #2A2F4F;
+  right: -1.5%;
+  top: 60%;
+}
+
+.wave::after {
+  width: 55%;
+  height: 100%;
+  background-color: #E5BEEC;
+  left: -1.5%;
+  top: 37%;
 }
 
 .main-featured-container {
@@ -162,89 +185,21 @@
 
 }
 
-.products-header-discount {
-  color: #f4f1ff;
-  padding-top: 1.8rem;
-  height: 100%;
-  background-color: #2A2F4F;
-  margin: 0;
-
-  & h2 {
-    font-size: 2rem;
-    text-align: center;
-    font-weight: bold;
-  }
-  @media (min-width: 2560px){
-    & h2 {
-      font-size: 3rem;
-      margin-bottom: 3rem;
-    }
-  }
-}
-
-.products-carousel-discount {
-  height: 100%;
-  padding: 0rem 1rem 0rem 1rem;
-
-  @media (min-width: 768px) {
-    height: 55vh;
-  }
-  @media (min-width: 2560px) {
-    height: 80vh;
-   
-  }
-
-}
-
-.products-header-news {
+h2 {
+  color: #d2c8ff;
+  height: 7rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 5vh;
-  padding-top: 0rem;
-  background-color: #2A2F4F;
-  color: #f4f1ff;
-
-  & h2 {
-    font-size: 2rem;
-    font-weight: bold;
-    margin: 0;
-  }
-  @media (min-width: 768px) {
-    height: 10vh;
-  }
-  @media (min-width: 2560px) {
-    & h2 {
-      font-size: 3rem;
-      margin-bottom: 3rem;
-    }
-  }
-
+  font-size: 150%;
+  font-weight: bold;
 }
 
 .products-carousel-featured {
-  position: relative;
   background-color: #2A2F4F;
-  padding: 0rem 2rem 0rem 2rem;
-  margin-bottom: 0;
-  height: 50vh;
-  width: 100%;
   padding: 1rem;
+  margin-bottom: 0;
+  height: 100%;
+  width: 100%;
 
-  @media (min-width: 768px) {
-    height: 50vh;
-  }
-  @media (min-width: 1024px) {
-    height: 60vh;
-  }
-  @media (min-width: 2560px) {
-    height: 70vh;
-  }
 }
-
-
-
-
-
-
-

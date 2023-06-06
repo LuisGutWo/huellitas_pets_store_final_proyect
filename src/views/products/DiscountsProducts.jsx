@@ -85,7 +85,8 @@ const DiscountsProducts = () => {
   if (loading) return <Loading />;
 
   return (
-    <main>
+    <main className="discount-container">
+      <div className="wave"></div>
       {/* Discount products carousel */}
       <div className="main-featured-container">
         <section>
@@ -101,7 +102,6 @@ const DiscountsProducts = () => {
               opacity: 0.5,
               transition: { duration: 0.7 },
             }}
-            className="products-header-discount"
           >
             <h2>Descuentos</h2>
           </motion.div>
@@ -118,43 +118,40 @@ const DiscountsProducts = () => {
             opacity: 0.5,
             transition: { duration: 0.7 },
           }}
-          className="products-carousel-discount"
         >
           {loading ? (
             <Loading />
           ) : (
-            <div>
-              <Carousel
-                responsive={responsive}
-                additionalTransfrom={0}
-                arrows={false}
-                autoPlay
-                autoPlaySpeed={6000}
-                customTransition="all 2s linear"
-                centerMode={false}
-                containerClass="container-with-dots"
-                draggable
-                focusOnSelect={false}
-                infinite
-                keyBoardControl
-                minimumTouchDrag={80}
-                pauseOnHover
-                renderArrowsWhenDisabled={false}
-                renderButtonGroupOutside={false}
-                renderDotsOutside={false}
-                className="products-carousel-featured"
-                rewind={false}
-                rewindWithAnimation={false}
-                rtl={false}
-                shouldResetAutoplay
-                showDots={false}
-                sliderClass="additionalTransfrom"
-                slidesToSlide
-                swipeable
-              >
-                {filteredProductDiscount}
-              </Carousel>
-            </div>
+            <Carousel
+              responsive={responsive}
+              additionalTransfrom={0}
+              arrows={false}
+              autoPlay
+              autoPlaySpeed={6000}
+              customTransition="all 2s linear"
+              centerMode={false}
+              containerClass="container-with-dots"
+              draggable
+              focusOnSelect={false}
+              infinite
+              keyBoardControl
+              minimumTouchDrag={80}
+              pauseOnHover
+              renderArrowsWhenDisabled={false}
+              renderButtonGroupOutside={false}
+              renderDotsOutside={false}
+              className="products-carousel-featured"
+              rewind={false}
+              rewindWithAnimation={false}
+              rtl={false}
+              shouldResetAutoplay
+              showDots={false}
+              sliderClass="additionalTransfrom"
+              slidesToSlide
+              swipeable
+            >
+              {filteredProductDiscount}
+            </Carousel>
           )}
         </motion.div>
         {/* News products carouse */}
@@ -171,7 +168,6 @@ const DiscountsProducts = () => {
               opacity: 0.5,
               transition: { duration: 0.7 },
             }}
-            className="products-header-news"
           >
             <h2>Novedades</h2>
           </motion.div>
@@ -193,38 +189,36 @@ const DiscountsProducts = () => {
           {loading ? (
             <Loading />
           ) : (
-            <div>
-              <Carousel
-                responsive={responsive}
-                additionalTransfrom={0}
-                arrows={false}
-                autoPlay
-                autoPlaySpeed={7000}
-                customTransition="all 2s linear"
-                centerMode={false}
-                containerClass="container-with-dots"
-                draggable
-                focusOnSelect={false}
-                infinite
-                keyBoardControl
-                minimumTouchDrag={80}
-                pauseOnHover
-                renderArrowsWhenDisabled={false}
-                renderButtonGroupOutside={false}
-                renderDotsOutside={false}
-                className="products-carousel-featured"
-                rewind={false}
-                rewindWithAnimation={false}
-                rtl={false}
-                shouldResetAutoplay
-                showDots={false}
-                sliderClass=""
-                slidesToSlide
-                swipeable
-              >
-                {filteredProductNews}
-              </Carousel>
-            </div>
+            <Carousel
+              responsive={responsive}
+              additionalTransfrom={0}
+              arrows={false}
+              autoPlay
+              autoPlaySpeed={7000}
+              customTransition="all 2s linear"
+              centerMode={false}
+              containerClass="container-with-dots"
+              draggable
+              focusOnSelect={false}
+              infinite
+              keyBoardControl
+              minimumTouchDrag={80}
+              pauseOnHover
+              renderArrowsWhenDisabled={false}
+              renderButtonGroupOutside={false}
+              renderDotsOutside={false}
+              className="products-carousel-featured"
+              rewind={false}
+              rewindWithAnimation={false}
+              rtl={false}
+              shouldResetAutoplay
+              showDots={false}
+              sliderClass=""
+              slidesToSlide
+              swipeable
+            >
+              {filteredProductNews}
+            </Carousel>
           )}
         </motion.div>
       </div>
