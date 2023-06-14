@@ -19,7 +19,7 @@
 //Main App Styles
 .app {
   font-family: styles.$primary-font;
-  background-color: #FDE2F3;
+  background-color: styles.$background-color;
   height: 100%;
   width: 100%;
 
@@ -51,7 +51,7 @@
   text-decoration: none;
   margin-bottom: 1rem;
   margin-top: 1rem;
-  color: rgba(208, 208, 208, 0.837);
+  color: styles.$background-color;
   border-radius: 6px;
 }
 
@@ -61,7 +61,7 @@
   margin-top: 1rem;
   padding: 4px;
   font-display: inherit;
-  color: rgb(91, 91, 91);
+  color: rgb(23, 61, 231);
   border-radius: 6px;
 }
 
@@ -70,7 +70,7 @@
   margin-bottom: 1rem;
   margin-top: 1rem;
   padding: 4px;
-  color: rgba(233, 233, 233, 0.929);
+  color: styles.$background-color;
   border-radius: 6px;
 }
 
@@ -114,11 +114,22 @@
   border: none;
   border-radius: 50%;
 
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
+
+  &:hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+
   @media (min-width: 768px) {
     right: 89%;
     height: 4rem;
     width: 4rem;
   }
+
   @media (min-width: 1024px) {
     right: 90%;
     height: 5rem;

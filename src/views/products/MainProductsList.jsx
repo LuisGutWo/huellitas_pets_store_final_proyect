@@ -74,6 +74,17 @@ const MainProductsList = () => {
         >
           <h3>NUESTROS PRODUCTOS</h3>
           <h6>Conoce esta selección hecha para ti</h6>
+          <input
+            type="text"
+            style={{
+              fontStyle: "italic",
+              borderRadius: "5px",
+              backgroundColor: "Background",
+            }}
+            placeholder="Buscar producto"
+            className="main-form-products-categories"
+            onChange={(e) => setSearch(e.target.value)}
+          />
         </motion.div>
       </section>
 
@@ -115,22 +126,15 @@ const MainProductsList = () => {
               </NavLink>
             ))}
           </Navbar>
-          <nav className="main-form-products-categories">
-            <input
-              type="text"
-              style={{
-                fontStyle: "italic",
-                borderRadius: "5px",
-                backgroundColor: "Background",
-              }}
-              placeholder="Buscar producto"
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </nav>
         </motion.div>
       </section>
 
-      <Row xs={2} md={3} lg={4} className="p-2 g-2 mt-1 d-flex justify-content-center align-items-start align-content-center justify-self-center justify-items-center">
+      <Row
+        xs={2}
+        md={3}
+        lg={4}
+        className="p-2 g-2 mt-1 d-flex justify-content-center align-items-start align-content-center justify-self-center justify-items-center"
+      >
         {filteredData().map((item) => (
           <Col>
             <MainProductCard key={item.id} item={item} />

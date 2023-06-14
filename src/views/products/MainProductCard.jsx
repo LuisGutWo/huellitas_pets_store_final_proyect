@@ -49,8 +49,8 @@ export default function MainProductCard({ item, selectFavorites }) {
         transition: { duration: 0.5 },
       }}
     >
-      <Card style={{ width: "100%", height: "100%" }} className="product-card">
-        <Link to={`/products/${item.id}`} className="m-2">
+      <Card className="product-card">
+        <Link to={`/products/${item.id}`} className="card-image-container">
           <Card.Img variant="top" src={item.img} className="card-image" />
         </Link>
         <motion.div

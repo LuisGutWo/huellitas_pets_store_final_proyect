@@ -20,7 +20,7 @@ header {
 
 
 .main-navbar {
-  background-color: #2A2F4F;
+  background-color: styles.$primary-color;
   height: 100%;
   width: 100%;
 
@@ -73,16 +73,20 @@ header {
     background-color: #191127f4;
     color: #b3b3b3;
   }
+
+  @media (min-width: 1024px) {
+    margin: 0 25rem 0 20rem;
+  }
 }
 
 .offcanvas-nav {
-  background-color: #ffffff;
+  background-color: styles.$background-color;
   width: 50%;
 }
 
 .offcanvas-body-header {
   width: 50vw;
-  
+
 
 }
 
@@ -99,7 +103,7 @@ header {
   width: 100%;
   height: 100%;
   padding: 0;
-  background-color: #917FB3;
+  background-color: styles.$secondary-color;
 
   @media (max-width: 768px) {
     .offline-user-warning {
@@ -139,7 +143,6 @@ header {
 }
 
 .navbar-nav {
-  background-color: #917FB3;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -206,7 +209,7 @@ header {
 
 .offline-user-warning {
   position: relative;
-  color: rgb(182, 0, 0);
+  color: rgb(236, 0, 0);
   font-size: 0.8rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
@@ -225,8 +228,18 @@ header {
   z-index: 100;
   height: 100%;
 
+
   & .wsp-image {
     width: 4rem;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: 1s ease-in-out;
+    transition: 1s ease-in-out;
+
+    &:hover {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
   }
 
   @media (min-width: 768px) {

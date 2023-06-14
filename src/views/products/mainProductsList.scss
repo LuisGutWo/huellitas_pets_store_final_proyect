@@ -35,6 +35,7 @@
 
         @media (min-width: 768px) {
             font-size: 1.8vw;
+            padding-left: 3rem;
         }
     }
 
@@ -54,7 +55,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #ffffff;
+    background-color: styles.$background-color;
     background-size: cover;
 }
 
@@ -100,7 +101,7 @@
     overflow: hidden;
     height: 100%;
     padding-bottom: 0.8rem;
-    background-color: #917FB3;
+    background-color: styles.$background-color;
 }
 
 
@@ -124,17 +125,16 @@
 
         width: 15%;
         height: 2rem;
-        font-size: 50%;
+        font-size: 100%;
         font-weight: bold;
-        color: #1b0650;
-        background-color: #edebf4d5;
-        border: 2px solid #2e2646c5;
-        box-shadow: 2px 2px 5px 1px rgba(65, 65, 65, 0.361);
+        background-color: styles.$purple-light;
+        border: 1px solid #2e2646c5;
+        box-shadow: 1px 1px 3px 1px rgba(65, 65, 65, 0.361);
         border-radius: 5px;
 
         &:hover {
-            color: #d2c8ff;
-            background-color: #482351d4;
+            color: styles.$background-color;
+            background-color: styles.$secondary-color;
             border: 1px solid #7a66ffc1;
             border-radius: 10px;
         }
@@ -142,19 +142,14 @@
         @media (min-width: 768px) {
             width: 12%;
             height: 3rem;
-            font-size: 80%;
         }
     }
 }
 .main-form-products-categories {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-
     font-size: 0.8rem;
+    width: 50%;
+    margin-left: 13.5rem;
+    margin-top: 1rem;
   }
   .products-list-container{
     padding: 1rem;

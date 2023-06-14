@@ -56,7 +56,8 @@ const HeroSection = () => {
               <br /> y mucho mas!
             </h5>
             <NavLink to={"/products"} className="hero-button" variant="dark">
-              <ArrowForwardIosIcon style={{ width: "1rem" }} /> Compre Ahora
+              <ArrowForwardIosIcon style={{ width: "1rem" }} />
+              Ir a productos
             </NavLink>
           </motion.article>
         </section>
@@ -110,7 +111,7 @@ const HeroSection = () => {
               con todo lo que necesites
             </h5>
             <NavLink to={"/products"} className="hero-button" variant="dark">
-              <ArrowForwardIosIcon style={{ width: "1rem" }} /> Compre Ahora
+              <ArrowForwardIosIcon style={{ width: "1rem" }} /> Ir a productos
             </NavLink>
           </motion.article>
         </section>
@@ -165,7 +166,8 @@ const HeroSection = () => {
               <br /> en tu mascota.
             </h5>
             <NavLink to={"/products"} className="hero-button" variant="dark">
-              <ArrowForwardIosIcon style={{ width: "1rem" }} /> Compre Ahora
+              <ArrowForwardIosIcon style={{ width: "1rem" }} /> 
+              Ir a productos
             </NavLink>
           </motion.article>
         </section>

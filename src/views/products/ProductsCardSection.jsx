@@ -97,6 +97,12 @@ export default function Products() {
         >
           <h3>NUESTROS PRODUCTOS</h3>
           <h6>Conoce esta selección hecha para ti</h6>
+          <input
+            type="text"
+            className="form-products-categories"
+            placeholder="Buscar producto"
+            onChange={(e) => setSearch(e.target.value)}
+          />
         </motion.div>
       </section>
 
@@ -138,18 +144,6 @@ export default function Products() {
               </NavLink>
             ))}
           </Navbar>
-          <nav className="form-products-categories">
-            <input
-              type="text"
-              style={{
-                fontStyle: "italic",
-                borderRadius: "5px",
-                backgroundColor: "Background",
-              }}
-              placeholder="Buscar producto"
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </nav>
         </motion.div>
       </section>
 

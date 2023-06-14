@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { useUserContext } from "../context/UserContext";
 import { useProductsContext } from "../context/ProductsContext";
 import { logout } from "../config/firebase";
+import { formatPrice } from "../utils/formatPrice";
 import axios from "axios";
 
 import Modal from "react-bootstrap/Modal";
@@ -38,7 +39,7 @@ export default function MainHeader({ item }) {
   const handleCloseLogin = () => setShowLogin(false);
   const handleShowLogin = () => setShowLogin(true);
 
-  const { totalItemProducts } = useProductsContext();
+  const { totalItemProducts, totalCart } = useProductsContext();
 
   const navigate = useNavigate();
   const { user } = useUserContext();
@@ -202,7 +203,6 @@ export default function MainHeader({ item }) {
                           style={{
                             width: "3rem",
                             fontSize: "2rem",
-                            color: "GrayText",
                           }}
                         />
                       </NavLink>
@@ -244,7 +244,6 @@ export default function MainHeader({ item }) {
                             style={{
                               width: "3rem",
                               fontSize: "1.8rem",
-                              color: "GrayText",
                             }}
                           />
                           {user && (
@@ -288,13 +287,16 @@ export default function MainHeader({ item }) {
                     )}
                   </section>
                   {user && (
-                    <Button
-                      onClick={handleUserLogout}
-                      variant="outline-danger"
-                      className="btn btn-lg p-2 ms-2 rounded-4 fs-6"
-                    >
-                      Logout
-                    </Button>
+                    <>
+                      <div className="text-light">${formatPrice(totalCart())}</div>
+                      <Button
+                        onClick={handleUserLogout}
+                        variant="outline-danger"
+                        className="btn btn-lg p-2 ms-2 rounded-4 fs-6"
+                      >
+                        Logout
+                      </Button>
+                    </>
                   )}
                 </Nav>
               </Offcanvas.Body>
@@ -315,7 +317,10 @@ export default function MainHeader({ item }) {
               color: "transparent",
             }}
           />
-          <Navbar.Collapse id="responsive-navbar-nav" className="navbar-nav w-7">
+          <Navbar.Collapse
+            id="responsive-navbar-nav"
+            className="navbar-nav w-7"
+          >
             <Nav>
               <NavLink
                 to="/"

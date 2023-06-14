@@ -63,7 +63,7 @@
   overflow: hidden;
   height: 100%;
   padding-bottom: 0.8rem;
-  background-color: #E5BEEC;
+  background-color: styles.$background-color;
 
   // @media (min-width: 768px) {
   //   }
@@ -97,13 +97,13 @@
       font-size: 50%;
       font-weight: bold;
       color: #1b0650;
-      background-color: #e2ddf9d5;
-      border: 2px solid #67549fc5;
-      box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.361);
+      background-color: #f5f3ffd5;
+      border: 1px solid #67549fc5;
+      box-shadow: 1px 1px 6px 0.3px rgba(0, 0, 0, 0.244);
       border-radius: 5px;
 
       &:hover {
-        color: #d2c8ff;
+        color: styles.$background-color;
         background-color: #482351d4;
         border: 1px solid #7a66ffc1;
         border-radius: 10px;
@@ -112,28 +112,31 @@
       @media (min-width: 768px) {
         width: 12%;
         height: 3rem;
-        font-size: 80%;
+        font-size: 100%;
       }
     }
   }
+}
 
-  & .form-products-categories {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
+.form-products-categories {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 
-    font-size: 0.8rem;
-  }
-
+  font-size: 0.8rem;
+  width: 50%;
+  border-radius: 5px;
+  margin-top: 2rem;
+  padding-left: 0.5rem;
 }
 
 .products-container {
-  background-color: #E5BEEC;
-  padding: 1rem;
-  margin-bottom: 0;
+  background-color: styles.$background-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0 5rem 0;
   height: 100%;
   width: 100%;
 
@@ -141,7 +144,7 @@
 
 .discount-container {
   position: relative;
-  background: #2c3e50;
+  background: styles.$primary-color;
   height: 100%;
 
 }
@@ -150,7 +153,7 @@
   position: absolute;
   height: 40px;
   width: 100%;
-  background: #E5BEEC;
+  background: styles.$background-color;
   bottom: 100%;
 }
 
@@ -174,29 +177,29 @@
 .wave::after {
   width: 55%;
   height: 100%;
-  background-color: #E5BEEC;
+  background-color: styles.$background-color;
   left: -1.5%;
   top: 37%;
 }
 
 .main-featured-container {
-  background-color: #2A2F4F;
+  background-color: styles.$primary-color;
   height: 100%;
 
 }
 
 h2 {
-  color: #d2c8ff;
+  color: styles.$background-color;
   height: 7rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 150%;
+  font-size: 170%;
   font-weight: bold;
 }
 
 .products-carousel-featured {
-  background-color: #2A2F4F;
+  background-color: styles.$primary-color;
   padding: 1rem;
   margin-bottom: 0;
   height: 100%;
