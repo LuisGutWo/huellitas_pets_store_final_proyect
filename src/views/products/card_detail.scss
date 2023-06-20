@@ -99,7 +99,7 @@
     padding: 0.3rem;
     border: none;
     text-decoration: none;
-    background-image: linear-gradient(45deg, #467a7a 0%, #d6207b 100%);
+    background-image: styles.$gradient-background;
 
     & .shopping-icon {
         font-size: 5vw;
@@ -117,12 +117,12 @@
     }
 
     @media (min-width: 1024px) {
-        font-size: 2vw;
+        font-size: 1.5vw;
         width: 14rem;
         height: 2.5rem;
 
         & .shopping-icon {
-            font-size: 3vw;
+            font-size: 2vw;
         }
 
     }

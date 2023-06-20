@@ -288,11 +288,11 @@ export default function MainHeader({ item }) {
                   </section>
                   {user && (
                     <>
-                      <div className="text-light">${formatPrice(totalCart())}</div>
+                      <div className="navbar-total-price">${formatPrice(totalCart())}</div>
                       <Button
                         onClick={handleUserLogout}
                         variant="outline-danger"
-                        className="btn btn-lg p-2 ms-2 rounded-4 fs-6"
+                        className="logout-button"
                       >
                         Logout
                       </Button>
