@@ -118,6 +118,7 @@ const DiscountsProducts = () => {
             opacity: 0.5,
             transition: { duration: 0.7 },
           }}
+          className="carrousel-container"
         >
           {loading ? (
             <Loading />
@@ -127,7 +128,7 @@ const DiscountsProducts = () => {
               additionalTransfrom={0}
               arrows={false}
               autoPlay
-              autoPlaySpeed={6000}
+              autoPlaySpeed={3000}
               customTransition="all 2s linear"
               centerMode={false}
               containerClass="container-with-dots"
@@ -136,16 +137,16 @@ const DiscountsProducts = () => {
               infinite
               keyBoardControl
               minimumTouchDrag={80}
-              pauseOnHover
+              pauseOnHover={true}
               renderArrowsWhenDisabled={false}
-              renderButtonGroupOutside={false}
-              renderDotsOutside={false}
+              renderButtonGroupOutside={true}
+              renderDotsOutside={true}
               className="products-carousel-featured"
               rewind={false}
               rewindWithAnimation={false}
               rtl={false}
               shouldResetAutoplay
-              showDots={false}
+              showDots={true}
               sliderClass="additionalTransfrom"
               slidesToSlide
               swipeable
@@ -184,7 +185,7 @@ const DiscountsProducts = () => {
             opacity: 0.5,
             transition: { duration: 0.7 },
           }}
-          className="products-carousel-discount"
+          className="carrousel-container"
         >
           {loading ? (
             <Loading />
@@ -194,7 +195,7 @@ const DiscountsProducts = () => {
               additionalTransfrom={0}
               arrows={false}
               autoPlay
-              autoPlaySpeed={7000}
+              autoPlaySpeed={4000}
               customTransition="all 2s linear"
               centerMode={false}
               containerClass="container-with-dots"
@@ -203,7 +204,7 @@ const DiscountsProducts = () => {
               infinite
               keyBoardControl
               minimumTouchDrag={80}
-              pauseOnHover
+              pauseOnHover={true}
               renderArrowsWhenDisabled={false}
               renderButtonGroupOutside={false}
               renderDotsOutside={false}

@@ -14,8 +14,8 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
-  animation: fadeIn 1s 1.5s;
-  animation-fill-mode: forwards;
+  transition: ease-in-out 1s all;
+  transition-delay: 1s;
 }
 
 
@@ -23,26 +23,19 @@ header {
   background-color: styles.$primary-color;
   height: 100%;
   width: 100%;
-
-  @media (min-width: 768px) {
-    height: 11vh;
-  }
-
-  @media (min-width: 1440px) {
-    height: 15vh;
-  }
 }
 
 .header-logo img {
   width: 26vw;
 
   @media (min-width: 768px) {
-    width: 30vh;
+    width: 34vh;
+    margin-left: 2rem;
   }
 
-  @media (min-width: 1440px) {
-    width: 35vh;
-  }
+  // @media (min-width: 1440px) {
+  //   width: 35vh;
+  // }
 }
 
 .navbar-form {
@@ -52,9 +45,10 @@ header {
   align-items: center;
   gap: 0;
 
+
   & .navbar-select {
-    height: 1.5rem;
-    width: 9rem;
+    height: 2rem;
+    width: 15rem;
     font-size: 0.6rem;
     padding: 0px 0px 0px 7px;
     border-radius: 4px 0px 0px 4px;
@@ -66,16 +60,28 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 1.5rem;
-    height: 1.6rem;
+    width: 2rem;
+    height: 2rem;
     border: none;
     border-radius: 0px 4px 4px 0px;
     background-color: #191127f4;
     color: #b3b3b3;
   }
 
-  @media (min-width: 1024px) {
-    margin: 0 25rem 0 20rem;
+  @media (min-width: 768px) {
+    margin-left: 13rem;
+    margin-right: 20rem;
+
+    & .navbar-select {
+      height: 2rem;
+      width: 15rem;
+    }
+
+    & .search-button {
+      width: 2rem;
+      height: 2rem;
+    }
+
   }
 }
 
@@ -115,6 +121,29 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    & .navbar-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+
+      @media (min-width: 768px) {
+        font-size: 1.7vw;
+        height: 8vh;
+      }
+
+      @media (min-width: 1024px) {
+        font-size: 1.2vw;
+        gap: 3rem;
+        margin-right: 4rem;
+      }
+
+      @media (min-width: 1440px) {
+        font-size: 1.2vw;
+        height: 100%;
+      }
+    }
   }
 
   @media (min-width: 768px) {
@@ -142,26 +171,7 @@ header {
   }
 }
 
-.navbar-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
 
-  @media (min-width: 768px) {
-    font-size: 1.7vw;
-    height: 8vh;
-  }
-
-  @media (min-width: 1024px) {
-    font-size: 1.5vw;
-  }
-
-  @media (min-width: 1440px) {
-    font-size: 1.2vw;
-    height: 100%;
-  }
-}
 
 .welcome-user-section {
   display: flex;

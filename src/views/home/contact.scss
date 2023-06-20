@@ -2,10 +2,15 @@
 
 .contact-main-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   width: 100%;
   height: 50rem;
+
+  @media (min-width: 1024) {
+    height: 30rem;
+  } 
   @media (min-width: 1440px) {
     height: 100rem;
   }
@@ -13,8 +18,8 @@
 
 
 .main-contact {
-  width: 100%;
-  height: 100vh;
+  width: 50%;
+  height: 100%;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -29,7 +34,6 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    width: 100vw;
     height: 100%;
   }
 
@@ -44,13 +48,13 @@
     align-items: flex-end;
 
     width: 90%;
-    height: 100%;
+    height: 100vh;
     padding: 0rem;
   }
 
 
   @media (min-width: 768px) {
-    height: 100rem;
+    height: 100%;
 
 
 
@@ -65,7 +69,6 @@
 
   }
   @media (min-width: 1024px) {
-    height: 130rem;
 
 
 
@@ -75,25 +78,25 @@
     }
 
     & .contact-container {
-      width: 90%;
+      width: 80%;
     }
 
   }
-  @media (min-width: 1440px) {
-    height: 200vh;
+  // @media (min-width: 1440px) {
+  //   height: 200vh;
 
 
 
-    & .contact-img {
-      width: 100%;
-      height: 100%;
-    }
+  //   & .contact-img {
+  //     width: 100%;
+  //     height: 100%;
+  //   }
 
-    & .contact-container {
-      width: 90%;
-    }
+  //   & .contact-container {
+  //     width: 90%;
+  //   }
 
-  }
+  // }
 }
 
 .contact-form {
@@ -101,7 +104,7 @@
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   text-align: end;
 
   font-size: 3vw;
@@ -121,12 +124,12 @@
   align-items: center;
   text-align: center;
 
-  width: 100%;
-  height: 70%;
+  width: 50%;
+  height: 100%;
 
-  @media (min-width: 768px) {
-    height: 100rem;
-  }
+  // @media (min-width: 768px) {
+  //   height: 100rem;
+  // }
 }
 
 .map-wrap {
@@ -147,16 +150,16 @@
 }
 
 .info-map {
-  position: absolute !important;
-  top: 79%;
-  left: 16%;
+  position: absolute;
+  top: 20%;
+  left: 60%;
   width: 35%;
-  height: 10vh;
+  height: 100%;
   z-index: 100;
   padding-top: 0.4rem;
-  background: #000000;
+  background: #000000c0;
   border-radius: 0.7rem;
-  box-shadow: 3px 5px 8px #141414cf;
+  box-shadow: 3px 5px 8px #1414149d;
   color: #fff;
   font-size: 3vw;
   font-weight: 300;
@@ -181,29 +184,29 @@
     }
   } 
   @media (min-width: 1024px){
-    top: 108vh;
-    left: 6%;
-    width: 29%;
-    height: 25vh;
+    top: 30%;
+    left: 55%;
+    width: 17%;
+    height: 15vh;
     padding-top: 0.8rem;
-    font-size: 2.2vw;
+    font-size: 1.2vw;
     & span {
       font-size: 80%;
 
     }
   } 
-  @media (min-width: 1440px){
-    top: 155vh;
-    left: 6%;
-    width: 29%;
-    height: 30vh;
-    padding-top: 0.8rem;
-    font-size: 2.2vw;
-    & span {
-      font-size: 80%;
+  // @media (min-width: 1440px){
+  //   top: 155vh;
+  //   left: 6%;
+  //   width: 29%;
+  //   height: 30vh;
+  //   padding-top: 0.8rem;
+  //   font-size: 2.2vw;
+  //   & span {
+  //     font-size: 80%;
 
-    }
-  } 
+  //   }
+  // } 
 }
 
 

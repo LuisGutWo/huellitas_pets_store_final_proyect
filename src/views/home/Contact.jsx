@@ -57,7 +57,7 @@ const Contact = () => {
             }
             alt=""
             className="img-fluid"
-            style={{ width: "30%", padding: "0rem", margin: "0rem" }}
+            style={{ width: "40%", padding: "0rem", margin: "0rem" }}
           />
           <Form ref={form} onSubmit={sendEmail} className="contact-form">
             <Form.Group className="mb-1">
@@ -82,7 +82,7 @@ const Contact = () => {
             </Form.Group>
             <Button
               onClick={handleShowEmailSend}
-              className="about-button"
+              className="about-button mt-2"
               type="submit"
               value="Send"
             >
@@ -99,7 +99,7 @@ const Contact = () => {
           </Form>
         </section>
       </article>
-      <section className="map-section">
+      <article className="map-section">
         <div className="info-map">
           Huellitas PetsStore,
           <br />
@@ -115,7 +115,7 @@ const Contact = () => {
             </Marker>
           </MapContainer>
         </div>
-      </section>
+      </article>
     </motion.div>
   );
 };

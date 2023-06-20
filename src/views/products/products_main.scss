@@ -32,7 +32,7 @@
   }
 
   @media (min-width: 768px) {
-    height: 25vh;
+    height: 30vh;
 
     & h6 {
       font-size: 1.8vw;
@@ -41,7 +41,7 @@
   }
 
   @media (min-width: 1024px) {
-    height: 30vh;
+    height: 50vh;
 
     & h6 {
       font-size: 1.5vw;
@@ -50,7 +50,6 @@
   }
 
   @media (min-width: 1440px) {
-    height: 38vh;
 
     & h6 {
       font-size: 1.8vw;
@@ -62,7 +61,8 @@
 .products-navbar {
   overflow: hidden;
   height: 100%;
-  padding-bottom: 0.8rem;
+  padding: 1rem 0 1rem 0;
+  border-bottom: solid 2px #2a2f4f35;
   background-color: styles.$background-color;
 
   // @media (min-width: 768px) {
@@ -124,8 +124,8 @@
   align-items: center;
   align-content: center;
 
-  font-size: 0.8rem;
-  width: 50%;
+  font-size: 1.3rem;
+  width: 100%;
   border-radius: 5px;
   margin-top: 2rem;
   padding-left: 0.5rem;
@@ -198,11 +198,15 @@ h2 {
   font-weight: bold;
 }
 
-.products-carousel-featured {
-  background-color: styles.$primary-color;
-  padding: 1rem;
-  margin-bottom: 0;
-  height: 100%;
-  width: 100%;
+.carrousel-container{
+  padding: 0 2rem 0 2rem;
 
+  & .products-carousel-featured {
+    background-color: styles.$primary-color;
+    padding: 1.5rem;
+    margin-bottom: 0;
+    height: 100%;
+    width: 100%;
+    
+  }
 }

@@ -48,6 +48,7 @@ export default function MainProductCard({ item, selectFavorites }) {
         opacity: 0.7,
         transition: { duration: 0.5 },
       }}
+      className="text-center"
     >
       <Card className="product-card">
         <Link to={`/products/${item.id}`} className="card-image-container">
@@ -67,7 +68,7 @@ export default function MainProductCard({ item, selectFavorites }) {
           }}
           style={{ height: "35%" }}
         >
-          <Card.Body>
+          <Card.Body className="text-center pb-0 pt-2">
             <Card.Title className="card-body-title">{item.name}</Card.Title>
             <Card.Text className="card-body-price">
               <b>${item.price}</b>

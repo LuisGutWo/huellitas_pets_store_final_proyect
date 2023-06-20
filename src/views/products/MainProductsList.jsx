@@ -133,7 +133,7 @@ const MainProductsList = () => {
         xs={2}
         md={3}
         lg={4}
-        className="p-2 g-2 mt-1 d-flex justify-content-center align-items-start align-content-center justify-self-center justify-items-center"
+        className="g-0 mt-0 ms-3 d-flex justify-content-center align-items-center align-content-center justify-self-center main-products-container"
       >
         {filteredData().map((item) => (
           <Col>

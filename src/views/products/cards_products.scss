@@ -6,9 +6,9 @@
     display: flex;
     justify-content: center;
     border-radius: 5px;
-    width: 90%;
-    height: fit-content;
+    width: 19vw;
     margin: 1rem 0 1rem 0;
+    padding: 0;
 
     border: styles.$secondary-color transparent 1px;
     box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.147);
@@ -24,26 +24,27 @@
         box-shadow: 0 0 8px #33333386;
     }
 }
-.card-image-container{
-    height: 20rem !important;
+
+.card-image-container {
+    height: 15rem !important;
     overflow: hidden;
     position: relative;
-    display: block;
-    padding: 0;
-    max-width: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-bottom: solid 2px #8181812e;
-    
 
-    
 
-    & .card-image {  
-        width: 80%;
-        margin: 1.2rem 0 0 1.3rem;  
+
+
+    & .card-image {
+        width: 50%;
+        margin: 1.2rem 0 0 1.3rem;
         -webkit-transform: scale(1);
         transform: scale(1);
         -webkit-transition: 1s ease-in-out;
         transition: 1s ease-in-out;
-    
+
         &:hover {
             -webkit-transform: scale(1.1);
             transform: scale(1.1);
@@ -87,12 +88,17 @@
 // }
 
 .card-body-title {
-    font-size: 1.6vw;
-    height: 3.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3vw;
+    height: 7vh;
 }
 
 .card-body-price {
-    font-size: 100%;
+    font-size: 1.2vw;
+    padding-bottom: 1.1vh;
 }
 
 
@@ -104,28 +110,28 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: nowrap;
-    margin-bottom: 1rem;
-    padding: 0 1rem 0 1rem;
-    border: none;
+    margin-bottom: 0.8rem;
+    padding: 0.8rem 1rem 0 1rem;
+    border-top: solid 2px #8181812e;
     background-color: transparent;
 }
 
 .card-button-add {
     & .button-class {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-evenly;
         gap: 8px;
         align-items: center;
-        font-size: 65%;
-        width: 100%;
+        font-size: 75%;
+        width: 12vw;
         height: 100%;
-        padding: 0.4rem 0.6rem 0.4rem 0.6rem;
+        padding: 0.4rem 0rem 0.4rem 0rem;
         border: none;
         text-decoration: none;
         background-image: styles.$gradient-background;
 
         & .shopping-icon {
-            font-size: 130%;
+            font-size: 1.4vw;
         }
     }
 }
