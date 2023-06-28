@@ -2,11 +2,15 @@
 
 
 .main-login-box {
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/fondo_huellitas.jpg?alt=media&token=8cec0230-6ec5-45e6-9ca0-103e4f11be82);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 1rem 0rem 1rem 0rem;
+    margin: 0;
     text-align: center;
     padding: 3rem;
 

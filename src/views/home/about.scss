@@ -40,8 +40,8 @@
     }
 
     & .about-image {
+      width: 20%;
       @media (max-width: 768px) {
-        display: none;
       }
 
       @media (min-width: 1024px) {

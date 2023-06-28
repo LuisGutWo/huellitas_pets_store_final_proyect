@@ -54,17 +54,17 @@
 
 
   @media (min-width: 768px) {
-    height: 100%;
-
-
-
     & .contact-img {
+      background-position: center;
       width: 100%;
       height: 100%;
     }
 
     & .contact-container {
       width: 90%;
+      height: 100%;
+      justify-content: flex-start;
+      padding-top: 8rem;
     }
 
   }
@@ -111,7 +111,7 @@
   color: #000000;
 
   @media (min-width: 768px) {
-    font-size: 2.2vw;
+    font-size: 1.5vw;
   }
 
 }
@@ -127,9 +127,9 @@
   width: 50%;
   height: 100%;
 
-  // @media (min-width: 768px) {
-  //   height: 100rem;
-  // }
+  @media (min-width: 768px) {
+    
+  }
 }
 
 .map-wrap {
@@ -172,12 +172,12 @@
     color: #ffd900;
   }
   @media (min-width: 768px){
-    top: 100vh;
-    left: 8%;
-    width: 30%;
-    height: 20vh;
+    top: 90vh;
+    left: 55%;
+    width: 18%;
+    height: 14vh;
     padding-top: 0.8rem;
-    font-size: 2.2vw;
+    font-size: 1.5vw;
     & span {
       font-size: 80%;
 

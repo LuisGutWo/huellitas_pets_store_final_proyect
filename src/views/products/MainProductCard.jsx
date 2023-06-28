@@ -48,7 +48,7 @@ export default function MainProductCard({ item, selectFavorites }) {
         opacity: 0.7,
         transition: { duration: 0.5 },
       }}
-      className="text-center"
+      className="d-flex justify-content-center align-items-center"
     >
       <Card className="product-card">
         <Link to={`/products/${item.id}`} className="card-image-container">
@@ -66,7 +66,7 @@ export default function MainProductCard({ item, selectFavorites }) {
             opacity: 0.7,
             transition: { duration: 0.5 },
           }}
-          style={{ height: "35%" }}
+          style={{ height: "100%", width: "100%" }}
         >
           <Card.Body className="text-center pb-0 pt-2">
             <Card.Title className="card-body-title">{item.name}</Card.Title>

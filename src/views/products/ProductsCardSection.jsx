@@ -168,7 +168,7 @@ export default function Products() {
             <Carousel
               responsive={responsive}
               additionalTransfrom={0}
-              arrows={false}
+              arrows={true}
               autoPlay={false}
               autoPlaySpeed={3000}
               customTransition="all 2s linear"
@@ -176,10 +176,10 @@ export default function Products() {
               containerClass="container-with-dots"
               draggable
               focusOnSelect={false}
-              infinite
+              infinite={true}
               keyBoardControl
               minimumTouchDrag={80}
-              pauseOnHover
+              pauseOnHover={true}
               renderArrowsWhenDisabled={false}
               renderButtonGroupOutside={false}
               renderDotsOutside={false}

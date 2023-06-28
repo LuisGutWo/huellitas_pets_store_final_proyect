@@ -134,7 +134,7 @@ const DiscountsProducts = () => {
               containerClass="container-with-dots"
               draggable
               focusOnSelect={false}
-              infinite
+              infinite={true}
               keyBoardControl
               minimumTouchDrag={80}
               pauseOnHover={true}
@@ -200,8 +200,8 @@ const DiscountsProducts = () => {
               centerMode={false}
               containerClass="container-with-dots"
               draggable
-              focusOnSelect={false}
-              infinite
+              focusOnSelect={true}
+              infinite={true}
               keyBoardControl
               minimumTouchDrag={80}
               pauseOnHover={true}

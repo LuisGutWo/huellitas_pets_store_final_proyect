@@ -14,8 +14,8 @@ const MainFooter = () => {
               src={
                 "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/huellitas_logo_blanco.png?alt=media&token=1a021733-a8f1-4b0f-9f5b-d5ef83d24e22"
               }
-              width="172"
-              height="60"
+              width="50%"
+              height="50%"
               className="d-inline-block align-top"
               alt=""
             />

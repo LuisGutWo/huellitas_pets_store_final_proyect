@@ -45,6 +45,7 @@
   font-display: inherit;
   color: rgb(221, 221, 221);
   border-radius: 6px;
+  text-align: center;
 }
 
 .inactive-class {
@@ -53,6 +54,7 @@
   margin-top: 1rem;
   color: styles.$background-color;
   border-radius: 6px;
+  text-align: center;
 }
 
 .active-class-second {
@@ -63,6 +65,7 @@
   font-display: inherit;
   color: rgb(23, 61, 231);
   border-radius: 6px;
+  text-align: center;
 }
 
 .inactive-class-second {
@@ -72,6 +75,7 @@
   padding: 4px;
   color: styles.$background-color;
   border-radius: 6px;
+  text-align: center;
 }
 
 .active-button-navbar {

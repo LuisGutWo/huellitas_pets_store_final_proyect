@@ -135,11 +135,13 @@ const MainProductsList = () => {
         lg={4}
         className="g-0 mt-0 ms-3 d-flex justify-content-center align-items-center align-content-center justify-self-center main-products-container"
       >
-        {filteredData().map((item) => (
-          <Col>
-            <MainProductCard key={item.id} item={item} />
-          </Col>
-        ))}
+        {filteredData().map(
+          (item) => (
+            <Col key={item.id}>
+              <MainProductCard key={item.id} item={item} />
+            </Col>
+          )
+        )}
       </Row>
       <BackToTopButton />
     </main>
