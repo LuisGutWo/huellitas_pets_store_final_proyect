@@ -24,13 +24,13 @@
 * Framer-Motion
 * Email.js
 
-## Deploy
-
-* [Deployed by Netlify](https://huellitas-petsstore-new.netlify.app/)
-
 ## Screen shot del proyecto
 
 ![Huellitas Pet store](public/new_screenshot.png)
+
+## Deploy
+
+* [Deployed by Netlify](https://huellitas-petsstore-deployed.netlify.app/)
 
 ## Video Cuestionario proyecto final
 
