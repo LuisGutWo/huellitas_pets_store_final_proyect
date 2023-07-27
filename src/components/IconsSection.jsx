@@ -5,22 +5,10 @@ const IconsSection = () => {
   return (
     <div>
       <div className="icons-title">
-        <h5>Comprando en Huellitas</h5>
+        <h5 className="animate__animated animate__slideInLeft">Comprando en Huellitas</h5>
       </div>
       <div>
-        <motion.div
-          initial={{
-            opacity: 0,
-          }}
-          animate={{
-            opacity: 1,
-            transition: { delay: 0.7, duration: 0.7 },
-          }}
-          exit={{
-            opacity: 0.7,
-            transition: { duration: 0.5 },
-          }}
-          className="icons-container"
+        <section className="icons-container animate__animated animate__fadeIn"
         >
           <div className="icons-item">
             <img
@@ -57,7 +45,7 @@ const IconsSection = () => {
             />
             <p>Despacho a todo Chile</p>
           </div>
-        </motion.div>
+        </section>
       </div>
     </div>
   );

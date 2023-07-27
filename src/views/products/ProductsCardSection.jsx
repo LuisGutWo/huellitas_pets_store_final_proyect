@@ -57,7 +57,7 @@ export default function Products() {
     <MainProductCard key={item.id} item={item} />
   ));
 
-  const responsive = {
+  const responsive = { 
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
       items: 5,
@@ -81,20 +81,7 @@ export default function Products() {
   return (
     <main>
       {/* Products Header */}
-      <section className="products-header">
-        <motion.div
-          initial={{
-            opacity: 0,
-          }}
-          animate={{
-            opacity: 1,
-            transition: { delay: 0.9, duration: 0.9 },
-          }}
-          exit={{
-            opacity: 0.5,
-            transition: { duration: 0.7 },
-          }}
-        >
+      <section className="products-header animate__animated animate__fadeIn">
           <h3>NUESTROS PRODUCTOS</h3>
           <h6>Conoce esta selección hecha para ti</h6>
           <input
@@ -103,7 +90,6 @@ export default function Products() {
             placeholder="Buscar producto"
             onChange={(e) => setSearch(e.target.value)}
           />
-        </motion.div>
       </section>
 
       {/* Category Navbar */}
@@ -139,6 +125,7 @@ export default function Products() {
                 to={`/types/${type}`}
                 onClick={() => setFilter(type)}
                 className="category-buttons"
+                style={{ alignItems: "center" }}
               >
                 {type}
               </NavLink>

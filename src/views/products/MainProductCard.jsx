@@ -36,37 +36,14 @@ export default function MainProductCard({ item, selectFavorites }) {
   const { user } = useUserContext();
 
   return (
-    <motion.div
-      initial={{
-        opacity: 0,
-      }}
-      animate={{
-        opacity: 1,
-        transition: { delay: 0.7, duration: 0.7 },
-      }}
-      exit={{
-        opacity: 0.7,
-        transition: { duration: 0.5 },
-      }}
+    <section 
       className="d-flex justify-content-center align-items-center"
     >
-      <Card className="product-card">
+      <Card className="product-card animate__animated animate__fadeIn">
         <Link to={`/products/${item.id}`} className="card-image-container">
           <Card.Img variant="top" src={item.img} className="card-image" />
         </Link>
-        <motion.div
-          initial={{
-            opacity: 0,
-          }}
-          animate={{
-            opacity: 1,
-            transition: { delay: 1, duration: 1 },
-          }}
-          exit={{
-            opacity: 0.7,
-            transition: { duration: 0.5 },
-          }}
-          style={{ height: "100%", width: "100%" }}
+        <Card.Body style={{ height: "100%", width: "100%" }}
         >
           <Card.Body className="text-center pb-0 pt-2">
             <Card.Title className="card-body-title">{item.name}</Card.Title>
@@ -143,8 +120,8 @@ export default function MainProductCard({ item, selectFavorites }) {
               )}
             </section>
           </Card.Body>
-        </motion.div>
+        </Card.Body>
       </Card>
-    </motion.div>
+    </section>
   );
 }
