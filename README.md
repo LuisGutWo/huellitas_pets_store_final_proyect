@@ -31,7 +31,7 @@
 
 ## Deploy
 
-* [Deployed by Netlify](https://huellitas-petsstore-deployed.netlify.app/)
+* [Deployed by Netlify](https://huellitas-petstore-last-deployed.netlify.app/)
 
 ## Video Cuestionario proyecto final
 
