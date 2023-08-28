@@ -8,7 +8,6 @@ header {
   width: 100%;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
 }
-
 .sticky {
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
   position: sticky;
@@ -19,39 +18,23 @@ header {
 }
 
 
+
 .main-navbar {
   background-color: styles.$primary-color;
-  height: 30%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5em;
   width: 100%;
-
-  @media (min-width: 1024px) {
-    height: 100%;
-    width: 100%;
-
-  }
 }
 
 .header-logo {
-  width: 25%;
-
+  width: 30%;
 
   img {
     width: 100%;
     margin-right: 0;
-
-
-    @media (min-width: 768px) {
-      width: 100vw;
-      margin-left: 2rem;
-    }
-
   }
-
-
-
-  // @media (min-width: 1440px) {
-  //   width: 35vh;
-  // }
 }
 
 .navbar-form {
@@ -83,52 +66,8 @@ header {
     background-color: #191127f4;
     color: #b3b3b3;
   }
-
-  @media (min-width: 768px) {
-    margin-left: 13rem;
-    margin-right: 9rem;
-
-    & .navbar-select {
-      height: 2rem;
-      width: 8rem;
-    }
-
-    & .search-button {
-      width: 2rem;
-      height: 2rem;
-    }
-
-  }
-
-  @media (min-width: 1024px) {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0;
-    margin-left: 13rem;
-    margin-right: 20rem;
-
-    & .navbar-select {
-      height: 2rem;
-      width: 15rem;
-      font-size: 0.6rem;
-      padding: 0px 0px 0px 7px;
-      border-radius: 4px 0px 0px 4px;
-    }
-
-    & .search-button {
-      width: 2rem;
-      height: 2rem;
-    }
-
-  }
 }
 
-// .offcanvas-nav {
-//   background-color: styles.$background-color;
-//   width: 50%;
-// }
 
 .offcanvas-body-header {
   width: 50vw;
@@ -148,15 +87,9 @@ header {
   text-transform: uppercase;
 
   width: 100%;
-  height: 100%;
+  height: 2em;
   padding: 0;
   background-color: styles.$secondary-color;
-
-  @media (max-width: 768px) {
-    .offline-user-warning {
-      display: none;
-    }
-  }
 
   & .second-navbar-buttons {
     display: flex;
@@ -170,34 +103,6 @@ header {
       align-items: center;
       gap: 1rem;
       margin: 0;
-
-      @media (min-width: 768px) {
-        font-size: 1.7vw;
-        height: 8vh;
-      }
-
-      @media (min-width: 1024px) {
-        font-size: 1.2vw;
-        gap: 3rem;
-        margin-right: 4rem;
-      }
-    }
-  }
-
-  @media (min-width: 768px) {
-    height: fit-content;
-    padding-left: 8rem;
-
-    & .second-navbar-buttons {
-      width: 80%;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    padding-left: 10rem;
-
-    & .second-navbar-buttons {
-      width: 80%;
     }
   }
 }
@@ -229,36 +134,16 @@ header {
     text-decoration: none;
     font-size: 0.5rem;
   }
-
-  @media (min-width: 768px) {
-    & .text-header-name {
-      font-size: 0.6rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    & p {
-      font-size: 0.8rem;
-    }
-
-    & .text-header-name {
-      font-size: 0.8rem;
-    }
-  }
-
 }
 
 .offline-user-warning {
-  position: relative;
-  color: rgb(236, 0, 0);
-  font-size: 0.8rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  text-decoration: none;
-
-  @media (min-width: 600px) {
-    margin-right: 2rem;
-  }
+  // position: relative;
+  // color: rgb(236, 0, 0);
+  // font-size: 0.8rem;
+  // font-weight: bold;
+  // margin-bottom: 0.5rem;
+  // text-decoration: none;
+  display: none;
 }
 
 .btn-wsp {
@@ -280,22 +165,6 @@ header {
     &:hover {
       -webkit-transform: scale(1.1);
       transform: scale(1.1);
-    }
-  }
-
-  @media (min-width: 768px) {
-    left: 89%;
-
-    & .wsp-image {
-      width: 5rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    left: 90%;
-
-    & .wsp-image {
-      width: 6.2rem;
     }
   }
 }
@@ -346,4 +215,27 @@ header {
   width: 80%;
   margin: 1rem;
   font-size: 80%;
+}
+
+@media (768px <= width <= 1024px){
+  .main-navbar{
+    height: 7em;
+  }
+  .header-logo {
+    width: 35%;
+    margin-right: 5em;
+  }
+  .navbar-form{
+    margin-right: 7em;
+  }
+  .second-navbar{
+    height: auto !important;
+
+    & .second-navbar-buttons{
+      display: grid;
+      align-content: center;
+    }
+    
+  }
+
 }

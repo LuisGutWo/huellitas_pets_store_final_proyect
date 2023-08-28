@@ -18,41 +18,11 @@
     font-size: 5vw;
     text-align: start;
     font-weight: bold;
-
-    @media (min-width: 768px) {
-      font-size: 3vw;
-    }
   }
 
   & h6 {
     font-size: 3.2vw;
     margin: 0;
-  }
-
-  @media (min-width: 768px) {
-    height: 30vh;
-
-    & h6 {
-      font-size: 1.8vw;
-
-    }
-  }
-
-  @media (min-width: 1024px) {
-    height: 50vh;
-
-    & h6 {
-      font-size: 1.5vw;
-
-    }
-  }
-
-  @media (min-width: 1440px) {
-
-    & h6 {
-      font-size: 1.8vw;
-
-    }
   }
 }
 
@@ -67,19 +37,12 @@
   border-radius: 5px;
   margin-top: 2rem;
   padding-left: 0.5rem;
-
-  @media (min-width: 1024px) {
-    font-size: 1.3rem;
-    width: 100%;
-
-  }
 }
 
 .products-navbar {
   overflow: hidden;
   height: 100%;
-  padding: 1rem 0 1rem 0;
-  border-bottom: solid 2px #2a2f4f35;
+  padding: 0;
   background-color: styles.$background-color;
 
   & .products-buttons-section {
@@ -91,6 +54,7 @@
     align-content: center;
     gap: 2%;
     padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
     & .category-buttons {
       display: flex;
@@ -118,15 +82,6 @@
       }
     }
   }
-
-  @media (min-width: 768px) {
-    .category-buttons {
-      width: 12%;
-      height: 3rem;
-      font-size: 100%;
-
-    }
-  }
 }
 
 .products-container {
@@ -134,9 +89,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 2rem 0 5rem 0;
-  height: 100%;
-  width: 100%;
+  padding: 0;
+  height: 47vh;
+  width: 100vw;
 
 }
 
@@ -144,12 +99,13 @@
   position: relative;
   background: styles.$primary-color;
   height: 100%;
+  margin-top: 3rem;
 
 }
 
 .wave {
   position: absolute;
-  height: 40px;
+  height: 30px;
   width: 100%;
   background: styles.$background-color;
   bottom: 100%;
@@ -196,15 +152,31 @@ h2 {
   font-weight: bold;
 }
 
+.news-features{
+  height: 2.5em;
+}
+
 .carrousel-container {
   padding: 0;
 
-  & .products-carousel-featured {
+  .products-carousel-featured {
     background-color: styles.$primary-color;
-    padding: 0;
-    margin-bottom: 0;
-    height: 100%;
+    padding-bottom: 3rem;
+    height: 48vh;
     width: 100%;
 
+  }
+}
+
+@media (768px <= width <= 1024px){
+  .products-header{
+    height: auto !important ;
+
+    & h3 {
+      font-size: 2em
+    }
+  }
+  .form-products-categories{
+    width: 20em;
   }
 }

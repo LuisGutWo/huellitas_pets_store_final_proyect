@@ -17,7 +17,7 @@ export default function Products() {
   const [filter, setFilter] = useState("all");
   const [loading, setLoading] = useState(false);
 
-  FakeLoading(200);
+  FakeLoading(2000);
 
   useEffect(() => {
     setLoading(true);
@@ -168,7 +168,7 @@ export default function Products() {
               minimumTouchDrag={80}
               pauseOnHover={true}
               renderArrowsWhenDisabled={false}
-              renderButtonGroupOutside={false}
+              renderButtonGroupOutside={true}
               renderDotsOutside={false}
               className="products-container"
               rewind={false}
@@ -178,7 +178,7 @@ export default function Products() {
               showDots={false}
               sliderClass=""
               slidesToSlide
-              swipeable
+              swipeable= {true}
             >
               {filteredProduct}
             </Carousel>

@@ -17,14 +17,6 @@
     font-size: 1.5rem;
   }
 
-  @media (min-width: 768px) {
-    height: 30vh;
-
-    & h4 {
-      font-size: 2rem;
-    }
-  }
-
 }
 
 .blog-cards-group {
@@ -66,7 +58,7 @@
     padding: 0rem 1rem 1rem 1rem;
 
     & .blog-card-title {
-      font-size: 90%;
+      font-size: 5em;
     }
   }
 
@@ -74,19 +66,22 @@
     text-align: center;
     font-size: 70%;
   }
+}
 
-  @media (min-width: 768px) {
-    height: 65vh;
+@media (768px <= width <= 1024px){
+  .blog-card{
+    .blog-card-body{
+      .blog-card-title{
+        font-size: 1.3em;
+
+      }
+      .blog-card-text{
+        font-size: 0.8em;
+      }
+
+
+    }
 
   }
 
-  @media (min-width: 1024px) {
-    height: 70vh;
-
-  }
-
-  @media (min-width: 1440px) {
-    height: 100vh;
-
-  }
 }

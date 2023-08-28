@@ -170,7 +170,7 @@ const DiscountsProducts = () => {
               transition: { duration: 0.7 },
             }}
           >
-            <h2>Novedades</h2>
+            <h2 className="news-features">Novedades</h2>
           </motion.div>
         </section>
         <motion.div

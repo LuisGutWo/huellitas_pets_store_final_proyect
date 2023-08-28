@@ -22,11 +22,12 @@
 * Sass
 * Yup
 * Framer-Motion
+* Animated.css
 * Email.js
 
 ## Screen shot del proyecto
 
-![Huellitas Pet store](public/new_screenshot.png)
+![Huellitas Pet store](public/huellitas_screenshot_new.png)
 
 ## Deploy
 

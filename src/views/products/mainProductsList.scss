@@ -14,36 +14,22 @@
     background-repeat: no-repeat;
     background-size: cover;
 
-    padding: 10% 10% 10% 0;
+    padding: 6% 10% 6% 0;
     margin: 0;
 
     & h3 {
-        font-size: 80%;
+        font-size: 1em;
         text-align: end;
         font-weight: bold;
         color: #f2f2f2;
-
-        @media (min-width: 768px) {
-            font-size: 3vw;
-        }
     }
 
     & h6 {
-        font-size: 60%;
+        font-size: 0.7em;
         margin: 0;
         color: #f2f2f2;
         padding-left: 3rem;
-
-        @media (min-width: 768px) {
-            font-size: 1.8vw;
-            
-        }
     }
-
-    @media (min-width: 768px) {
-        height: 35vh;
-    }
-
 }
 
 .main-form-products-categories {
@@ -52,11 +38,6 @@
     height: 10%;
     margin: 10% 0 0 20%;
     padding-left: 1rem;
-
-    @media (min-width: 768px) {
-        height: 30%;
-
-    }
 }
 
 

@@ -3,6 +3,12 @@ import { NavLink } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 import { motion } from "framer-motion";
 
+import LogoWhite from "../assets/img/huellitas_logo_blanco.png";
+import LogoBlack from "../assets/img/huellitas_logo_dark.png";
+import HeroImg1 from "../assets/img/hero_mascotas.png";
+import HeroImg2 from "../assets/img/perrito_cachorro.jpg";
+import HeroImg3 from "../assets/img/gato_portada.jpg";
+
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const HeroSection = () => {
@@ -22,9 +28,7 @@ const HeroSection = () => {
               opacity: 0.7,
               transition: { duration: 0.5 },
             }}
-            src={
-              "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/hero_mascotas.png?alt=media&token=5fbc177a-da21-4d65-a4de-b7232ad85612"
-            }
+            src={HeroImg1}
             alt=""
             className="img-fluid"
           />
@@ -42,13 +46,7 @@ const HeroSection = () => {
               transition: { duration: 0.5 },
             }}
           >
-            <img
-              src={
-                "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/huellitas_logo_blanco.png?alt=media&token=1a021733-a8f1-4b0f-9f5b-d5ef83d24e22"
-              }
-              alt=""
-              className="img-fluid"
-            />
+            <img src={LogoWhite} alt="" className="img-fluid" />
             <h5 className="text-container text-light text-end">
               ¡Tenemos
               <br /> lo que tu mascota
@@ -76,9 +74,7 @@ const HeroSection = () => {
               opacity: 0.7,
               transition: { duration: 0.5 },
             }}
-            src={
-              "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/perrito_cachorro.png?alt=media&token=3324764a-2adf-46b8-b611-f23225475b96"
-            }
+            src={HeroImg2}
             alt=""
             className="hero-img img-fluid"
           />
@@ -96,13 +92,7 @@ const HeroSection = () => {
               transition: { duration: 0.5 },
             }}
           >
-            <img
-              src={
-                "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/huellitas_logo_dark.png?alt=media&token=4686312b-e73e-410a-9c9f-0d03d64c0d4e"
-              }
-              alt=""
-              className="hero-logo img-fluid"
-            />
+            <img src={LogoBlack} alt="" className="hero-logo img-fluid" />
             <h5 className="text-container text-dark">
               Llegamos a la puerta
               <br />
@@ -130,9 +120,7 @@ const HeroSection = () => {
               opacity: 0.7,
               transition: { duration: 0.5 },
             }}
-            src={
-              "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/gato_portada.png?alt=media&token=1ba95cc0-7014-4584-a50e-21adb58bdfa3"
-            }
+            src={HeroImg3}
             alt=""
             className="img-fluid"
           />
@@ -150,13 +138,7 @@ const HeroSection = () => {
               transition: { duration: 0.5 },
             }}
           >
-            <img
-              src={
-                "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/huellitas_logo_blanco.png?alt=media&token=1a021733-a8f1-4b0f-9f5b-d5ef83d24e22"
-              }
-              alt=""
-              className="hero-logo img-fluid"
-            />
+            <img src={LogoWhite} alt="" className="hero-logo img-fluid" />
             <h5 className="text-container text-light">
               Te ofrecemos
               <br />

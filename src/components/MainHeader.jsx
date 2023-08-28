@@ -4,7 +4,7 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import { Button, Form } from "react-bootstrap";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { motion } from "framer-motion";
-import 'animate.css';
+import "animate.css";
 
 import { useUserContext } from "../context/UserContext";
 import { useProductsContext } from "../context/ProductsContext";
@@ -19,6 +19,8 @@ import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import SearchIcon from "@mui/icons-material/Search";
+
+import LogoWhite from "../assets/img/huellitas_logo_blanco.png";
 
 export default function MainHeader({ item }) {
   const [products, setProducts] = useState([]);
@@ -115,14 +117,11 @@ export default function MainHeader({ item }) {
           {/* Contenedor principal del Navbar */}
           <Container fluid>
             {/* Header Navbar logo */}
-            <Link to={"/"} className="header-logo animate__animated animate__rotateIn">
-              <img
-                src={
-                  "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/huellitas_logo_blanco.png?alt=media&token=1a021733-a8f1-4b0f-9f5b-d5ef83d24e22"
-                }
-                className="img-fluid"
-                alt=""
-              />
+            <Link
+              to={"/"}
+              className="header-logo animate__animated animate__rotateIn"
+            >
+              <img src={LogoWhite} className="img-fluid" alt="" />
             </Link>
 
             {/* Buscador o Search del Navbar */}
