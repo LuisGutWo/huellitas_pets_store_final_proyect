@@ -58,24 +58,26 @@
     padding: 0rem 1rem 1rem 1rem;
 
     & .blog-card-title {
-      font-size: 5em;
+      font-size: 1.8em;
+    }
+
+    & .blog-card-text {
+      text-align: center;
+      font-size: 100%;
     }
   }
 
-  & .blog-card-text {
-    text-align: center;
-    font-size: 70%;
-  }
 }
 
-@media (768px <= width <= 1024px){
-  .blog-card{
-    .blog-card-body{
-      .blog-card-title{
+@media (768px <=width <=1024px) {
+  .blog-card {
+    .blog-card-body {
+      .blog-card-title {
         font-size: 1.3em;
 
       }
-      .blog-card-text{
+
+      .blog-card-text {
         font-size: 0.8em;
       }
 

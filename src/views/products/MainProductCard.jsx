@@ -48,7 +48,7 @@ export default function MainProductCard({ item, selectFavorites }) {
 
         <section className="card-buttons-section">
           <Button
-            className="button-class"
+            className="button-card"
             ref={target}
             onClick={handleShoppingCart}
           >
