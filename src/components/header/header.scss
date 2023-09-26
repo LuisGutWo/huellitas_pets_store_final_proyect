@@ -1,12 +1,13 @@
-@use "../css/styles.scss";
+@use "../../styles.scss";
 
 
 
 /* Navbar Styles */
-header {
+#header {
   height: 100%;
   width: 100%;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
+  border: none;
 }
 .sticky {
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
@@ -15,41 +16,48 @@ header {
   z-index: 100;
   transition: ease-in-out 1s all;
   transition-delay: 1s;
+  border: none;
 }
 
 
 
 .main-navbar {
-  background-color: styles.$primary-color;
+  // background-color: styles.$gradient-background-two;
+  background-image: linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 5em;
+  height: 7rem;
   width: 100%;
+  border: none;
 }
 
 .header-logo {
-  width: 30%;
+  width: 50%;
 
   img {
-    width: 100%;
-    margin-right: 0;
+    width: 18rem;
+    margin: 0 0 0 2rem;
   }
 }
 
+// ////// Header Navbar //////
 .navbar-form {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   gap: 0;
+  height: 3rem;
+  width: 20rem;
+  margin: 1rem;
 
 
   & .navbar-select {
-    height: 1.5rem;
-    width: 8rem;
-    font-size: 0.6rem;
-    padding: 0px 0px 0px 7px;
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    padding: 0 0 0 5%;
     border-radius: 4px 0px 0px 4px;
     background-color: rgba(255, 255, 255, 0.948);
     color: rgb(147, 147, 147);
@@ -59,50 +67,56 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 2rem;
-    height: 1.8rem;
+    width: 2.5rem;
+    height: 100%;
     border: none;
     border-radius: 0px 4px 4px 0px;
-    background-color: #191127f4;
-    color: #b3b3b3;
+    background-color: #251939;
+    color: #dfdfdf;
+  }
+}
+.offcanvas {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 30%;
+
+  .offcanvas-body{
+    width: 2rem;
+
   }
 }
 
-
-.offcanvas-body-header {
-  width: 50vw;
-
-
-}
 
 // Second Navbar
 
 .second-navbar {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  text-align: center;
   text-transform: uppercase;
 
-  width: 100%;
-  height: 2em;
-  padding: 0;
-  background-color: styles.$secondary-color;
+  width: 100vw;
+  height: 4rem;
+  padding-right: 40%;
+  background-color: #484a77;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
+  border: none;
 
   & .second-navbar-buttons {
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 10%;
+    align-items: flex-end;
+    font-size: 1.2rem;
 
     & .navbar-nav {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
-      gap: 1rem;
-      margin: 0;
+      gap: 3rem;
     }
   }
 }
@@ -148,14 +162,15 @@ header {
 .btn-wsp {
   position: fixed !important;
   cursor: pointer;
-  top: 85%;
-  left: 84%;
+  top: 80%;
+  left: 90%;
   z-index: 100;
   height: 100%;
 
 
   & .wsp-image {
-    width: 4rem;
+    width: 90%;
+    filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.624));
     -webkit-transform: scale(1);
     transform: scale(1);
     -webkit-transition: 1s ease-in-out;
@@ -216,7 +231,7 @@ header {
   font-size: 80%;
 }
 
-@media (768px <= width <= 1024px){
+@media (width <= 768px){
   .main-navbar{
     height: 7em;
   }
@@ -225,10 +240,31 @@ header {
     margin-right: 5em;
   }
   .navbar-form{
-    margin-right: 7em;
+    width: 100%;
+  }
+  .offcanvas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+    gap: 0;
+
+    .offcanvas-header{
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+
+
+    }
+
+    .offcanvas-body{
+      width: 100%;
+
+    }
   }
   .second-navbar{
-    height: auto !important;
+    padding-right: 0;
 
     & .second-navbar-buttons{
       display: grid;

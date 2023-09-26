@@ -17,6 +17,7 @@
     "@mui/lab": "^5.0.0-alpha.128",
     "@mui/material": "^5.12.2",
     "animate.css": "^4.1.1",
+    "aos": "^2.3.4",
     "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
     "firebase": "^9.21.0",

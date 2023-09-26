@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
 import { useProductsContext } from "../../context/ProductsContext";
-import MainProductCard from "./MainProductCard";
+import MainProductCard from "../productsCard/MainProductCard";
 
 export default function SelectFavorites() {
   const { favorites } = useProductsContext();

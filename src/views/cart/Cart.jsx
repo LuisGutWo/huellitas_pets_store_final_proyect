@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
 import { useProductsContext } from "../../context/ProductsContext";
-import CartItem from "./CartItem";
+import CartItem from "../cart/CartItem";
 import { formatPrice } from "../../utils/formatPrice";
 
 export default function Cart({ item }) {

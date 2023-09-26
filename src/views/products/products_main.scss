@@ -1,7 +1,8 @@
-@use "../../css/styles.scss";
+@use "../../styles.scss";
 
 
 .products-header {
+  height: 20rem;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -12,17 +13,14 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 1rem 2rem 1rem 2rem;
+  padding: 2rem;
 
-  & h3 {
-    font-size: 5vw;
+  & h1 {
     text-align: start;
-    font-weight: bold;
   }
 
-  & h6 {
-    font-size: 3.2vw;
-    margin: 0;
+  & h3 {
+    margin: 0 0 1rem 0;
   }
 }
 
@@ -32,8 +30,8 @@
   align-items: center;
   align-content: center;
 
-  font-size: 0.8rem;
-  width: 100%;
+  font-size: 1.5rem;
+  width: 50%;
   border-radius: 5px;
   margin-top: 2rem;
   padding-left: 0.5rem;
@@ -53,53 +51,49 @@
     align-items: center;
     align-content: center;
     gap: 2%;
+    height: 8rem;
     padding: 1rem;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
     & .category-buttons {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      align-content: center;
-      flex-direction: column;
-
-
-      width: 15%;
-      height: 2rem;
-      font-size: 55%;
-      font-weight: bold;
-      color: #1b0650;
-      background-color: #f5f3ffd5;
-      border: 1px solid #67549fc5;
-      box-shadow: 1px 1px 6px 0.3px rgba(0, 0, 0, 0.244);
+      background-image: linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%);
+      border-color: #3d3e65;
       border-radius: 5px;
+      color: rgb(251, 251, 251);
+      padding: 13px 35px;
+      font-size: 14px;
+      line-height: 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+      -webkit-transition: background 0.3s linear, color 0.3s linear;
+      transition: background 0.3s linear, color 0.3s linear;
 
+      &:focus,
       &:hover {
-        color: styles.$background-color;
-        background-color: #482351d4;
-        border: 1px solid #7a66ffc1;
-        border-radius: 10px;
+        background: #b5aee4;
+        border-color: #505285;
+        color: rgb(10, 10, 10);
       }
     }
   }
 }
 
 .products-container {
-  background-color: styles.$background-color;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: transparent;
   padding: 0;
-  height: 47vh;
-  width: 100vw;
+  height: 20rem;
+  margin-bottom: 5rem;
+  width: 100%;
 
 }
 
+
+// ///Products discount ///
 .discount-container {
   position: relative;
-  background: styles.$primary-color;
+  background: #484a77;
   height: 100%;
-  margin-top: 3rem;
+  margin-top: 8rem;
 
 }
 
@@ -123,7 +117,7 @@
   overflow: hidden;
   width: 55%;
   height: 109%;
-  background-color: #2A2F4F;
+  background-color: #484a77;
   right: -1.5%;
   top: 60%;
 }
@@ -137,46 +131,41 @@
 }
 
 .main-featured-container {
-  background-color: styles.$primary-color;
+  background-color: #484a77;
   height: 100%;
 
 }
 
 h2 {
   color: styles.$background-color;
-  height: 7rem;
+  height: 11rem;
+  text-transform: uppercase;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 170%;
-  font-weight: bold;
 }
 
-.news-features{
+h2 .news-features {
   height: 2.5em;
 }
 
-.carrousel-container {
-  padding: 0;
-
-  .products-carousel-featured {
-    background-color: styles.$primary-color;
-    padding-bottom: 3rem;
-    height: 48vh;
-    width: 100%;
-
-  }
+.products-carousel-featured {
+  background-color: #484a77;
+  padding-bottom: 6rem;
+  height: 100%;
+  width: 100%;
 }
 
-@media (768px <= width <= 1024px){
-  .products-header{
-    height: auto !important ;
+@media (width <=768px) {
+  // .products-header {
+  //   height: auto !important;
 
-    & h3 {
-      font-size: 2em
-    }
-  }
-  .form-products-categories{
-    width: 20em;
-  }
+  //   & h3 {
+  //     font-size: 2em
+  //   }
+  // }
+
+  // .form-products-categories {
+  //   width: 20em;
+  // }
 }

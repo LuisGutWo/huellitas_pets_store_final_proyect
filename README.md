@@ -24,7 +24,7 @@
 
 ## Screen shot del proyecto
 
-![Huellitas screenshot](public/huellitas_screenshot (2).png)
+* [Huellitas screenshot]()
 
 ## Deploy
 

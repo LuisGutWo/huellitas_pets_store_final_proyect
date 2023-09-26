@@ -1,0 +1,98 @@
+@use "../../styles.scss";
+
+.main-blog-section {
+  background-color: rgb(252, 166, 146);
+  padding-bottom: 4rem;
+
+  .blog-title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/mascotas_background_new_accesories.jpeg?alt=media&token=f0e5f8c7-2ea6-47a8-9ddf-a6649a7dad59);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 20rem;
+    padding-left: 5rem;
+    margin: 0rem;
+    border: none;
+
+    h2 {
+      font-weight: bold ! important;
+      font-size: 3rem;
+      color: #0d0d0dde;
+    }
+
+  }
+}
+
+
+.blog-cards-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(252, 166, 146);
+  gap: 2rem;
+  height: 33rem;
+  padding: 1rem;
+  margin: 2rem 0 3rem 0;
+
+  .blog-card {
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: #000;
+    font-weight: normal;
+    text-decoration: none;
+    box-shadow: 5px 5px 15px 2px #1515156a;
+
+    & .blog-card-body {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 0rem 1rem 1rem 1rem;
+
+      & .blog-card-title {
+        font-size: 1.8em;
+      }
+
+      & .blog-card-text {
+        text-align: center;
+        font-size: 100%;
+      }
+    }
+
+  }
+}
+
+
+@media (768px <=width <=1024px) {
+  .blog-card {
+    .blog-card-body {
+      .blog-card-title {
+        font-size: 1.3em;
+
+      }
+
+      .blog-card-text {
+        font-size: 0.8em;
+      }
+
+
+    }
+
+  }
+
+}

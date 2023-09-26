@@ -3,10 +3,15 @@ import { useState, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-import MainProductCard from "./MainProductCard";
+import MainProductCard from "../productsCard/MainProductCard";
 import Loading from "../../utils/Loading";
 import { FakeLoading } from "../../utils/FakeLoading";
 import { motion } from "framer-motion";
+
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { Container } from "react-bootstrap";
+AOS.init();
 
 const DiscountsProducts = () => {
   const [data, setData] = useState([]);
@@ -90,21 +95,13 @@ const DiscountsProducts = () => {
       {/* Discount products carousel */}
       <div className="main-featured-container">
         <section>
-          <motion.div
-            initial={{
-              opacity: 0,
-            }}
-            animate={{
-              opacity: 1,
-              transition: { delay: 0.9, duration: 0.9 },
-            }}
-            exit={{
-              opacity: 0.5,
-              transition: { duration: 0.7 },
-            }}
+          <h2
+            data-aos="fade-right"
+            data-aos-offset="300"
+            data-aos-easing="ease-in-sine"
           >
-            <h2>Descuentos</h2>
-          </motion.div>
+            Productos con Descuentos
+          </h2>
         </section>
         <motion.div
           initial={{
@@ -123,36 +120,42 @@ const DiscountsProducts = () => {
           {loading ? (
             <Loading />
           ) : (
-            <Carousel
-              responsive={responsive}
-              additionalTransfrom={0}
-              arrows={false}
-              autoPlay
-              autoPlaySpeed={3000}
-              customTransition="all 2s linear"
-              centerMode={false}
-              containerClass="container-with-dots"
-              draggable
-              focusOnSelect={false}
-              infinite={true}
-              keyBoardControl
-              minimumTouchDrag={80}
-              pauseOnHover={true}
-              renderArrowsWhenDisabled={false}
-              renderButtonGroupOutside={true}
-              renderDotsOutside={true}
-              className="products-carousel-featured"
-              rewind={false}
-              rewindWithAnimation={false}
-              rtl={false}
-              shouldResetAutoplay
-              showDots={true}
-              sliderClass="additionalTransfrom"
-              slidesToSlide
-              swipeable
+            <Container
+              data-aos="fade-left"
+              data-aos-offset="300"
+              data-aos-easing="ease-in-sine"
             >
-              {filteredProductDiscount}
-            </Carousel>
+              <Carousel
+                responsive={responsive}
+                additionalTransfrom={0}
+                arrows={false}
+                autoPlay
+                autoPlaySpeed={3000}
+                customTransition="all 2s linear"
+                centerMode={false}
+                containerClass="container-with-dots"
+                draggable
+                focusOnSelect={false}
+                infinite={true}
+                keyBoardControl
+                minimumTouchDrag={80}
+                pauseOnHover={true}
+                renderArrowsWhenDisabled={false}
+                renderButtonGroupOutside={true}
+                renderDotsOutside={true}
+                className="products-carousel-featured"
+                rewind={false}
+                rewindWithAnimation={false}
+                rtl={false}
+                shouldResetAutoplay
+                showDots={true}
+                sliderClass="additionalTransfrom"
+                slidesToSlide
+                swipeable
+              >
+                {filteredProductDiscount}
+              </Carousel>
+            </Container>
           )}
         </motion.div>
         {/* News products carouse */}
@@ -185,41 +188,46 @@ const DiscountsProducts = () => {
             opacity: 0.5,
             transition: { duration: 0.7 },
           }}
-          className="carrousel-container"
         >
           {loading ? (
             <Loading />
           ) : (
-            <Carousel
-              responsive={responsive}
-              additionalTransfrom={0}
-              arrows={false}
-              autoPlay
-              autoPlaySpeed={4000}
-              customTransition="all 2s linear"
-              centerMode={false}
-              containerClass="container-with-dots"
-              draggable
-              focusOnSelect={true}
-              infinite={true}
-              keyBoardControl
-              minimumTouchDrag={80}
-              pauseOnHover={true}
-              renderArrowsWhenDisabled={false}
-              renderButtonGroupOutside={false}
-              renderDotsOutside={false}
-              className="products-carousel-featured"
-              rewind={false}
-              rewindWithAnimation={false}
-              rtl={false}
-              shouldResetAutoplay
-              showDots={false}
-              sliderClass=""
-              slidesToSlide
-              swipeable
+            <Container
+              data-aos="fade-right"
+              data-aos-offset="300"
+              data-aos-easing="ease-in-sine"
             >
-              {filteredProductNews}
-            </Carousel>
+              <Carousel
+                responsive={responsive}
+                additionalTransfrom={0}
+                arrows={false}
+                autoPlay
+                autoPlaySpeed={4000}
+                customTransition="all 2s linear"
+                centerMode={false}
+                containerClass="container-with-dots"
+                draggable
+                focusOnSelect={true}
+                infinite={true}
+                keyBoardControl
+                minimumTouchDrag={80}
+                pauseOnHover={true}
+                renderArrowsWhenDisabled={false}
+                renderButtonGroupOutside={false}
+                renderDotsOutside={false}
+                className="products-carousel-featured"
+                rewind={false}
+                rewindWithAnimation={false}
+                rtl={false}
+                shouldResetAutoplay
+                showDots={false}
+                sliderClass=""
+                slidesToSlide
+                swipeable
+              >
+                {filteredProductNews}
+              </Carousel>
+            </Container>
           )}
         </motion.div>
       </div>

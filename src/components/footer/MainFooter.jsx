@@ -4,8 +4,8 @@ import { Col, Container, Row } from "react-bootstrap";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import InstagramIcon from "@mui/icons-material/Instagram";
 
-import LogoWhite from "../assets/img/huellitas_logo_blanco.png";
-import LogoCreditCards from "../assets/img/tarjetas_logo.png";
+import LogoWhite from "../../assets/img/huellitas_logo_blanco.png";
+import LogoCreditCards from "../../assets/img/tarjetas_logo.png";
 
 const MainFooter = () => {
   return (

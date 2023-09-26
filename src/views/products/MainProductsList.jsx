@@ -2,9 +2,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { NavLink, Navbar, Row, Col } from "react-bootstrap";
 
-import MainProductCard from "./MainProductCard";
+import MainProductCard from "../productsCard/MainProductCard";
 import Loading from "../../utils/Loading";
-import BackToTopButton from "../../layout/BackToTopButton";
+import BackToTopButton from "../../utils/BackToTopButton";
 import { FakeLoading } from "../../utils/FakeLoading";
 import { motion } from "framer-motion";
 

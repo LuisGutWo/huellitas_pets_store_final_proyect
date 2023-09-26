@@ -3,26 +3,25 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Button, Form } from "react-bootstrap";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { motion } from "framer-motion";
 import "animate.css";
 
-import { useUserContext } from "../context/UserContext";
-import { useProductsContext } from "../context/ProductsContext";
-import { logout } from "../config/firebase";
-import { formatPrice } from "../utils/formatPrice";
+import { useUserContext } from "../../context/UserContext";
+import { useProductsContext } from "../../context/ProductsContext";
+import { logout } from "../../config/firebase";
+import { formatPrice } from "../../utils/formatPrice";
 import axios from "axios";
 
 import Modal from "react-bootstrap/Modal";
-import Loading from "../utils/Loading";
+import Loading from "../../utils/Loading";
 
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import SearchIcon from "@mui/icons-material/Search";
 
-import LogoWhite from "../assets/img/huellitas_logo_blanco.png";
+import LogoWhite from "../../assets/img/huellitas_logo_blanco.png";
 
-export default function MainHeader({ item }) {
+export default function MainHeader({ item, index }) {
   const [products, setProducts] = useState([]);
   const [selectProduct, setSelectProduct] = useState("");
   const [loading, setLoading] = useState(false);
@@ -31,7 +30,6 @@ export default function MainHeader({ item }) {
   const [showCart, setShowCart] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [isActive, setIsActive] = useState(false);
-  const [sticky, setSticky] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -46,14 +44,6 @@ export default function MainHeader({ item }) {
 
   const navigate = useNavigate();
   const { user } = useUserContext();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setSticky(window.scrollY > 200);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const getProducts = async () => {
     setLoading(true);
@@ -106,51 +96,18 @@ export default function MainHeader({ item }) {
   if (loading) return <Loading />;
 
   return (
-    <header className={`${sticky ? "sticky" : ""}`}>
+    <>
       {["md"].map((expand) => (
-        <Navbar
-          key={expand}
-          expand={expand}
-          className="main-navbar m-0"
-          variant="dark"
-        >
+        <Navbar expand={expand} className="main-navbar m-0" variant="dark">
           {/* Contenedor principal del Navbar */}
           <Container fluid>
             {/* Header Navbar logo */}
             <Link
               to={"/"}
-              className="header-logo animate__animated animate__rotateIn"
+              className="header-logo animate__animated animate__fadeIn"
             >
               <img src={LogoWhite} className="img-fluid" alt="" />
             </Link>
-
-            {/* Buscador o Search del Navbar */}
-            <Form className="navbar-form">
-              <Form.Select
-                size="sm"
-                className="navbar-select"
-                onChange={handleProductsChange}
-              >
-                <option value={""}>Buscar productos...</option>
-                {products.map((product) => (
-                  <option key={product.name} value={product.id}>
-                    {product.name}
-                  </option>
-                ))}
-              </Form.Select>
-              <Button className="search-button" onClick={addButtonModalSearch}>
-                <SearchIcon style={{ width: "17px" }} />
-              </Button>
-              {!error ? (
-                ""
-              ) : (
-                <Modal show={show} onHide={handleClose}>
-                  <Modal.Header closeButton>
-                    <Modal.Body>Elige algún producto 😉</Modal.Body>
-                  </Modal.Header>
-                </Modal>
-              )}
-            </Form>
 
             {/* Toggler y Link del Navbar */}
             <Navbar.Toggle
@@ -166,12 +123,43 @@ export default function MainHeader({ item }) {
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               placement="end"
               style={{
-                width: "60%",
+                width: "40%",
+                paddingRight: "5%",
                 height: "100%",
                 backgroundColor: "#2A2F4F",
               }}
             >
-              <Offcanvas.Header closeButton>
+              {/* Buscador o Search del Navbar */}
+              <Form className="navbar-form">
+                <Form.Select
+                  size="sm"
+                  className="navbar-select"
+                  onChange={handleProductsChange}
+                >
+                  <option value={""}>Buscar productos...</option>
+                  {products.map((product) => (
+                    <option key={product.name} value={product.id}>
+                      {product.name}
+                    </option>
+                  ))}
+                </Form.Select>
+                <Button
+                  className="search-button"
+                  onClick={addButtonModalSearch}
+                >
+                  <SearchIcon style={{ width: "17px" }} />
+                </Button>
+                {!error ? (
+                  ""
+                ) : (
+                  <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                      <Modal.Body>Elige algún producto 😉</Modal.Body>
+                    </Modal.Header>
+                  </Modal>
+                )}
+              </Form>
+              <Offcanvas.Header closeButton style={{ alignContent: "center" }}>
                 <Offcanvas.Title
                   id={`offcanvasNavbarLabel-expand-${expand}`}
                   style={{ color: "white" }}
@@ -198,7 +186,6 @@ export default function MainHeader({ item }) {
                       >
                         <PermIdentityIcon
                           style={{
-                            width: "3rem",
                             fontSize: "2rem",
                           }}
                         />
@@ -220,9 +207,7 @@ export default function MainHeader({ item }) {
                           isActive ? "active-class" : "inactive-class"
                         }
                       >
-                        <FavoriteIcon
-                          style={{ width: "3rem", fontSize: "2rem" }}
-                        />
+                        <FavoriteIcon style={{ fontSize: "2rem" }} />
                       </NavLink>
                     </>
                   ) : null}
@@ -303,107 +288,6 @@ export default function MainHeader({ item }) {
           </Container>
         </Navbar>
       ))}
-
-      {/* second navbar */}
-      {["md"].map((expand) => (
-        <Navbar collapseOnSelect expand="md" className="second-navbar">
-          <Container className="second-navbar-buttons">
-            <Navbar.Toggle
-              aria-controls={`offcanvasNavbar-expand-${expand}`}
-              style={{
-                padding: "4px",
-                border: "0px",
-                fontSize: "0.7rem",
-              }}
-            />
-            <Navbar.Offcanvas
-              id={`offcanvasNavbar-expand-${expand}`}
-              aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-              placement="top"
-              style={{
-                width: "100%",
-                height: "50%",
-                backgroundColor: "#917FB3",
-              }}
-            >
-              <Offcanvas.Body>
-                <Nav>
-                  <NavLink
-                    to="/"
-                    className={({ isActive }) =>
-                      isActive ? "active-class-second" : "inactive-class-second"
-                    }
-                  >
-                    <b>HOME</b>
-                  </NavLink>
-                  <NavLink
-                    to="/products"
-                    className={({ isActive }) =>
-                      isActive ? "active-class-second" : "inactive-class-second"
-                    }
-                  >
-                    <b>PRODUCTOS</b>
-                  </NavLink>
-                  <NavLink
-                    to="/about"
-                    className={({ isActive }) =>
-                      isActive ? "active-class-second" : "inactive-class-second"
-                    }
-                  >
-                    <b>ABOUT</b>
-                  </NavLink>
-                  <NavLink
-                    to="/contact"
-                    className={({ isActive }) =>
-                      isActive ? "active-class-second" : "inactive-class-second"
-                    }
-                  >
-                    <b>CONTACTO</b>
-                  </NavLink>
-                </Nav>
-              </Offcanvas.Body>
-            </Navbar.Offcanvas>
-          </Container>
-
-          <section>
-            {user ? (
-              <div className="welcome-user-section">
-                <p className="m-0 text-light">Bienvenido 🖐🏼</p>
-                <small className="text-header-name">{user.email}</small>
-              </div>
-            ) : (
-              <NavLink
-                to={"/loginPage"}
-                className={(isActive) =>
-                  isActive ? "active-class" : "inactive-class"
-                }
-              >
-                <motion.div
-                  onClick={() => setIsActive(!isActive)}
-                  animate={{
-                    rotate: isActive ? 180 : 360,
-                  }}
-                  className="offline-user-warning"
-                >
-                  Offline
-                </motion.div>
-              </NavLink>
-            )}
-            <a
-              rel=""
-              href="https://api.whatsapp.com/send?phone=56920390272&text=Hola, bienvenido a Huellitas. En que podemos ayudarte...😀"
-              className="btn-wsp"
-              target="_blank"
-            >
-              <img
-                src="https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/wa_chat_icon.png?alt=media&token=ce6cb743-6822-4223-9279-0bdd5efe6677"
-                alt=""
-                className="wsp-image"
-              />
-            </a>
-          </section>
-        </Navbar>
-      ))}
-    </header>
+    </>
   );
 }

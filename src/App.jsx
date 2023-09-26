@@ -1,24 +1,39 @@
+import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { useUserContext } from "./context/UserContext";
 
-import Home from "./layout/Home";
-import MainHeader from "./components/MainHeader";
-import MainFooter from "./components/MainFooter";
+import MainHeader from "./components/header/MainHeader";
+import Home from "./views/home/Home";
+import About from "./views/about/About";
+import ProductDetail from "./views/productsDetail/ProductDetail";
 import LoginUserPage from "./views/log/LoginUserPage";
-import Cart from "./views/cart/Cart";
-import About from "./views/home/About";
 import CreateUser from "./views/log/CreateUser";
-import ProductDetail from "./views/products/ProductDetail";
-import SelectFavorites from "./views/products/SelectFavorites";
-import Contact from "./views/home/Contact";
+import Cart from "./views/cart/Cart";
+import SelectFavorites from "./views/favorites/SelectFavorites";
+import Contact from "./views/contact/Contact";
 import NotFound from "./utils/NotFound";
 import MainProductsList from "./views/products/MainProductsList";
+import MainFooter from "./components/footer/MainFooter";
+import SecondHeader from "./components/header/SecondHeader";
+
 function App() {
   const { user } = useUserContext();
+  const [sticky, setSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setSticky(window.scrollY > 200);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <div className="app">
+    <div id="app">
       <MainHeader />
+      <header id="header" className={`${sticky ? "sticky" : ""}`}>
+        <SecondHeader />
+      </header>
 
       <div className="app-container">
         <Routes>

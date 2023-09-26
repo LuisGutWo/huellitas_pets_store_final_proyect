@@ -1,13 +1,17 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { NavLink, Navbar } from "react-bootstrap";
+import { Container, NavLink, Navbar } from "react-bootstrap";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-import MainProductCard from "./MainProductCard";
+import MainProductCard from "../productsCard/MainProductCard";
 import Loading from "../../utils/Loading";
 import { FakeLoading } from "../../utils/FakeLoading";
 import { motion } from "framer-motion";
+
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 
 export default function Products() {
   const [data, setData] = useState([]);
@@ -57,7 +61,7 @@ export default function Products() {
     <MainProductCard key={item.id} item={item} />
   ));
 
-  const responsive = { 
+  const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
       items: 5,
@@ -82,14 +86,30 @@ export default function Products() {
     <main>
       {/* Products Header */}
       <section className="products-header animate__animated animate__fadeIn">
-          <h3>NUESTROS PRODUCTOS</h3>
-          <h6>Conoce esta selección hecha para ti</h6>
-          <input
-            type="text"
-            className="form-products-categories"
-            placeholder="Buscar producto"
-            onChange={(e) => setSearch(e.target.value)}
-          />
+        <h1
+          data-aos="fade-right"
+          data-aos-offset="300"
+          data-aos-easing="ease-in-sine"
+        >
+          NUESTROS PRODUCTOS
+        </h1>
+        <h3
+          data-aos="fade-left"
+          data-aos-offset="300"
+          data-aos-easing="ease-in-sine"
+        >
+          Conoce esta selección hecha para ti
+        </h3>
+        <input
+          data-aos="fade-zoom-in"
+          data-aos-easing="ease-in-back"
+          data-aos-delay="300"
+          data-aos-offset="0"
+          type="text"
+          className="form-products-categories"
+          placeholder="Buscar producto"
+          onChange={(e) => setSearch(e.target.value)}
+        />
       </section>
 
       {/* Category Navbar */}
@@ -110,6 +130,10 @@ export default function Products() {
           <Navbar className="products-buttons-section">
             {categories.map((category) => (
               <NavLink
+                data-aos="fade-zoom-in"
+                data-aos-easing="ease-in-back"
+                data-aos-delay="300"
+                data-aos-offset="0"
                 key={category}
                 to={`/categories/${category}`}
                 onClick={() => setFilter(category)}
@@ -121,6 +145,10 @@ export default function Products() {
             ))}
             {types.map((type) => (
               <NavLink
+                data-aos="fade-zoom-in"
+                data-aos-easing="ease-in-back"
+                data-aos-delay="300"
+                data-aos-offset="0"
                 key={type}
                 to={`/types/${type}`}
                 onClick={() => setFilter(type)}
@@ -151,7 +179,11 @@ export default function Products() {
         {loading ? (
           <Loading />
         ) : (
-          <div>
+          <Container
+            data-aos="fade-right"
+            data-aos-offset="300"
+            data-aos-easing="ease-in-sine"
+          >
             <Carousel
               responsive={responsive}
               additionalTransfrom={0}
@@ -178,11 +210,11 @@ export default function Products() {
               showDots={false}
               sliderClass=""
               slidesToSlide
-              swipeable= {true}
+              swipeable={true}
             >
               {filteredProduct}
             </Carousel>
-          </div>
+          </Container>
         )}
       </motion.div>
     </main>

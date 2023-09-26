@@ -1,9 +1,7 @@
 import { NavLink } from "react-router-dom";
-import { FakeLoading } from "../../utils/FakeLoading";
 import { motion } from "framer-motion";
 
 function About() {
-  FakeLoading(2000);
 
   return (
     <>

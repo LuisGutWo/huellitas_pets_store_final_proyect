@@ -3,11 +3,11 @@ import { NavLink } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 import { motion } from "framer-motion";
 
-import LogoWhite from "../assets/img/huellitas_logo_blanco.png";
-import LogoBlack from "../assets/img/huellitas_logo_dark.png";
-import HeroImg1 from "../assets/img/hero_mascotas.png";
-import HeroImg2 from "../assets/img/perrito_cachorro.jpg";
-import HeroImg3 from "../assets/img/gato_portada.jpg";
+import LogoWhite from "../../assets/img/huellitas_logo_blanco.png";
+import LogoBlack from "../../assets/img/huellitas_logo_dark.png";
+import HeroImg1 from "../../assets/img/hero_mascotas.jpg";
+import HeroImg2 from "../../assets/img/perrito_cachorro.jpg";
+import HeroImg3 from "../../assets/img/gato_portada.jpg";
 
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
