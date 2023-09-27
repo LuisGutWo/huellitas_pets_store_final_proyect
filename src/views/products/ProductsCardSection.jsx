@@ -114,109 +114,81 @@ export default function Products() {
 
       {/* Category Navbar */}
       <section className="products-navbar">
-        <motion.div
-          initial={{
-            opacity: 0,
-          }}
-          animate={{
-            opacity: 1,
-            transition: { delay: 1, duration: 1 },
-          }}
-          exit={{
-            opacity: 0.5,
-            transition: { duration: 0.7 },
-          }}
-        >
-          <Navbar className="products-buttons-section">
-            {categories.map((category) => (
-              <NavLink
-                data-aos="fade-zoom-in"
-                data-aos-easing="ease-in-back"
-                data-aos-delay="300"
-                data-aos-offset="0"
-                key={category}
-                to={`/categories/${category}`}
-                onClick={() => setFilter(category)}
-                className="category-buttons"
-                style={{ alignItems: "center" }}
-              >
-                {category}
-              </NavLink>
-            ))}
-            {types.map((type) => (
-              <NavLink
-                data-aos="fade-zoom-in"
-                data-aos-easing="ease-in-back"
-                data-aos-delay="300"
-                data-aos-offset="0"
-                key={type}
-                to={`/types/${type}`}
-                onClick={() => setFilter(type)}
-                className="category-buttons"
-                style={{ alignItems: "center" }}
-              >
-                {type}
-              </NavLink>
-            ))}
-          </Navbar>
-        </motion.div>
+        <Navbar className="products-buttons-section">
+          {categories.map((category) => (
+            <NavLink
+              data-aos="fade-zoom-in"
+              data-aos-easing="ease-in-back"
+              data-aos-delay="300"
+              data-aos-offset="0"
+              key={category}
+              to={`/categories/${category}`}
+              onClick={() => setFilter(category)}
+              className="category-buttons"
+              style={{ alignItems: "center" }}
+            >
+              {category}
+            </NavLink>
+          ))}
+          {types.map((type) => (
+            <NavLink
+              data-aos="fade-zoom-in"
+              data-aos-easing="ease-in-back"
+              data-aos-delay="300"
+              data-aos-offset="0"
+              key={type}
+              to={`/types/${type}`}
+              onClick={() => setFilter(type)}
+              className="category-buttons"
+              style={{ alignItems: "center" }}
+            >
+              {type}
+            </NavLink>
+          ))}
+        </Navbar>
       </section>
 
       {/* Carousel de productos */}
-      <motion.div
-        initial={{
-          opacity: 0.3,
-        }}
-        animate={{
-          opacity: 1,
-          transition: { delay: 0.5, duration: 0.7 },
-        }}
-        exit={{
-          opacity: 0.5,
-          transition: { duration: 0.7 },
-        }}
-      >
-        {loading ? (
-          <Loading />
-        ) : (
-          <Container
-            data-aos="fade-right"
-            data-aos-offset="300"
-            data-aos-easing="ease-in-sine"
+      {loading ? (
+        <Loading />
+      ) : (
+        <Container
+          data-aos="fade-right"
+          data-aos-offset="300"
+          data-aos-easing="ease-in-sine"
+        >
+          <Carousel
+            responsive={responsive}
+            additionalTransfrom={0}
+            arrows={true}
+            autoPlay={false}
+            autoPlaySpeed={3000}
+            customTransition="all 2s linear"
+            centerMode={false}
+            containerClass="container-with-dots"
+            draggable
+            focusOnSelect={false}
+            infinite={true}
+            keyBoardControl
+            minimumTouchDrag={80}
+            pauseOnHover={true}
+            renderArrowsWhenDisabled={false}
+            renderButtonGroupOutside={true}
+            renderDotsOutside={false}
+            className="products-container"
+            rewind={false}
+            rewindWithAnimation={false}
+            rtl={false}
+            shouldResetAutoplay
+            showDots={false}
+            sliderClass=""
+            slidesToSlide
+            swipeable={true}
           >
-            <Carousel
-              responsive={responsive}
-              additionalTransfrom={0}
-              arrows={true}
-              autoPlay={false}
-              autoPlaySpeed={3000}
-              customTransition="all 2s linear"
-              centerMode={false}
-              containerClass="container-with-dots"
-              draggable
-              focusOnSelect={false}
-              infinite={true}
-              keyBoardControl
-              minimumTouchDrag={80}
-              pauseOnHover={true}
-              renderArrowsWhenDisabled={false}
-              renderButtonGroupOutside={true}
-              renderDotsOutside={false}
-              className="products-container"
-              rewind={false}
-              rewindWithAnimation={false}
-              rtl={false}
-              shouldResetAutoplay
-              showDots={false}
-              sliderClass=""
-              slidesToSlide
-              swipeable={true}
-            >
-              {filteredProduct}
-            </Carousel>
-          </Container>
-        )}
-      </motion.div>
+            {filteredProduct}
+          </Carousel>
+        </Container>
+      )}
     </main>
   );
 }

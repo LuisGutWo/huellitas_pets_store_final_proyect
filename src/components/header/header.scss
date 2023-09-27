@@ -22,7 +22,6 @@
 
 
 .main-navbar {
-  // background-color: styles.$gradient-background-two;
   background-image: linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%);
   display: flex;
   justify-content: space-between;
@@ -159,6 +158,7 @@
   display: none;
 }
 
+// /// WhatsApp Floating Button ///
 .btn-wsp {
   position: fixed !important;
   cursor: pointer;
