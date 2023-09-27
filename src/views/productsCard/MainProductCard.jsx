@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import Card from "react-bootstrap/Card";
 import { Link, NavLink } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
+import { formatPrice } from "../../utils/formatPrice";
 
 import { Button } from "react-bootstrap";
 import { useProductsContext } from "../../context/ProductsContext";
@@ -10,7 +11,6 @@ import { useUserContext } from "../../context/UserContext";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { IconButton } from "@mui/material";
 
 export default function MainProductCard({ item, selectFavorites }) {
   const { addFavorites, removeFavorites, addProduct } = useProductsContext();
@@ -89,12 +89,12 @@ export default function MainProductCard({ item, selectFavorites }) {
       <Card.Body className="card-body">
         <Card.Title className="card-body-title">{item.name}</Card.Title>
         <Card.Text className="card-body-price">
-          <b>${item.price}</b>
+          <b>${formatPrice(item.price)}</b>
         </Card.Text>
       </Card.Body>
 
       <Button className="button-card" ref={target} onClick={handleShoppingCart}>
-        Añadir al carro
+        + Añadir al carrito
         <ShoppingCartIcon />
       </Button>
       <Modal show={showCart} onHide={handleCloseCart}>

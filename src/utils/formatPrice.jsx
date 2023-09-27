@@ -1,3 +1,3 @@
 export const formatPrice = (price) => {
-  return price.toLocaleString("de-De");
+  return price.toLocaleString("de-CL");
 };

@@ -19,7 +19,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import SearchIcon from "@mui/icons-material/Search";
 
-import LogoWhite from "../../assets/img/huellitas_logo_blanco.png";
+import LogoWhite from "../../assets/img/huellitas-logo-white-500x500.png";
 
 export default function MainHeader({ item, index }) {
   const [products, setProducts] = useState([]);

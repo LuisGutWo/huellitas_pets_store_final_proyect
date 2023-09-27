@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 import { motion } from "framer-motion";
 
-import LogoWhite from "../../assets/img/huellitas_logo_blanco.png";
-import LogoBlack from "../../assets/img/huellitas_logo_dark.png";
+import LogoWhite from "../../assets/img/huellitas-logo-white-500x500.png";
+import LogoBlack from "../../assets/img/huellitas-logo-black-500x500.png";
 import HeroImg1 from "../../assets/img/hero_mascotas.jpg";
 import HeroImg2 from "../../assets/img/perrito_cachorro.jpg";
 import HeroImg3 from "../../assets/img/gato_portada.jpg";
@@ -13,9 +13,13 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const HeroSection = () => {
   return (
+
+
+    /// Main Carousel ///
     <Carousel>
+      {/* ///Carousel item 1 /// */}
       <Carousel.Item>
-        <section className="main-hero">
+        <section className="main-carousel-item">
           <motion.img
             initial={{
               opacity: 0,
@@ -32,36 +36,25 @@ const HeroSection = () => {
             alt=""
             className="img-fluid"
           />
-          <motion.article
-            className="newhero-container"
-            initial={{
-              opacity: 0,
-            }}
-            animate={{
-              opacity: 1,
-              transition: { delay: 0.7, duration: 0.7 },
-            }}
-            exit={{
-              opacity: 0.7,
-              transition: { duration: 0.5 },
-            }}
-          >
+          <article className="newhero-container">
             <img src={LogoWhite} alt="" className="img-fluid" />
-            <h5 className="text-container text-light text-end">
+            <h1 className="text-container text-light text-end">
               ¡Tenemos
               <br /> lo que tu mascota
               <br /> se merece
               <br /> y mucho mas!
-            </h5>
-            <NavLink to={"/products"} className="hero-button" variant="dark">
+            </h1>
+            <NavLink to={"/products"} className="category-buttons" variant="dark">
               <ArrowForwardIosIcon style={{ width: "12%" }} />
               Productos
             </NavLink>
-          </motion.article>
+          </article>
         </section>
       </Carousel.Item>
+
+      {/* /// Carousel item 2 /// */}
       <Carousel.Item>
-        <section className="main-hero">
+        <section className="main-carousel-item">
           <motion.img
             initial={{
               opacity: 0,
@@ -76,38 +69,27 @@ const HeroSection = () => {
             }}
             src={HeroImg2}
             alt=""
-            className="hero-img img-fluid"
+            className="img-fluid"
           />
-          <motion.article
-            className="hero-container"
-            initial={{
-              opacity: 0,
-            }}
-            animate={{
-              opacity: 1,
-              transition: { delay: 0.7, duration: 0.7 },
-            }}
-            exit={{
-              opacity: 0.7,
-              transition: { duration: 0.5 },
-            }}
-          >
+          <article className="hero-container">
             <img src={LogoBlack} alt="" className="hero-logo img-fluid" />
-            <h5 className="text-container text-dark">
+            <h1 className="text-container text-dark">
               Llegamos a la puerta
               <br />
               de tu casa
               <br />
               con todo lo que necesites
-            </h5>
-            <NavLink to={"/products"} className="hero-button" variant="dark">
+            </h1>
+            <NavLink to={"/products"} className="category-buttons" variant="dark">
               <ArrowForwardIosIcon style={{ width: "12%" }} /> Productos
             </NavLink>
-          </motion.article>
+          </article>
         </section>
       </Carousel.Item>
+
+      {/* /// Carousel item 3 /// */}
       <Carousel.Item>
-        <section className="main-hero">
+        <section className="main-carousel-item">
           <motion.img
             initial={{
               opacity: 0,
@@ -124,34 +106,21 @@ const HeroSection = () => {
             alt=""
             className="img-fluid"
           />
-          <motion.article
-            className="hero-container"
-            initial={{
-              opacity: 0,
-            }}
-            animate={{
-              opacity: 1,
-              transition: { delay: 0.7, duration: 0.7 },
-            }}
-            exit={{
-              opacity: 0.7,
-              transition: { duration: 0.5 },
-            }}
-          >
+          <article className="hero-container">
             <img src={LogoWhite} alt="" className="hero-logo img-fluid" />
-            <h5 className="text-container text-light">
+            <h1 className="text-container text-light">
               Te ofrecemos
               <br />
               una gran variedad
               <br />
               de productos pensados
               <br /> en tu mascota.
-            </h5>
-            <NavLink to={"/products"} className="hero-button" variant="dark">
+            </h1>
+            <NavLink to={"/products"} className="category-buttons" variant="dark">
               <ArrowForwardIosIcon style={{ width: "12%" }} />
               Productos
             </NavLink>
-          </motion.article>
+          </article>
         </section>
       </Carousel.Item>
     </Carousel>
