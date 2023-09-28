@@ -62,22 +62,21 @@ export default function Products() {
   ));
 
   const responsive = {
-    superLargeDesktop: {
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
       items: 4,
+      slidesToSlide: 3 // optional, default to 1.
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
       items: 3,
+      slidesToSlide: 2 // optional, default to 1.
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 2,
-    },
+      items: 1,
+      slidesToSlide: 1 // optional, default to 1.
+    }
   };
 
   if (loading) return <Loading />;
@@ -161,11 +160,12 @@ export default function Products() {
             responsive={responsive}
             additionalTransfrom={0}
             arrows={true}
-            autoPlay={false}
-            autoPlaySpeed={3000}
+            autoPlay={true}
+            autoPlaySpeed={8000}
             customTransition="all 2s linear"
             centerMode={false}
             containerClass="container-with-dots"
+            removeArrowOnDeviceType={["tablet", "mobile"]}
             draggable
             focusOnSelect={false}
             infinite={true}
@@ -175,7 +175,7 @@ export default function Products() {
             renderArrowsWhenDisabled={false}
             renderButtonGroupOutside={true}
             renderDotsOutside={false}
-            className="products-container"
+            className="products-carousel"
             rewind={false}
             rewindWithAnimation={false}
             rtl={false}

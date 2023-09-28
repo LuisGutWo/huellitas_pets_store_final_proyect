@@ -42,13 +42,7 @@ const MainProductsList = () => {
       return data.filter((item) => searchData(item, search));
     } else {
       return data
-        .filter(
-          (item) =>
-            item.category === filter ||
-            item.type === filter ||
-            item.season === filter ||
-            item.brand === filter
-        )
+        .filter((item) => item.category === filter || item.type === filter)
         .filter((item) => searchData(item, search));
     }
   };
@@ -57,23 +51,11 @@ const MainProductsList = () => {
 
   return (
     <main>
-      {/* Products Header */}
+      {/* Products list section */}
       <section className="products-list-header">
-        <motion.div
-          initial={{
-            opacity: 0,
-          }}
-          animate={{
-            opacity: 1,
-            transition: { delay: 0.9, duration: 0.9 },
-          }}
-          exit={{
-            opacity: 0.5,
-            transition: { duration: 0.7 },
-          }}
-        >
-          <h3>NUESTROS PRODUCTOS</h3>
-          <h6>Conoce esta selección hecha para ti</h6>
+        <div>
+          <h1>NUESTROS PRODUCTOS</h1>
+          <h3>Conoce esta selección hecha para ti</h3>
           <input
             type="text"
             style={{
@@ -85,63 +67,45 @@ const MainProductsList = () => {
             className="main-form-products-categories"
             onChange={(e) => setSearch(e.target.value)}
           />
-        </motion.div>
+        </div>
       </section>
 
       {/* Category Navbar */}
-      <section className="main-products-navbar">
-        <motion.div
-          initial={{
-            opacity: 0,
-          }}
-          animate={{
-            opacity: 1,
-            transition: { delay: 1, duration: 1 },
-          }}
-          exit={{
-            opacity: 0.5,
-            transition: { duration: 0.7 },
-          }}
-        >
-          <Navbar className="main-products-buttons-section">
-            {categories.map((category) => (
-              <NavLink
-                key={category}
-                to={`/categories/${category}`}
-                onClick={() => setFilter(category)}
-                className="main-category-buttons"
-                style={{ alignItems: "center" }}
-              >
-                {category}
-              </NavLink>
-            ))}
-            {types.map((type) => (
-              <NavLink
-                key={type}
-                to={`/types/${type}`}
-                onClick={() => setFilter(type)}
-                className="main-category-buttons"
-              >
-                {type}
-              </NavLink>
-            ))}
-          </Navbar>
-        </motion.div>
-      </section>
+      <Navbar className="products-list-buttons">
+        {categories.map((category) => (
+          <NavLink
+            key={category}
+            to={`/categories/${category}`}
+            onClick={() => setFilter(category)}
+            className="category-buttons"
+            style={{ alignItems: "center" }}
+          >
+            {category}
+          </NavLink>
+        ))}
+        {types.map((type) => (
+          <NavLink
+            key={type}
+            to={`/types/${type}`}
+            onClick={() => setFilter(type)}
+            className="category-buttons"
+          >
+            {type}
+          </NavLink>
+        ))}
+      </Navbar>
 
       <Row
         xs={2}
         md={3}
         lg={4}
-        className="g-1 mt-0 mb-5 ms-3 d-flex justify-content-center align-items-center align-content-center justify-self-center main-products-container"
+        className="products-list-container"
       >
-        {filteredData().map(
-          (item) => (
-            <Col key={item.id}>
-              <MainProductCard key={item.id} item={item} />
-            </Col>
-          )
-        )}
+        {filteredData().map((item) => (
+          <Col key={item.id}>
+            <MainProductCard key={item.id} item={item} />
+          </Col>
+        ))}
       </Row>
       <BackToTopButton />
     </main>

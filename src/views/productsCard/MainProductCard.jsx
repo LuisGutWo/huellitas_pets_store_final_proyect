@@ -60,7 +60,7 @@ export default function MainProductCard({ item, selectFavorites }) {
               }
             >
               <FavoriteIcon
-                style={{ color: "#d6207b" }}
+                style={{ color: "#484a77" }}
                 className="card-icons"
               />
             </NavLink>

@@ -1,53 +1,39 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { Button, Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import Modal from "react-bootstrap/Modal";
+import Loading from "../../utils/Loading";
+import axios from "axios";
 import "animate.css";
 
 import { useUserContext } from "../../context/UserContext";
 import { useProductsContext } from "../../context/ProductsContext";
 import { logout } from "../../config/firebase";
 import { formatPrice } from "../../utils/formatPrice";
-import axios from "axios";
-
-import Modal from "react-bootstrap/Modal";
-import Loading from "../../utils/Loading";
 
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import SearchIcon from "@mui/icons-material/Search";
 
 import LogoWhite from "../../assets/img/huellitas-logo-white-500x500.png";
+import HeaderForm from "./HeaderForm";
 
-export default function MainHeader({ item, index }) {
+export default function MainHeader({ item }) {
   const [products, setProducts] = useState([]);
-  const [selectProduct, setSelectProduct] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [show, setShow] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
-  const [isActive, setIsActive] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
+  const { totalItemProducts, totalCart } = useProductsContext();
+  const { user } = useUserContext();
   const handleCloseCart = () => setShowCart(false);
   const handleShowCart = () => setShowCart(true);
-
   const handleCloseLogin = () => setShowLogin(false);
   const handleShowLogin = () => setShowLogin(true);
 
-  const { totalItemProducts, totalCart } = useProductsContext();
-
-  const navigate = useNavigate();
-  const { user } = useUserContext();
-
   const getProducts = async () => {
     setLoading(true);
-
     try {
       const { data } = await axios.get(import.meta.env.VITE_URL);
       setProducts(data);
@@ -60,18 +46,6 @@ export default function MainHeader({ item, index }) {
     getProducts();
   }, []);
 
-  const handleProductsChange = (e) => {
-    setSelectProduct(e.target.value);
-    if (e.target.value) setError(false);
-  };
-  const handleProductsClick = () => {
-    if (selectProduct) {
-      navigate(`/products/${selectProduct}`);
-    } else {
-      setError(true);
-    }
-  };
-
   const handleUserLogout = async () => {
     try {
       await logout();
@@ -80,10 +54,6 @@ export default function MainHeader({ item, index }) {
     }
   };
 
-  function addButtonModalSearch() {
-    handleProductsClick(products);
-    handleShow(!show);
-  }
   function addButtonModalCart() {
     handleProductsClick(products);
     handleShowCart(!showCart);
@@ -129,36 +99,7 @@ export default function MainHeader({ item, index }) {
                 backgroundColor: "#2A2F4F",
               }}
             >
-              {/* Buscador o Search del Navbar */}
-              <Form className="navbar-form">
-                <Form.Select
-                  size="sm"
-                  className="navbar-select"
-                  onChange={handleProductsChange}
-                >
-                  <option value={""}>Buscar productos...</option>
-                  {products.map((product) => (
-                    <option key={product.name} value={product.id}>
-                      {product.name}
-                    </option>
-                  ))}
-                </Form.Select>
-                <Button
-                  className="search-button"
-                  onClick={addButtonModalSearch}
-                >
-                  <SearchIcon style={{ width: "17px" }} />
-                </Button>
-                {!error ? (
-                  ""
-                ) : (
-                  <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                      <Modal.Body>Elige algún producto 😉</Modal.Body>
-                    </Modal.Header>
-                  </Modal>
-                )}
-              </Form>
+              <HeaderForm products={products} />
               <Offcanvas.Header closeButton style={{ alignContent: "center" }}>
                 <Offcanvas.Title
                   id={`offcanvasNavbarLabel-expand-${expand}`}
