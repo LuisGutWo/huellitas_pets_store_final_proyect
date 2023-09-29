@@ -3,8 +3,8 @@ import { Button, Modal } from "react-bootstrap";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import Form from "react-bootstrap/Form";
 import emailjs from "@emailjs/browser";
-import { motion } from "framer-motion";
 import { TextareaAutosize } from "@mui/material";
+import blackLogo from "../../assets/img/huellitas-logo-black-500x500.png";
 
 const Contact = () => {
   const [showEmailSend, setShowEmailSend] = useState(false);
@@ -34,31 +34,11 @@ const Contact = () => {
   };
 
   return (
-    <motion.div
-      initial={{
-        opacity: 0.7,
-      }}
-      animate={{
-        opacity: 1,
-        transition: { delay: 0.5, duration: 0.5 },
-      }}
-      exit={{
-        opacity: 0.7,
-        transition: { duration: 0.5 },
-      }}
-      className="contact-main-container"
-    >
+    <div className="contact-main-container">
       <article className="main-contact">
         <section className="contact-img"></section>
         <section className="contact-container">
-          <img
-            src={
-              "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/huellitas_logo_dark.png?alt=media&token=4686312b-e73e-410a-9c9f-0d03d64c0d4e"
-            }
-            alt=""
-            className="img-fluid"
-            style={{ width: "40%", padding: "0rem", margin: "0rem" }}
-          />
+          <img src={blackLogo} alt="" className="img-fluid contact-logo" />
           <Form ref={form} onSubmit={sendEmail} className="contact-form">
             <Form.Group className="mb-1">
               <Form.Label>Nombre</Form.Label>
@@ -100,14 +80,14 @@ const Contact = () => {
         </section>
       </article>
       <article className="map-section">
-        <div className="info-map">
-          Huellitas PetsStore,
-          <br />
-          Santiago de Chile,
-          <br />
-          <span>agutierrezwong@gmail.com</span>
-        </div>
         <div className="map-wrap">
+          <div className="info-map">
+            Huellitas PetsStore,
+            <br />
+            Santiago de Chile,
+            <br />
+            <span>agutierrezwong@gmail.com</span>
+          </div>
           <MapContainer center={[-33.43659, -70.68413]} zoom={16}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             <Marker position={[-33.43659, -70.68413]}>
@@ -116,7 +96,7 @@ const Contact = () => {
           </MapContainer>
         </div>
       </article>
-    </motion.div>
+    </div>
   );
 };
 

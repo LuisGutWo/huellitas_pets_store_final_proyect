@@ -6,6 +6,7 @@ import Modal from "react-bootstrap/Modal";
 
 import { useProductsContext } from "../../context/ProductsContext";
 import { FakeLoading } from "../../utils/FakeLoading";
+import { formatPrice } from "../../utils/formatPrice";
 import Loading from "../../utils/Loading";
 
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -52,7 +53,7 @@ export default function ProductDetail() {
         <Card.Title className="card-title">{product.name} </Card.Title>
         <Card.Text className="card-text">{product.desc}</Card.Text>
         <div className="card-price-button">
-          <b>$ {product.price}</b>
+          <b>{formatPrice(product.price)}</b>
           <NavLink to={"/products"} className="text-end">
             <Button className="btn btn-sm mt-2" variant="outline-primary">
               Volver
@@ -63,7 +64,7 @@ export default function ProductDetail() {
         {user ? (
           <>
             <Button
-              className="button-class"
+              className="category-buttons"
               ref={target}
               onClick={addButtonShoppingCart}
             >

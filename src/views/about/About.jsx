@@ -1,24 +1,10 @@
 import { NavLink } from "react-router-dom";
-import { motion } from "framer-motion";
+import "animate.css";
 
 function About() {
-
   return (
     <>
-      <motion.div
-        initial={{
-          opacity: 0.7,
-        }}
-        animate={{
-          opacity: 1,
-          transition: { delay: 0.5, duration: 0.5 },
-        }}
-        exit={{
-          opacity: 0.7,
-          transition: { duration: 0.5 },
-        }}
-        className="about-container"
-      >
+      <div className="about-container">
         <figure>
           <img
             src={
@@ -48,9 +34,11 @@ function About() {
             alt=""
             className="about-image"
           />
-          <NavLink to={"/products"} className="about-button">Volver a la tienda</NavLink>
+          <NavLink to={"/products"} className="category-buttons mt-4">
+            Volver a la tienda
+          </NavLink>
         </article>
-      </motion.div>
+      </div>
     </>
   );
 }

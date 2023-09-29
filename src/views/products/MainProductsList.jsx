@@ -2,11 +2,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { NavLink, Navbar, Row, Col } from "react-bootstrap";
 
-import MainProductCard from "../productsCard/MainProductCard";
+import MainProductCard from "../../views/productsCard/MainProductCard";
 import Loading from "../../utils/Loading";
 import BackToTopButton from "../../utils/BackToTopButton";
 import { FakeLoading } from "../../utils/FakeLoading";
-import { motion } from "framer-motion";
 
 const MainProductsList = () => {
   const [data, setData] = useState([]);
@@ -59,7 +58,7 @@ const MainProductsList = () => {
           <input
             type="text"
             style={{
-              fontStyle: "italic",
+              fontStyle: "roboto",
               borderRadius: "5px",
               backgroundColor: "Background",
             }}

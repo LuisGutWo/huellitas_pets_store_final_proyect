@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import Offcanvas from "react-bootstrap/Offcanvas";
@@ -25,12 +25,24 @@ export default function MainHeader({ item }) {
   const [loading, setLoading] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+  const [selectProduct, setSelectProduct] = useState("");
   const { totalItemProducts, totalCart } = useProductsContext();
   const { user } = useUserContext();
+  const [error, setError] = useState(false);
   const handleCloseCart = () => setShowCart(false);
   const handleShowCart = () => setShowCart(true);
   const handleCloseLogin = () => setShowLogin(false);
   const handleShowLogin = () => setShowLogin(true);
+
+  const navigate = useNavigate();
+
+  const handleProductsClick = () => {
+    if (selectProduct) {
+      navigate(`/products/${selectProduct}`);
+    } else {
+      setError(true);
+    }
+  };
 
   const getProducts = async () => {
     setLoading(true);
@@ -69,9 +81,7 @@ export default function MainHeader({ item }) {
     <>
       {["md"].map((expand) => (
         <Navbar expand={expand} className="main-navbar m-0" variant="dark">
-          {/* Contenedor principal del Navbar */}
           <Container fluid>
-            {/* Header Navbar logo */}
             <Link
               to={"/"}
               className="header-logo animate__animated animate__fadeIn"
@@ -216,7 +226,7 @@ export default function MainHeader({ item }) {
                       </div>
                       <Button
                         onClick={handleUserLogout}
-                        variant="outline-danger"
+                        variant="outline-warning"
                         className="logout-button"
                       >
                         Logout

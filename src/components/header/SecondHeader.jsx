@@ -66,35 +66,35 @@ const SecondHeader = () => {
                   >
                     <b>CONTACTO</b>
                   </NavLink>
+                  {user ? (
+                    <div className="welcome-user-section">
+                      <p className="m-0 text-light">Bienvenido 🖐🏼</p>
+                      <small className="text-header-name">{user.email}</small>
+                    </div>
+                  ) : (
+                    <NavLink
+                      to={"/loginPage"}
+                      className={(isActive) =>
+                        isActive ? "active-class" : "inactive-class"
+                      }
+                    >
+                      <div
+                        onClick={() => setIsActive(!isActive)}
+                        animate={{
+                          rotate: isActive ? 180 : 360,
+                        }}
+                        className="offline-user-warning"
+                      >
+                        Offline
+                      </div>
+                    </NavLink>
+                  )}
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>
 
           <section>
-            {user ? (
-              <div className="welcome-user-section">
-                <p className="m-0 text-light">Bienvenido 🖐🏼</p>
-                <small className="text-header-name">{user.email}</small>
-              </div>
-            ) : (
-              <NavLink
-                to={"/loginPage"}
-                className={(isActive) =>
-                  isActive ? "active-class" : "inactive-class"
-                }
-              >
-                <div
-                  onClick={() => setIsActive(!isActive)}
-                  animate={{
-                    rotate: isActive ? 180 : 360,
-                  }}
-                  className="offline-user-warning"
-                >
-                  Offline
-                </div>
-              </NavLink>
-            )}
             <a
               rel=""
               href="https://api.whatsapp.com/send?phone=56920390272&text=Hola, bienvenido a Huellitas. En que podemos ayudarte...😀"

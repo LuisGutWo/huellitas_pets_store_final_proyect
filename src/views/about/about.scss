@@ -18,6 +18,8 @@
     object-fit: cover;
     z-index: 0;
     margin-bottom: -1rem;
+    animation: fadeIn;
+    animation-duration: 2s;
   }
 
   .card-overlay {
@@ -31,94 +33,20 @@
     padding: 0rem 0rem 1rem 1rem;
 
     & h1 {
-      font-size: 1.2rem;
       font-weight: bold;
+      animation: fadeInLeft;
+      animation-duration: 2s;
     }
 
     & h5 {
-      font-size: 0.6rem;
+      animation: fadeInRight;
+      animation-duration: 3s;
     }
 
     & .about-image {
-      width: 20%;
-      @media (max-width: 768px) {
-      }
-
-      @media (min-width: 1024px) {
-        width: 25vw;
-
-      }
-      @media (min-width: 1440px) {
-        width: 20vw;
-
-      }
+      width: 25%;
+      animation: fadeIn;
+      animation-duration: 5s;
     }
-
-    & .about-button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-decoration: none;
-      background-image: linear-gradient(120deg, #778ab69b 0%, #ca4045c0 100%);
-      border: solid 1px black;
-      border-radius: 5px;
-      color: rgb(12, 12, 12);
-      text-decoration: none;
-      margin-top: 0.5rem;
-      font-size: 3vw;
-      width: 28vw;
-      height: 1.5rem;
-    }
-
-    @media (min-width: 768px) {
-      padding: 0rem 0rem 5rem 1rem;
-
-      & h1 {
-        font-size: 1.8rem;
-      }
-
-      & h5 {
-        font-size: 1rem;
-      }
-
-      & .about-button {
-        font-size: 3vw;
-        width: 28vw;
-        height: 2rem;
-
-      }
-    }
-
-    @media (min-width: 1024px) {
-      padding: 0rem 0rem 1rem 1rem;
-
-      & h1 {
-        font-size: 2.2rem;
-      }
-
-      & h5 {
-        font-size: 1.4rem;
-      }
-
-      & .about-button {
-        margin-top: 2rem;
-        font-size: 2vw;
-        width: 18vw;
-        height: 2.5rem;
-
-      }
-    }
-    @media (min-width: 1440px) {
-
-      & .about-button {
-        margin-top: 2rem;
-        font-size: 1.5vw;
-        width: 15vw;
-        height: 2.5rem;
-
-      }
-    }
-
-
   }
 }

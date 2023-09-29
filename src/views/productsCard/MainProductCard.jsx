@@ -3,6 +3,7 @@ import Card from "react-bootstrap/Card";
 import { Link, NavLink } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import { formatPrice } from "../../utils/formatPrice";
+import 'animate.css';
 
 import { Button } from "react-bootstrap";
 import { useProductsContext } from "../../context/ProductsContext";
@@ -36,7 +37,7 @@ export default function MainProductCard({ item, selectFavorites }) {
   const { user } = useUserContext();
 
   return (
-    <Card className="product-card animate__animated animate__fadeIn">
+    <Card className="product-card">
       <section className="card-favorite-icon">
         {selectFavorites ? (
           <Button
