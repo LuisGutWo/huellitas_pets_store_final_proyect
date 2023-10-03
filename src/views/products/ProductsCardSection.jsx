@@ -7,7 +7,6 @@ import "react-multi-carousel/lib/styles.css";
 import MainProductCard from "../productsCard/MainProductCard";
 import Loading from "../../utils/Loading";
 import { FakeLoading } from "../../utils/FakeLoading";
-import { motion } from "framer-motion";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -47,36 +46,27 @@ export default function Products() {
       return data.filter((item) => searchData(item, search));
     } else {
       return data
-        .filter(
-          (item) =>
-            item.category === filter ||
-            item.type === filter ||
-            item.season === filter ||
-            item.brand === filter
-        )
+        .filter((item) => item.category === filter || item.type === filter)
         .filter((item) => searchData(item, search));
     }
   };
-  const filteredProduct = filteredData().map((item) => (
-    <MainProductCard key={item.id} item={item} />
-  ));
 
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
       items: 4,
-      slidesToSlide: 3 // optional, default to 1.
+      slidesToSlide: 3, // optional, default to 1.
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
       items: 3,
-      slidesToSlide: 2 // optional, default to 1.
+      slidesToSlide: 2, // optional, default to 1.
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
       items: 1,
-      slidesToSlide: 1 // optional, default to 1.
-    }
+      slidesToSlide: 1, // optional, default to 1.
+    },
   };
 
   if (loading) return <Loading />;
@@ -162,12 +152,12 @@ export default function Products() {
             arrows={true}
             autoPlay={true}
             autoPlaySpeed={8000}
-            customTransition="all 2s linear"
+            customTransition="all 3s linear"
             centerMode={false}
             containerClass="container-with-dots"
             removeArrowOnDeviceType={["tablet", "mobile"]}
             draggable
-            focusOnSelect={false}
+            focusOnSelect={true}
             infinite={true}
             keyBoardControl
             minimumTouchDrag={80}
@@ -185,7 +175,9 @@ export default function Products() {
             slidesToSlide
             swipeable={true}
           >
-            {filteredProduct}
+            {filteredData().map((item) => (
+              <MainProductCard key={item.id} item={item} />
+            ))}
           </Carousel>
         </Container>
       )}

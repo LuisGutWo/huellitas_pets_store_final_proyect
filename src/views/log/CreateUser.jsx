@@ -21,6 +21,7 @@ import {
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { LoadingButton } from "@mui/lab";
+import { Container } from "react-bootstrap";
 
 const Register = () => {
   const [showPsw, setShowPsw] = useState(false);
@@ -59,91 +60,99 @@ const Register = () => {
 
   return (
     <>
-      <Box
-        className="main-login-box"
-      >
-        <Avatar sx={{ mx: "auto", bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Crear nuevo usuario
-        </Typography>
-
-        <Formik
-          initialValues={{ email: "", password: "" }}
-          onSubmit={onSubmit}
-          validationSchema={validationSchema}
-        >
-          {({
-            handleChange,
-            handleSubmit,
-            values,
-            isSubmitting,
-            errors,
-            touched,
-            handleBlur,
-          }) => (
-            <Box onSubmit={handleSubmit} component="form" sx={{ mt: 1 }}>
-              <TextField
-                sx={{ mb: 3, backgroundColor: "ButtonShadow", borderRadius: "5px" }}
-                fullWidth
-                label="@Email"
-                id="email"
-                type="text"
-                placeholder="Ingrese email"
-                value={values.email}
-                onChange={handleChange}
-                name="email"
-                onBlur={handleBlur}
-                error={errors.email && touched.email}
-                helperText={errors.email && touched.email && errors.email}
-              />
-              <div className="d-flex align-items-center justify-content-end">
+      <Box className="main-login-box">
+        <Container className="login-container">
+          <Avatar sx={{ mx: "auto", bgcolor: "secondary.main" }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Crear nuevo usuario
+          </Typography>
+          <Formik
+            initialValues={{ email: "", password: "" }}
+            onSubmit={onSubmit}
+            validationSchema={validationSchema}
+          >
+            {({
+              handleChange,
+              handleSubmit,
+              values,
+              isSubmitting,
+              errors,
+              touched,
+              handleBlur,
+            }) => (
+              <Box onSubmit={handleSubmit} component="form" sx={{ mt: 1 }}>
                 <TextField
-                  sx={{ backgroundColor: "ButtonShadow", borderRadius: "5px" }}
+                  sx={{
+                    mb: 3,
+                    backgroundColor: "ButtonShadow",
+                    borderRadius: "5px",
+                  }}
                   fullWidth
-                  label="Contraseña"
-                  id="password"
-                  type={showPsw ? "text" : "password"}
-                  placeholder="Ingrese contraseña"
-                  value={values.password}
+                  label="@Email"
+                  id="email"
+                  type="text"
+                  placeholder="Ingrese email"
+                  value={values.email}
                   onChange={handleChange}
-                  name="password"
+                  name="email"
                   onBlur={handleBlur}
-                  error={errors.password && touched.password}
-                  helperText={
-                    errors.password && touched.password && errors.password
-                  }
+                  error={errors.email && touched.email}
+                  helperText={errors.email && touched.email && errors.email}
                 />
-                <div
-                  style={{ position: "absolute", marginRight: 8 }}
-                  onClick={() => setShowPsw(!showPsw)}
-                >
-                  {showPsw ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                <div className="d-flex align-items-center justify-content-end">
+                  <TextField
+                    sx={{
+                      backgroundColor: "ButtonShadow",
+                      borderRadius: "5px",
+                    }}
+                    fullWidth
+                    label="Contraseña"
+                    id="password"
+                    type={showPsw ? "text" : "password"}
+                    placeholder="Ingrese contraseña"
+                    value={values.password}
+                    onChange={handleChange}
+                    name="password"
+                    onBlur={handleBlur}
+                    error={errors.password && touched.password}
+                    helperText={
+                      errors.password && touched.password && errors.password
+                    }
+                  />
+                  <div
+                    style={{ position: "absolute", marginRight: 8 }}
+                    onClick={() => setShowPsw(!showPsw)}
+                  >
+                    {showPsw ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                  </div>
                 </div>
-              </div>
-
-              <LoadingButton
-                variant="contained"
-                color="secondary"
-                sx={{ mt: 3, mb: 2, backgroundImage: "linear-gradient(45deg, #565b6b 0%, #901a7d 100%)" }}
-                fullWidth
-                type="submit"
-                disabled={isSubmitting}
-                loading={isSubmitting}
-              >
-                Crear
-              </LoadingButton>
-              <Grid container>
-                <Grid item xs>
-                  <Button component={Link} to="/loginPage" color="secondary">
-                    ¿Estas con nosotros? Accede aquí
-                  </Button>
+                <LoadingButton
+                  variant="contained"
+                  className="category-buttons"
+                  sx={{
+                    mt: 3,
+                    mb: 2,
+                  }}
+                  fullWidth
+                  type="submit"
+                  disabled={isSubmitting}
+                  loading={isSubmitting}
+                >
+                  Crear
+                </LoadingButton>
+                <Grid container>
+                  <Grid item xs>
+                    <Button component={Link} to="/loginPage" color="inherit">
+                      ¿Estas con nosotros? Accede aquí
+                    </Button>
+                  </Grid>
                 </Grid>
-              </Grid>
-            </Box>
-          )}
-        </Formik>
+              </Box>
+            )}
+          </Formik>
+        </Container>
       </Box>
     </>
   );

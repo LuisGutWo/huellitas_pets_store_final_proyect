@@ -49,7 +49,7 @@ const MainProductsList = () => {
   if (loading) return <Loading />;
 
   return (
-    <main>
+    <>
       {/* Products list section */}
       <section className="products-list-header">
         <div>
@@ -94,12 +94,7 @@ const MainProductsList = () => {
         ))}
       </Navbar>
 
-      <Row
-        xs={2}
-        md={3}
-        lg={4}
-        className="products-list-container"
-      >
+      <Row xs={2} md={3} lg={4} className="products-list-container">
         {filteredData().map((item) => (
           <Col key={item.id}>
             <MainProductCard key={item.id} item={item} />
@@ -107,7 +102,7 @@ const MainProductsList = () => {
         ))}
       </Row>
       <BackToTopButton />
-    </main>
+    </>
   );
 };
 

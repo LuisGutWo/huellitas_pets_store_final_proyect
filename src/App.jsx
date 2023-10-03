@@ -15,27 +15,20 @@ import NotFound from "./utils/NotFound";
 import MainProductsList from "./views/products/MainProductsList";
 import MainFooter from "./components/footer/MainFooter";
 import SecondHeader from "./components/header/SecondHeader";
+import BackToTopButton from "./utils/BackToTopButton";
+import WhatsAppButton from "./utils/WhatsAppButton";
 
 function App() {
   const { user } = useUserContext();
-  const [sticky, setSticky] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setSticky(window.scrollY > 200);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <div id="app">
       <MainHeader />
-      <header id="header" className={`${sticky ? "sticky" : ""}`}>
+      <header id="header" className="sticky-top">
         <SecondHeader />
       </header>
 
-      <div className="app-container">
+      <main className="app-container">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<MainProductsList />} />
@@ -51,7 +44,9 @@ function App() {
           />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </div>
+      </main>
+      <BackToTopButton />
+      <WhatsAppButton />
       <MainFooter />
     </div>
   );

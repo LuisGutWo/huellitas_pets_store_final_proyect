@@ -10,7 +10,7 @@ const SecondHeader = () => {
   const [isActive, setIsActive] = useState(false);
 
   return (
-    <section>
+    <>
       {["md"].map((expand) => (
         <Navbar collapseOnSelect expand="md" className="second-navbar">
           <Container className="second-navbar-buttons">
@@ -36,32 +36,36 @@ const SecondHeader = () => {
                 <Nav>
                   <NavLink
                     to="/"
+                    key="home"
                     className={({ isActive }) =>
-                      isActive ? "active-class-second" : "inactive-class-second"
+                      isActive ? "active-class" : "inactive-class"
                     }
                   >
                     <b>HOME</b>
                   </NavLink>
                   <NavLink
                     to="/products"
+                    key="products"
                     className={({ isActive }) =>
-                      isActive ? "active-class-second" : "inactive-class-second"
+                      isActive ? "active-class" : "inactive-class"
                     }
                   >
                     <b>PRODUCTOS</b>
                   </NavLink>
                   <NavLink
                     to="/about"
+                    key="about"
                     className={({ isActive }) =>
-                      isActive ? "active-class-second" : "inactive-class-second"
+                      isActive ? "active-class" : "inactive-class"
                     }
                   >
                     <b>ABOUT</b>
                   </NavLink>
                   <NavLink
                     to="/contact"
+                    key="contact"
                     className={({ isActive }) =>
-                      isActive ? "active-class-second" : "inactive-class-second"
+                      isActive ? "active-class" : "inactive-class"
                     }
                   >
                     <b>CONTACTO</b>
@@ -74,6 +78,7 @@ const SecondHeader = () => {
                   ) : (
                     <NavLink
                       to={"/loginPage"}
+                      key="loginpage"
                       className={(isActive) =>
                         isActive ? "active-class" : "inactive-class"
                       }
@@ -93,24 +98,9 @@ const SecondHeader = () => {
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>
-
-          <section>
-            <a
-              rel=""
-              href="https://api.whatsapp.com/send?phone=56920390272&text=Hola, bienvenido a Huellitas. En que podemos ayudarte...😀"
-              className="btn-wsp"
-              target="_blank"
-            >
-              <img
-                src="https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/wa_chat_icon.png?alt=media&token=ce6cb743-6822-4223-9279-0bdd5efe6677"
-                alt=""
-                className="wsp-image"
-              />
-            </a>
-          </section>
         </Navbar>
       ))}
-    </section>
+    </>
   );
 };
 

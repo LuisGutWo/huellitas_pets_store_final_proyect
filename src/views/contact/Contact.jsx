@@ -62,7 +62,7 @@ const Contact = () => {
             </Form.Group>
             <Button
               onClick={handleShowEmailSend}
-              className="about-button mt-2"
+              className="category-buttons mt-3"
               type="submit"
               value="Send"
             >

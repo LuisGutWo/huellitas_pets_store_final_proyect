@@ -3,7 +3,6 @@ import HeroSection from "../../components/hero/HeroSection";
 import ProductsCardSection from "../products/ProductsCardSection";
 import BlogSection from "../blog/BlogSection";
 import IconsSection from "../../components/icons/IconsSection";
-import BackToTopButton from "../../utils/BackToTopButton";
 import DiscountsProducts from "../products/DiscountsProducts";
 
 const Home = () => {
@@ -14,7 +13,6 @@ const Home = () => {
       <ProductsCardSection />
       <DiscountsProducts />
       <BlogSection />
-      <BackToTopButton />
     </>
   );
 };
