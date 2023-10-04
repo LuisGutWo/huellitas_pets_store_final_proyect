@@ -18,6 +18,10 @@ export default function Cart({ item }) {
             <div className="card mb-4">
               <div className="card-header py-3">
                 <h1>Detalle de tu pedido</h1>
+                <h3>
+                  Total de Productos:{" "}
+                  <b className="fs-5">{totalItemProducts(item)}</b>
+                </h3>
               </div>
               <div className="card-body p-0">
                 {/* /// Single item /// */}
@@ -26,7 +30,11 @@ export default function Cart({ item }) {
                     <CartItem key={item.id} item={item} />
                   ))}
                 </section>
-                <section className="cart-total">
+                <section
+                  className={
+                    cart.length === 0 ? "cart-total-flex" : "cart-total"
+                  }
+                >
                   <NavLink to={"/products"}>
                     {cart.length === 0 ? (
                       <Button>Volver a la Tienda</Button>
@@ -38,15 +46,15 @@ export default function Cart({ item }) {
                   </NavLink>
                   {cart.length === 0 ? (
                     <li className="list-group-empty">
-                      <h4>Tu Carrito esta vacío</h4>
                       <img
                         src={
                           "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/emoticon_gatito.png?alt=media&token=f77e6efc-d1ab-4a07-b6b7-73e3f98ed959"
                         }
                         alt=""
                         className="img-fluid"
-                        style={{ width: "8rem" }}
+                        style={{ width: "20%" }}
                       />
+                      <h4>Tu Carrito esta vacío</h4>
                     </li>
                   ) : (
                     <Button
@@ -79,12 +87,6 @@ export default function Cart({ item }) {
                   width="170rem"
                   src="src/assets/img/tarjetas_logo.png"
                 />
-                <img
-                  className="me-2"
-                  width="45px"
-                  src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.webp"
-                  alt="PayPal acceptance mark"
-                />
               </div>
             </div>
           </div>
@@ -93,11 +95,11 @@ export default function Cart({ item }) {
               <div className="card-header py-3">
                 <h5 className="mb-0">Resumen</h5>
               </div>
-              <div className="card-body card-detail-style">
+              <div className="card-body">
                 <ul className="list-group list-group-flush">
                   <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                     Productos
-                    <span>{totalItemProducts(item)}</span>
+                    <span>${formatPrice(totalCart())}</span>
                   </li>
                   <li className="list-group-item d-flex justify-content-between align-items-center px-0">
                     Shipping
@@ -115,9 +117,11 @@ export default function Cart({ item }) {
                     </span>
                   </li>
                 </ul>
-                <button type="button" className="category-buttons">
-                  Ir a Pagar
-                </button>
+                <NavLink to={"/products"}>
+                  <button type="button" className="category-buttons">
+                    Ir a Pagar
+                  </button>
+                </NavLink>
               </div>
             </div>
           </div>

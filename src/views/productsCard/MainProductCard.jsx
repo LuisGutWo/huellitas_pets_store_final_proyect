@@ -18,7 +18,7 @@ export default function MainProductCard({ item, selectFavorites }) {
   const { addFavorites, removeFavorites, addProduct } = useProductsContext();
 
   const [showCart, setShowCart] = useState(false);
-  const [rating, setRating] = useState("");
+  const [rating, setRating] = useState(false);
   const [showFavorite, setShowFavorite] = useState(false);
   const target = useRef(null);
 
@@ -99,7 +99,7 @@ export default function MainProductCard({ item, selectFavorites }) {
           rating={3}
           starRatedColor="orange"
           changeRating={setNewRating}
-          starDimension="1.3rem"
+          starDimension="0.9rem"
           numberOfStars={5}
           name="rating"
         />

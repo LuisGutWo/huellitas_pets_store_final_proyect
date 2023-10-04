@@ -40,14 +40,6 @@
     width: 25%;
     height: auto;
   }
-
-  // @media (min-width: 768px) {
-  //   padding: 3.5rem 0rem 0rem 7rem;
-  // }
-
-  // @media (min-width: 1024px) {
-  //   padding: 2rem 0rem 0rem 8rem;
-  // }
 }
 
 .newhero-container {
@@ -67,14 +59,6 @@
     width: 25%;
     height: auto;
   }
-
-  // @media (min-width: 768px) {
-  //   padding: 0rem 6rem 1.2rem 0rem;
-  // }
-
-  // @media (min-width: 1024px) {
-  //   padding: 0rem 10rem 1.2rem 0rem;
-  // }
 }
 
 .text-container {
@@ -83,51 +67,75 @@
   align-items: center;
   flex-wrap: wrap;
   font-size: 2rem;
-
-  // @media (min-width: 768px) {
-  //   font-size: 100%;
-  // }
-
-  // @media (min-width: 1024px) {
-  //   font-size: 2.5vw;
-  // }
 }
 
-.hero-button {
+.category-buttons-hero {
+  background-image: linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%);
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  text-decoration: none;
-
-  background-image: styles.$gradient-background;
-  border: solid 1px black;
+  gap: 0.7rem;
+  border-color: #3d3e65;
   border-radius: 5px;
-  color: styles.$background-color;
+  color: rgb(251, 251, 251);
+  padding: 0.8rem 1.8rem;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  -webkit-transition: background 0.3s linear, color 0.3s linear;
+  transition: background 0.3s linear, color 0.3s linear;
 
-  width: 20%;
-  height: 10%;
-  padding: 1.2%;
-  font-size: 44%;
-
-  // @media (min-width: 768px) {
-  //   width: 20%;
-  //   height: 10%;
-  //   padding: 0;
-  //   font-size: 70%;
-  // }
-
-  // @media (min-width: 1024px) {
-  //   font-size: 2vw;
-  // }
-
-  // @media (min-width: 1440px) {
-  //   width: 13%;
-  //   height: 7%;
-  //   padding: 0;
-  // }
+  &:focus,
+  &:hover {
+    background: #b5aee4;
+    border-color: #505285;
+    color: rgb(10, 10, 10);
+    animation: pulse;
+    animation-duration: 1s;
+  }
 }
 
-@media (width <= 768) {
+
+// /// media queries Hero section ///
+@media (width <=768px) {
+
+  .text-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 1rem;
+  }
+
+  .hero-container {
+    padding: 4rem 4rem;
+
+
+    & img {
+      width: 20%;
+      height: auto;
+    }
+  }
+
+  .newhero-container {
+    padding: 4rem;
+
+    & img {
+      width: 20%;
+      height: auto;
+    }
+  }
+
+  .category-buttons-hero {
+   display: none;
+  }
+
+
+
+
+
 
 
 

@@ -29,6 +29,7 @@
 
         .card-icons {
             font-size: 170%;
+
             &:hover {
                 color: #7a7fc6 !important;
                 -webkit-transform: scale(1.1);
@@ -84,25 +85,69 @@
     }
 
 
-    .button-card {
+    .card-buttons {
+        background-image: linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%);
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        font-size: 1rem;
+        gap: 0.7rem;
+        border-color: #3d3e65;
+        border-radius: 5px;
+        color: rgb(251, 251, 251);
+        padding: 0.8rem 1.8rem;
+        text-decoration: none;
+        font-size: 14px;
+        line-height: 18px;
+        font-weight: 600;
+        text-transform: uppercase;
+        -webkit-transition: background 0.3s linear, color 0.3s linear;
+        transition: background 0.3s linear, color 0.3s linear;
 
-        width: 90%;
-        height: 10%;
-        margin-bottom: 0.8rem;
-        border: none;
-        border-radius: 10px;
-        background-color: #484a77;
-
+        &:focus,
         &:hover {
+            background: #b5aee4;
+            border-color: #505285;
+            color: rgb(10, 10, 10);
             animation: pulse;
             animation-duration: 1s;
         }
     }
 
 
+
+}
+
+@media (width <=768px) {
+    .product-card {
+        height: 22rem;
+
+        & .card-image-container {
+            height: 60%;
+
+            & .card-image {
+                width: 40%;
+            }
+
+
+        }
+
+
+        .card-body {
+            .card-body-title {
+                font-size: 0.8rem;
+            }
+
+            .card-body-price {
+                font-size: 0.9rem;
+            }
+            
+
+        }
+
+
+
+    }
+
+    
 
 }

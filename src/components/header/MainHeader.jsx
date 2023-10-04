@@ -109,7 +109,7 @@ export default function MainHeader({ item }) {
                 backgroundColor: "#2A2F4F",
               }}
             >
-              <HeaderForm products={products} />
+              <HeaderForm products={products} key={products.id}/>
               <Offcanvas.Header closeButton style={{ alignContent: "center" }}>
                 <Offcanvas.Title
                   id={`offcanvasNavbarLabel-expand-${expand}`}
@@ -173,10 +173,8 @@ export default function MainHeader({ item }) {
                           onClick={addButtonModalCart}
                         >
                           <ShoppingCartIcon
-                            className="icon-cart"
                             style={{
-                              width: "3rem",
-                              fontSize: "1.8rem",
+                              fontSize: "2rem",
                             }}
                           />
                           {user && (

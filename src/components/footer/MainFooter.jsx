@@ -4,7 +4,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import InstagramIcon from "@mui/icons-material/Instagram";
 
-import LogoWhite from "../../assets/img/huellitas_logo_blanco.png";
+import LogoWhite from "../../assets/img/huellitas-logo-white-500x500.png";
 import LogoCreditCards from "../../assets/img/tarjetas_logo.png";
 
 const MainFooter = () => {
@@ -15,10 +15,10 @@ const MainFooter = () => {
           <Col className="footer-content">
             <img
               src={LogoWhite}
-              width="50%"
-              height="50%"
-              className="d-inline-block align-top"
-              alt=""
+              width="35%"
+              height="35%"
+              className="d-inline-block align-top ms-5"
+              alt="Huellitas logo blanco"
             />
             <p className="footer-text">
               Tienda especializada en la importación, distribución y venta de
@@ -27,14 +27,14 @@ const MainFooter = () => {
             </p>
             <img
               src={LogoCreditCards}
-              width="150"
-              height="45"
+              width="200"
+              height="60"
               className="d-inline-block align-top"
               alt=""
             />
           </Col>
           <Col className="footer-content">
-            <h5 className="mt-3">INFORMACIÓN</h5>
+            <h4 className="mt-3">INFORMACIÓN</h4>
             <p className="footer-text">
               Envíos y Entregas
               <br />
@@ -46,7 +46,7 @@ const MainFooter = () => {
             </p>
           </Col>
           <Col className="footer-content">
-            <h5 className="mt-3">CONTACTO</h5>
+            <h4 className="mt-3">CONTACTO</h4>
             <p className="footer-text">
               San Pablo 3610, local 2, Quinta Normal - Santiago
               <br />
@@ -59,7 +59,7 @@ const MainFooter = () => {
           </Col>
         </Row>
       </Container>
-      <h5 className="fs-6 text-center bg-light m-0">copyright©2023 | LGWwebmedia </h5>
+      <h5 className="fs-5 text-center bg-light pt-3 pb-3 m-0">copyright©2023 | LGWwebmedia </h5>
     </footer>
   );
 };

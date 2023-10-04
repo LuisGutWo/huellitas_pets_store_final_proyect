@@ -113,7 +113,7 @@
 .wave {
   position: absolute;
   height: 30px;
-  width: 100%;
+  width: 100vw;
   background: styles.$background-color;
   bottom: 100%;
 }
@@ -146,6 +146,7 @@
 .main-featured-container {
   background-color: #b5aee4;
   height: 100%;
+  width: 100vw;
   padding-bottom: 6rem;
 
 }
@@ -165,15 +166,86 @@ h2 .news-features {
 }
 
 @media (width <=768px) {
-  // .products-header {
-  //   height: auto !important;
+  .products-header {
+    height: 15rem;
+    background-position: right;
 
-  //   & h3 {
-  //     font-size: 2em
-  //   }
-  // }
+    & h1 {
+      font-size: 1.5rem;
+    }
 
-  // .form-products-categories {
-  //   width: 20em;
-  // }
+    & h3 {
+      font-size: 1rem;
+    }
+  }
+
+  .form-products-categories {
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  .products-navbar {
+    & .products-buttons-section {
+      overflow: scroll;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      gap: 4%;
+      height: 4rem;
+      padding-left: 4rem;
+    }
+  }
+
+  .category-buttons {
+    padding: 0.6rem;
+    text-decoration: none;
+    font-size: 10px;
+    line-height: 8px;
+    font-weight: 600;
+  }
+
+  .products-carousel {
+    background-color: transparent;
+    height: 100%;
+    padding: 3rem 0;
+    width: auto;
+
+    & .react-multi-carousel-item {
+      display: block !important;
+      margin: 0 0.5rem 0 0.5rem;
+    }
+
+  }
+
+  .discount-container {
+    margin-top: 1rem;
+  }
+
+  .main-featured-container {
+    padding-bottom: 4rem;
+
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    height: 8rem;
+    font-weight: 600;
+  }
+
+  h2 .news-features {
+    height: 2.5em;
+  }
+
+  .products-carousel {
+    background-color: transparent;
+    height: 25rem;
+    width: auto;
+
+    & .react-multi-carousel-item {
+      display: block !important;
+      margin: 0 0.5rem 0 0.5rem;
+    }
+
+  }
+
+
 }

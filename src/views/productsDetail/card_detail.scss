@@ -99,3 +99,56 @@
     }
 
 }
+
+
+@media (width <=768px) {
+    .detail-card {
+        height: 100%;
+        justify-content: center;
+        margin: 2rem;
+        flex-direction: column;
+        padding-top: 4rem;
+
+        & .card-favorite-icon {
+            top: 50%;
+            left: 82%;
+        }
+
+        & .card-image {
+            width: 80%;
+        }
+    }
+
+    .card-body-detail {
+        & .card-title {
+            font-size: 1.1rem;
+            border-bottom: solid 1px black;
+            margin-bottom: 1.1rem;
+        }
+
+        & .card-text {
+            font-size: 0.8rem;
+
+        }
+
+    }
+
+    .card-price-button {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 0.5rem;
+        align-items: flex-start;
+        margin: 0.2rem 0rem 2rem 0rem;
+        font-size: 1.2rem;
+        color: #080808;
+
+        b {
+            font-size: 1rem;
+
+        }
+
+    }
+
+}

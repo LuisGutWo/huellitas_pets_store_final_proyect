@@ -19,29 +19,25 @@
    margin: 0;
    height: 100%;
 
-   & h5 {
-     font-size: 80%;
+ }
+
+ h4 {
+   font-size: 100%;
+ }
+
+ .footer-text {
+   font-size: 100%;
+   text-align: start;
+ }
+
+ @media (width <=768px) {
+   h4 {
+     font-size: 90%;
    }
 
-   & .footer-text {
-     font-size: 50%;
-   }
-
-   @media (min-width: 768px){
-    & h5 {
-      font-size: 90%;
-    }
-    & .footer-text {
-      font-size: 60%;
-    }
-   }
-   @media (min-width: 1020px){
-    & h5 {
-      font-size: 1.2vw;
-    }
-    & .footer-text {
-      font-size: 0.9vw;
-    }
+   .footer-text {
+     font-size: 70%;
+     text-align: start;
    }
 
  }

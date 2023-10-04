@@ -113,7 +113,7 @@ export default function ProductDetail({ item, selectFavorites }) {
           <Card.Title className="card-title">{product.name} </Card.Title>
           <Card.Text className="card-text">{product.desc}</Card.Text>
           <div className="card-price-button">
-            <b>{formatPrice(product.price)}</b>
+            <b>$ {formatPrice(product.price)}</b>
             <StarRatings
               rating={3}
               starRatedColor="orange"

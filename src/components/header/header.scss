@@ -1,7 +1,5 @@
 @use "../../styles.scss";
 
-
-
 /* Navbar Styles */
 #header {
   height: 100%;
@@ -9,8 +7,6 @@
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
   border: none;
 }
-
-
 
 .main-navbar {
   background-image: linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%);
@@ -43,7 +39,6 @@
   height: 3rem;
   width: 20rem;
   margin: 1rem;
-
 
   & .navbar-select {
     height: 100%;
@@ -141,16 +136,6 @@
   }
 }
 
-.offline-user-warning {
-  // position: relative;
-  // color: rgb(236, 0, 0);
-  // font-size: 0.8rem;
-  // font-weight: bold;
-  // margin-bottom: 0.5rem;
-  // text-decoration: none;
-  display: none;
-}
-
 // /// WhatsApp Floating Button ///
 .btn-wsp {
   position: fixed !important;
@@ -188,18 +173,17 @@
 
 .count-products {
   position: absolute;
+  display: grid;
+  place-items: center;
   bottom: 52%;
-  left: 50%;
+  left: 53%;
 
   background-color: #ffffff;
   color: rgb(0, 0, 0);
   border: solid black 1.5px;
-  width: 20px;
-  height: 20px;
+  width: 23px;
+  height: 23px;
 
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
   border-radius: 50%;
 }
 
@@ -224,7 +208,100 @@
   font-size: 1rem;
 }
 
-// @media (width <=768px) {
-//   .main-navbar {
-//     height: 7em;
-//   }
+
+
+/// media queries navbar ///
+@media (width <= 768px) {
+  .main-navbar {
+    height: 5rem;
+  }
+
+  .header-logo {
+    width: 19%;
+    margin: 0;
+
+    img {
+      width: 100%;
+      margin-left: 1rem;
+    }
+  }
+
+  .offcanvas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+
+    .offcanvas-body {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+
+    }
+  }
+
+  .logout-button {
+    height: 50%;
+    width: 6rem;
+    font-size: 1rem;
+  }
+
+  .navbar-form {
+    height: 3rem;
+    width: 100%;
+    margin: 1rem 0 1rem 1.3rem;
+    padding: 0;
+
+    & .navbar-select {
+      font-size: 70%;
+    }
+  }
+
+  .btn-wsp {
+    top: 68%;
+    left: 62%;
+    height: 100vh;
+
+    & .wsp-image {
+      width: 45%;
+    }
+  }
+
+  .second-navbar {
+    height: 2.5rem;
+    padding: 0;
+
+    & .second-navbar-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      font-size: 1.2rem;
+    }
+
+
+  }
+
+  .navbar-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding-left: 0;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

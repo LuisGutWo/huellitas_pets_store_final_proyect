@@ -28,6 +28,9 @@ export default function ProductsContextProvider({ children }) {
       );
     }
   };
+  const removeProductCart = (item) => {
+    setCart(cart.filter((i) => item.id != i.id));
+  };
 
   const totalItemProducts = () => {
     return cart.reduce((acc, item) => acc + item.count, 0);
@@ -59,7 +62,7 @@ export default function ProductsContextProvider({ children }) {
 
   return (
     <ProductsContext.Provider
-      value={{ cart, addProduct, removeProduct, totalItemProducts, totalCart, onCleanCart, findItemCount, favorites, addFavorites, removeFavorites }}
+      value={{ cart, addProduct, removeProduct, removeProductCart, totalItemProducts, totalCart, onCleanCart, findItemCount, favorites, addFavorites, removeFavorites }}
     >
       {children}
     </ProductsContext.Provider>
