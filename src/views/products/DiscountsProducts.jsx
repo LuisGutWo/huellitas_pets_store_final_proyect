@@ -89,7 +89,7 @@ const DiscountsProducts = () => {
 
   return (
     <main className="discount-container">
-      <div className="wave"></div>
+      
       {/* Discount products carousel */}
       <div className="main-featured-container">
         <section>

@@ -68,3 +68,38 @@
 
 
 }
+
+@media (width <=768px) {
+    .products-list-header {
+        & h1 {
+            font-size: 1rem;
+        }
+
+        & h3 {
+            text-align: end;
+            font-size: 0.8rem;
+        }
+
+        & .main-form-products-categories {
+            font-size: 1rem;
+        }
+    }
+
+    .products-list-buttons {
+        padding: 1rem 0 1rem 1.8rem;
+        overflow: hidden;
+        flex-wrap: nowrap;
+        overflow: scroll;
+        gap: 2%;
+    }
+
+    .products-list-container {
+        width: 100%;
+        row-gap: 1.5rem;
+        padding: 0;
+        margin: 0.5rem;
+
+
+    }
+
+}

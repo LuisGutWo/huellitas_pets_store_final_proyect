@@ -27,7 +27,7 @@ const SecondHeader = () => {
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               placement="top"
               style={{
-                width: "100%",
+                width: "100vw",
                 height: "45%",
                 backgroundColor: "#917FB3",
               }}

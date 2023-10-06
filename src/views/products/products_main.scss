@@ -103,8 +103,10 @@
 // ///Products discount ///
 .discount-container {
   position: relative;
+  overflow: hidden;
   background: transparent;
   height: 100%;
+  width: 100%;
   margin-top: 8rem;
   padding: 0 !important;
 
@@ -113,7 +115,7 @@
 .wave {
   position: absolute;
   height: 30px;
-  width: 100vw;
+  width: 100%;
   background: styles.$background-color;
   bottom: 100%;
 }
@@ -168,6 +170,7 @@ h2 .news-features {
 @media (width <=768px) {
   .products-header {
     height: 15rem;
+    width: min-content;
     background-position: right;
 
     & h1 {

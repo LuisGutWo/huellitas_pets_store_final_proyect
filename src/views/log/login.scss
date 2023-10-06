@@ -20,9 +20,16 @@
         border-radius: 15px;
         animation: heartBeat;
         animation-duration: 2s;
+    }  
+}
+
+@media (width <=768px) {
+    .main-login-box {
+        padding: 2rem;
+    
+        & .login-container {
+            width: 100%;
+        }  
     }
 
-    // @media (min-width: 768px){
-    //     width: 100%;
-    // }   
 }
