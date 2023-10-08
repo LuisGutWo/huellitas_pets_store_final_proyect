@@ -8,7 +8,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 29rem;
+    height: 28rem;
+    width: 90%;
     margin: 0;
     animation: fadeIn;
     animation-duration: 2s;
@@ -47,7 +48,7 @@
         height: 60%;
 
         & .card-image {
-            width: 75%;
+            width: 72%;
             -webkit-transform: scale(1);
             transform: scale(1);
             -webkit-transition: 1s ease-in-out;
@@ -119,13 +120,14 @@
 
 @media (width <=768px) {
     .product-card {
-        height: 22rem;
+        height: 21rem;
+        width: 95%;
 
         & .card-image-container {
             height: 60%;
 
             & .card-image {
-                width: 40%;
+                width: 35%;
             }
 
 

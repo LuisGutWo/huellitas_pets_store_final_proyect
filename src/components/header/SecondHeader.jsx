@@ -7,7 +7,6 @@ import "animate.css";
 
 const SecondHeader = () => {
   const { user } = useUserContext();
-  const [isActive, setIsActive] = useState(false);
 
   return (
     <>
@@ -28,7 +27,7 @@ const SecondHeader = () => {
               placement="top"
               style={{
                 width: "100vw",
-                height: "45%",
+                height: "60%",
                 backgroundColor: "#917FB3",
               }}
             >

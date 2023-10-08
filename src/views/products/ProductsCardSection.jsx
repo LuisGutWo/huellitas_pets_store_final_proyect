@@ -55,12 +55,12 @@ export default function Products() {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
       items: 4,
-      slidesToSlide: 3, // optional, default to 1.
+      slidesToSlide: 4, // optional, default to 1.
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
       items: 3,
-      slidesToSlide: 2, // optional, default to 1.
+      slidesToSlide: 3, // optional, default to 1.
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
@@ -74,7 +74,7 @@ export default function Products() {
   return (
     <main>
       {/* Products Header */}
-      <section className="products-header animate__animated animate__fadeIn">
+      <section className="products-header">
         <h1
           data-aos="fade-right"
           data-aos-offset="300"
@@ -141,11 +141,7 @@ export default function Products() {
       {loading ? (
         <Loading />
       ) : (
-        <Container
-          data-aos="fade-right"
-          data-aos-offset="300"
-          data-aos-easing="ease-in-sine"
-        >
+        <Container>
           <Carousel
             responsive={responsive}
             additionalTransfrom={0}

@@ -103,8 +103,7 @@ export default function MainHeader({ item }) {
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               placement="end"
               style={{
-                width: "40%",
-                paddingRight: "5%",
+                width: "70%",
                 height: "100%",
                 backgroundColor: "#2A2F4F",
               }}

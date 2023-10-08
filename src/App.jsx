@@ -14,6 +14,8 @@ import NotFound from "./utils/NotFound";
 import MainProductsList from "./views/products/MainProductsList";
 import MainFooter from "./components/footer/MainFooter";
 import SecondHeader from "./components/header/SecondHeader";
+import BackToTopButton from "./utils/BackToTopButton";
+import WhatsAppButton from "./utils/WhatsAppButton";
 
 function App() {
   const { user } = useUserContext();
@@ -42,6 +44,8 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
+      <BackToTopButton />
+      <WhatsAppButton />
       <MainFooter />
     </div>
   );

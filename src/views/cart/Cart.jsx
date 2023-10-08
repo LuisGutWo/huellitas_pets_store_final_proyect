@@ -20,7 +20,7 @@ export default function Cart({ item }) {
                 <h1>Detalle de tu pedido</h1>
                 <h3>
                   Total de Productos:{" "}
-                  <b className="fs-5">{totalItemProducts(item)}</b>
+                  <b className="fs-5 text-center">{totalItemProducts(item)}</b>
                 </h3>
               </div>
               <div className="card-body p-0">

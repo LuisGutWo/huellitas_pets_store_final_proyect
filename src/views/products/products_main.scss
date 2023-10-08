@@ -170,15 +170,17 @@ h2 .news-features {
 @media (width <=768px) {
   .products-header {
     height: 15rem;
-    width: min-content;
     background-position: right;
+    padding-top: 4rem;
 
     & h1 {
-      font-size: 1.5rem;
+      font-size: 1.7rem;
+      font-weight: bolder;
     }
 
     & h3 {
-      font-size: 1rem;
+      font-size: 1.2rem;
+      font-weight: bolder;
     }
   }
 
@@ -189,7 +191,8 @@ h2 .news-features {
 
   .products-navbar {
     & .products-buttons-section {
-      overflow: scroll;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
       flex-direction: row;
       flex-wrap: nowrap;
       gap: 4%;
@@ -199,6 +202,7 @@ h2 .news-features {
   }
 
   .category-buttons {
+    scroll-snap-align: center;
     padding: 0.6rem;
     text-decoration: none;
     font-size: 10px;
@@ -209,12 +213,10 @@ h2 .news-features {
   .products-carousel {
     background-color: transparent;
     height: 100%;
-    padding: 3rem 0;
-    width: auto;
 
     & .react-multi-carousel-item {
       display: block !important;
-      margin: 0 0.5rem 0 0.5rem;
+      margin: 3rem 0rem;
     }
 
   }
@@ -237,18 +239,5 @@ h2 .news-features {
   h2 .news-features {
     height: 2.5em;
   }
-
-  .products-carousel {
-    background-color: transparent;
-    height: 25rem;
-    width: auto;
-
-    & .react-multi-carousel-item {
-      display: block !important;
-      margin: 0 0.5rem 0 0.5rem;
-    }
-
-  }
-
 
 }
