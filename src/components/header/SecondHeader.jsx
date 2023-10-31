@@ -10,13 +10,13 @@ const SecondHeader = () => {
 
   return (
     <>
-      {["md"].map((expand) => (
-        <Navbar collapseOnSelect expand="md" className="second-navbar">
+      {["md"].map((id, expand) => (
+        <Navbar key={id} collapseOnSelect expand="md" className="second-navbar">
           <Container className="second-navbar-buttons">
             <Navbar.Toggle
               aria-controls={`offcanvasNavbar-expand-${expand}`}
               style={{
-                padding: "4px",
+                padding: "0px",
                 border: "0px",
                 fontSize: "0.7rem",
               }}
@@ -24,12 +24,8 @@ const SecondHeader = () => {
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-              placement="top"
-              style={{
-                width: "100vw",
-                height: "60%",
-                backgroundColor: "#917FB3",
-              }}
+              placement="left"
+              className= "second-navbar-offcanvas"
             >
               <Offcanvas.Body>
                 <Nav>

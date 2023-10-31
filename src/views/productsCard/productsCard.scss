@@ -89,13 +89,14 @@
     .card-buttons {
         background-image: linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%);
         display: flex;
+        flex-direction: row;
         justify-content: space-evenly;
         align-items: center;
         gap: 0.7rem;
         border-color: #3d3e65;
         border-radius: 5px;
         color: rgb(251, 251, 251);
-        padding: 0.8rem 1.8rem;
+        padding: 0.6rem;
         text-decoration: none;
         font-size: 14px;
         line-height: 18px;
@@ -148,6 +149,18 @@
 
 
 
+    }
+    .card-buttons {
+        margin: 0.8rem;
+
+        &:focus,
+        &:hover {
+            background: #b5aee4;
+            border-color: #505285;
+            color: rgb(10, 10, 10);
+            animation: pulse;
+            animation-duration: 1s;
+        }
     }
 
     

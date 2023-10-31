@@ -19,23 +19,46 @@ const DiscountsProducts = () => {
   const [season, setSeason] = useState([]);
   const [filter, setFilter] = useState("all");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   FakeLoading(200);
 
+  const fetchData = async () => {
+    setLoading(true);    
+
+    try {
+      const res = await fetch(import.meta.env.VITE_URL);
+      const data = await res.json();
+
+      setData(data);
+      setDiscounts(["all", ...new Set(data.map((item) => item.promotion))]);
+      setSeason([...new Set(data.map((item) => item.season))]);
+    } catch (error) {
+      setError(error);
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    setLoading(true);
-
-    fetch(import.meta.env.VITE_URL)
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-        setDiscounts(["all", ...new Set(data.map((item) => item.promotion))]);
-        setSeason([...new Set(data.map((item) => item.season))]);
-        setLoading(false);
-      })
-
-      .finally(() => setLoading(false));
+    fetchData();
   }, []);
+
+  // useEffect(() => {
+  //   setLoading(true);
+
+  //   fetch(import.meta.env.VITE_URL)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setData(data);
+  //       setDiscounts(["all", ...new Set(data.map((item) => item.promotion))]);
+  //       setSeason([...new Set(data.map((item) => item.season))]);
+  //       setLoading(false);
+  //     })
+
+  //     .finally(() => setLoading(false));
+  // }, []);
 
   const searchData = (item, search) => {
     return item.name.toLowerCase().includes(search.toLowerCase());
@@ -43,6 +66,8 @@ const DiscountsProducts = () => {
 
   const filteredDataDiscounts = () => {
     if (filter === "discount") {
+      setSearch(true);
+      setFilter(true);
       return data.filter((item) => item.promotion === "discount");
     } else {
       return data
@@ -79,13 +104,14 @@ const DiscountsProducts = () => {
       slidesToSlide: 2, // optional, default to 1.
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 564, min: 0 },
       items: 2,
       slidesToSlide: 2, // optional, default to 1.
     },
   };
 
   if (loading) return <Loading />;
+  if (error) return <div>Error: {error.message}</div>;
 
   return (
     <main className="discount-container">

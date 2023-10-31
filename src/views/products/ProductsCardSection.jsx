@@ -19,23 +19,46 @@ export default function Products() {
   const [types, setTypes] = useState([]);
   const [filter, setFilter] = useState("all");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   FakeLoading(2000);
 
-  useEffect(() => {
+  const fetchData = async () => {
     setLoading(true);
 
-    fetch(import.meta.env.VITE_URL)
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-        setCategories(["all", ...new Set(data.map((item) => item.category))]);
-        setTypes([...new Set(data.map((item) => item.type))]);
-        setLoading(false);
-      })
+    try {
+      const res = await fetch(import.meta.env.VITE_URL);
+      const data = await res.json();
 
-      .finally(() => setLoading(false));
+      setData(data);
+      setCategories(["all", ...new Set(data.map((item) => item.category))]);
+      setTypes([...new Set(data.map((item) => item.type))]);
+    } catch (error) {
+      setError(error);
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
   }, []);
+
+  // useEffect(() => {
+  //   setLoading(true);
+
+  //   fetch(import.meta.env.VITE_URL)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setData(data);
+  //       setCategories(["all", ...new Set(data.map((item) => item.category))]);
+  //       setTypes([...new Set(data.map((item) => item.type))]);
+  //       setLoading(false);
+  //     })
+
+  //     .finally(() => setLoading(false));
+  // }, []);
 
   const searchData = (item, search) => {
     return item.name.toLowerCase().includes(search.toLowerCase());
@@ -63,13 +86,14 @@ export default function Products() {
       slidesToSlide: 3, // optional, default to 1.
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 564, min: 0 },
       items: 2,
       slidesToSlide: 2, // optional, default to 1.
     },
   };
 
   if (loading) return <Loading />;
+  if (error) return <div>Error: {error.message}</div>;
 
   return (
     <main>
@@ -160,7 +184,7 @@ export default function Products() {
             pauseOnHover={true}
             renderArrowsWhenDisabled={false}
             renderButtonGroupOutside={true}
-            renderDotsOutside={false}
+            renderDotsOutside={true}
             className="products-carousel"
             rewind={false}
             rewindWithAnimation={false}

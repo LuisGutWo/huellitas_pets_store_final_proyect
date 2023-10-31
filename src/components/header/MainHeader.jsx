@@ -41,6 +41,7 @@ export default function MainHeader({ item }) {
       navigate(`/products/${selectProduct}`);
     } else {
       setError(true);
+      setSelectProduct(false);
     }
   };
 
@@ -50,6 +51,8 @@ export default function MainHeader({ item }) {
       const { data } = await axios.get(import.meta.env.VITE_URL);
       setProducts(data);
     } catch (error) {
+      setError(error);
+      setLoading(false);
       console.log(error.message);
     }
     setLoading(false);
@@ -76,11 +79,17 @@ export default function MainHeader({ item }) {
   }
 
   if (loading) return <Loading />;
+  if (error) return <div>Error: {error.message}</div>;
 
   return (
     <>
       {["md"].map((expand) => (
-        <Navbar expand={expand} className="main-navbar m-0" variant="dark">
+        <Navbar
+          key={expand}
+          expand={expand}
+          className="main-navbar"
+          variant="dark"
+        >
           <Container fluid>
             <Link
               to={"/"}
@@ -90,25 +99,13 @@ export default function MainHeader({ item }) {
             </Link>
 
             {/* Toggler y Link del Navbar */}
-            <Navbar.Toggle
-              aria-controls={`offcanvasNavbar-expand-${expand}`}
-              style={{
-                padding: "4px",
-                border: "0px",
-                fontSize: "0.7rem",
-              }}
-            />
+            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               placement="end"
-              style={{
-                width: "70%",
-                height: "100%",
-                backgroundColor: "#2A2F4F",
-              }}
             >
-              <HeaderForm products={products} key={products.id}/>
+              <HeaderForm products={products} key={products.id} />
               <Offcanvas.Header closeButton style={{ alignContent: "center" }}>
                 <Offcanvas.Title
                   id={`offcanvasNavbarLabel-expand-${expand}`}

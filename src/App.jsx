@@ -22,8 +22,8 @@ function App() {
 
   return (
     <div id="app">
-      <MainHeader />
-      <header id="header" className="sticky-top">
+      <header id="header">
+        <MainHeader />
         <SecondHeader />
       </header>
 

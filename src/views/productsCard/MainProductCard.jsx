@@ -28,6 +28,8 @@ export default function MainProductCard({ item, selectFavorites }) {
   const handleCloseFavorite = () => setShowFavorite(false);
   const handleShowCart = () => setShowCart(true);
   const handleShowFavorite = () => setShowFavorite(true);
+  const setNewRating = (rating) =>
+    this.props.dispatch(fooActions.setRating(rating));
 
   function handleShoppingCart() {
     addProduct(item);
@@ -37,7 +39,6 @@ export default function MainProductCard({ item, selectFavorites }) {
     addFavorites(item);
     handleShowFavorite(!showFavorite);
   }
-  const setNewRating = (rating) => this.props.dispatch( fooActions.setRating(rating) )
 
   return (
     <Card className="product-card">
@@ -105,7 +106,11 @@ export default function MainProductCard({ item, selectFavorites }) {
         />
       </Card.Body>
 
-      <Button className="category-buttons mb-3" ref={target} onClick={handleShoppingCart}>
+      <Button
+        className="card-buttons mb-3"
+        ref={target}
+        onClick={handleShoppingCart}
+      >
         + Añadir al carrito
         <ShoppingCartIcon />
       </Button>
