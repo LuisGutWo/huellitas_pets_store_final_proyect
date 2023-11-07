@@ -24,7 +24,7 @@ const DiscountsProducts = () => {
   FakeLoading(200);
 
   const fetchData = async () => {
-    setLoading(true);    
+    setLoading(true);
 
     try {
       const res = await fetch(import.meta.env.VITE_URL);
@@ -44,21 +44,6 @@ const DiscountsProducts = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
-  // useEffect(() => {
-  //   setLoading(true);
-
-  //   fetch(import.meta.env.VITE_URL)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setData(data);
-  //       setDiscounts(["all", ...new Set(data.map((item) => item.promotion))]);
-  //       setSeason([...new Set(data.map((item) => item.season))]);
-  //       setLoading(false);
-  //     })
-
-  //     .finally(() => setLoading(false));
-  // }, []);
 
   const searchData = (item, search) => {
     return item.name.toLowerCase().includes(search.toLowerCase());
@@ -96,7 +81,7 @@ const DiscountsProducts = () => {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
       items: 4,
-      slidesToSlide: 3, // optional, default to 1.
+      slidesToSlide: 2, // optional, default to 1.
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -106,7 +91,7 @@ const DiscountsProducts = () => {
     mobile: {
       breakpoint: { max: 564, min: 0 },
       items: 2,
-      slidesToSlide: 2, // optional, default to 1.
+      slidesToSlide: 1, // optional, default to 1.
     },
   };
 
@@ -120,7 +105,7 @@ const DiscountsProducts = () => {
         <section>
           <h2
             data-aos="fade-right"
-            data-aos-offset="300"
+            data-aos-offset="200"
             data-aos-easing="ease-in-sine"
           >
             Productos con Descuentos
@@ -135,8 +120,8 @@ const DiscountsProducts = () => {
               additionalTransfrom={0}
               arrows={false}
               autoPlay={true}
-              autoPlaySpeed={6000}
-              customTransition="all 2s linear"
+              autoPlaySpeed={9000}
+              customTransition="all 5s linear"
               centerMode={false}
               containerClass="container-with-dots"
               removeArrowOnDeviceType={["tablet", "mobile"]}
@@ -165,7 +150,13 @@ const DiscountsProducts = () => {
         )}
         {/* News products carouse */}
         <section>
-          <h2>Novedades</h2>
+          <h2
+            data-aos="fade-right"
+            data-aos-offset="200"
+            data-aos-easing="ease-in-sine"
+          >
+            Novedades
+          </h2>
         </section>
 
         {loading ? (

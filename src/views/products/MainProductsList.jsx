@@ -14,22 +14,30 @@ const MainProductsList = () => {
   const [types, setTypes] = useState([]);
   const [filter, setFilter] = useState("all");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   FakeLoading(200);
 
-  useEffect(() => {
+  const fetchData = async () => {
     setLoading(true);
 
-    fetch(import.meta.env.VITE_URL)
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-        setCategories(["all", ...new Set(data.map((item) => item.category))]);
-        setTypes([...new Set(data.map((item) => item.type))]);
-        setLoading(false);
-      })
+    try {
+      const res = await fetch(import.meta.env.VITE_URL);
+      const data = await res.json();
 
-      .finally(() => setLoading(false));
+      setData(data);
+      setCategories(["all", ...new Set(data.map((item) => item.category))]);
+      setTypes([...new Set(data.map((item) => item.type))]);
+    } catch (error) {
+      setError(error);
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
   }, []);
 
   const searchData = (item, search) => {
@@ -47,14 +55,17 @@ const MainProductsList = () => {
   };
 
   if (loading) return <Loading />;
+  if (error) return <div>Error: {error.message}</div>;
 
   return (
     <>
       {/* Products list section */}
       <section className="products-list-header">
         <div>
-          <h1>NUESTROS PRODUCTOS</h1>
-          <h3>Conoce esta selección hecha para ti</h3>
+          <div className="products-text-container"> 
+            <h1>NUESTROS PRODUCTOS</h1>
+            <h3>Conoce esta selección hecha para ti</h3>
+          </div>
           <input
             type="text"
             style={{

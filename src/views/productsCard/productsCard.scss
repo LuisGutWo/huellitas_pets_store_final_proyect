@@ -8,7 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 28rem;
+    height: 100%;
     width: 90%;
     margin: 0;
     animation: fadeIn;
@@ -73,14 +73,14 @@
         width: 100%;
 
         .card-body-title {
-            font-size: 1rem;
+            font-size: 1.5rem;
             align-content: center;
             font-weight: 500;
             text-align: center;
         }
 
         .card-body-price {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
 
     }
@@ -93,13 +93,14 @@
         justify-content: space-evenly;
         align-items: center;
         gap: 0.7rem;
+        text-decoration: none;
+        color: rgb(251, 251, 251);
         border-color: #3d3e65;
         border-radius: 5px;
-        color: rgb(251, 251, 251);
-        padding: 0.6rem;
-        text-decoration: none;
-        font-size: 14px;
-        line-height: 18px;
+        font-size: 100%;
+        padding: 0.5rem 0.3rem;
+        margin: 0 0 0.5rem 0;
+        line-height: 10px;
         font-weight: 600;
         text-transform: uppercase;
         -webkit-transition: background 0.3s linear, color 0.3s linear;
@@ -121,27 +122,28 @@
 
 @media (width <=768px) {
     .product-card {
-        height: 21rem;
+        height: 100%;
         width: 95%;
 
         & .card-image-container {
-            height: 60%;
+            overflow: hidden;
+            height: 8.5rem;
 
             & .card-image {
-                width: 35%;
+                width: 60%;
+                padding-top: 3rem;
             }
-
-
         }
 
-
         .card-body {
+            padding: 2rem 0 0 0;
             .card-body-title {
-                font-size: 0.8rem;
+                font-size: 1rem;
             }
 
             .card-body-price {
-                font-size: 0.9rem;
+                font-size: 0.7rem;
+                margin: 0;
             }
             
 
@@ -151,8 +153,12 @@
 
     }
     .card-buttons {
-        margin: 0.8rem;
-
+        margin: 0 0 0.5rem 0;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0;
+        font-size: 0.7rem !important;
+    
         &:focus,
         &:hover {
             background: #b5aee4;

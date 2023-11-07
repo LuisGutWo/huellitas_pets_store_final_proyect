@@ -116,8 +116,8 @@ export default function MainHeader({ item }) {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav
+                  className="justify-content-center flex-grow-1 pe-1"
                   style={{
-                    backgroundColor: "transparent",
                     width: "50%",
                     textAlign: "center",
                   }}

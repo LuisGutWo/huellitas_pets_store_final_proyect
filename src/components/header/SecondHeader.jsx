@@ -18,14 +18,14 @@ const SecondHeader = () => {
               style={{
                 padding: "0px",
                 border: "0px",
-                fontSize: "0.7rem",
               }}
             />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-              placement="left"
-              className= "second-navbar-offcanvas"
+              placement="top"
+              // style={{ borderRadius: "15px", marginTop: "0.2rem" }}
+              autoFocus= "true"
             >
               <Offcanvas.Body>
                 <Nav>

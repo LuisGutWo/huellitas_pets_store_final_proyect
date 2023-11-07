@@ -19,7 +19,7 @@ const IconsSection = () => {
         <section className="icons-container">
           <div
             data-aos="fade-right"
-            data-aos-offset="300"
+            data-aos-offset="100"
             data-aos-easing="ease-in-sine"
             className="icons-item"
           >
@@ -28,7 +28,7 @@ const IconsSection = () => {
           </div>
           <div
             data-aos="fade-right"
-            data-aos-offset="300"
+            data-aos-offset="100"
             data-aos-easing="ease-in-sine"
             className="icons-item"
           >
@@ -37,7 +37,7 @@ const IconsSection = () => {
           </div>
           <div
             data-aos="fade-right"
-            data-aos-offset="300"
+            data-aos-offset="100"
             data-aos-easing="ease-in-sine"
             className="icons-item"
           >
@@ -46,7 +46,7 @@ const IconsSection = () => {
           </div>
           <div
             data-aos="fade-right"
-            data-aos-offset="300"
+            data-aos-offset="100"
             data-aos-easing="ease-in-sine"
             className="icons-item"
           >
@@ -55,7 +55,7 @@ const IconsSection = () => {
           </div>
           <div
             data-aos="fade-right"
-            data-aos-offset="300"
+            data-aos-offset="100"
             data-aos-easing="ease-in-sine"
             className="icons-item"
           >

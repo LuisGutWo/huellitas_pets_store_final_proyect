@@ -16,6 +16,7 @@
 @use "./views/log/login.scss";
 @use "./views/products/mainProductsList.scss";
 
+
 //Main App Styles
 #app {
   font-family: styles.$primary-font;
@@ -46,7 +47,7 @@
   font-display: inherit;
   color: rgb(249, 46, 181);
   border-radius: 6px;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   text-align: center;
 }
 
@@ -57,7 +58,7 @@
   padding: 4px;
   color: styles.$background-color;
   border-radius: 6px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   text-align: center;
 }
 
@@ -96,6 +97,20 @@
     width: 4rem;
     top: 83%;
     right: 82%;
+  }
+  .active-class {
+    margin: 7px 0;
+    padding: 4px;
+    font-size: 1rem;
+  }
+  
+  .inactive-class {  
+    margin: 7px 0;
+    padding: 4px;
+    color: styles.$background-color;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    text-align: center;
   }
 
 }

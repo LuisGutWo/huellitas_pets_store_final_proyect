@@ -1,9 +1,21 @@
 import React from "react";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 const WhatsAppButton = () => {
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Hola. En que te podemos ayudar?
+    </Tooltip>
+  );
+
   return (
-    <div>
-      <section>
+    <>
+      <OverlayTrigger
+        placement="left"
+        delay={{ show: 250, hide: 400 }}
+        overlay={renderTooltip}
+      >
         <a
           rel=""
           href="https://api.whatsapp.com/send?phone=56920390272&text=Hola, bienvenido a Huellitas. En que podemos ayudarte...😀"
@@ -16,8 +28,8 @@ const WhatsAppButton = () => {
             className="wsp-image"
           />
         </a>
-      </section>
-    </div>
+      </OverlayTrigger>
+    </>
   );
 };
 

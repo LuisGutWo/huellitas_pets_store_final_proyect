@@ -107,7 +107,7 @@ export default function MainProductCard({ item, selectFavorites }) {
       </Card.Body>
 
       <Button
-        className="card-buttons mb-3"
+        className="card-buttons"
         ref={target}
         onClick={handleShoppingCart}
       >

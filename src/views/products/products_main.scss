@@ -2,7 +2,7 @@
 
 
 .products-header {
-  height: 20rem;
+  height: 26rem;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -16,14 +16,30 @@
   padding: 2rem;
   animation: fadeIn;
   animation-duration: 6s;
+  border-radius: 20px;
+}
+
+.products-text-container {
+  background-color: #ebebeba1;
+  padding: 1rem;
+  margin: auto;
+  border-radius: 15px;
+  text-align: left;
+
 
   & h1 {
     text-align: start;
+    font-size: 3.5rem;
+    padding: 1rem;
+    color: rgb(22, 22, 22);
   }
 
   & h3 {
     margin: 0 0 1rem 0;
+    padding: 1rem;
+    color: rgb(72, 72, 72);
   }
+
 }
 
 .form-products-categories {
@@ -60,14 +76,14 @@
 }
 
 .category-buttons {
-  background-image: linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%);
+  background-image: linear-gradient(to top, #6f6f8a 0%, #777a96 12%, #8889a9 25%, #9e9eb9 37%, #a6a6bc 50%, #adafcb 62%, #bfbed6 75%, #d0cfe3 87%, #e2e1ea 100%);
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   gap: 0.7rem;
   border-color: #3d3e65;
   border-radius: 5px;
-  color: rgb(251, 251, 251);
+  color: rgb(24, 24, 24);
   padding: 0.8rem 1.8rem;
   text-decoration: none;
   font-size: 14px;
@@ -91,7 +107,7 @@
   background-color: transparent;
   height: 100%;
   width: 100%;
-  padding: 0;
+  padding: 3rem;
 
   & .react-multi-carousel-item {
     display: block !important;
@@ -111,6 +127,7 @@
   width: 100%;
   margin-top: 8rem;
   padding: 0 !important;
+  border-radius: 15px;
 
 }
 
@@ -157,7 +174,7 @@
 
 h2 {
   color: rgb(22, 22, 22);
-  height: 11rem;
+  height: 5rem;
   font-weight: 600;
   text-transform: uppercase;
   display: flex;
@@ -166,22 +183,22 @@ h2 {
 }
 
 h2 .news-features {
-  height: 2.5em;
+  height: 2em;
 }
 
 @media (width <=768px) {
   .products-header {
-    height: 15rem;
+    height: 25rem;
     background-position: right;
     padding-top: 4rem;
 
     & h1 {
-      font-size: 1.7rem;
+      font-size: 1.5rem;
       font-weight: bolder;
     }
 
     & h3 {
-      font-size: 1.2rem;
+      font-size: 0.9rem;
       font-weight: bolder;
     }
   }
@@ -215,6 +232,7 @@ h2 .news-features {
   .products-carousel {
     background-color: transparent;
     height: 100%;
+    padding: 0;
 
     & .react-multi-carousel-item {
       display: block !important;
@@ -233,8 +251,9 @@ h2 .news-features {
   }
 
   h2 {
-    font-size: 1.2rem;
-    height: 8rem;
+    font-size: 1.5rem;
+    height: 2rem;
+    padding: 5rem 0 0 0;
     font-weight: 600;
   }
 

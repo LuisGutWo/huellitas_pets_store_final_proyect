@@ -59,7 +59,7 @@ const MainFooter = () => {
           </Col>
         </Row>
       </Container>
-      <h5 className="fs-5 text-center bg-light pt-3 pb-3 m-0">copyright©2023 | LGWwebmedia </h5>
+      <h5 className="footer-copyright">Copyright©2023 | LGWwebmedia </h5>
     </footer>
   );
 };

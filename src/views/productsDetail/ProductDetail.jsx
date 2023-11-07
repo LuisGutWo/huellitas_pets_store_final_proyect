@@ -123,7 +123,7 @@ export default function ProductDetail({ item, selectFavorites }) {
               name="rating"
             />
             <NavLink to={"/products"} className="text-end">
-              <Button className="btn btn-md mt-2" variant="outline-primary">
+              <Button className="btn mt-2" variant="outline-primary">
                 Volver
               </Button>
             </NavLink>
