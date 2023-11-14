@@ -62,9 +62,9 @@ const MainProductsList = () => {
       {/* Products list section */}
       <section className="products-list-header">
         <div>
-          <div className="products-text-container"> 
-            <h1>NUESTROS PRODUCTOS</h1>
-            <h3>Conoce esta selección hecha para ti</h3>
+          <div className="products-list-container__text"> 
+            <h1>NUESTRA TIENDA ONLINE</h1>
+            <h3>Selecciona tu producto favorito de nuestra tienda online</h3>
           </div>
           <input
             type="text"

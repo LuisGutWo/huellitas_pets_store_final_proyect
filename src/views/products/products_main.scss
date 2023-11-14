@@ -21,7 +21,7 @@
 
 .products-text-container {
   background-color: #ebebeba1;
-  padding: 1rem;
+  padding: 2rem;
   margin: auto;
   border-radius: 15px;
   text-align: left;
@@ -29,15 +29,16 @@
 
   & h1 {
     text-align: start;
-    font-size: 3.5rem;
+    font-size: 2rem;
     padding: 1rem;
-    color: rgb(22, 22, 22);
+    color: rgba(22, 22, 22, 0.823);
   }
 
   & h3 {
     margin: 0 0 1rem 0;
-    padding: 1rem;
-    color: rgb(72, 72, 72);
+    padding: 0.5rem;
+    font-size: 1.3rem;
+    color: rgba(72, 72, 72, 0.831);
   }
 
 }
@@ -51,7 +52,7 @@
   font-size: 1.5rem;
   width: 50%;
   border-radius: 5px;
-  margin-top: 2rem;
+  margin-top: 3rem;
   padding-left: 0.5rem;
 }
 
@@ -76,17 +77,18 @@
 }
 
 .category-buttons {
-  background-image: linear-gradient(to top, #6f6f8a 0%, #777a96 12%, #8889a9 25%, #9e9eb9 37%, #a6a6bc 50%, #adafcb 62%, #bfbed6 75%, #d0cfe3 87%, #e2e1ea 100%);
+  background-color: #a10099;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   gap: 0.7rem;
-  border-color: #3d3e65;
+  border-color: rgb(104, 0, 112);
   border-radius: 5px;
-  color: rgb(24, 24, 24);
+  color: rgb(243, 243, 243);
   padding: 0.8rem 1.8rem;
+  margin-bottom: 1.5rem;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 1rem;
   line-height: 18px;
   font-weight: 600;
   text-transform: uppercase;
@@ -95,9 +97,9 @@
 
   &:focus,
   &:hover {
-    background: #b5aee4;
-    border-color: #505285;
-    color: rgb(10, 10, 10);
+    background-color: #b500acc7;
+    border-color: rgb(64, 0, 69);
+    color: rgb(240, 240, 240);
     animation: pulse;
     animation-duration: 1s;
   }

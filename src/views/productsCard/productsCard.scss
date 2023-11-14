@@ -23,7 +23,7 @@
         cursor: pointer;
         top: 7%;
         left: 82%;
-        z-index: 100;
+        z-index: 999;
         -webkit-transition: 2s ease-in-out;
         transition: all 2s ease-in-out;
         transition-delay: initial 2s;
@@ -45,10 +45,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 60%;
+        height: 100%;
+        border-bottom: rgba(101, 101, 101, 0.404) solid 1px;
+        margin-bottom: 12px;
 
         & .card-image {
-            width: 72%;
+            padding: 1rem;
+            width: 80%;
             -webkit-transform: scale(1);
             transform: scale(1);
             -webkit-transition: 1s ease-in-out;
@@ -69,18 +72,23 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        color: black;
         width: 100%;
+        border-top: rgba(90, 90, 90, 0.463) solid 1px;
+        margin-top: 3px;
 
         .card-body-title {
-            font-size: 1.5rem;
+            color: rgba(23, 23, 23, 0.761);
+            font-size: 1.1rem;
             align-content: center;
             font-weight: 500;
             text-align: center;
         }
 
         .card-body-price {
+            color: rgba(53, 53, 53, 0.786);
             font-size: 1.2rem;
+            padding: 0;
+            margin: 10px 0 5px 0;
         }
 
     }

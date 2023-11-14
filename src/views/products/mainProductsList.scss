@@ -7,33 +7,8 @@
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
-    align-content: flex-end;
-
-    background-image: url("https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/background_mascotas_morado.jpg?alt=media&token=5a806210-2470-4b93-803b-c27e058c47e5");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    animation: fadeIn;
-    animation-duration: 3s;
-
-    padding: 20% 10% 6% 0;
-    margin: 0;
-
-    & h1 {
-        text-align: end;
-        font-weight: bold;
-        color: #353535;
-        animation: fadeInRight;
-        animation-duration: 4s;
-    }
-
-    & h3 {
-        margin: 0;
-        color: #505050;
-        padding-left: 3rem;
-        animation: fadeInLeft;
-        animation-duration: 5s;
-    }
+    align-content: center;
+    padding-top: 10rem;
 
     & .main-form-products-categories {
         font-size: 1.5rem;
@@ -44,6 +19,35 @@
         animation: fadeIn;
         animation-duration: 3s;
     }
+
+}
+
+.products-list-container__text {
+    height: 12rem;
+    padding: 2rem 1rem 0 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    & h1 {
+        text-align: center;
+        font-weight: bold;
+        font-size: 2.2rem;
+        color: #353535;
+        animation: fadeInRight;
+        animation-duration: 4s;
+    }
+
+    & h3 {
+        margin: 0;
+        font-size: 1.5rem;
+        text-align: center;
+        color: #505050;
+        animation: fadeInLeft;
+        animation-duration: 5s;
+    }
+
 }
 
 
@@ -57,7 +61,9 @@
     align-items: center;
     align-content: center;
     gap: 2%;
-    padding: 2.5rem 0 2.5rem 0;
+    margin-top: 2rem;
+    padding: 1rem 0 2.5rem 0;
+    
 }
 
 .products-list-container {
@@ -72,6 +78,7 @@
 @media (width <=768px) {
     .products-list-header {
         padding: 40% 10% 6% 0;
+
         & h1 {
             font-size: 1.4rem;
         }

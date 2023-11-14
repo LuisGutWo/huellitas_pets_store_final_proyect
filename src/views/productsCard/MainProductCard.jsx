@@ -90,22 +90,6 @@ export default function MainProductCard({ item, selectFavorites }) {
       <NavLink to={`/products/${item.id}`} className="card-image-container">
         <Card.Img variant="top" src={item.img} className="card-image" />
       </NavLink>
-
-      <Card.Body className="card-body">
-        <Card.Title className="card-body-title">{item.name}</Card.Title>
-        <Card.Text className="card-body-price">
-          <b>${formatPrice(item.price)}</b>
-        </Card.Text>
-        <StarRatings
-          rating={3}
-          starRatedColor="orange"
-          changeRating={setNewRating}
-          starDimension="0.9rem"
-          numberOfStars={5}
-          name="rating"
-        />
-      </Card.Body>
-
       <Button
         className="card-buttons"
         ref={target}
@@ -127,6 +111,21 @@ export default function MainProductCard({ item, selectFavorites }) {
           </Modal.Body>
         </Modal.Header>
       </Modal>
+
+      <Card.Body className="card-body">
+        <Card.Text className="card-body-price">
+          <b>${formatPrice(item.price)}</b>
+        </Card.Text>
+        <Card.Title className="card-body-title">{item.name}</Card.Title>
+        <StarRatings
+          rating={3}
+          starRatedColor="orange"
+          changeRating={setNewRating}
+          starDimension="0.9rem"
+          numberOfStars={5}
+          name="rating"
+        />
+      </Card.Body>
     </Card>
   );
 }

@@ -28,6 +28,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0;
+  margin: 0;
 }
 
 .app-container {
@@ -57,6 +59,28 @@
   margin-top: 1rem;
   padding: 4px;
   color: styles.$background-color;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+.active-class-2 {
+  text-decoration: none;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  padding: 4px;
+  font-display: inherit;
+  color: rgb(158, 158, 158);
+  border-radius: 6px;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.inactive-class-2 {
+  text-decoration: none;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  padding: 4px;
+  color: rgb(243, 243, 243);
   border-radius: 6px;
   font-size: 1.2rem;
   text-align: center;
