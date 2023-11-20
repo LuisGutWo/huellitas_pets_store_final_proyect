@@ -5,7 +5,6 @@ import { NavLink, Navbar, Row, Col } from "react-bootstrap";
 import MainProductCard from "../../views/productsCard/MainProductCard";
 import Loading from "../../utils/Loading";
 import BackToTopButton from "../../utils/BackToTopButton";
-import { FakeLoading } from "../../utils/FakeLoading";
 
 const MainProductsList = () => {
   const [data, setData] = useState([]);
@@ -15,8 +14,6 @@ const MainProductsList = () => {
   const [filter, setFilter] = useState("all");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-
-  FakeLoading(200);
 
   const fetchData = async () => {
     setLoading(true);

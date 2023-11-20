@@ -5,7 +5,6 @@ import "react-multi-carousel/lib/styles.css";
 
 import MainProductCard from "../productsCard/MainProductCard";
 import Loading from "../../utils/Loading";
-import { FakeLoading } from "../../utils/FakeLoading";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -20,8 +19,6 @@ const DiscountsProducts = () => {
   const [filter, setFilter] = useState("all");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-
-  FakeLoading(200);
 
   const fetchData = async () => {
     setLoading(true);
