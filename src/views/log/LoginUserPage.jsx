@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { useUserContext } from "../../context/UserContext";
 import Loading from "../../utils/Loading";
-import { FakeLoading } from "../../utils/FakeLoading";
 
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -29,8 +28,6 @@ const LoginUserPage = () => {
 
   const navigate = useNavigate();
   const { user } = useUserContext();
-
-  FakeLoading(3000);
 
   useEffect(() => {
     if (user) {
