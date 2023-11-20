@@ -118,9 +118,9 @@ export default function Cart({ item }) {
                   </li>
                 </ul>
                 <NavLink to={"/products"}>
-                  <button type="button" className="category-buttons">
+                  <Button type="button" style={{ textDecoration: "none" }} className="category-buttons">
                     Ir a Pagar
-                  </button>
+                  </Button>
                 </NavLink>
               </div>
             </div>

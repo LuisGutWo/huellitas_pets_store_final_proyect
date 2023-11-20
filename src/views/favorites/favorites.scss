@@ -1,11 +1,12 @@
 @use "../../styles.scss";
 
 .favorites-main-container {
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0;
+    margin: 15% 0 11% 0;
 
     h2 {
         font-size: 1.8rem;
@@ -26,6 +27,10 @@
 
 @media (width <=768px) {
     .favorites-main-container {
+        h2 {
+            font-size: 1rem;
+            margin: 0;
+        }
         .favorites-list {
             grid-template-columns: repeat(1, 1fr);
         }

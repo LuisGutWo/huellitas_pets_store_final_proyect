@@ -1,5 +1,8 @@
 @use "../../styles.scss";
 
+.cart-container {
+  margin-top: 8%;
+}
 
 .card-header {
   display: flex;
@@ -86,6 +89,9 @@
 }
 
 @media (width <=768px) {
+  .cart-container {
+    margin-top: 2%;
+  }
   .card-header {
     h1 {
       font-size: 1rem;

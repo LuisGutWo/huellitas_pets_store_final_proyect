@@ -58,11 +58,11 @@ const MainProductsList = () => {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <>
+    <div className="container">
       {/* Products list section */}
       <section className="products-list-header">
-        <div>
-          <div className="products-list-container__text"> 
+        <div className="products-list-container__text">
+          <div className="products-list__text"> 
             <h1>NUESTRA TIENDA ONLINE</h1>
             <h3>Selecciona tu producto favorito de nuestra tienda online</h3>
           </div>
@@ -113,7 +113,7 @@ const MainProductsList = () => {
         ))}
       </Row>
       <BackToTopButton />
-    </>
+    </div>
   );
 };
 

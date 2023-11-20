@@ -39,11 +39,13 @@ const Contact = () => {
         <section className="contact-img"></section>
         <section className="contact-container">
           <img src={blackLogo} alt="" className="img-fluid contact-logo" />
+          <h3 className="contact-title text-center">Hola Pet lover, en que te podemos ayudar...</h3>
           <Form ref={form} onSubmit={sendEmail} className="contact-form">
             <Form.Group className="mb-1">
               <Form.Label>Nombre</Form.Label>
               <Form.Control
                 type="text"
+                size="lg"
                 placeholder="Ingresar nombre"
                 name="user_name"
               />
@@ -52,6 +54,7 @@ const Contact = () => {
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
+                size="lg"
                 placeholder="nombre@ejemplo.com"
                 name="user_email"
               />
@@ -64,6 +67,7 @@ const Contact = () => {
               onClick={handleShowEmailSend}
               className="category-buttons mt-3"
               type="submit"
+              size="lg"
               value="Send"
             >
               Enviar

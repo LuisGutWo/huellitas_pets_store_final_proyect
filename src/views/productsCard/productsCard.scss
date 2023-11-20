@@ -9,11 +9,9 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    width: 90%;
     margin: 0;
     animation: fadeIn;
     animation-duration: 2s;
-
     border: none;
     border-radius: 7px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
@@ -22,8 +20,8 @@
         position: absolute;
         cursor: pointer;
         top: 7%;
-        left: 82%;
-        z-index: 999;
+        left: 85%;
+        z-index: 10;
         -webkit-transition: 2s ease-in-out;
         transition: all 2s ease-in-out;
         transition-delay: initial 2s;
@@ -62,37 +60,7 @@
                 transform: scale(1.1);
             }
         }
-
-
     }
-
-
-    .card-body {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        width: 100%;
-        border-top: rgba(90, 90, 90, 0.463) solid 1px;
-        margin-top: 3px;
-
-        .card-body-title {
-            color: rgba(23, 23, 23, 0.761);
-            font-size: 1.1rem;
-            align-content: center;
-            font-weight: 500;
-            text-align: center;
-        }
-
-        .card-body-price {
-            color: rgba(53, 53, 53, 0.786);
-            font-size: 1.2rem;
-            padding: 0;
-            margin: 10px 0 5px 0;
-        }
-
-    }
-
 
     .card-buttons {
         background-image: linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%);
@@ -105,9 +73,10 @@
         color: rgb(251, 251, 251);
         border-color: #3d3e65;
         border-radius: 5px;
-        font-size: 100%;
-        padding: 0.5rem 0.3rem;
-        margin: 0 0 0.5rem 0;
+        font-size: 80%;
+        width: 90%;
+        padding: 6px;
+        margin: 0 0 0.4rem 0;
         line-height: 10px;
         font-weight: 600;
         text-transform: uppercase;
@@ -126,57 +95,69 @@
 
 
 
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        border-top: rgba(90, 90, 90, 0.463) solid 1px;
+        margin-top: 3px;
+
+        .card-body-price {
+            color: rgba(53, 53, 53, 0.786);
+            font-size: 1rem;
+            padding: 0;
+            margin: 0;
+        }
+
+        .card-body-title {
+            color: rgba(23, 23, 23, 0.761);
+            font-size: 0.8rem;
+            align-content: center;
+            font-weight: 500;
+            text-align: center;
+        }
+    }
+
 }
 
 @media (width <=768px) {
     .product-card {
-        height: 100%;
-        width: 95%;
+        .card-favorite-icon {
+            top: 5%;
+            left: 75%;
+
+            .card-icons {
+                font-size: 150%;
+            }
+        }
 
         & .card-image-container {
             overflow: hidden;
-            height: 8.5rem;
+            height: 9rem;
 
             & .card-image {
-                width: 60%;
+                width: 70%;
                 padding-top: 3rem;
             }
         }
 
         .card-body {
-            padding: 2rem 0 0 0;
-            .card-body-title {
-                font-size: 1rem;
-            }
-
             .card-body-price {
-                font-size: 0.7rem;
-                margin: 0;
+                font-size: 0.8rem;
             }
-            
 
+            .card-body-title {
+                font-size: 0.6rem;
+            }
         }
 
-
-
     }
+
     .card-buttons {
-        margin: 0 0 0.5rem 0;
         justify-content: center;
-        gap: 0.5rem;
-        padding: 0;
-        font-size: 0.7rem !important;
-    
-        &:focus,
-        &:hover {
-            background: #b5aee4;
-            border-color: #505285;
-            color: rgb(10, 10, 10);
-            animation: pulse;
-            animation-duration: 1s;
-        }
+        font-size: 60% !important;
     }
-
-    
-
 }

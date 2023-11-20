@@ -9,7 +9,7 @@
   align-items: center;
   flex-wrap: wrap;
   overflow: hidden;
-  margin-top: 9.5rem;
+  margin-top: 9.4%;
 
   height: 100%;
   width: 100%;
@@ -101,9 +101,7 @@
 // /// media queries Hero section ///
 @media (width <=768px) {
   .main-carousel-item {
-    height: 100%;
-    width: 100vw;
-    margin-top: 27%;
+    margin-top: 12%;
 
     & img {
       width: 100%;

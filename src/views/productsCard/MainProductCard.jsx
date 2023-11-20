@@ -121,7 +121,7 @@ export default function MainProductCard({ item, selectFavorites }) {
           rating={3}
           starRatedColor="orange"
           changeRating={setNewRating}
-          starDimension="0.9rem"
+          starDimension="0.8rem"
           numberOfStars={5}
           name="rating"
         />
