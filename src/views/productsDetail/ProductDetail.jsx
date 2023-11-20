@@ -5,7 +5,6 @@ import { useUserContext } from "../../context/UserContext";
 import Modal from "react-bootstrap/Modal";
 import { useProductsContext } from "../../context/ProductsContext";
 
-import { FakeLoading } from "../../utils/FakeLoading";
 import { formatPrice } from "../../utils/formatPrice";
 import Loading from "../../utils/Loading";
 
@@ -36,8 +35,6 @@ export default function ProductDetail({ item, selectFavorites }) {
     addFavorites(item);
     handleShowFavorite(!showFavorite);
   }
-
-  FakeLoading(2000);
 
   useEffect(() => {
     setLoading(true);
