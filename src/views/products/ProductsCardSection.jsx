@@ -88,14 +88,14 @@ export default function Products() {
               data-aos-offset="100"
               data-aos-easing="ease-in-sine"
             >
-              NUESTROS PRODUCTOS
+              NUESTRA TIENDA EN LINEA
             </h1>
             <h3
               data-aos="fade-left"
               data-aos-offset="200"
               data-aos-easing="ease-in-sine"
             >
-              Conoce esta selección hecha para ti
+              Conoce esta selección hecha para ti y obtenlos en solo un click
             </h3>
           </div>
           <input

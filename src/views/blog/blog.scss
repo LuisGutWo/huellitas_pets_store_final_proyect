@@ -2,7 +2,6 @@
 
 .main-blog-section {
   background-color: rgb(252, 166, 146);
-  padding-bottom: 4rem;
 
   .blog-title {
     display: flex;
@@ -12,14 +11,14 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 20rem;
+    height: 13rem;
     padding-left: 5rem;
     margin: -11px 0 0 0;
     border: none;
 
     h2 {
       font-weight: bold ! important;
-      font-size: 3rem;
+      font-size: 2rem;
       color: #0d0d0dde;
     }
 
@@ -35,9 +34,9 @@
   align-items: center;
   background-color: rgb(252, 166, 146);
   gap: 2rem;
-  height: 33rem;
+  height: 100%;
   padding: 1rem;
-  margin: 2rem 0 3rem 0;
+  margin: 0 0 5rem 0;
 
   .blog-card {
     overflow: hidden;
@@ -46,7 +45,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0;
+    margin: 2rem 0 5rem 0;
     padding: 0;
     border-radius: 20px;
     background-color: #ffffff;

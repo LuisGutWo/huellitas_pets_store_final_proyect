@@ -2,7 +2,7 @@
 
 
 .products-header {
-  height: 26rem;
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -29,15 +29,13 @@
 
   & h1 {
     text-align: start;
-    font-size: 2rem;
-    padding: 1rem;
+    font-size: 1.5rem;
     color: rgba(22, 22, 22, 0.823);
   }
 
   & h3 {
     margin: 0 0 1rem 0;
-    padding: 0.5rem;
-    font-size: 1.3rem;
+    font-size: 1rem;
     color: rgba(72, 72, 72, 0.831);
   }
 
@@ -49,10 +47,10 @@
   align-items: center;
   align-content: center;
 
-  font-size: 1.5rem;
+  font-size: 1rem;
   width: 50%;
   border-radius: 5px;
-  margin-top: 3rem;
+  margin-top: 2.5%;
   padding-left: 0.5rem;
 }
 
@@ -70,7 +68,7 @@
     align-items: center;
     align-content: center;
     gap: 2%;
-    height: 8rem;
+    height: 100%;
     padding: 1rem;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   }
@@ -100,7 +98,7 @@
     border-color: rgb(64, 0, 69);
     color: rgb(240, 240, 240);
     animation: pulse;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
   }
 }
 
@@ -112,7 +110,7 @@
 
   & .react-multi-carousel-item {
     display: block !important;
-    margin: 0;
+    margin: 10px;
     padding: 0;
   }
 
@@ -189,12 +187,14 @@ h2 .news-features {
 
 @media (width <=768px) {
   .products-header {
-    height: 25rem;
     background-position: right;
-    padding-top: 4rem;
+
+    .products-text-container {
+      padding: 1rem;
+    }
 
     & h1 {
-      font-size: 1.5rem;
+      font-size: 1.1rem;
       font-weight: bolder;
     }
 
@@ -205,8 +205,9 @@ h2 .news-features {
   }
 
   .form-products-categories {
-    font-size: 1rem;
+    font-size: 0.8rem;
     width: 100%;
+    margin-top: 5%;
   }
 
   .products-navbar {
@@ -216,30 +217,17 @@ h2 .news-features {
       flex-direction: row;
       flex-wrap: nowrap;
       gap: 4%;
-      height: 4rem;
-      padding-left: 4rem;
+      padding-left: 70%;
     }
   }
 
   .category-buttons {
     scroll-snap-align: center;
-    padding: 0.6rem;
+    padding: 0.9rem;
     text-decoration: none;
-    font-size: 10px;
+    font-size: 17px;
     line-height: 8px;
     font-weight: 600;
-  }
-
-  .products-carousel {
-    background-color: transparent;
-    height: 100%;
-    padding: 0;
-
-    & .react-multi-carousel-item {
-      display: block !important;
-      margin: 3rem 0rem;
-    }
-
   }
 
   .discount-container {
