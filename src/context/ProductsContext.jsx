@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from "react";
 
 export const ProductsContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 export default function ProductsContextProvider({ children }) {
   const [cart, setCart] = useState([]);
   const [favorites, setFavorites] = useState([]);
@@ -61,6 +62,7 @@ export default function ProductsContextProvider({ children }) {
 
 
   return (
+    // eslint-disable-next-line react/react-in-jsx-scope
     <ProductsContext.Provider
       value={{ cart, addProduct, removeProduct, removeProductCart, totalItemProducts, totalCart, onCleanCart, findItemCount, favorites, addFavorites, removeFavorites }}
     >

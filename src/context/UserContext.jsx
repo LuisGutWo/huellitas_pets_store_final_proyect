@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { createContext } from "react";
+import PropTypes from "prop-types";
 import Loading from "../utils/Loading";
 
 // pertenece a config de firebase
@@ -25,5 +26,8 @@ export default function UserContextProvider({ children }) {
     <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>
   );
 }
+UserContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export const useUserContext = () => useContext(UserContext);

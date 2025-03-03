@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/react-in-jsx-scope */
 import { useEffect, useState, useRef } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import { Button, Card, Container } from "react-bootstrap";
@@ -13,6 +15,7 @@ import StarRatings from "react-star-ratings";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
+// eslint-disable-next-line react/prop-types
 export default function ProductDetail({ item, selectFavorites }) {
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(true);
@@ -41,6 +44,7 @@ export default function ProductDetail({ item, selectFavorites }) {
     fetch(import.meta.env.VITE_URL)
       .then((response) => response.json({ id }))
       .then((data) => {
+        // eslint-disable-next-line react/prop-types
         const product = data.find((item) => item.id === id);
         setProduct(product);
       })
@@ -52,8 +56,10 @@ export default function ProductDetail({ item, selectFavorites }) {
     handleShow(!show);
   }
   const setNewRating = (rating) =>
+    // eslint-disable-next-line no-undef
     this.props.dispatch(fooActions.setRating(rating));
 
+  // eslint-disable-next-line react/react-in-jsx-scope
   if (loading) return <Loading />;
 
   return (

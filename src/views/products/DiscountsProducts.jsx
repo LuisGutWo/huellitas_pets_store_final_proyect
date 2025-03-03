@@ -14,8 +14,6 @@ AOS.init();
 const DiscountsProducts = () => {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
-  const [discounts, setDiscounts] = useState([]);
-  const [season, setSeason] = useState([]);
   const [filter, setFilter] = useState("all");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -28,8 +26,6 @@ const DiscountsProducts = () => {
       const data = await res.json();
 
       setData(data);
-      setDiscounts(["all", ...new Set(data.map((item) => item.promotion))]);
-      setSeason([...new Set(data.map((item) => item.season))]);
     } catch (error) {
       setError(error);
       console.error("Error fetching data:", error);

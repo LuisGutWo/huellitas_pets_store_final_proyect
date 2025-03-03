@@ -1,4 +1,4 @@
-@use "./styles.scss";
+@use "./styles.scss" as styles;
 @use "./components/header/header.scss";
 @use "./components/hero/hero.scss";
 @use "./views/about/about.scss";
@@ -46,7 +46,7 @@
   margin-bottom: 1rem;
   margin-top: 1rem;
   padding: 4px;
-  font-display: inherit;
+  font-family: inherit;
   color: rgb(249, 46, 181);
   border-radius: 6px;
   font-size: 1.4rem;
@@ -63,6 +63,7 @@
   font-size: 1.2rem;
   text-align: center;
 }
+
 .active-class-2 {
   text-decoration: none;
   margin-bottom: 1rem;
@@ -119,20 +120,21 @@
 
 }
 
-@media (width <=768px) {
+@media (max-width: 768px) {
   .btn-arrow-up {
     height: 4rem;
     width: 4rem;
     top: 83%;
     right: 82%;
   }
+
   .active-class {
     margin: 7px 0;
     padding: 4px;
     font-size: 1rem;
   }
-  
-  .inactive-class {  
+
+  .inactive-class {
     margin: 7px 0;
     padding: 4px;
     color: styles.$background-color;

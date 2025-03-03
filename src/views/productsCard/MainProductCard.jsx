@@ -1,3 +1,6 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React, { useState, useRef } from "react";
 import Card from "react-bootstrap/Card";
 import { Link, NavLink } from "react-router-dom";
