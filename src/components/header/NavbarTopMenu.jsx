@@ -8,8 +8,8 @@ const NavbarTopMenu = () => {
       <Container fluid>
           <article className="navbar-top-menu__left">
             <NavLink
-              to="/"
-              key="home"
+              to="/contact"
+              key="contact"
               className={({ isActive }) =>
                 isActive ? "active-class-2" : "inactive-class-2"
               }
@@ -17,8 +17,8 @@ const NavbarTopMenu = () => {
               <b>Mapa</b>
             </NavLink>
             <NavLink
-              to="/products"
-              key="products"
+              to="/blog"
+              key="blog"
               className={({ isActive }) =>
                 isActive ? "active-class-2" : "inactive-class-2"
               }
@@ -26,8 +26,8 @@ const NavbarTopMenu = () => {
               <b>Blog</b>
             </NavLink>
             <NavLink
-              to="/about"
-              key="about"
+              to="/products"
+              key="products"
               className={({ isActive }) =>
                 isActive ? "active-class-2" : "inactive-class-2"
               }

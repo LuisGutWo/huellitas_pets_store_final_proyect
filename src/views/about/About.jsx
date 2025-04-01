@@ -30,13 +30,6 @@ function About() {
               Nuestros clientes nos avalan... <br />
             </h5>
           </div>
-          <img
-            src={
-              "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/hero_gatito.png?alt=media&token=7e600421-8a55-408f-a58c-6aefb6b87414"
-            }
-            alt=""
-            className="about-image"
-          />
           <NavLink to={"/products"} className="category-buttons-hero mt-4">
             Volver a la tienda
           </NavLink>

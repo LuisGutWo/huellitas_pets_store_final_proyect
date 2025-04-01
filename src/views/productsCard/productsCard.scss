@@ -51,7 +51,7 @@
 
         & .card-image {
             padding: 1rem;
-            width: 80%;
+            width: 100%;
             -webkit-transform: scale(1);
             transform: scale(1);
             -webkit-transition: 1s ease-in-out;
@@ -145,7 +145,7 @@
             height: 9rem;
 
             & .card-image {
-                width: 70%;
+                width: 85%;
                 padding-top: 3rem;
             }
         }
@@ -166,4 +166,30 @@
         justify-content: center;
         font-size: 60% !important;
     }
+}
+@media (width <=390px) {
+    .product-card {
+        & .card-image-container {
+            overflow: hidden;
+            height: 7rem;
+
+            & .card-image {
+                width: 85%;
+                margin-top: 1.3rem;
+                padding-top: 2rem;
+            }
+        }
+
+        .card-body {
+            .card-body-price {
+                font-size: 0.8rem;
+            }
+
+            .card-body-title {
+                font-size: 0.6rem;
+            }
+        }
+
+    }
+
 }

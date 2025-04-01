@@ -3,7 +3,7 @@
 
 
 .products-list-header {
-    margin-top: 13%;
+    margin-top: 15%;
     display: flex;
     justify-content: center;
 
@@ -60,6 +60,7 @@
     justify-content: center;
     align-items: center;
     align-content: center;
+    margin-bottom: 1rem;
     gap: 2%;
 }
 
@@ -76,6 +77,8 @@
 
 @media (width <=768px) {
     .products-list-header {
+        margin-top: 25%;
+
         .products-list-container__text {
             padding: 1rem;
             width: 100%;
@@ -111,6 +114,25 @@
         margin: 0.5rem;
 
 
+    }
+
+}
+
+@media (width <=390px) {
+    .products-list-header {
+        margin-top: 18%;
+
+        .products-list-container__text {
+            .main-form-products-categories {
+                font-size: 80%;
+            }
+        }
+    }
+    .products-list-buttons {
+        padding: 1rem 0 0.5rem 1.2rem;
+        flex-wrap: wrap;
+        overflow: scroll;
+        gap: 3%;
     }
 
 }

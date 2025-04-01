@@ -8,16 +8,16 @@
   justify-content: center;
   align-items: center;
   margin-top: 8%;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   overflow: hidden;
 
   & .about-img {
     width: 100vw;
-    height: 100%;
-    object-fit: fill;
+    height: 100vh;
+    object-fit: cover;
     z-index: 0;
-    margin-bottom: -1rem;
+    margin-bottom: 20%;
     animation: fadeIn;
     animation-duration: 2s;
     aspect-ratio: 16/9;
@@ -28,24 +28,24 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: flex-start;
     gap: auto;
     padding-bottom: 3rem;
 
     & h1 {
       font-weight: bold;
-      font-size: 3.6rem;
+      font-size: 2rem;
       animation: fadeInLeft;
       animation-duration: 2s;
-      color: rgb(13, 13, 13);
+      color: styles.$background-color-dark;
     }
 
     & h5 {
-      font-size: 1.8rem;
+      font-size: 1.2rem;
       animation: fadeInRight;
       animation-duration: 3s;
-      color: rgb(29, 29, 29);
+      color: styles.$background-color-dark;
     }
 
     & .about-image {
@@ -62,14 +62,15 @@
     margin-top: 12%;
   
     .card-overlay {
+      margin-top: 30%;
       padding-bottom: 0;
   
       & h1 {
-        font-size: 1rem;
+        font-size: 1.5rem;
       }
   
       & h5 {
-        font-size: 0.5rem;
+        font-size: 1rem;
       }
   
       & .about-image {
@@ -82,4 +83,31 @@
   }
 
 
+}
+@media (width <=390px) {
+  .about-container {
+    margin-top: 12%;
+  
+    .card-overlay {
+      margin-top: 100%;
+      padding-bottom: 0;
+  
+      & h1 {
+        font-size: 1rem;
+      }
+  
+      & h5 {
+        font-size: 0.7rem;
+      }
+  
+      & .about-image {
+        width: 20%;
+        margin: 0;
+        animation: fadeIn;
+        animation-duration: 5s;
+      }
+    }
+  }
+  
+  
 }

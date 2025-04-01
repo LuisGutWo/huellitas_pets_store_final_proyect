@@ -31,7 +31,7 @@ export default function MainHeader({ item }) {
   const [selectProduct, setSelectProduct] = useState("");
   const { totalItemProducts, totalCart } = useProductsContext();
   const { user } = useUserContext();
-  const [error, setError] = useState(false);
+  const [setError] = useState(false);
   const handleCloseCart = () => setShowCart(false);
   const handleShowCart = () => setShowCart(true);
   const handleCloseLogin = () => setShowLogin(false);
@@ -84,8 +84,8 @@ export default function MainHeader({ item }) {
   if (loading) return <Loading />;
 
   return (
-    <nav>
-      {["md"].map((expand) => (
+    <>
+      {["lg"].map((expand) => (
         <>
           <NavbarTopMenu />
           <Navbar
@@ -244,7 +244,7 @@ export default function MainHeader({ item }) {
           </Navbar>
         </>
       ))}
-    </nav>
+    </>
   );
 }
 

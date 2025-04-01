@@ -162,6 +162,7 @@ const BlogSection = () => {
               <Card className="blog-card">
                 <Card.Img
                   variant="top"
+                  className="blog-card-img"
                   src="https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/img_blog_8.jpg?alt=media&token=e0d94e7a-53b6-455b-a477-7b0b192e5054"
                 />
                 <Card.Body className="blog-card-body">

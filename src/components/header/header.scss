@@ -53,6 +53,9 @@
     }
   }
 }
+.offcanvas-end {
+  display: none;
+}
 
 .navbar-top-menu__right {
   display: flex;
@@ -84,7 +87,7 @@
 
 //Main Navbar Styles
 .main-navbar {
-  background-image: styles.$gradient-background;
+  background: styles.$secondary-color;
   height: 8rem;
   width: 100%;
   border: none;
@@ -261,6 +264,69 @@
 
 /// media queries navbar ///
 @media (width <=768px) {
+  .offcanvas-end {
+    display: flex;
+    background-color: styles.$secondary-color;
+    width: 40vw !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+
+
+    .offcanvas-body {
+      width: 100%;
+
+    }
+  }
+  .navbar-buttons {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 100%;
+  }
+
+  .logout-button {
+    width: 90%;
+    font-size: 1.2rem;
+  }
+
+  .navbar-form {
+    height: 3rem;
+    width: 100%;
+    padding-right: 1.5rem;
+
+    & .navbar-select {
+      font-size: 70%;
+    }
+  }
+  //Welcome user 
+.welcome-user-section {
+  width: 100%;
+
+  & p {
+    font-size: 0.8em;
+
+  }
+
+  & .text-header-name {
+    color: styles.$white;
+    text-decoration: none;
+    font-size: 0.6rem;
+  }
+}
+
+  .btn-wsp {
+    top: 81%;
+    left: 78%;
+    width: auto;
+
+    & .wsp-image {
+      width: 90%;
+    }
+  }
+
+}
+@media (width <=390px) {
 
   .navbar-top-menu {
     display: none;
@@ -327,7 +393,7 @@
   }
 
   & .text-header-name {
-    color: rgb(251, 211, 255);
+    color: styles.$white;
     text-decoration: none;
     font-size: 0.6rem;
   }
