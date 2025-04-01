@@ -24,11 +24,11 @@
 
 ## Screen shot del proyecto
 
-![Huellitas screen shot](src/assets/img/huellitas-pets-store.netlify.app_.png)
+![Huellitas screen shot](src/assets/img/new_huellitas_screenshot.png)
 
 ## Deploy
 
-* [Deployed by Netlify](https://huellitas-pets-store.netlify.app/)
+* [Deployed by Netlify](https://huellitaspetstorechile.netlify.app/)
 
 ## Video Cuestionario proyecto final
 
