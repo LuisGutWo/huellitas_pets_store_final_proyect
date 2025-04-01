@@ -6,6 +6,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import Modal from "react-bootstrap/Modal";
 import Loading from "../../utils/Loading";
 import axios from "axios";
+import PropTypes from "prop-types";
 import "animate.css";
 
 import { useUserContext } from "../../context/UserContext";
@@ -39,13 +40,14 @@ export default function MainHeader({ item }) {
   const navigate = useNavigate();
 
   const getProducts = async () => {
+    setLoading(true); // Start loading
     try {
       const { data } = await axios.get(import.meta.env.VITE_URL);
       setProducts(data);
     } catch (error) {
-      setError(error);
-      setLoading(false);
-      console.log(error.message);
+      setError(true);
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
@@ -122,7 +124,6 @@ export default function MainHeader({ item }) {
                 <Offcanvas.Body>
                   <Nav className="justify-content-end flex-grow-1 pe-1">
                     <NavbarButtons />
-                    <HeaderForm products={products} key={products.id} />
                     <section className="container-icon">
                       {!user && (
                         <>
@@ -214,26 +215,27 @@ export default function MainHeader({ item }) {
                           )}
                         </NavLink>
                       )}
+                      <div className="navbar-total-price">
+                        ${formatPrice(totalCart())}
+                      </div>
                     </section>
-                    {user && (
-                      <>
-                        <div className="navbar-total-price">
-                          ${formatPrice(totalCart())}
-                        </div>
-                        <Button
-                          onClick={handleUserLogout}
-                          variant="outline-warning"
-                          className="logout-button"
-                        >
-                          Logout
-                        </Button>
-                      </>
-                    )}
                     {user && (
                       <div className="welcome-user-section">
                         <p className="m-0 text-light">Bienvenido 🖐🏼</p>
                         <small className="text-header-name">{user.email}</small>
                       </div>
+                    )}
+                    <HeaderForm products={products} key={products.id} />
+                    {user && (
+                      <>
+                        <Button
+                          onClick={handleUserLogout}
+                          variant="outline-light"
+                          className="logout-button"
+                        >
+                          Logout
+                        </Button>
+                      </>
                     )}
                   </Nav>
                 </Offcanvas.Body>
@@ -245,3 +247,8 @@ export default function MainHeader({ item }) {
     </nav>
   );
 }
+
+// Add prop-types validation
+MainHeader.propTypes = {
+  item: PropTypes.object.isRequired, // Adjust the type based on your actual data structure
+};

@@ -63,12 +63,10 @@ export default function MainProductCard({ item, selectFavorites }) {
               onClick={handleProductButton}
               size="small"
               variant="contained"
-              className={({ isActive }) =>
-                isActive ? "inactive-class-second" : "active-class-second"
-              }
             >
               <FavoriteIcon
-                style={{ color: "#484a77" }}
+                color="warning"
+                onClick={handleShowFavorite}
                 className="card-icons"
               />
             </NavLink>
@@ -93,40 +91,44 @@ export default function MainProductCard({ item, selectFavorites }) {
       <NavLink to={`/products/${item.id}`} className="card-image-container">
         <Card.Img variant="top" src={item.img} className="card-image" />
       </NavLink>
-      <Button
-        className="card-buttons"
-        ref={target}
-        onClick={handleShoppingCart}
-      >
-        + Añadir al carrito
-        <ShoppingCartIcon />
-      </Button>
-      <Modal show={showCart} onHide={handleCloseCart}>
-        <Modal.Header closeButton>
-          <Modal.Body>
-            {user ? (
-              <div>
-                <b>{item.name}</b>! se agrego al carrito 😎...
-              </div>
-            ) : (
-              "Ingrese para acceder al carrito"
-            )}
-          </Modal.Body>
-        </Modal.Header>
-      </Modal>
 
       <Card.Body className="card-body">
+        <Card.Title className="card-body-title">{item.name}</Card.Title>
         <Card.Text className="card-body-price">
           <b>${formatPrice(item.price)}</b>
         </Card.Text>
-        <Card.Title className="card-body-title">{item.name}</Card.Title>
+        <Button
+          className="category-buttons mb-4"
+          ref={target}
+          onClick={handleShoppingCart}
+        >
+          <div className="category-buttons-text">+ Añadir al carrito</div>
+          <ShoppingCartIcon />
+        </Button>
+        <Modal show={showCart} onHide={handleCloseCart}>
+          <Modal.Header closeButton>
+            <Modal.Body>
+              {user ? (
+                <div>
+                  <b>{item.name}</b>! se agrego al carrito 😎...
+                </div>
+              ) : (
+                "Ingrese para acceder al carrito"
+              )}
+            </Modal.Body>
+          </Modal.Header>
+        </Modal>
         <StarRatings
           rating={3}
           starRatedColor="orange"
           changeRating={setNewRating}
-          starDimension="0.8rem"
+          starDimension="1rem"
           numberOfStars={5}
           name="rating"
+          starSpacing="1px"
+          starEmptyColor="gray"
+          starHoverColor="orange"
+          starHoverStyle={{ color: "orange" }}
         />
       </Card.Body>
     </Card>

@@ -2,7 +2,7 @@
 
 // Main Product Card
 .product-card {
-    background-color: styles.$background-color;
+    background-color: white;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -14,7 +14,7 @@
     animation-duration: 2s;
     border: none;
     border-radius: 7px;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+    box-shadow: rgba(0, 0, 0, 0.317) 0px 12px 28px 0px, rgba(0, 0, 0, 0.23) 0px 2px 4px 0px, rgba(255, 255, 255, 0.088) 0px 0px 0px 1px inset;
 
     & .card-favorite-icon {
         position: absolute;
@@ -30,7 +30,7 @@
             font-size: 170%;
 
             &:hover {
-                color: #7a7fc6 !important;
+                color: styles.$red-heart;
                 -webkit-transform: scale(1.1);
                 transform: scale(1.1);
                 transition: all 0.5s ease-in-out;
@@ -44,8 +44,10 @@
         justify-content: center;
         align-items: center;
         height: 100%;
-        border-bottom: rgba(101, 101, 101, 0.404) solid 1px;
-        margin-bottom: 12px;
+        min-height: 6rem;
+        width: 100%;
+        overflow: hidden;
+        margin-bottom: 1rem;
 
         & .card-image {
             padding: 1rem;
@@ -54,6 +56,7 @@
             transform: scale(1);
             -webkit-transition: 1s ease-in-out;
             transition: 1s ease-in-out;
+            aspect-ratio: 1/1;
 
             &:hover {
                 -webkit-transform: scale(1.1);
@@ -63,15 +66,17 @@
     }
 
     .card-buttons {
-        background-image: linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%);
+        background: styles.$purple-dark !important;
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
         align-items: center;
         gap: 0.7rem;
         text-decoration: none;
-        color: rgb(251, 251, 251);
-        border-color: #3d3e65;
+        color: styles.$background-color-dark;
+        font-size: 80%;
+        font-weight: 600;
+        border: 1px solid styles.$background-color-dark;
         border-radius: 5px;
         font-size: 80%;
         width: 90%;
@@ -85,8 +90,8 @@
 
         &:focus,
         &:hover {
-            background: #b5aee4;
-            border-color: #505285;
+            background: styles.$secondary-color;
+            border-color: styles.$background-color-dark;
             color: rgb(10, 10, 10);
             animation: pulse;
             animation-duration: 1s;
@@ -102,22 +107,23 @@
         justify-content: flex-start;
         align-items: center;
         width: 100%;
-        border-top: rgba(90, 90, 90, 0.463) solid 1px;
-        margin-top: 3px;
+        margin: 1rem;
+        padding: 0.5rem;
 
         .card-body-price {
-            color: rgba(53, 53, 53, 0.786);
-            font-size: 1rem;
+            color: styles.$price-color;
+            font-size: 1.2rem;
             padding: 0;
-            margin: 0;
+            margin-bottom: 1.5rem;
         }
 
         .card-body-title {
-            color: rgba(23, 23, 23, 0.761);
-            font-size: 0.8rem;
+            color: styles.$background-color-dark;
+            font-size: 1.3rem;
             align-content: center;
             font-weight: 500;
             text-align: center;
+            margin-bottom: 1rem;
         }
     }
 

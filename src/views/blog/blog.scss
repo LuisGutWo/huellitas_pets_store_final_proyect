@@ -1,7 +1,7 @@
 @use "../../styles.scss";
 
 .main-blog-section {
-  background-color: rgb(252, 166, 146);
+  background-color: styles.$background-color-dark;
 
   .blog-title {
     display: flex;
@@ -19,7 +19,7 @@
     h2 {
       font-weight: bold ! important;
       font-size: 2rem;
-      color: #0d0d0dde;
+      color: styles.$background-color-dark;
     }
 
   }
@@ -32,7 +32,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background-color: rgb(252, 166, 146);
+  background-color: transparent;
   gap: 2rem;
   height: 100%;
   padding: 1rem;
@@ -48,29 +48,32 @@
     margin: 2rem 0 5rem 0;
     padding: 0;
     border-radius: 20px;
-    background-color: #ffffff;
+    box-shadow: 5px 5px 15px 2px #1515156a;
+    border: none;
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
     color: #000;
     font-weight: normal;
     text-decoration: none;
-    box-shadow: 5px 5px 15px 2px #1515156a;
+
 
     & .blog-card-body {
+      padding: 4.5rem;
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
       margin: 0;
-      padding: 0rem 1rem 1rem 1rem;
 
       & .blog-card-title {
-        font-size: 1.8em;
+        font-size: 2rem;
         text-align: center;
       }
 
       & .blog-card-text {
         text-align: center;
-        font-size: 100%;
+        font-size: 1.2rem;
       }
     }
 

@@ -1,11 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useUserContext } from "../../context/UserContext";
 import "animate.css";
 
 const NavbarButtons = () => {
-  const { user } = useUserContext();
-
   return (
     <>
       <section className="navbar-buttons">
@@ -36,7 +33,7 @@ const NavbarButtons = () => {
         >
           <b>SHOP</b>
         </NavLink>
-        
+
         <NavLink
           to="/contact"
           key="contact"

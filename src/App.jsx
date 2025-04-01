@@ -43,8 +43,8 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
-      <BackToTopButton />
-      <WhatsAppButton />
+      {user && <BackToTopButton />}
+      {user && <WhatsAppButton />}
       <MainFooter />
     </div>
   );

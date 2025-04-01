@@ -58,12 +58,14 @@ const DiscountsProducts = () => {
   ));
 
   const filteredDataNews = () => {
-    if (filter === "news") {
+    if (filter === "news" && data !== null) {
       return data.filter((item) => item.season === "news");
-    } else {
+    } else if (data !== null) {
       return data
         .filter((item) => item.season === "news")
         .filter((item) => searchData(item, search));
+    } else {
+      return [];
     }
   };
   const filteredProductNews = filteredDataNews().map((item) => (
@@ -73,12 +75,12 @@ const DiscountsProducts = () => {
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 4,
-      slidesToSlide: 2, // optional, default to 1.
+      items: 3,
+      slidesToSlide: 1, // optional, default to 1.
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 3,
+      items: 2,
       slidesToSlide: 2, // optional, default to 1.
     },
     mobile: {
@@ -111,7 +113,7 @@ const DiscountsProducts = () => {
             <Carousel
               responsive={responsive}
               additionalTransfrom={0}
-              arrows={false}
+              arrows={true}
               autoPlay={true}
               autoPlaySpeed={9000}
               customTransition="all 5s linear"
@@ -119,23 +121,23 @@ const DiscountsProducts = () => {
               containerClass="container-with-dots"
               removeArrowOnDeviceType={["tablet", "mobile"]}
               draggable
-              focusOnSelect={false}
+              focusOnSelect={true}
               infinite={true}
               keyBoardControl
               minimumTouchDrag={80}
               pauseOnHover={true}
               renderArrowsWhenDisabled={false}
-              renderButtonGroupOutside={false}
-              renderDotsOutside={false}
+              renderButtonGroupOutside={true}
+              renderDotsOutside={true}
               className="products-carousel"
               rewind={false}
               rewindWithAnimation={false}
               rtl={false}
               shouldResetAutoplay
               showDots={false}
-              sliderClass="additionalTransfrom"
+              sliderClass=""
               slidesToSlide
-              swipeable
+              swipeable={true}
             >
               {filteredProductDiscount}
             </Carousel>
@@ -159,10 +161,10 @@ const DiscountsProducts = () => {
             <Carousel
               responsive={responsive}
               additionalTransfrom={0}
-              arrows={false}
+              arrows={true}
               autoPlay={true}
-              autoPlaySpeed={6000}
-              customTransition="all 2s linear"
+              autoPlaySpeed={9000}
+              customTransition="all 5s linear"
               centerMode={false}
               containerClass="container-with-dots"
               removeArrowOnDeviceType={["tablet", "mobile"]}
@@ -173,8 +175,8 @@ const DiscountsProducts = () => {
               minimumTouchDrag={80}
               pauseOnHover={true}
               renderArrowsWhenDisabled={false}
-              renderButtonGroupOutside={false}
-              renderDotsOutside={false}
+              renderButtonGroupOutside={true}
+              renderDotsOutside={true}
               className="products-carousel"
               rewind={false}
               rewindWithAnimation={false}
@@ -183,7 +185,7 @@ const DiscountsProducts = () => {
               showDots={false}
               sliderClass=""
               slidesToSlide
-              swipeable
+              swipeable={true}
             >
               {filteredProductNews}
             </Carousel>

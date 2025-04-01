@@ -59,7 +59,10 @@ const MainFooter = () => {
           </Col>
         </Row>
       </Container>
-      <h5 className="footer-copyright">Copyright©2023 | LGWwebmedia </h5>
+      <h5 className="footer-copyright">
+        Copyright© {new Date().getFullYear()} | LAG media | Todos los derechos
+        reservados.
+      </h5>
     </footer>
   );
 };

@@ -35,7 +35,7 @@ const HeroSection = () => {
               className="img-fluid"
             />
             <article className="newhero-container">
-              <img src={LogoWhite} alt="" className="img-fluid" />
+              {LogoWhite && <img src={LogoWhite} alt="" className="img-fluid" />}
               <h1 className="text-container text-light text-end">
                 ¡Tenemos
                 <br /> lo que tu mascota
@@ -45,7 +45,7 @@ const HeroSection = () => {
               <NavLink
                 to={"/products"}
                 className="category-buttons-hero"
-                variant="dark"
+                variant="light"
               >
                 <ArrowForwardIosIcon style={{ width: "12%" }} />
                 Productos
@@ -73,7 +73,7 @@ const HeroSection = () => {
               className="img-fluid"
             />
             <article className="hero-container">
-              <img src={LogoBlack} alt="" className="hero-logo img-fluid" />
+              {LogoBlack && <img src={LogoBlack} alt="" className="hero-logo img-fluid" />}
               <h1 className="text-container text-dark">
                 Llegamos a la puerta
                 <br />
@@ -111,7 +111,7 @@ const HeroSection = () => {
               className="img-fluid"
             />
             <article className="hero-container">
-              <img src={LogoWhite} alt="" className="hero-logo img-fluid" />
+              {LogoWhite && <img src={LogoWhite} alt="" className="hero-logo img-fluid" />}
               <h1 className="text-container text-light">
                 Te ofrecemos
                 <br />

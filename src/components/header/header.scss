@@ -13,14 +13,18 @@
 
 //Navbar Top Menu
 .navbar-top-menu {
-  background-color: #2a2f4f;
+  background-color: styles.$background-color-dark;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 2.5rem;
 
   & .container-fluid {
-    width: 90% !important;
+    width: 90%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -33,7 +37,7 @@
   text-align: left;
 
   & a {
-    color: rgb(208, 208, 208) !important;
+    color: styles.$white-dark;
     margin-left: 15px;
     font-size: 0.9rem;
     line-height: 78px;
@@ -61,7 +65,7 @@
   text-align: right;
 
   & p {
-    color: rgb(246, 246, 246) !important;
+    color: styles.$white-dark;
     margin: 0;
     padding-right: 14px;
     font-size: 0.7rem;
@@ -80,11 +84,10 @@
 
 //Main Navbar Styles
 .main-navbar {
-  background-image: linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%);
+  background-image: styles.$gradient-background;
   height: 8rem;
   width: 100%;
   border: none;
-  border-radius: 0 0 15px 15px;
 
   & .container-fluid {
     width: 90%;
@@ -139,8 +142,8 @@
   font-size: 100%;
   padding: 0 0 0 5%;
   border-radius: 4px 0px 0px 4px;
-  background-color: rgba(255, 255, 255, 0.948);
-  color: rgb(129, 129, 129);
+  background-color: styles.$white-dark;
+  color: styles.$background-color-dark;
 }
 
 .search-button {
@@ -151,7 +154,7 @@
   height: 100%;
   border: none;
   border-radius: 0px 4px 4px 0px;
-  background-color: #3d2e56;
+  background-color: styles.$background-color-dark;
   color: #dfdfdf;
 }
 
@@ -175,7 +178,7 @@
   }
 
   & .text-header-name {
-    color: rgb(251, 211, 255);
+    color: styles.$white;
     text-decoration: none;
     font-size: 0.6rem;
   }
@@ -220,11 +223,12 @@
   position: absolute;
   display: grid;
   place-items: center;
+  border: solid black 1.5px;
   bottom: 52%;
   left: 53%;
 
   background-color: #ffffff;
-  color: rgb(0, 0, 0);
+  color: rgb(0, 0, 0); 
   border: solid black 1.5px;
   width: 23px;
   height: 23px;
@@ -238,7 +242,7 @@
 }
 
 .navbar-total-price {
-  color: #ffffff;
+  color: styles.$white;
   margin: 1rem;
   display: flex;
   justify-content: center;
@@ -278,7 +282,7 @@
 
   .offcanvas-end {
     display: flex;
-    background-color: #505285;
+    background-color: styles.$secondary-color;
     width: 60vw !important;
     flex-direction: column;
     justify-content: center;
