@@ -73,10 +73,18 @@ export default function MainHeader({ item }) {
   };
 
   function addButtonModalCart() {
+    if (products === null || products === undefined) {
+      setError(true);
+      return;
+    }
     handleProductsClick(products);
     handleShowCart(!showCart);
   }
   function addButtonModalLogin() {
+    if (products === null || products === undefined) {
+      setError(true);
+      return;
+    }
     handleProductsClick(products);
     handleShowLogin(!showLogin);
   }

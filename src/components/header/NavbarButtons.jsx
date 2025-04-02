@@ -31,7 +31,7 @@ const NavbarButtons = () => {
             isActive ? "active-class" : "inactive-class"
           }
         >
-          <b>SHOP</b>
+          <b>TIENDA</b>
         </NavLink>
 
         <NavLink

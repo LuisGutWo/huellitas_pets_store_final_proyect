@@ -5,9 +5,9 @@ const Loading = () => {
   return (
     <div
       className="d-flex justify-content-center align-items-center"
-      style={{ height: "10rem" }}
+      style={{ height: "100vh" }}
     >
-      <Spinner animation="border" variant="info" role="status">
+      <Spinner animation="border" variant="warning" role="status">
         <span className="visually-hidden">Loading...</span>
       </Spinner>
       {/* The Spinner component is used with "border" animation for a circular loading effect 

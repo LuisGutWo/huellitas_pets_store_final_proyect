@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
+import PropTypes from "prop-types";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 
@@ -54,12 +55,20 @@ const HeaderForm = ({ products }) => {
       ) : (
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Body>Elige algún producto 😉</Modal.Body>
+            <Modal.Body>Selecciona algún producto 😉</Modal.Body>
           </Modal.Header>
         </Modal>
       )}
     </Form>
   );
+};
+HeaderForm.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default HeaderForm;

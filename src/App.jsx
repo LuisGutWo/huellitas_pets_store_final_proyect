@@ -33,6 +33,7 @@ function App() {
     return <Loader />; // Show the loader while loading
   }
 
+
   return (
     <div id="app">
       <header id="header">
