@@ -1,6 +1,8 @@
+import React from "react";
 import { Button } from "react-bootstrap";
 import { useProductsContext } from "../../context/ProductsContext";
 import { formatPrice } from "../../utils/formatPrice";
+import PropTypes from "prop-types";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -43,5 +45,15 @@ export default function CartItem({ item }) {
         </Button>
       </section>
     </main>
-  );
+  )
 }
+
+CartItem.propTypes = {
+  item: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    name: PropTypes.string.isRequired,
+    img: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+  }).isRequired,
+};
+

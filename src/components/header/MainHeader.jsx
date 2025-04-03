@@ -92,7 +92,7 @@ export default function MainHeader({ item }) {
   if (loading) return <Loading />;
 
   return (
-    <>
+    <section className="main-header" id="header" key={item}>
       {["lg"].map((expand) => (
         <>
           <NavbarTopMenu />
@@ -216,7 +216,7 @@ export default function MainHeader({ item }) {
                           />
                           {user && (
                             <div className="count-products">
-                              <span id="contador-productos">
+                              <span id="contador-productos" key={item}>
                                 {totalItemProducts(item)}
                               </span>
                             </div>
@@ -252,7 +252,7 @@ export default function MainHeader({ item }) {
           </Navbar>
         </>
       ))}
-    </>
+    </section>
   );
 }
 

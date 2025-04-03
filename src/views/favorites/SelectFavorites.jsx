@@ -1,3 +1,4 @@
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { Button, Container } from "react-bootstrap";
 
@@ -37,7 +38,7 @@ export default function SelectFavorites() {
             </Button>
           ) : (
             <Button className="category-buttons m-4" variant="outline-dark">
-              Seguir viendo
+              Seguir comprando
             </Button>
           )}
         </NavLink>

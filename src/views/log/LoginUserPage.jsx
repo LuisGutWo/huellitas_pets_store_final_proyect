@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useUserContext } from "../../context/UserContext";
@@ -41,8 +41,9 @@ const LoginUserPage = () => {
   ) => {
     try {
       const credentialUser = await login({ email, password });
-      console.log(credentialUser);
-      resetForm();
+      if (credentialUser) {
+        resetForm();
+      }
     } catch (error) {
       console.log(error);
       if (error.code === "auth/user-not-found") {
@@ -64,9 +65,7 @@ const LoginUserPage = () => {
       .required("Contraseña requerida"),
   });
 
-  {
-    user && <Loading />;
-  }
+  if (user) return <Loading />;
 
   return (
     <>
@@ -113,7 +112,10 @@ const LoginUserPage = () => {
                 />
                 <div className="d-flex align-items-center justify-content-end">
                   <TextField
-                    sx={{ backgroundColor: "ButtonShadow", borderRadius: "5px" }}
+                    sx={{
+                      backgroundColor: "ButtonShadow",
+                      borderRadius: "5px",
+                    }}
                     fullWidth
                     label="Contraseña"
                     id="password"
@@ -152,7 +154,7 @@ const LoginUserPage = () => {
                 <Grid container>
                   <Grid item xs>
                     <Button component={Link} to="/create" color="warning">
-                      ¿No estas con nosotros? Registrate
+                      Hola, Registrate con nosotros
                     </Button>
                   </Grid>
                 </Grid>
