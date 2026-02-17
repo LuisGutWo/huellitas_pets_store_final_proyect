@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { createContext } from "react";
 import PropTypes from "prop-types";
-import Loading from "../utils/Loading";
+import Loading from "../shared/components/Loading";
 
 // pertenece a config de firebase
 import { onAuthStateChanged } from "firebase/auth";

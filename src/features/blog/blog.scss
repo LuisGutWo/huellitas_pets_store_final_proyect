@@ -1,0 +1,122 @@
+@use "../../shared/styles/styles.scss";
+
+.main-blog-section {
+  background-color: styles.$background-color-dark;
+
+  .blog-title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/mascotas_background_new_accesories.jpeg?alt=media&token=f0e5f8c7-2ea6-47a8-9ddf-a6649a7dad59);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 13rem;
+    padding-left: 5rem;
+    margin: -11px 0 0 0;
+    border: none;
+
+    h2 {
+      font-weight: bold ! important;
+      font-size: 2rem;
+      color: styles.$background-color-dark;
+    }
+
+  }
+}
+
+
+.blog-cards-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  gap: 2rem;
+  height: 100%;
+  padding: 1rem;
+  margin: 0 0 5rem 0;
+
+  .blog-card {
+    overflow: hidden;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0 5rem 0;
+    padding: 0;
+    border-radius: 20px;
+    box-shadow: 5px 5px 15px 2px #1515156a;
+    border: none;
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+    color: styles.$background-color-dark;
+    font-weight: normal;
+    text-decoration: none;
+
+    & .blog-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+    }
+
+
+    & .blog-card-body {
+      padding: 4.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+
+      & .blog-card-title {
+        font-size: 2rem;
+        text-align: center;
+      }
+
+      & .blog-card-text {
+        text-align: center;
+        font-size: 1.2rem;
+      }
+    }
+
+  }
+}
+
+
+@media (width <=768px) {
+  .main-blog-section {
+    .blog-title {
+      height: 12rem;
+      padding-left: 3rem;
+
+      h2 {
+        font-size: 1.8rem;
+      }
+    }
+  }
+
+  .blog-cards-group {
+    height: 100%;
+    padding: 3rem;
+    margin: 0;
+
+    .blog-card {
+      & .blog-card-body {
+        & .blog-card-title {
+          font-size: 1.5em;
+        }
+
+        & .blog-card-text {
+          font-size: 80%;
+        }
+      }
+
+    }
+  }
+
+}

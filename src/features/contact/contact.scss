@@ -1,0 +1,131 @@
+@use "../../shared/styles/styles.scss";
+
+
+
+// ///Contact Main Section ///
+.contact-main-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-top: 8%;
+
+
+  // //// contact form section ///
+  & .main-contact {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    overflow: hidden;
+    position: relative;
+
+    & .contact-img {
+      background-image: url(https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/gato_y_perro.png?alt=media&token=57c3a1cb-c492-487c-96f9-7adc684fb710);
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 100%;
+      width: 100%;
+      animation: fadeIn;
+      animation-duration: 4s;
+    }
+
+    & .contact-container {
+      position: absolute;
+      overflow: hidden;
+      right: 10%;
+
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+
+      & .contact-logo {
+        width: 30%;
+        animation: fadeInLeft;
+        animation-duration: 2s;
+      }
+
+      & .contact-form {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 1.3rem;
+        width: 100%;
+        padding: 1em;
+        color: #1b1b1b;
+        animation: fadeInRight;
+        animation-duration: 3s;
+      }
+    }
+  }
+
+
+
+  // /// Contact map Section ///
+  .map-section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    width: 100%;
+    height: 26rem;
+
+    & .info-map {
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      width: 15rem;
+      height: 7rem;
+      z-index: 100;
+      padding: 1rem;
+
+      background: #000000c0;
+      border-radius: 0.7rem;
+      box-shadow: 3px 5px 8px #1414149d;
+      color: #fff;
+      font-size: 100%;
+      font-weight: 300;
+      animation: fadeIn 1s 1.5s;
+      animation-fill-mode: forwards;
+
+
+      & span {
+        font-size: 100%;
+        color: #ffd900;
+      }
+    }
+
+    & .map-wrap {
+      position: relative !important;
+      float: right;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+
+      & .leaflet-container {
+        position: relative !important;
+        opacity: 0.9;
+        width: 100%;
+        height: 100%;
+        animation: backInRight 1s 1.2s;
+        animation-fill-mode: forwards;
+      }
+    }
+  }
+}
