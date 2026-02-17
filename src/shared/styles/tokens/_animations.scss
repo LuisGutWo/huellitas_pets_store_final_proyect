@@ -1,0 +1,246 @@
+// Design Tokens - Animations
+// Sistema de animaciones y transiciones
+
+// Animation Durations
+$duration-fastest: 0.1s;
+$duration-fast: 0.15s;
+$duration-normal: 0.2s;
+$duration-slow: 0.3s;
+$duration-slower: 0.4s;
+$duration-slowest: 0.5s;
+
+// Easing Functions
+$ease-linear: linear;
+$ease-in: cubic-bezier(0.4, 0, 1, 1);
+$ease-out: cubic-bezier(0, 0, 0.2, 1);
+$ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+$ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+$ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
+// Transition Mixins
+@mixin transition($properties: all, $duration: $duration-normal, $easing: $ease-in-out) {
+    transition: $properties $duration $easing;
+}
+
+@mixin transition-multiple($transitions...) {
+    transition: $transitions;
+}
+
+// Animation Keyframes
+
+// Fade In
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+// Fade Out
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+// Slide In from Right
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+// Slide In from Left
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+// Slide In from Top
+@keyframes slideInTop {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+// Slide In from Bottom
+@keyframes slideInBottom {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+// Scale In
+@keyframes scaleIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+// Scale Out
+@keyframes scaleOut {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+// Bounce
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+// Pulse
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+// Shimmer (para skeleton loaders)
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+// Spin (para loaders)
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+// Shake (para errores)
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translateX(-5px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(5px);
+    }
+}
+
+// Animation Utility Mixins
+@mixin animate($name, $duration: $duration-normal, $easing: $ease-in-out, $delay: 0s, $iterations: 1, $direction: normal, $fill-mode: both) {
+    animation: $name $duration $easing $delay $iterations $direction $fill-mode;
+}
+
+// Hover effects (note: hover-lift is defined in _shadows.scss)
+@mixin hover-scale($scale: 1.05) {
+    @include transition(transform, $duration-fast, $ease-out);
+
+    @include hover-capable {
+        &:hover {
+            transform: scale($scale);
+        }
+    }
+}
+
+@mixin hover-brighten($amount: 1.1) {
+    @include transition(filter, $duration-fast, $ease-out);
+
+    @include hover-capable {
+        &:hover {
+            filter: brightness($amount);
+        }
+    }
+}
+
+// Reduced motion support
+@mixin respect-motion-preference {
+    @include prefers-reduced-motion {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+// CSS Custom Properties
+:root {
+    --duration-fast: #{$duration-fast};
+    --duration-normal: #{$duration-normal};
+    --duration-slow: #{$duration-slow};
+
+    --ease-in-out: #{$ease-in-out};
+    --ease-bounce: #{$ease-bounce};
+}

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Navbar, Row, Col } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
 
 import MainProductCard from "./components/MainProductCard";
 import Loading from "../../shared/components/Loading";
@@ -76,25 +75,22 @@ const MainProductsList: React.FC = () => {
       {/* Category Navbar */}
       <Navbar className="products-list-buttons">
         {categories.map((category) => (
-          <NavLink
+          <button
             key={category}
-            to={`/categories/${category}`}
             onClick={() => setFilter(category)}
-            className="category-buttons"
-            style={{ alignItems: "center" }}
+            className={`category-buttons ${filter === category ? 'active' : ''}`}
           >
             {category}
-          </NavLink>
+          </button>
         ))}
         {types.map((type) => (
-          <NavLink
+          <button
             key={type}
-            to={`/types/${type}`}
             onClick={() => setFilter(type)}
-            className="category-buttons"
+            className={`category-buttons ${filter === type ? 'active' : ''}`}
           >
             {type}
-          </NavLink>
+          </button>
         ))}
       </Navbar>
 

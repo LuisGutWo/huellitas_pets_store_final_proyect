@@ -1,0 +1,219 @@
+@use "../../styles/tokens" as tokens;
+
+// ============================================
+// Base Skeleton
+// ============================================
+
+.skeleton {
+    width: var(--skeleton-width, 100%);
+    height: var(--skeleton-height, 16px);
+    background: linear-gradient(90deg,
+            tokens.$color-neutral-200 0%,
+            tokens.$color-neutral-100 50%,
+            tokens.$color-neutral-200 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+    border-radius: tokens.$radius-md;
+
+    &--pulse {
+        animation: shimmer 2s infinite, pulse 2s infinite;
+    }
+}
+
+// ============================================
+// Skeleton Variants
+// ============================================
+
+.skeleton {
+    &--text {
+        height: 16px;
+        margin-bottom: tokens.$spacing-sm;
+        border-radius: tokens.$radius-sm;
+
+        &-xs {
+            width: 40%;
+            height: 12px;
+        }
+
+        &-sm {
+            width: 60%;
+            height: 14px;
+        }
+
+        &-md {
+            width: 80%;
+        }
+
+        &-lg {
+            width: 100%;
+        }
+    }
+
+    &--title {
+        height: 24px;
+        width: 100%;
+        margin-bottom: tokens.$spacing-3;
+        border-radius: tokens.$radius-sm;
+    }
+
+    &--circle {
+        border-radius: tokens.$radius-full;
+        aspect-ratio: 1;
+    }
+
+    &--image {
+        width: 100%;
+        aspect-ratio: 1;
+        border-radius: tokens.$radius-lg;
+    }
+
+    &--button {
+        height: 40px;
+        width: 100%;
+        border-radius: tokens.$radius-md;
+    }
+
+    &--avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: tokens.$radius-full;
+    }
+}
+
+// ============================================
+// Product Card Skeleton
+// ============================================
+
+.skeleton-card {
+    background: tokens.$color-bg-primary;
+    border-radius: tokens.$radius-lg;
+    box-shadow: tokens.$shadow-card;
+    padding: tokens.$spacing-4;
+    display: flex;
+    flex-direction: column;
+    gap: tokens.$spacing-3;
+    height: 100%;
+
+    &__image {
+        @extend .skeleton--image;
+        margin-bottom: tokens.$spacing-2;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: tokens.$spacing-2;
+    }
+}
+
+// ============================================
+// Product Grid Skeleton
+// ============================================
+
+.skeleton-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: tokens.$spacing-6;
+    padding: tokens.$spacing-6;
+
+    @include tokens.respond-to-max('md') {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: tokens.$spacing-4;
+        padding: tokens.$spacing-4;
+    }
+
+    @include tokens.respond-to-max('sm') {
+        grid-template-columns: repeat(2, 1fr);
+        gap: tokens.$spacing-3;
+        padding: tokens.$spacing-3;
+    }
+}
+
+// ============================================
+// List Item Skeleton
+// ============================================
+
+.skeleton-list-item {
+    display: flex;
+    gap: tokens.$spacing-4;
+    padding: tokens.$spacing-4;
+    background: tokens.$color-bg-primary;
+    border-radius: tokens.$radius-lg;
+    box-shadow: tokens.$shadow-sm;
+
+    &__image {
+        flex-shrink: 0;
+        width: 80px;
+        height: 80px;
+        @extend .skeleton--image;
+    }
+
+    &__content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: tokens.$spacing-2;
+    }
+}
+
+// ============================================
+// Header Skeleton
+// ============================================
+
+.skeleton-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: tokens.$spacing-4;
+    background: tokens.$color-bg-primary;
+    box-shadow: tokens.$shadow-sm;
+
+    &__left {
+        display: flex;
+        align-items: center;
+        gap: tokens.$spacing-4;
+    }
+
+    &__right {
+        display: flex;
+        align-items: center;
+        gap: tokens.$spacing-3;
+    }
+}
+
+// ============================================
+// Animations
+// ============================================
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+// ============================================
+// Accessibility & Motion Preferences
+// ============================================
+
+@include tokens.prefers-reduced-motion {
+    .skeleton {
+        animation: none !important;
+        background: tokens.$color-neutral-200;
+    }
+}

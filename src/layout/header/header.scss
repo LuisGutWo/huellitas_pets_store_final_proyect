@@ -1,4 +1,53 @@
-@use "../../shared/styles/styles.scss";
+@use "../../shared/styles/styles.scss" as styles;
+@use "../../shared/styles/tokens" as tokens;
+
+// ============================================
+// Main Header Container
+// ============================================
+
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: white;
+  @include tokens.transition(all, tokens.$duration-slow, tokens.$ease-in-out);
+
+  // Scrolled state
+  &--scrolled {
+    box-shadow: tokens.$shadow-navbar;
+
+    .navbar-top-menu {
+      height: 0;
+      overflow: hidden;
+      opacity: 0;
+    }
+
+    .main-navbar {
+      height: 5rem;
+      padding: tokens.$spacing-2 0;
+    }
+
+    .header-logo {
+      width: 7rem !important;
+    }
+  }
+
+  // Scroll progress indicator
+  &__scroll-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: var(--scroll-width, 0%);
+    height: 3px;
+    background: linear-gradient(90deg,
+        tokens.$color-primary-500,
+        tokens.$color-secondary-500 );
+    @include tokens.transition(width, 0.1s, tokens.$ease-linear);
+    z-index: 10;
+  }
+}
 
 #header {
   padding: 0;
@@ -10,10 +59,12 @@
   border: none;
 }
 
+// ============================================
+// Navbar Top Menu
+// ============================================
 
-//Navbar Top Menu
 .navbar-top-menu {
-  background-color: styles.$background-color-dark;
+  background-color: tokens.$color-neutral-800;
   padding: 0;
   margin: 0;
   border: none;
@@ -22,6 +73,7 @@
   justify-content: space-between;
   align-items: center;
   height: 2.5rem;
+  @include tokens.transition(all, tokens.$duration-slow, tokens.$ease-in-out);
 
   & .container-fluid {
     width: 90%;
@@ -219,30 +271,49 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  align-items: center;
-  gap: 1rem;
+  gap: tokens.$spacing-4;
 }
 
+// ============================================
+// Header Cart (with badge)
+// ============================================
+
+.header-cart {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  &__badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    background: tokens.$color-error-500;
+    color: tokens.$color-text-inverse;
+    border-radius: tokens.$radius-full;
+    font-size: tokens.$font-size-xs;
+    font-weight: tokens.$font-weight-bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include tokens.animate(scaleIn, 0.3s, tokens.$ease-bounce);
+    box-shadow: tokens.$shadow-sm;
+    border: 2px solid tokens.$color-bg-primary;
+  }
+}
+
+// Legacy support
 .count-products {
-  position: absolute;
-  display: grid;
-  place-items: center;
-  border: solid black 1.5px;
-  bottom: 52%;
-  left: 53%;
-
-  background-color: #ffffff;
-  color: rgb(0, 0, 0);
-  border: solid black 1.5px;
-  width: 23px;
-  height: 23px;
-
-  border-radius: 50%;
+  @extend .header-cart__badge;
 }
 
 #contador-productos {
-  font-size: 0.9rem;
-  font-weight: bold;
+  font-size: tokens.$font-size-xs;
+  font-weight: tokens.$font-weight-bold;
 }
 
 .navbar-total-price {

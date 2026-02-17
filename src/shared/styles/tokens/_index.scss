@@ -1,0 +1,20 @@
+// Design Tokens - Index
+// Punto de entrada para todos los tokens de diseño
+
+// Import all token files
+@forward 'colors';
+@forward 'spacing';
+@forward 'typography';
+@forward 'shadows';
+@forward 'borders';
+@forward 'breakpoints';
+@forward 'animations';
+
+// Re-export everything for easy access
+@use 'colors' as *;
+@use 'spacing' as *;
+@use 'typography' as *;
+@use 'shadows' as *;
+@use 'borders' as *;
+@use 'breakpoints' as *;
+@use 'animations' as *;

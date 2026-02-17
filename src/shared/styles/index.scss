@@ -1,4 +1,6 @@
 @use "./styles.scss" as styles;
+@use "../components/Toast/toast.scss";
+@use "../components/SkeletonLoader/skeleton.scss";
 @use "../../layout/header/header.scss";
 @use "../../features/home/components/hero.scss";
 @use "../../features/about/about.scss";

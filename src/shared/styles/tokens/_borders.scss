@@ -1,0 +1,98 @@
+// Design Tokens - Borders
+// Sistema de bordes y radios de esquina
+
+// Border Radius
+$radius-none: 0;
+$radius-xs: 0.125rem; // 2px
+$radius-sm: 0.25rem; // 4px
+$radius-md: 0.5rem; // 8px
+$radius-lg: 0.75rem; // 12px
+$radius-xl: 1rem; // 16px
+$radius-2xl: 1.5rem; // 24px
+$radius-3xl: 2rem; // 32px
+$radius-full: 9999px; // Circular
+
+// Component Specific Radius
+$radius-button: $radius-md;
+$radius-input: $radius-md;
+$radius-card: $radius-lg;
+$radius-modal: $radius-xl;
+$radius-badge: $radius-full;
+$radius-avatar: $radius-full;
+
+// Border Widths
+$border-width-0: 0;
+$border-width-1: 1px;
+$border-width-2: 2px;
+$border-width-4: 4px;
+$border-width-8: 8px;
+
+// Border Styles
+$border-solid: solid;
+$border-dashed: dashed;
+$border-dotted: dotted;
+$border-none: none;
+
+// Common Border Combinations
+$border-light: $border-width-1 $border-solid #e5e5e5;
+$border-medium: $border-width-1 $border-solid #d4d4d4;
+$border-dark: $border-width-1 $border-solid #a3a3a3;
+$border-primary: $border-width-2 $border-solid #f48b48;
+$border-error: $border-width-2 $border-solid #ef4444;
+$border-success: $border-width-2 $border-solid #22c55e;
+
+// Outline (para focus states)
+$outline-width: 2px;
+$outline-offset: 2px;
+$outline-primary: $outline-width solid #f48b48;
+$outline-error: $outline-width solid #ef4444;
+
+// Divider
+$divider-color: #e5e5e5;
+$divider-width: 1px;
+
+// Mixins
+@mixin border-radius($size: md) {
+    @if $size =='xs' {
+        border-radius: $radius-xs;
+    }
+
+    @else if $size =='sm' {
+        border-radius: $radius-sm;
+    }
+
+    @else if $size =='md' {
+        border-radius: $radius-md;
+    }
+
+    @else if $size =='lg' {
+        border-radius: $radius-lg;
+    }
+
+    @else if $size =='xl' {
+        border-radius: $radius-xl;
+    }
+
+    @else if $size =='full' {
+        border-radius: $radius-full;
+    }
+}
+
+@mixin border($color: #e5e5e5, $width: 1px, $style: solid) {
+    border: $width $style $color;
+}
+
+// CSS Custom Properties
+:root {
+    --radius-xs: #{$radius-xs};
+    --radius-sm: #{$radius-sm};
+    --radius-md: #{$radius-md};
+    --radius-lg: #{$radius-lg};
+    --radius-xl: #{$radius-xl};
+    --radius-2xl: #{$radius-2xl};
+    --radius-3xl: #{$radius-3xl};
+    --radius-full: #{$radius-full};
+
+    --border-width: #{$border-width-1};
+    --border-color: #{$divider-color};
+}

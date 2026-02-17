@@ -1,4 +1,5 @@
 import { useEffect, useState, Fragment } from "react";
+import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Button } from "react-bootstrap";
@@ -32,9 +33,13 @@ export default function MainHeader({ item }: MainHeaderProps) {
   const [showCart, setShowCart] = useState<boolean>(false);
   const [showLogin, setShowLogin] = useState<boolean>(false);
   const [selectProduct, setSelectProduct] = useState<string>("");
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [scrollProgress, setScrollProgress] = useState<number>(0);
+  
   const { totalItemProducts, totalCart } = useProductsContext();
   const { user } = useUserContext();
   const [error, setError] = useState<boolean>(false);
+  
   const handleCloseCart = () => setShowCart(false);
   const handleShowCart = () => setShowCart(true);
   const handleCloseLogin = () => setShowLogin(false);
@@ -43,19 +48,34 @@ export default function MainHeader({ item }: MainHeaderProps) {
   const navigate = useNavigate();
 
   const fetchProducts = async () => {
-    setLoading(true); // Start loading
+    setLoading(true);
     try {
       const data = await getProducts();
       setProducts(data);
     } catch (error) {
       setError(true);
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     fetchProducts();
+  }, []);
+
+  // Scroll effect handler
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      
+      setIsScrolled(scrollTop > 50);
+      setScrollProgress(progress);
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleProductsClick = () => {
@@ -91,10 +111,26 @@ export default function MainHeader({ item }: MainHeaderProps) {
     handleShowLogin(!showLogin);
   }
 
+  // Create a ref to set CSS variable after mount (must be before early return)
+  const scrollIndicatorRef = React.useRef<HTMLDivElement>(null);
+  
+  React.useEffect(() => {
+    if (scrollIndicatorRef.current) {
+      scrollIndicatorRef.current.style.setProperty('--scroll-width', `${scrollProgress}%`);
+    }
+  }, [scrollProgress]);
+
   if (loading) return <Loading />;
 
   return (
-    <section className="main-header" id="header" key={item}>
+    <section className={`main-header ${isScrolled ? 'main-header--scrolled' : ''}`} id="header">
+      {/* Scroll Progress Indicator - Visual only */}
+      <div 
+        ref={scrollIndicatorRef}
+        className="main-header__scroll-indicator" 
+        aria-hidden="true"
+      />
+      
       {["lg"].map((expand) => (
         <Fragment key={expand}>
           <NavbarTopMenu />
@@ -181,18 +217,13 @@ export default function MainHeader({ item }: MainHeaderProps) {
                             }
                             onClick={addButtonModalCart}
                           >
-                            <ShoppingCartIcon
-                              style={{
-                                fontSize: "2rem",
-                              }}
-                            />
-                            {user && (
-                              <div className="count-products">
-                                <span id="contador-productos">
-                                  {totalItemProducts(item)}
-                                </span>
-                              </div>
-                            )}
+                            <div className="header-cart">
+                              <ShoppingCartIcon
+                                style={{
+                                  fontSize: "2rem",
+                                }}
+                              />
+                            </div>
                           </NavLink>
                           {!user && (
                             <Modal show={showCart} onHide={handleCloseCart}>
@@ -212,17 +243,17 @@ export default function MainHeader({ item }: MainHeaderProps) {
                           }
                           onClick={addButtonModalCart}
                         >
-                          <ShoppingCartIcon
-                            className="icon-cart"
-                            style={{ width: "3rem", fontSize: "1.8rem" }}
-                          />
-                          {user && (
-                            <div className="count-products">
-                              <span id="contador-productos" key={item}>
+                          <div className="header-cart">
+                            <ShoppingCartIcon
+                              className="icon-cart"
+                              style={{ width: "3rem", fontSize: "1.8rem" }}
+                            />
+                            {totalItemProducts(item) > 0 && (
+                              <span className="header-cart__badge">
                                 {totalItemProducts(item)}
                               </span>
-                            </div>
-                          )}
+                            )}
+                          </div>
                         </NavLink>
                       )}
                       <div className="navbar-total-price">

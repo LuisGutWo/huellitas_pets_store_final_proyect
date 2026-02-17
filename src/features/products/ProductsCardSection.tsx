@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Container, Navbar } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
@@ -114,34 +113,30 @@ const ProductsCardSection: React.FC = () => {
         <section className="products-navbar">
           <Navbar className="products-buttons-section">
             {categories.map((category) => (
-              <NavLink
+              <button
                 data-aos="fade-zoom-in"
                 data-aos-easing="ease-in-back"
                 data-aos-delay="300"
                 data-aos-offset="0"
                 key={category}
-                to={`/categories/${category}`}
                 onClick={() => setFilter(category)}
-                className="category-buttons"
-                style={{ alignItems: "center" }}
+                className={`category-buttons ${filter === category ? 'active' : ''}`}
               >
                 {category}
-              </NavLink>
+              </button>
             ))}
             {types.map((type) => (
-              <NavLink
+              <button
                 data-aos="fade-zoom-in"
                 data-aos-easing="ease-in-back"
                 data-aos-delay="300"
                 data-aos-offset="0"
                 key={type}
-                to={`/types/${type}`}
                 onClick={() => setFilter(type)}
-                className="category-buttons"
-                style={{ alignItems: "center" }}
+                className={`category-buttons ${filter === type ? 'active' : ''}`}
               >
                 {type}
-              </NavLink>
+              </button>
             ))}
           </Navbar>
         </section>

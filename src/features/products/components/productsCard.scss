@@ -1,198 +1,421 @@
-@use "../../../shared/styles/styles.scss";
+@use "../../../shared/styles/styles.scss" as styles;
+@use "../../../shared/styles/tokens" as tokens;
 
-// Main Product Card
+// ============================================
+// Product Card Component
+// ============================================
+
 .product-card {
-    background-color: white;
     position: relative;
+    background-color: tokens.$color-bg-primary;
+    border-radius: tokens.$radius-lg;
+    box-shadow: tokens.$shadow-card;
+    border: none;
     overflow: hidden;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     height: 100%;
-    margin: 0;
-    animation: fadeIn;
-    animation-duration: 2s;
-    border: none;
-    border-radius: 7px;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+    @include tokens.transition(all, tokens.$duration-normal, tokens.$ease-in-out);
 
-    & .card-favorite-icon {
-        position: absolute;
-        cursor: pointer;
-        top: 7%;
-        left: 85%;
-        z-index: 10;
-        -webkit-transition: 2s ease-in-out;
-        transition: all 2s ease-in-out;
-        transition-delay: initial 2s;
+    // Loading state
+    &--loading {
+        .product-card__image-container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg,
+                    transparent 0%,
+                    rgba(255, 255, 255, 0.6) 50%,
+                    transparent 100%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+    }
 
-        .card-icons {
-            font-size: 170%;
+    // Hover effect
+    @include tokens.hover-capable {
+        &:hover {
+            box-shadow: tokens.$shadow-card-hover;
+            transform: translateY(-4px);
 
-            &:hover {
-                color: styles.$red-heart;
-                -webkit-transform: scale(1.1);
-                transform: scale(1.1);
-                transition: all 0.5s ease-in-out;
-                transition-delay: 0.1s;
+            .product-card__actions {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     }
 
-    & .card-image-container {
+    // ============================================
+    // Discount Badge
+    // ============================================
+    &__badge {
+        position: absolute;
+        top: tokens.$spacing-3;
+        right: tokens.$spacing-3;
+        background: tokens.$color-error-500;
+        color: tokens.$color-text-inverse;
+        padding: tokens.$spacing-1 tokens.$spacing-3;
+        border-radius: tokens.$radius-full;
+        font-size: tokens.$font-size-xs;
+        font-weight: tokens.$font-weight-bold;
+        z-index: 20;
+        box-shadow: tokens.$shadow-sm;
+        @include tokens.animate(scaleIn, 0.3s, tokens.$ease-bounce);
+    }
+
+    // ============================================
+    // Quick Actions (Favorite & Info)
+    // ============================================
+    &__actions {
+        position: absolute;
+        top: tokens.$spacing-3;
+        left: tokens.$spacing-3;
+        display: flex;
+        gap: tokens.$spacing-2;
+        opacity: 0;
+        transform: translateY(-8px);
+        @include tokens.transition(all, tokens.$duration-slow, tokens.$ease-out);
+        z-index: 20;
+
+        @include tokens.respond-to-max('md') {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    &__action-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: tokens.$radius-full;
+        background: tokens.$color-bg-primary;
+        border: none;
+        box-shadow: tokens.$shadow-md;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: tokens.$color-text-secondary;
+        @include tokens.transition(all, tokens.$duration-fast, tokens.$ease-out);
+
+        &:hover {
+            transform: scale(1.1);
+            color: tokens.$color-text-primary;
+        }
+
+        &--favorite {
+            &.active {
+                background: tokens.$color-error-500;
+                color: tokens.$color-text-inverse;
+
+                &:hover {
+                    background: tokens.$color-error-600;
+                }
+            }
+        }
+    }
+
+    // Delete button for favorites view
+    &__delete-btn {
+        position: absolute;
+        top: tokens.$spacing-3;
+        right: tokens.$spacing-3;
+        z-index: 20;
+    }
+
+    // ============================================
+    // Product Image
+    // ============================================
+    &__image-container {
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100%;
-        min-height: 6rem;
         width: 100%;
+        padding: tokens.$spacing-4;
         overflow: hidden;
-        margin-bottom: 1rem;
+        aspect-ratio: 1 / 1;
+        background: linear-gradient(135deg, tokens.$color-neutral-50 0%, tokens.$color-bg-primary 100%);
+    }
 
-        & .card-image {
-            padding: 1rem;
-            width: 100%;
-            -webkit-transform: scale(1);
-            transform: scale(1);
-            -webkit-transition: 1s ease-in-out;
-            transition: 1s ease-in-out;
-            aspect-ratio: 1/1;
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        @include tokens.transition(transform, tokens.$duration-slow, tokens.$ease-out);
 
+        @include tokens.hover-capable {
             &:hover {
-                -webkit-transform: scale(1.1);
-                transform: scale(1.1);
+                transform: scale(1.08);
             }
         }
     }
 
-    .card-buttons {
-        background: styles.$purple-dark !important;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        align-items: center;
-        gap: 0.7rem;
-        text-decoration: none;
-        color: styles.$background-color-dark;
-        font-size: 80%;
-        font-weight: 600;
-        border: 1px solid styles.$background-color-dark;
-        border-radius: 5px;
-        font-size: 80%;
-        width: 90%;
-        padding: 6px;
-        margin: 0 0 0.4rem 0;
-        line-height: 10px;
-        font-weight: 600;
-        text-transform: uppercase;
-        -webkit-transition: background 0.3s linear, color 0.3s linear;
-        transition: background 0.3s linear, color 0.3s linear;
-
-        &:focus,
-        &:hover {
-            background: styles.$secondary-color;
-            border-color: styles.$background-color-dark;
-            color: rgb(10, 10, 10);
-            animation: pulse;
-            animation-duration: 1s;
-        }
-    }
-
-
-
-
-    .card-body {
+    // ============================================
+    // Card Content
+    // ============================================
+    &__content {
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        padding: tokens.$spacing-4;
+        flex: 1;
+    }
+
+    &__title {
+        @include tokens.text-base;
+        font-weight: tokens.$font-weight-semibold;
+        color: tokens.$color-text-primary;
+        margin-bottom: tokens.$spacing-2;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        min-height: 2.5rem;
+        line-height: 1.25;
+
+        &:hover {
+            color: tokens.$color-primary-500;
+        }
+    }
+
+    // ============================================
+    // Rating
+    // ============================================
+    &__rating {
+        display: flex;
         align-items: center;
+        gap: tokens.$spacing-2;
+        margin-bottom: tokens.$spacing-3;
+
+        &-stars {
+            display: flex;
+            gap: 2px;
+        }
+
+        &-count {
+            @include tokens.text-xs;
+            color: tokens.$color-text-secondary;
+        }
+    }
+
+    // ============================================
+    // Price
+    // ============================================
+    &__price-container {
+        display: flex;
+        align-items: center;
+        gap: tokens.$spacing-2;
+        margin-bottom: tokens.$spacing-4;
+    }
+
+    &__price {
+        font-size: tokens.$font-size-xl;
+        font-weight: tokens.$font-weight-bold;
+        color: tokens.$color-primary-500;
+    }
+
+    &__price-old {
+        @include tokens.text-small;
+        color: tokens.$color-text-tertiary;
+        text-decoration: line-through;
+    }
+
+    // ============================================
+    // Add to Cart Button
+    // ============================================
+    &__add-button {
         width: 100%;
-        margin: 1rem;
-        padding: 0.5rem;
-
-        .card-body-price {
-            color: styles.$price-color;
-            font-size: 1.2rem;
-            padding: 0;
-            margin-bottom: 1.5rem;
-        }
-
-        .card-body-title {
-            color: styles.$background-color-dark;
-            font-size: 1.3rem;
-            align-content: center;
-            font-weight: 500;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-    }
-
-}
-
-@media (width <=768px) {
-    .product-card {
-        .card-favorite-icon {
-            top: 5%;
-            left: 75%;
-
-            .card-icons {
-                font-size: 150%;
-            }
-        }
-
-        & .card-image-container {
-            overflow: hidden;
-            height: 100%;
-
-            & .card-image {
-                width: 100%;
-                height: 100%;
-                padding-top: 3rem;
-            }
-        }
-
-        .card-body {
-            .card-body-price {
-                font-size: 0.8rem;
-            }
-
-            .card-body-title {
-                font-size: 0.6rem;
-            }
-        }
-
-    }
-
-    .card-buttons {
+        padding: tokens.$spacing-3 tokens.$spacing-4;
+        background: tokens.$color-primary-500;
+        color: tokens.$color-text-inverse;
+        border: none;
+        border-radius: tokens.$radius-md;
+        font-size: tokens.$font-size-sm;
+        font-weight: tokens.$font-weight-semibold;
+        text-transform: uppercase;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
         justify-content: center;
-        font-size: 60% !important;
+        @include tokens.transition(all, tokens.$duration-fast, tokens.$ease-out);
+        letter-spacing: 0.5px;
+
+        &:hover:not(:disabled) {
+            background: tokens.$color-primary-600;
+            transform: translateY(-2px);
+            box-shadow: tokens.$shadow-button-hover;
+        }
+
+        &:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        &:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        &--added {
+            background: tokens.$color-success-500;
+
+            &:hover {
+                background: tokens.$color-success-600;
+            }
+        }
+
+        @include tokens.focus-ring(tokens.$color-primary-300);
     }
 }
 
-@media (width <=390px) {
-    .product-card {
-        & .card-image-container {
-            overflow: hidden;
-            height: 100%;
-
-            & .card-image {
-                width: 100%;
-                height: 100%;
-                margin-top: 1.3rem;
-                padding-top: 2rem;
-            }
-        }
-
-        .card-body {
-            .card-body-price {
-                font-size: 0.8rem;
-            }
-
-            .card-body-title {
-                font-size: 0.6rem;
-            }
-        }
-
+// ============================================
+// Animations
+// ============================================
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
     }
 
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+// ============================================
+// Legacy styles (mantener compatibilidad temporal)
+// ============================================
+.card-favorite-icon {
+    @extend .product-card__actions;
+}
+
+.card-image-container {
+    @extend .product-card__image-container;
+}
+
+.card-image {
+    @extend .product-card__image;
+}
+
+.card-body {
+    @extend .product-card__content;
+}
+
+.card-body-title {
+    @extend .product-card__title;
+}
+
+.card-body-price {
+    @extend .product-card__price;
+}
+
+.card-buttons,
+.category-buttons {
+    @extend .product-card__add-button;
+}
+
+// ============================================
+// Responsive Adjustments
+// ============================================
+
+@include tokens.respond-to-max('md') {
+    .product-card {
+        &__badge {
+            top: tokens.$spacing-2;
+            right: tokens.$spacing-2;
+            padding: tokens.$spacing-1 tokens.$spacing-2;
+            font-size: 0.625rem;
+        }
+
+        &__action-btn {
+            width: 32px;
+            height: 32px;
+        }
+
+        &__image-container {
+            padding: tokens.$spacing-3;
+        }
+
+        &__content {
+            padding: tokens.$spacing-3;
+        }
+
+        &__title {
+            font-size: tokens.$font-size-sm;
+            min-height: 2.2rem;
+        }
+
+        &__price {
+            font-size: tokens.$font-size-lg;
+        }
+
+        &__add-button {
+            padding: tokens.$spacing-2 tokens.$spacing-3;
+            font-size: 0.75rem;
+        }
+    }
+}
+
+@include tokens.respond-to-max('sm') {
+    .product-card {
+        &__badge {
+            font-size: 0.625rem;
+        }
+
+        &__actions {
+            gap: tokens.$spacing-1;
+        }
+
+        &__action-btn {
+            width: 28px;
+            height: 28px;
+
+            svg {
+                font-size: 1rem;
+            }
+        }
+
+        &__title {
+            font-size: 0.8125rem;
+            min-height: 2rem;
+        }
+
+        &__price {
+            font-size: tokens.$font-size-base;
+        }
+
+        &__price-old {
+            font-size: 0.7rem;
+        }
+
+        &__rating-count {
+            font-size: 0.65rem;
+        }
+    }
+}
+
+// ============================================
+// Accessibility & Motion Preferences
+// ============================================
+
+@include tokens.prefers-reduced-motion {
+    .product-card {
+        animation: none !important;
+        transition: none !important;
+
+        &__image,
+        &__add-button,
+        &__action-btn {
+            transition: none !important;
+        }
+
+        &:hover {
+            transform: none !important;
+        }
+    }
+}
+
+// Focus visible for keyboard navigation
+.product-card__add-button:focus-visible,
+.product-card__action-btn:focus-visible {
+    outline: 2px solid tokens.$color-primary-500;
+    outline-offset: 2px;
 }

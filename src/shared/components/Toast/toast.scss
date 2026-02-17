@@ -1,0 +1,183 @@
+@use "../../styles/tokens" as tokens;
+
+// ============================================
+// Toast Container
+// ============================================
+
+.toast-container {
+    position: fixed;
+    top: tokens.$spacing-xl;
+    right: tokens.$spacing-xl;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: tokens.$spacing-sm;
+    pointer-events: none;
+
+    @include tokens.respond-to-max('md') {
+        top: tokens.$spacing-lg;
+        right: tokens.$spacing-md;
+        left: tokens.$spacing-md;
+        max-width: none;
+    }
+}
+
+// ============================================
+// Individual Toast
+// ============================================
+
+.toast {
+    min-width: 320px;
+    max-width: 420px;
+    padding: tokens.$spacing-4;
+    background: tokens.$color-bg-primary;
+    border-radius: tokens.$radius-lg;
+    box-shadow: tokens.$shadow-xl;
+    display: flex;
+    align-items: flex-start;
+    gap: tokens.$spacing-3;
+    pointer-events: all;
+    @include tokens.animate(slideInRight, 0.3s, tokens.$ease-out);
+    position: relative;
+    border-left: 4px solid transparent;
+
+    @include tokens.respond-to-max('md') {
+        min-width: auto;
+        max-width: none;
+    }
+
+    // Type-specific styles
+    &--success {
+        border-left-color: tokens.$color-success-500;
+
+        .toast__icon {
+            color: tokens.$color-success-500;
+        }
+
+        .toast__title {
+            color: tokens.$color-success-700;
+        }
+    }
+
+    &--error {
+        border-left-color: tokens.$color-error-500;
+
+        .toast__icon {
+            color: tokens.$color-error-500;
+        }
+
+        .toast__title {
+            color: tokens.$color-error-700;
+        }
+    }
+
+    &--warning {
+        border-left-color: tokens.$color-warning-500;
+
+        .toast__icon {
+            color: tokens.$color-warning-500;
+        }
+
+        .toast__title {
+            color: tokens.$color-warning-700;
+        }
+    }
+
+    &--info {
+        border-left-color: tokens.$color-info-500;
+
+        .toast__icon {
+            color: tokens.$color-info-500;
+        }
+
+        .toast__title {
+            color: tokens.$color-info-700;
+        }
+    }
+
+    // Icon
+    &__icon {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2px;
+    }
+
+    // Content
+    &__content {
+        flex: 1;
+        min-width: 0;
+    }
+
+    &__title {
+        @include tokens.text-base;
+        font-weight: tokens.$font-weight-semibold;
+        margin-bottom: tokens.$spacing-1;
+    }
+
+    &__message {
+        @include tokens.text-small;
+        color: tokens.$color-text-secondary;
+        word-wrap: break-word;
+    }
+
+    // Close button
+    &__close {
+        flex-shrink: 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: tokens.$color-text-tertiary;
+        padding: tokens.$spacing-1;
+        margin: -#{tokens.$spacing-1};
+        border-radius: tokens.$radius-sm;
+        @include tokens.transition(all, tokens.$duration-fast, tokens.$ease-out);
+
+        &:hover {
+            color: tokens.$color-text-primary;
+            background: tokens.$color-neutral-100;
+        }
+
+        &:focus-visible {
+            outline: 2px solid tokens.$color-primary-500;
+            outline-offset: 2px;
+        }
+    }
+}
+
+// ============================================
+// Animations
+// ============================================
+
+// Exit animation (triggered when toast is being removed)
+.toast--exiting {
+    @include tokens.animate(slideOutRight, 0.3s, tokens.$ease-in, 0s, 1, normal, forwards);
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+// ============================================
+// Accessibility & Motion Preferences
+// ============================================
+
+@include tokens.prefers-reduced-motion {
+    .toast {
+        animation: none;
+    }
+
+    .toast--exiting {
+        animation: none;
+        opacity: 0;
+    }
+}

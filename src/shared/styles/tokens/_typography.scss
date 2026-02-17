@@ -1,0 +1,149 @@
+// Design Tokens - Typography
+// Sistema tipográfico consistente y escalable
+
+// Font Families
+$font-primary: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+$font-secondary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$font-mono: 'Fira Code', 'Consolas', 'Monaco', monospace;
+
+// Font Sizes (escala modular - ratio 1.25)
+$font-size-xs: 0.75rem; // 12px
+$font-size-sm: 0.875rem; // 14px
+$font-size-base: 1rem; // 16px
+$font-size-md: 1.125rem; // 18px
+$font-size-lg: 1.25rem; // 20px
+$font-size-xl: 1.5rem; // 24px
+$font-size-2xl: 1.875rem; // 30px
+$font-size-3xl: 2.25rem; // 36px
+$font-size-4xl: 3rem; // 48px
+$font-size-5xl: 3.75rem; // 60px
+$font-size-6xl: 4.5rem; // 72px
+
+// Font Weights
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+
+// Line Heights
+$line-height-tight: 1.25;
+$line-height-snug: 1.375;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.625;
+$line-height-loose: 2;
+
+// Letter Spacing
+$letter-spacing-tighter: -0.05em;
+$letter-spacing-tight: -0.025em;
+$letter-spacing-normal: 0;
+$letter-spacing-wide: 0.025em;
+$letter-spacing-wider: 0.05em;
+$letter-spacing-widest: 0.1em;
+
+// Heading Styles
+@mixin heading-1 {
+    font-family: $font-primary;
+    font-size: $font-size-5xl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    letter-spacing: $letter-spacing-tight;
+}
+
+@mixin heading-2 {
+    font-family: $font-primary;
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    letter-spacing: $letter-spacing-tight;
+}
+
+@mixin heading-3 {
+    font-family: $font-primary;
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-snug;
+}
+
+@mixin heading-4 {
+    font-family: $font-primary;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-snug;
+}
+
+@mixin heading-5 {
+    font-family: $font-primary;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-normal;
+}
+
+@mixin heading-6 {
+    font-family: $font-primary;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-normal;
+}
+
+// Body Text Styles
+@mixin text-large {
+    font-size: $font-size-md;
+    line-height: $line-height-relaxed;
+}
+
+@mixin text-base {
+    font-size: $font-size-base;
+    line-height: $line-height-normal;
+}
+
+@mixin text-small {
+    font-size: $font-size-sm;
+    line-height: $line-height-normal;
+}
+
+@mixin text-xs {
+    font-size: $font-size-xs;
+    line-height: $line-height-normal;
+}
+
+// Display Text (para hero sections)
+@mixin display-large {
+    font-family: $font-primary;
+    font-size: $font-size-6xl;
+    font-weight: $font-weight-extrabold;
+    line-height: $line-height-tight;
+    letter-spacing: $letter-spacing-tighter;
+}
+
+@mixin display-medium {
+    font-family: $font-primary;
+    font-size: $font-size-5xl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    letter-spacing: $letter-spacing-tight;
+}
+
+// CSS Custom Properties
+:root {
+    --font-primary: #{$font-primary};
+    --font-secondary: #{$font-secondary};
+
+    --font-xs: #{$font-size-xs};
+    --font-sm: #{$font-size-sm};
+    --font-base: #{$font-size-base};
+    --font-md: #{$font-size-md};
+    --font-lg: #{$font-size-lg};
+    --font-xl: #{$font-size-xl};
+    --font-2xl: #{$font-size-2xl};
+    --font-3xl: #{$font-size-3xl};
+    --font-4xl: #{$font-size-4xl};
+
+    --weight-light: #{$font-weight-light};
+    --weight-regular: #{$font-weight-regular};
+    --weight-medium: #{$font-weight-medium};
+    --weight-semibold: #{$font-weight-semibold};
+    --weight-bold: #{$font-weight-bold};
+    --weight-extrabold: #{$font-weight-extrabold};
+}

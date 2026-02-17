@@ -1,23 +1,62 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap");
+// Import Design Tokens (must be first in SASS)
+@use './tokens' as tokens;
 
+// Export tokens para uso con namespace
+@forward './tokens';
 
-$primary-font: "Raleway", sans-serif;
+// Import Google Fonts
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap");
 
-$background-color: #d9d9d9;
-$background-color-dark: #312218;
-$gradient-background: linear-gradient(to top, #f48b48 75%, #b08914 100%);
-$gradient-background-two: linear-gradient(120deg, #ffd34e 0%, #fedd62 100%);
+// ============================================
+// Legacy Variables (mantenidas para compatibilidad)
+// TODO: Migrar gradualmente al sistema de tokens
+// ============================================
 
+$primary-font: tokens.$font-primary;
 
+// Backgrounds (usar tokens cuando sea posible)
+$background-color: tokens.$color-neutral-200;
+$background-color-dark: tokens.$color-neutral-800;
+$gradient-background: linear-gradient(to top, tokens.$color-primary-500 75%, #b08914 100%);
+$gradient-background-two: tokens.$gradient-secondary;
+
+// Brand Colors (ahora usando tokens)
 $primary-color: #665931;
-$secondary-color: #f48b48; 
-$purple-light: #fedd62;
-$purple-dark: #ffd34e;
+$secondary-color: tokens.$color-primary-500;
+$purple-light: tokens.$color-secondary-500;
+$purple-dark: tokens.$color-secondary-600;
 $white-dark: #bbb6b3;
 $white-gray: #c2c2c2;
-$white: #d9d9d9;
-$black: #000000;
-$gray: #a9a9a9;
+$white: tokens.$color-neutral-200;
+$black: tokens.$color-neutral-900;
+$gray: tokens.$color-neutral-400;
 $price-color: #706842;
-$red-heart: #ff0f0f;
+$red-heart: tokens.$color-error-500;
 
+// ============================================
+// New Design System (recomendado para nuevos componentes)
+// ============================================
+
+// Re-export tokens for easy access
+$color-primary: tokens.$color-primary-500;
+$color-secondary: tokens.$color-secondary-500;
+$color-success: tokens.$color-success-500;
+$color-error: tokens.$color-error-500;
+$color-warning: tokens.$color-warning-500;
+
+// Spacing
+$spacing-xs: tokens.$spacing-xs;
+$spacing-sm: tokens.$spacing-sm;
+$spacing-md: tokens.$spacing-md;
+$spacing-lg: tokens.$spacing-lg;
+$spacing-xl: tokens.$spacing-xl;
+
+// Shadows
+$shadow-card: tokens.$shadow-card;
+$shadow-card-hover: tokens.$shadow-card-hover;
+
+// Border Radius
+$radius-sm: tokens.$radius-sm;
+$radius-md: tokens.$radius-md;
+$radius-lg: tokens.$radius-lg;
+$radius-full: tokens.$radius-full;

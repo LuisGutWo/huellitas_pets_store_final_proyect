@@ -8,15 +8,18 @@ import "../services/firebase";
 import { BrowserRouter } from "react-router-dom";
 import ProductsContextProvider from "../context/ProductsContext";
 import UserContextProvider from "../context/UserContext";
+import { ToastProvider } from "../context/ToastContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ProductsContextProvider>
-      <UserContextProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </UserContextProvider>
-    </ProductsContextProvider>
+    <ToastProvider>
+      <ProductsContextProvider>
+        <UserContextProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </UserContextProvider>
+      </ProductsContextProvider>
+    </ToastProvider>
   </React.StrictMode>,
 );

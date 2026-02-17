@@ -6,6 +6,7 @@ import MainHeader from "../layout/header/MainHeader";
 import MainFooter from "../layout/footer/MainFooter";
 import BackToTopButton from "../shared/components/BackToTopButton";
 import WhatsAppButton from "../shared/components/WhatsAppButton";
+import ToastContainer from "../shared/components/Toast/ToastContainer";
 import Loader from "../shared/components/Loading"; // Import your loader component
 
 const homeImport = () => import("../features/home/Home");
@@ -166,6 +167,7 @@ function App() {
           />
         </Routes>
       </main>
+      <ToastContainer />
       <BackToTopButton />
       <WhatsAppButton />
       <MainFooter />
