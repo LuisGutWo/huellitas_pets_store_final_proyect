@@ -36,7 +36,7 @@
     @include tokens.hover-capable {
         &:hover {
             box-shadow: tokens.$shadow-card-hover;
-            transform: translateY(-4px);
+            transform: translateY(-2px);
 
             .product-card__actions {
                 opacity: 1;
@@ -95,11 +95,16 @@
         justify-content: center;
         cursor: pointer;
         color: tokens.$color-text-secondary;
-        @include tokens.transition(all, tokens.$duration-fast, tokens.$ease-out);
+        @include tokens.transition(all, tokens.$duration-normal, tokens.$ease-in-out);
 
         &:hover {
-            transform: scale(1.1);
+            transform: scale(1.08);
             color: tokens.$color-text-primary;
+            box-shadow: tokens.$shadow-lg;
+        }
+
+        &:active {
+            transform: scale(0.98);
         }
 
         &--favorite {
@@ -112,13 +117,30 @@
                 }
             }
         }
+
+        &--delete {
+            width: 40px;
+            height: 40px;
+            background: tokens.$color-error-500;
+            color: tokens.$color-text-inverse;
+
+            &:hover {
+                background: tokens.$color-error-600;
+                transform: scale(1.08);
+                box-shadow: tokens.$shadow-lg;
+            }
+
+            &:active {
+                transform: scale(0.95);
+            }
+        }
     }
 
     // Delete button for favorites view
     &__delete-btn {
         position: absolute;
         top: tokens.$spacing-3;
-        right: tokens.$spacing-3;
+        left: tokens.$spacing-3;
         z-index: 20;
     }
 
@@ -141,11 +163,11 @@
         width: 100%;
         height: 100%;
         object-fit: contain;
-        @include tokens.transition(transform, tokens.$duration-slow, tokens.$ease-out);
+        @include tokens.transition(transform, tokens.$duration-slower, tokens.$ease-in-out);
 
         @include tokens.hover-capable {
             &:hover {
-                transform: scale(1.08);
+                transform: scale(1.05);
             }
         }
     }
@@ -172,6 +194,7 @@
         text-overflow: ellipsis;
         min-height: 2.5rem;
         line-height: 1.25;
+        @include tokens.transition(color, tokens.$duration-normal, tokens.$ease-in-out);
 
         &:hover {
             color: tokens.$color-primary-500;
@@ -204,20 +227,27 @@
     &__price-container {
         display: flex;
         align-items: center;
-        gap: tokens.$spacing-2;
+        gap: tokens.$spacing-3;
         margin-bottom: tokens.$spacing-4;
+        flex-wrap: wrap;
     }
 
     &__price {
         font-size: tokens.$font-size-xl;
         font-weight: tokens.$font-weight-bold;
         color: tokens.$color-primary-500;
+
+        &--discounted {
+            color: tokens.$color-success-600; // Verde para indicar ahorro
+            font-size: tokens.$font-size-2xl; // Más grande cuando hay descuento
+        }
     }
 
     &__price-old {
         @include tokens.text-small;
         color: tokens.$color-text-tertiary;
         text-decoration: line-through;
+        order: -1; // Asegura que aparezca primero
     }
 
     // ============================================
@@ -237,12 +267,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        @include tokens.transition(all, tokens.$duration-fast, tokens.$ease-out);
+        @include tokens.transition(all, tokens.$duration-normal, tokens.$ease-in-out);
         letter-spacing: 0.5px;
 
         &:hover:not(:disabled) {
             background: tokens.$color-primary-600;
-            transform: translateY(-2px);
+            transform: translateY(-1px);
             box-shadow: tokens.$shadow-button-hover;
         }
 
@@ -380,6 +410,10 @@
 
         &__price {
             font-size: tokens.$font-size-base;
+
+            &--discounted {
+                font-size: tokens.$font-size-lg; // Más grande en móvil cuando hay descuento
+            }
         }
 
         &__price-old {

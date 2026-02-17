@@ -7,7 +7,7 @@ type ProductBase = {
   [key: string]: unknown;
 };
 
-type CartItem = ProductBase & {
+export type CartItem = ProductBase & {
   count: number;
 };
 

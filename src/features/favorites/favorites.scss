@@ -1,39 +1,183 @@
 @use "../../shared/styles/styles.scss";
+@use "../../shared/styles/tokens" as tokens;
 
-.favorites-main-container {
-    height: 100%;
+.favorites-page {
+    min-height: 100vh;
+    padding: tokens.$spacing-3xl 0;
+    background: tokens.$color-neutral-50;
+}
+
+// Header Section
+.favorites-header {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    margin: 15% 0 11% 0;
+    margin-bottom: tokens.$spacing-2xl;
+    padding-bottom: tokens.$spacing-lg;
+    border-bottom: 2px solid tokens.$color-neutral-200;
 
-    h2 {
-        font-size: 1.8rem;
+    &__content {
+        display: flex;
+        align-items: center;
+        gap: tokens.$spacing-md;
+    }
+
+    &__icon {
+        font-size: 2rem;
+        color: tokens.$color-primary-500;
+    }
+
+    &__title {
+        font-size: tokens.$font-size-3xl;
+        font-weight: tokens.$font-weight-bold;
+        color: tokens.$color-neutral-900;
         margin: 0;
     }
 
-    .favorites-list {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.8rem;
-        padding: 0rem 1.2rem 1rem 1.2rem;
-        justify-content: center;
-        align-content: center;
-        justify-items: center;
-        align-items: center;
+    &__count {
+        font-size: tokens.$font-size-lg;
+        color: tokens.$color-neutral-600;
+        font-weight: tokens.$font-weight-medium;
+        margin: 0;
     }
 }
 
-@media (width <=768px) {
-    .favorites-main-container {
-        h2 {
-            font-size: 1rem;
-            margin: 0;
+// Empty State
+.favorites-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: tokens.$spacing-3xl tokens.$spacing-xl;
+    text-align: center;
+    min-height: 50vh;
+
+    &__image {
+        width: 200px;
+        height: auto;
+        margin-bottom: tokens.$spacing-xl;
+        opacity: 0.8;
+        @include tokens.transition(all, tokens.$duration-normal);
+
+        &:hover {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+    }
+
+    &__title {
+        font-size: tokens.$font-size-2xl;
+        font-weight: tokens.$font-weight-semibold;
+        color: tokens.$color-neutral-800;
+        margin-bottom: tokens.$spacing-md;
+    }
+
+    &__text {
+        font-size: tokens.$font-size-lg;
+        color: tokens.$color-neutral-600;
+        margin-bottom: tokens.$spacing-xl;
+        max-width: 400px;
+    }
+
+    &__button {
+        padding: tokens.$spacing-md tokens.$spacing-2xl;
+    }
+}
+
+// Products Grid
+.favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: tokens.$spacing-xl;
+    margin-bottom: tokens.$spacing-2xl;
+
+    // Animación de entrada para las tarjetas
+    &>* {
+        animation: fadeInUp 0.5s ease-out backwards;
+
+        @for $i from 1 through 12 {
+            &:nth-child(#{$i}) {
+                animation-delay: #{$i * 0.05}s;
+            }
+        }
+    }
+
+    @include tokens.respond-to(lg) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    @include tokens.respond-to(md) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include tokens.respond-to-max(md) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: tokens.$spacing-lg;
+    }
+
+    @include tokens.respond-to-max(sm) {
+        grid-template-columns: 1fr;
+        gap: tokens.$spacing-md;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Actions Section
+.favorites-actions {
+    display: flex;
+    justify-content: center;
+    padding: tokens.$spacing-xl 0;
+    border-top: 2px solid tokens.$color-neutral-200;
+}
+
+// Responsive Adjustments
+@include tokens.respond-to-max(md) {
+    .favorites-page {
+        padding: tokens.$spacing-xl 0;
+    }
+
+    .favorites-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: tokens.$spacing-md;
+
+        &__content {
+            width: 100%;
         }
 
-        .favorites-list {
-            grid-template-columns: repeat(1, 1fr);
+        &__title {
+            font-size: tokens.$font-size-2xl;
+        }
+
+        &__count {
+            font-size: tokens.$font-size-base;
+        }
+    }
+
+    .favorites-empty {
+        padding: tokens.$spacing-2xl tokens.$spacing-md;
+
+        &__image {
+            width: 150px;
+        }
+
+        &__title {
+            font-size: tokens.$font-size-xl;
+        }
+
+        &__text {
+            font-size: tokens.$font-size-base;
         }
     }
 }

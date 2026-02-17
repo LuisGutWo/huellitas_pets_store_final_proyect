@@ -1,6 +1,5 @@
 @use "../../shared/styles/styles.scss";
-
-
+@use "../../shared/styles/tokens" as tokens;
 
 .products-list-header {
     margin-top: 15%;
@@ -136,4 +135,96 @@
         gap: 3%;
     }
 
+}
+
+// Nuevo Layout con Panel Lateral
+.products-with-filters {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: tokens.$spacing-2xl;
+    margin-bottom: tokens.$spacing-2xl;
+
+    @include tokens.respond-to('laptop') {
+        grid-template-columns: 260px 1fr;
+        gap: tokens.$spacing-xl;
+    }
+
+    @include tokens.respond-to('tablet') {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+
+.desktop-filter-panel {
+    @include tokens.respond-to('tablet') {
+        display: none; // Ocultar en tablets y móviles
+    }
+}
+
+.products-list-content {
+    min-width: 0; // Previene overflow en grid
+}
+
+.products-list-results {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: tokens.$spacing-lg;
+    padding-bottom: tokens.$spacing-md;
+    border-bottom: 1px solid tokens.$color-neutral-200;
+}
+
+.products-list-count {
+    margin: 0;
+    font-size: tokens.$font-size-sm;
+    font-weight: tokens.$font-weight-semibold;
+    color: tokens.$color-neutral-700;
+}
+
+// Empty State
+.products-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: tokens.$spacing-3xl tokens.$spacing-xl;
+    text-align: center;
+    background: tokens.$color-neutral-50;
+    border-radius: tokens.$radius-lg;
+    margin-top: tokens.$spacing-2xl;
+
+    h3 {
+        margin: 0 0 tokens.$spacing-sm 0;
+        font-size: tokens.$font-size-xl;
+        font-weight: tokens.$font-weight-bold;
+        color: tokens.$color-neutral-800;
+    }
+
+    p {
+        margin: 0 0 tokens.$spacing-lg 0;
+        font-size: tokens.$font-size-md;
+        color: tokens.$color-neutral-600;
+    }
+}
+
+.products-empty-btn {
+    background: tokens.$color-primary-600;
+    color: tokens.$color-neutral-0;
+    border: none;
+    border-radius: tokens.$radius-md;
+    padding: tokens.$spacing-sm tokens.$spacing-xl;
+    font-size: tokens.$font-size-md;
+    font-weight: tokens.$font-weight-semibold;
+    cursor: pointer;
+    @include tokens.transition(all, tokens.$duration-normal, tokens.$ease-in-out);
+
+    &:hover {
+        background: tokens.$color-primary-700;
+        transform: translateY(-2px);
+        box-shadow: tokens.$shadow-md;
+    }
+
+    &:active {
+        transform: translateY(0) scale(0.98);
+    }
 }

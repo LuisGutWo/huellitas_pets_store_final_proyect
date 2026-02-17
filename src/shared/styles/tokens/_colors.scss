@@ -25,6 +25,7 @@ $color-secondary-800: #ca991c;
 $color-secondary-900: #a87c1a;
 
 // Neutral Colors
+$color-neutral-0: #ffffff; // Pure white
 $color-neutral-50: #fafafa;
 $color-neutral-100: #f5f5f5;
 $color-neutral-200: #e5e5e5;
@@ -54,6 +55,16 @@ $color-error-400: #f87171;
 $color-error-500: #ef4444;
 $color-error-600: #dc2626;
 $color-error-700: #b91c1c;
+
+// Alias for danger (same as error)
+$color-danger-50: $color-error-50;
+$color-danger-100: $color-error-100;
+$color-danger-200: $color-error-200;
+$color-danger-300: $color-error-300;
+$color-danger-400: $color-error-400;
+$color-danger-500: $color-error-500;
+$color-danger-600: $color-error-600;
+$color-danger-700: $color-error-700;
 
 $color-warning-50: #fffbeb;
 $color-warning-100: #fef3c7;

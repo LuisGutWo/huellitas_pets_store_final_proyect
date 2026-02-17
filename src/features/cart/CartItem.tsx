@@ -42,7 +42,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
           size="small"
           onClick={() => removeProductCart(item)}
           variant="contained"
-          style={{ border: "0" }}
+          className="cart-delete-button"
         >
           <DeleteIcon color="warning" className="card-icons" />
         </Button>
@@ -52,12 +52,3 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
 };
 
 export default CartItem;
-
-CartItem.propTypes = {
-  item: PropTypes.shape({
-    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    name: PropTypes.string.isRequired,
-    img: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-  }).isRequired,
-};

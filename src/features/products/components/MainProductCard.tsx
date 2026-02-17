@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { formatPrice } from "../../../shared/utils/formatPrice";
 import "animate.css";
 
-import { Button } from "react-bootstrap";
 import { useProductsContext } from "../../../context/ProductsContext";
 import { useUserContext } from "../../../context/UserContext";
 import { useToast } from "../../../context/ToastContext";
@@ -39,10 +38,14 @@ const MainProductCard: React.FC<MainProductCardProps> = ({
   // Check if item is in favorites
   const isFavorite = favorites.some((fav) => fav.id === item.id);
 
-  // Calculate discount percentage
-  const originalPrice = (item as any).originalPrice || item.price * 1.2;
-  const discount = originalPrice > item.price 
+  // Calculate discount percentage - solo si tiene originalPrice o promotion="discount"
+  const hasPromotion = (item as any).promotion === "discount";
+  const originalPrice = (item as any).originalPrice;
+  
+  const discount = originalPrice && originalPrice > item.price
     ? Math.round((1 - item.price / originalPrice) * 100) 
+    : hasPromotion && !originalPrice
+    ? 15 // Descuento por defecto si tiene promotion pero no originalPrice
     : 0;
 
   async function handleShoppingCart() {
@@ -119,15 +122,13 @@ const MainProductCard: React.FC<MainProductCardProps> = ({
       {/* Delete button for favorites view */}
       {selectFavorites && (
         <div className="product-card__delete-btn">
-          <Button
-            size="small"
+          <button
+            className="product-card__action-btn product-card__action-btn--delete"
             onClick={() => removeFavorites(item.id)}
-            variant="contained"
-            color="error"
             aria-label="Eliminar de favoritos"
           >
             <DeleteIcon fontSize="small" />
-          </Button>
+          </button>
         </div>
       )}
 
@@ -169,9 +170,15 @@ const MainProductCard: React.FC<MainProductCardProps> = ({
 
         {/* Price */}
         <div className="product-card__price-container">
-          <span className="product-card__price">${formatPrice(item.price)}</span>
-          {discount > 0 && (
-            <span className="product-card__price-old">${formatPrice(originalPrice)}</span>
+          {discount > 0 && originalPrice ? (
+            <>
+              <span className="product-card__price-old">${formatPrice(originalPrice)}</span>
+              <span className="product-card__price product-card__price--discounted">
+                ${formatPrice(item.price)}
+              </span>
+            </>
+          ) : (
+            <span className="product-card__price">${formatPrice(item.price)}</span>
           )}
         </div>
 

@@ -5,11 +5,7 @@ import { useProductsContext } from "../../context/ProductsContext";
 import CartItem from "../cart/CartItem";
 import { formatPrice } from "../../shared/utils/formatPrice";
 
-interface CartProps {
-  item: Record<string, unknown>;
-}
-
-const Cart: React.FC<CartProps> = ({ item }) => {
+const Cart: React.FC = () => {
   const { cart, totalCart, totalItemProducts, onCleanCart } =
     useProductsContext();
 
@@ -23,7 +19,7 @@ const Cart: React.FC<CartProps> = ({ item }) => {
                 <h1>Detalle de tu pedido</h1>
                 <h3>
                   Total de Productos:{" "}
-                  <b className="fs-5 text-center">{totalItemProducts(item)}</b>
+                  <b className="fs-5 text-center">{totalItemProducts()}</b>
                 </h3>
               </div>
               <div className="card-body p-0">
@@ -126,7 +122,6 @@ const Cart: React.FC<CartProps> = ({ item }) => {
                 <NavLink to={"/products"}>
                   <Button
                     type="button"
-                    style={{ textDecoration: "none" }}
                     className="category-buttons"
                   >
                     Ir a Pagar

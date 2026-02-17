@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
-import { Navbar, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 import MainProductCard from "./components/MainProductCard";
+import FilterPanel, { FilterState } from "./components/FilterPanel";
+import ActiveFilterChips from "./components/ActiveFilterChips";
+import MobileFilterDrawer from "./components/MobileFilterDrawer";
 import Loading from "../../shared/components/Loading";
 import BackToTopButton from "../../shared/components/BackToTopButton";
 import type { Product } from "../../services/productsApi";
@@ -11,9 +14,17 @@ const MainProductsList: React.FC = () => {
   const [search, setSearch] = useState<string>("");
   const [categories, setCategories] = useState<string[]>([]);
   const [types, setTypes] = useState<string[]>([]);
-  const [filter, setFilter] = useState<string>("all");
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+  
+  // Estado de filtros avanzados
+  const [filters, setFilters] = useState<FilterState>({
+    categories: [],
+    priceRange: [0, 100000],
+    rating: 0,
+    inStock: false,
+    hasDiscount: false,
+  });
 
   const fetchData = async () => {
     setLoading(true);
@@ -42,17 +53,104 @@ const MainProductsList: React.FC = () => {
   };
 
   const filteredData = () => {
-    if (filter === "all") {
-      return data.filter((item) => searchData(item, search));
-    } else {
-      return data
-        .filter((item: Product) => (item as any).category === filter || (item as any).type === filter)
-        .filter((item) => searchData(item, search));
-    }
+    return data.filter((item) => {
+      // Filtro de búsqueda
+      if (search && !searchData(item, search)) {
+        return false;
+      }
+
+      // Filtro de categorías
+      if (filters.categories.length > 0) {
+        const itemCategory = (item as any).category || '';
+        const itemType = (item as any).type || '';
+        const hasMatch = filters.categories.some(
+          (cat) => cat === itemCategory || cat === itemType
+        );
+        if (!hasMatch) return false;
+      }
+
+      // Filtro de precio
+      const itemPrice = (item as any).price || 0;
+      if (itemPrice < filters.priceRange[0] || itemPrice > filters.priceRange[1]) {
+        return false;
+      }
+
+      // Filtro de calificación
+      if (filters.rating > 0) {
+        const itemRating = (item as any).rating || 0;
+        if (itemRating < filters.rating) {
+          return false;
+        }
+      }
+
+      // Filtro de stock
+      if (filters.inStock) {
+        const itemStock = (item as any).stock || 0;
+        if (itemStock <= 0) {
+          return false;
+        }
+      }
+
+      // Filtro de descuento
+      if (filters.hasDiscount) {
+        const itemOriginalPrice = (item as any).originalPrice;
+        const itemPrice = (item as any).price || 0;
+        if (!itemOriginalPrice || itemOriginalPrice <= itemPrice) {
+          return false;
+        }
+      }
+
+      return true;
+    });
+  };
+
+  const handleFilterChange = (newFilters: FilterState) => {
+    setFilters(newFilters);
+  };
+
+  const handleClearFilters = () => {
+    setFilters({
+      categories: [],
+      priceRange: [0, 100000],
+      rating: 0,
+      inStock: false,
+      hasDiscount: false,
+    });
+  };
+
+  const handleRemoveCategory = (category: string) => {
+    setFilters((prev) => ({
+      ...prev,
+      categories: prev.categories.filter((c) => c !== category),
+    }));
+  };
+
+  const handleRemoveRating = () => {
+    setFilters((prev) => ({ ...prev, rating: 0 }));
+  };
+
+  const handleRemoveStock = () => {
+    setFilters((prev) => ({ ...prev, inStock: false }));
+  };
+
+  const handleRemovePriceRange = () => {
+    setFilters((prev) => ({ ...prev, priceRange: [0, 100000] }));
+  };
+
+  const handleRemoveDiscount = () => {
+    setFilters((prev) => ({ ...prev, hasDiscount: false }));
   };
 
   if (loading) return <Loading />;
   if (error) return <div>Error: {String(error)}</div>;
+
+  const products = filteredData();
+  const activeFiltersCount = 
+    filters.categories.length +
+    (filters.rating > 0 ? 1 : 0) +
+    (filters.inStock ? 1 : 0) +
+    (filters.hasDiscount ? 1 : 0) +
+    (filters.priceRange[0] > 0 || filters.priceRange[1] < 100000 ? 1 : 0);
 
   return (
     <div className="container">
@@ -67,40 +165,76 @@ const MainProductsList: React.FC = () => {
             type="text"
             placeholder="Buscar producto"
             className="main-form-products-categories"
+            value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
       </section>
 
-      {/* Category Navbar */}
-      <Navbar className="products-list-buttons">
-        {categories.map((category) => (
-          <button
-            key={category}
-            onClick={() => setFilter(category)}
-            className={`category-buttons ${filter === category ? 'active' : ''}`}
-          >
-            {category}
-          </button>
-        ))}
-        {types.map((type) => (
-          <button
-            key={type}
-            onClick={() => setFilter(type)}
-            className={`category-buttons ${filter === type ? 'active' : ''}`}
-          >
-            {type}
-          </button>
-        ))}
-      </Navbar>
+      {/* Active Filter Chips */}
+      <ActiveFilterChips
+        filters={filters}
+        onRemoveCategory={handleRemoveCategory}
+        onRemoveRating={handleRemoveRating}
+        onRemoveStock={handleRemoveStock}
+        onRemovePriceRange={handleRemovePriceRange}
+        onRemoveDiscount={handleRemoveDiscount}
+        onClearAll={handleClearFilters}
+      />
 
-      <Row xs={2} md={3} lg={4} className="products-list-container">
-        {filteredData().map((item) => (
-          <Col key={item.id}>
-            <MainProductCard key={item.id} item={item} />
-          </Col>
-        ))}
-      </Row>
+      {/* Main content with sidebar and products */}
+      <div className="products-with-filters">
+        {/* Desktop Filter Panel */}
+        <div className="desktop-filter-panel">
+          <FilterPanel
+            categories={categories}
+            types={types}
+            filters={filters}
+            onFilterChange={handleFilterChange}
+            onClearFilters={handleClearFilters}
+          />
+        </div>
+
+        <div className="products-list-content">
+          <div className="products-list-results">
+            <p className="products-list-count">
+              {products.length} {products.length === 1 ? 'producto encontrado' : 'productos encontrados'}
+            </p>
+          </div>
+
+          <Row xs={1} sm={2} lg={3} className="products-list-container">
+            {products.map((item) => (
+              <Col key={item.id}>
+                <MainProductCard item={item} />
+              </Col>
+            ))}
+          </Row>
+
+          {products.length === 0 && (
+            <div className="products-empty-state">
+              <h3>No se encontraron productos</h3>
+              <p>Intenta ajustar los filtros o buscar otro término</p>
+              <button
+                className="products-empty-btn"
+                onClick={handleClearFilters}
+              >
+                Limpiar filtros
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Mobile Filter Drawer */}
+      <MobileFilterDrawer
+        categories={categories}
+        types={types}
+        filters={filters}
+        onFilterChange={handleFilterChange}
+        onClearFilters={handleClearFilters}
+        activeFiltersCount={activeFiltersCount}
+      />
+
       <BackToTopButton />
     </div>
   );

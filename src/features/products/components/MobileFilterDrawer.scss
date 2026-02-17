@@ -1,0 +1,207 @@
+@use '../../../shared/styles/tokens' as tokens;
+
+// Botón flotante
+.mobile-filter-btn {
+    display: none; // Oculto por defecto
+    position: fixed;
+    bottom: tokens.$spacing-xl;
+    right: tokens.$spacing-xl;
+    z-index: 998;
+
+    align-items: center;
+    gap: tokens.$spacing-sm;
+    padding: tokens.$spacing-md tokens.$spacing-lg;
+
+    background: tokens.$color-primary-600;
+    color: tokens.$color-neutral-0;
+    border: none;
+    border-radius: tokens.$radius-full;
+    box-shadow: tokens.$shadow-lg;
+
+    font-size: tokens.$font-size-md;
+    font-weight: tokens.$font-weight-semibold;
+    cursor: pointer;
+
+    @include tokens.transition(all, tokens.$duration-normal, tokens.$ease-in-out);
+
+    @include tokens.respond-to('tablet') {
+        display: flex;
+    }
+
+    svg {
+        font-size: tokens.$font-size-xl;
+    }
+
+    &:hover {
+        background: tokens.$color-primary-700;
+        transform: translateY(-2px);
+        box-shadow: tokens.$shadow-xl;
+    }
+
+    &:active {
+        transform: translateY(0) scale(0.98);
+    }
+
+    &__badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 20px;
+        height: 20px;
+        padding: 0 tokens.$spacing-xs;
+        background: tokens.$color-danger-600;
+        color: tokens.$color-neutral-0;
+        border-radius: tokens.$radius-full;
+        font-size: tokens.$font-size-xs;
+        font-weight: tokens.$font-weight-bold;
+    }
+}
+
+// Overlay
+.mobile-filter-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    animation: fadeIn 0.3s ease-out;
+
+    @include tokens.respond-to('tablet') {
+        display: block;
+    }
+}
+
+// Drawer
+.mobile-filter-drawer {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    bottom: 0;
+    width: 85%;
+    max-width: 400px;
+    background: tokens.$color-neutral-0;
+    box-shadow: tokens.$shadow-2xl;
+    z-index: 1000;
+    @include tokens.transition(right, tokens.$duration-slow, tokens.$ease-in-out);
+
+    @include tokens.respond-to('tablet') {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &.open {
+        right: 0;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: tokens.$spacing-lg tokens.$spacing-xl;
+        border-bottom: 2px solid tokens.$color-neutral-200;
+        background: tokens.$color-primary-50;
+    }
+
+    &__title {
+        display: flex;
+        align-items: center;
+        gap: tokens.$spacing-sm;
+
+        svg {
+            color: tokens.$color-primary-600;
+            font-size: tokens.$font-size-2xl;
+        }
+
+        h2 {
+            margin: 0;
+            font-size: tokens.$font-size-xl;
+            font-weight: tokens.$font-weight-bold;
+            color: tokens.$color-neutral-900;
+        }
+    }
+
+    &__close {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: transparent;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        @include tokens.transition(all, tokens.$duration-fast, tokens.$ease-in-out);
+
+        svg {
+            color: tokens.$color-neutral-700;
+            font-size: tokens.$font-size-2xl;
+        }
+
+        &:hover {
+            background: tokens.$color-neutral-200;
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+
+    &__content {
+        flex: 1;
+        overflow-y: auto;
+        padding: tokens.$spacing-xl tokens.$spacing-lg;
+
+        // Ajustar estilos del FilterPanel en el drawer
+        .filter-panel {
+            position: static;
+            border: none;
+            padding: 0;
+            box-shadow: none;
+        }
+    }
+
+    &__footer {
+        padding: tokens.$spacing-lg tokens.$spacing-xl;
+        border-top: 2px solid tokens.$color-neutral-200;
+        background: tokens.$color-neutral-0;
+        box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    &__apply {
+        width: 100%;
+        padding: tokens.$spacing-md;
+        background: tokens.$color-primary-600;
+        color: tokens.$color-neutral-0;
+        border: none;
+        border-radius: tokens.$radius-md;
+        font-size: tokens.$font-size-md;
+        font-weight: tokens.$font-weight-semibold;
+        cursor: pointer;
+        @include tokens.transition(all, tokens.$duration-normal, tokens.$ease-in-out);
+
+        &:hover {
+            background: tokens.$color-primary-700;
+            transform: translateY(-1px);
+            box-shadow: tokens.$shadow-md;
+        }
+
+        &:active {
+            transform: translateY(0) scale(0.98);
+        }
+    }
+}
+
+// Animación de entrada
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

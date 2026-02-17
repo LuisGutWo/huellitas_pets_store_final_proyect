@@ -1,0 +1,388 @@
+@use '../../../shared/styles/tokens' as tokens;
+
+.filter-panel {
+    background: tokens.$color-neutral-0;
+    border: 1px solid tokens.$color-neutral-200;
+    border-radius: tokens.$radius-lg;
+    padding: tokens.$spacing-lg;
+    height: fit-content;
+    @include tokens.transition(all, tokens.$duration-normal, tokens.$ease-in-out);
+
+    // Solo aplicar sticky en desktop cuando está en la vista principal
+    @media (min-width: 769px) {
+        position: sticky;
+        top: calc(70px + tokens.$spacing-md);
+    }
+
+    @include tokens.respond-to('tablet') {
+        position: static;
+        margin-bottom: 0;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: tokens.$spacing-xl;
+        padding-bottom: tokens.$spacing-md;
+        border-bottom: 2px solid tokens.$color-neutral-200;
+    }
+
+    &__title {
+        display: flex;
+        align-items: center;
+        gap: tokens.$spacing-sm;
+
+        svg {
+            color: tokens.$color-primary-600;
+            font-size: tokens.$font-size-2xl;
+        }
+
+        h3 {
+            margin: 0;
+            font-size: tokens.$font-size-xl;
+            font-weight: tokens.$font-weight-bold;
+            color: tokens.$color-neutral-900;
+        }
+    }
+
+    &__clear {
+        background: transparent;
+        border: 1px solid tokens.$color-primary-500;
+        color: tokens.$color-primary-600;
+        padding: tokens.$spacing-xs tokens.$spacing-md;
+        border-radius: tokens.$radius-md;
+        font-size: tokens.$font-size-sm;
+        font-weight: tokens.$font-weight-medium;
+        cursor: pointer;
+        @include tokens.transition(all, tokens.$duration-fast, tokens.$ease-in-out);
+
+        &:hover {
+            background: tokens.$color-primary-50;
+            transform: translateY(-1px);
+        }
+
+        &:active {
+            transform: scale(0.98);
+        }
+    }
+
+    &__section {
+        margin-bottom: tokens.$spacing-lg;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__section-header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: transparent;
+        border: none;
+        padding: tokens.$spacing-sm 0;
+        font-size: tokens.$font-size-md;
+        font-weight: tokens.$font-weight-semibold;
+        color: tokens.$color-neutral-800;
+        cursor: pointer;
+        @include tokens.transition(color, tokens.$duration-fast, tokens.$ease-in-out);
+
+        &:hover {
+            color: tokens.$color-primary-600;
+        }
+
+        svg {
+            color: tokens.$color-neutral-600;
+            @include tokens.transition(transform, tokens.$duration-fast, tokens.$ease-in-out);
+        }
+    }
+
+    &__section-content {
+        padding: tokens.$spacing-md 0;
+        animation: slideDown 0.3s ease-out;
+    }
+
+    // Checkboxes personalizados
+    &__checkbox {
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding: tokens.$spacing-sm tokens.$spacing-md;
+        margin-bottom: tokens.$spacing-xs;
+        cursor: pointer;
+        border-radius: tokens.$radius-md;
+        @include tokens.transition(background, tokens.$duration-fast, tokens.$ease-in-out);
+
+        &:hover {
+            background: tokens.$color-neutral-50;
+        }
+
+        input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+
+            &:checked~.filter-panel__checkbox-checkmark {
+                background: tokens.$color-primary-600;
+                border-color: tokens.$color-primary-600;
+
+                &::after {
+                    display: block;
+                }
+            }
+        }
+
+        &-label {
+            margin-left: tokens.$spacing-lg;
+            font-size: tokens.$font-size-sm;
+            color: tokens.$color-neutral-700;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        &-checkmark {
+            position: absolute;
+            left: 0;
+            height: 18px;
+            width: 18px;
+            background: tokens.$color-neutral-0;
+            border: 2px solid tokens.$color-neutral-400;
+            border-radius: tokens.$radius-sm;
+            @include tokens.transition(all, tokens.$duration-fast, tokens.$ease-in-out);
+
+            &::after {
+                content: "";
+                position: absolute;
+                display: none;
+                left: 5px;
+                top: 2px;
+                width: 4px;
+                height: 8px;
+                border: solid white;
+                border-width: 0 2px 2px 0;
+                transform: rotate(45deg);
+            }
+        }
+    }
+
+    // Rango de Precio
+    &__price-inputs {
+        display: flex;
+        align-items: center;
+        gap: tokens.$spacing-sm;
+        margin-bottom: tokens.$spacing-md;
+    }
+
+    &__price-input {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: tokens.$spacing-xs;
+
+        label {
+            font-size: tokens.$font-size-xs;
+            color: tokens.$color-neutral-600;
+            font-weight: tokens.$font-weight-medium;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: tokens.$spacing-sm;
+            border: 1px solid tokens.$color-neutral-300;
+            border-radius: tokens.$radius-md;
+            font-size: tokens.$font-size-sm;
+            @include tokens.transition(border-color, tokens.$duration-fast, tokens.$ease-in-out);
+
+            &:focus {
+                outline: none;
+                border-color: tokens.$color-primary-500;
+                box-shadow: 0 0 0 3px rgba(tokens.$color-primary-500, 0.1);
+            }
+        }
+    }
+
+    &__price-separator {
+        margin-top: 20px;
+        color: tokens.$color-neutral-500;
+        font-weight: tokens.$font-weight-medium;
+    }
+
+    &__price-slider {
+        position: relative;
+        margin-bottom: tokens.$spacing-md;
+    }
+
+    &__slider {
+        position: absolute;
+        width: 100%;
+        -webkit-appearance: none;
+        appearance: none;
+        height: 6px;
+        background: transparent;
+        outline: none;
+        pointer-events: none;
+
+        &:first-of-type {
+            pointer-events: all;
+        }
+
+        &:last-of-type {
+            pointer-events: all;
+            background: linear-gradient(to right,
+                    tokens.$color-neutral-200 0%,
+                    tokens.$color-neutral-200 100%);
+        }
+
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background: tokens.$color-primary-600;
+            border: 2px solid tokens.$color-neutral-0;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: tokens.$shadow-sm;
+            pointer-events: all;
+            @include tokens.transition(all, tokens.$duration-fast, tokens.$ease-in-out);
+
+            &:hover {
+                background: tokens.$color-primary-700;
+                box-shadow: tokens.$shadow-md;
+                transform: scale(1.1);
+            }
+        }
+
+        &::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            background: tokens.$color-primary-600;
+            border: 2px solid tokens.$color-neutral-0;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: tokens.$shadow-sm;
+            pointer-events: all;
+            @include tokens.transition(all, tokens.$duration-fast, tokens.$ease-in-out);
+
+            &:hover {
+                background: tokens.$color-primary-700;
+                box-shadow: tokens.$shadow-md;
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    &__price-display {
+        text-align: center;
+        font-size: tokens.$font-size-sm;
+        font-weight: tokens.$font-weight-semibold;
+        color: tokens.$color-primary-600;
+        padding: tokens.$spacing-xs;
+        background: tokens.$color-primary-50;
+        border-radius: tokens.$radius-md;
+    }
+
+    // Botones de Calificación
+    &__rating-btn {
+        display: flex;
+        align-items: center;
+        gap: tokens.$spacing-xs;
+        width: 100%;
+        padding: tokens.$spacing-sm tokens.$spacing-md;
+        margin-bottom: tokens.$spacing-xs;
+        background: tokens.$color-neutral-0;
+        border: 1px solid tokens.$color-neutral-300;
+        border-radius: tokens.$radius-md;
+        cursor: pointer;
+        @include tokens.transition(all, tokens.$duration-fast, tokens.$ease-in-out);
+
+        &:hover {
+            border-color: tokens.$color-warning-500;
+            background: tokens.$color-warning-50;
+        }
+
+        &.active {
+            background: tokens.$color-warning-100;
+            border-color: tokens.$color-warning-500;
+            box-shadow: 0 0 0 3px rgba(tokens.$color-warning-500, 0.1);
+        }
+
+        span {
+            font-size: tokens.$font-size-sm;
+            color: tokens.$color-neutral-700;
+            font-weight: tokens.$font-weight-medium;
+        }
+    }
+
+    &__star {
+        color: tokens.$color-warning-500;
+        font-size: tokens.$font-size-md !important;
+    }
+
+    // Switch Toggle
+    &__switch {
+        display: flex;
+        align-items: center;
+        gap: tokens.$spacing-md;
+        cursor: pointer;
+        padding: tokens.$spacing-sm 0;
+
+        input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+
+            &:checked+.filter-panel__switch-slider {
+                background: tokens.$color-primary-600;
+
+                &::before {
+                    transform: translateX(20px);
+                }
+            }
+        }
+
+        &-slider {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            background: tokens.$color-neutral-300;
+            border-radius: 24px;
+            @include tokens.transition(background, tokens.$duration-normal, tokens.$ease-in-out);
+
+            &::before {
+                content: "";
+                position: absolute;
+                height: 18px;
+                width: 18px;
+                left: 3px;
+                top: 3px;
+                background: tokens.$color-neutral-0;
+                border-radius: 50%;
+                @include tokens.transition(transform, tokens.$duration-normal, tokens.$ease-in-out);
+                box-shadow: tokens.$shadow-sm;
+            }
+        }
+
+        &-label {
+            font-size: tokens.$font-size-sm;
+            color: tokens.$color-neutral-700;
+            font-weight: tokens.$font-weight-medium;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+    }
+}
+
+// Animación de apertura de sección
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
