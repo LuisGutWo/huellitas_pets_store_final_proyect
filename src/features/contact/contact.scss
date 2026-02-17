@@ -1,6 +1,11 @@
 @use "../../shared/styles/styles.scss";
 
-
+/* Breadcrumbs wrapper */
+.breadcrumbs-wrapper {
+  padding-top: 1rem;
+  position: relative;
+  z-index: 100;
+}
 
 // ///Contact Main Section ///
 .contact-main-container {
@@ -10,7 +15,7 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  margin-top: 8%;
+  margin-top: 0;
 
 
   // //// contact form section ///

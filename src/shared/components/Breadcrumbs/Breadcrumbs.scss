@@ -1,0 +1,108 @@
+@use "../../styles/tokens" as tokens;
+
+.breadcrumbs {
+    position: relative;
+    z-index: 100;
+    padding: tokens.$spacing-md 0;
+    margin-bottom: tokens.$spacing-lg;
+    background-color: transparent;
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: tokens.$spacing-xs;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: tokens.$spacing-xs;
+        font-size: tokens.$font-size-sm;
+        color: tokens.$color-neutral-600;
+
+        &--active {
+            color: tokens.$color-neutral-800;
+            font-weight: tokens.$font-weight-medium;
+        }
+    }
+
+    &__link {
+        display: inline-flex;
+        align-items: center;
+        gap: tokens.$spacing-xs;
+        color: tokens.$color-neutral-600;
+        text-decoration: none;
+        padding: tokens.$spacing-xs tokens.$spacing-sm;
+        border-radius: tokens.$radius-sm;
+        transition: all tokens.$duration-fast tokens.$ease-in-out;
+
+        &:hover {
+            color: tokens.$color-primary-600;
+            background-color: tokens.$color-primary-50;
+            text-decoration: none;
+        }
+
+        &:focus-visible {
+            outline: 2px solid tokens.$color-primary-400;
+            outline-offset: 2px;
+        }
+
+        &--current {
+            color: tokens.$color-neutral-800;
+            cursor: default;
+            padding: tokens.$spacing-xs tokens.$spacing-sm;
+            font-weight: tokens.$font-weight-medium;
+
+            &:hover {
+                background-color: transparent;
+                color: tokens.$color-neutral-800;
+            }
+        }
+    }
+
+    &__icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 18px;
+        height: 18px;
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__separator {
+        color: tokens.$color-neutral-400;
+        font-size: 18px;
+        flex-shrink: 0;
+    }
+
+    // Responsive
+    @media (max-width: tokens.$breakpoint-sm) {
+        padding: tokens.$spacing-sm 0;
+        margin-bottom: tokens.$spacing-md;
+
+        &__item {
+            font-size: tokens.$font-size-xs;
+        }
+
+        &__link {
+            padding: tokens.$spacing-xs tokens.$spacing-sm;
+        }
+
+        &__icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        &__separator {
+            font-size: 16px;
+        }
+    }
+}

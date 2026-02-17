@@ -5,6 +5,7 @@ import CardGroup from "react-bootstrap/CardGroup";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Container } from "react-bootstrap";
+import Breadcrumbs from "../../shared/components/Breadcrumbs";
 AOS.init();
 
 const BlogSection: React.FC = () => {
@@ -21,6 +22,7 @@ const BlogSection: React.FC = () => {
       </article>
 
       <Container>
+        <Breadcrumbs />
         <Carousel
           data-aos="fade-right"
           data-aos-offset="300"

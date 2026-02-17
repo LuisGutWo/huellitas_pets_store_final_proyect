@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import { formatPrice } from "../../../shared/utils/formatPrice";
+import OptimizedImage from "../../../shared/components/OptimizedImage";
 import "animate.css";
 
 import { useProductsContext } from "../../../context/ProductsContext";
@@ -134,12 +135,14 @@ const MainProductCard: React.FC<MainProductCardProps> = ({
 
       {/* Product Image */}
       <Link to={`/products/${item.id}`} className="product-card__image-container">
-        <img
+        <OptimizedImage
           src={item.img}
           alt={item.name}
           className="product-card__image"
           loading="lazy"
           onLoad={() => setImageLoaded(true)}
+          aspectRatio="4/3"
+          objectFit="contain"
         />
       </Link>
 

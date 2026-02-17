@@ -1,9 +1,14 @@
 import { NavLink } from "react-router-dom";
 import "animate.css";
+import Breadcrumbs from "../../shared/components/Breadcrumbs";
+import "./about.scss";
 
 const About: React.FC = () => {
   return (
     <>
+      <div className="container breadcrumbs-wrapper">
+        <Breadcrumbs />
+      </div>
       <div className="about-container">
         <figure>
           <img

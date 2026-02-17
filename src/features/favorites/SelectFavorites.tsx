@@ -4,6 +4,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 
 import { useProductsContext } from "../../context/ProductsContext";
 import MainProductCard from "../products/components/MainProductCard";
+import Breadcrumbs from "../../shared/components/Breadcrumbs";
 
 const SelectFavorites: React.FC = () => {
   const { favorites } = useProductsContext();
@@ -11,6 +12,7 @@ const SelectFavorites: React.FC = () => {
   return (
     <main className="favorites-page">
       <Container>
+        <Breadcrumbs />
         <div className="favorites-header">
           <div className="favorites-header__content">
             <FavoriteIcon className="favorites-header__icon" />

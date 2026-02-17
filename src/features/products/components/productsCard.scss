@@ -155,8 +155,15 @@
         width: 100%;
         padding: tokens.$spacing-4;
         overflow: hidden;
-        aspect-ratio: 1 / 1;
+        aspect-ratio: 4 / 3;
         background: linear-gradient(135deg, tokens.$color-neutral-50 0%, tokens.$color-bg-primary 100%);
+
+        .optimized-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+            background: transparent;
+        }
     }
 
     &__image {

@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 import { useProductsContext } from "../../context/ProductsContext";
 import CartItem from "../cart/CartItem";
 import { formatPrice } from "../../shared/utils/formatPrice";
+import Breadcrumbs from "../../shared/components/Breadcrumbs";
 
 const Cart: React.FC = () => {
   const { cart, totalCart, totalItemProducts, onCleanCart } =
@@ -12,6 +13,7 @@ const Cart: React.FC = () => {
   return (
     <section className="h-100 cart-container">
       <div className="container py-5">
+        <Breadcrumbs />
         <div className="row d-flex justify-content-center my-4">
           <div className="col-md-8">
             <div className="card mb-4">

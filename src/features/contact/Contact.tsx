@@ -5,6 +5,8 @@ import Form from "react-bootstrap/Form";
 import { sendContactEmail } from "../../services/emailjs";
 import { TextareaAutosize } from "@mui/material";
 import blackLogo from "../../assets/img/huellitas-logo-black-500x500.png";
+import Breadcrumbs from "../../shared/components/Breadcrumbs";
+import "./contact.scss";
 
 const Contact: React.FC = () => {
   const [showEmailSend, setShowEmailSend] = useState<boolean>(false);
@@ -31,8 +33,12 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className="contact-main-container">
-      <article className="main-contact">
+    <>
+      <div className="container breadcrumbs-wrapper">
+        <Breadcrumbs />
+      </div>
+      <div className="contact-main-container">
+        <article className="main-contact">
         <section className="contact-img"></section>
         <section className="contact-container">
           <img src={blackLogo} alt="" className="img-fluid contact-logo" />
@@ -99,7 +105,8 @@ const Contact: React.FC = () => {
           </MapContainer>
         </div>
       </article>
-    </div>
+      </div>
+    </>
   );
 };
 

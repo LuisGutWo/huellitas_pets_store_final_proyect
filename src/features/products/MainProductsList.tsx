@@ -5,8 +5,10 @@ import MainProductCard from "./components/MainProductCard";
 import FilterPanel, { FilterState } from "./components/FilterPanel";
 import ActiveFilterChips from "./components/ActiveFilterChips";
 import MobileFilterDrawer from "./components/MobileFilterDrawer";
+import SearchBar from "./components/SearchBar";
 import Loading from "../../shared/components/Loading";
 import BackToTopButton from "../../shared/components/BackToTopButton";
+import Breadcrumbs from "../../shared/components/Breadcrumbs";
 import type { Product } from "../../services/productsApi";
 
 const MainProductsList: React.FC = () => {
@@ -154,6 +156,7 @@ const MainProductsList: React.FC = () => {
 
   return (
     <div className="container">
+      <Breadcrumbs />
       {/* Products list section */}
       <section className="products-list-header">
         <div className="products-list-container__text">
@@ -161,12 +164,11 @@ const MainProductsList: React.FC = () => {
             <h1>NUESTRA TIENDA ONLINE</h1>
             <h3>Selecciona tu producto favorito de nuestra tienda online</h3>
           </div>
-          <input
-            type="text"
-            placeholder="Buscar producto"
-            className="main-form-products-categories"
+          <SearchBar
+            products={data}
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={setSearch}
+            placeholder="Buscar producto por nombre, categoría o tipo..."
           />
         </div>
       </section>

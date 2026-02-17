@@ -1,0 +1,255 @@
+@use "../../../shared/styles/tokens" as tokens;
+
+.search-bar {
+    position: relative;
+    width: 100%;
+    animation: fadeIn 0.3s ease-in-out;
+
+    &__input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        background: tokens.$color-bg-primary;
+        border: 2px solid tokens.$color-neutral-200;
+        border-radius: tokens.$radius-lg;
+        transition: all tokens.$duration-fast tokens.$ease-in-out;
+        box-shadow: tokens.$shadow-sm;
+
+        &:focus-within {
+            border-color: tokens.$color-primary-400;
+            box-shadow: tokens.$shadow-md, 0 0 0 3px rgba(tokens.$color-primary-400, 0.1);
+        }
+
+        &:hover {
+            border-color: tokens.$color-primary-300;
+        }
+    }
+
+    &__icon {
+        position: absolute;
+        color: tokens.$color-text-tertiary;
+        transition: color tokens.$duration-fast tokens.$ease-in-out;
+
+        &--search {
+            left: tokens.$spacing-4;
+            pointer-events: none;
+        }
+
+        .search-bar__input-wrapper:focus-within & {
+            color: tokens.$color-primary-500;
+        }
+    }
+
+    &__input {
+        width: 100%;
+        padding: tokens.$spacing-3 tokens.$spacing-12 tokens.$spacing-3 tokens.$spacing-12;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: tokens.$font-size-base;
+        color: tokens.$color-text-primary;
+        font-family: tokens.$font-primary;
+
+        &::placeholder {
+            color: tokens.$color-text-tertiary;
+        }
+
+        @include tokens.respond-to-max('sm') {
+            padding: tokens.$spacing-2 tokens.$spacing-10 tokens.$spacing-2 tokens.$spacing-10;
+            font-size: tokens.$font-size-sm;
+        }
+    }
+
+    &__clear {
+        position: absolute;
+        right: tokens.$spacing-3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: tokens.$spacing-1;
+        background: none;
+        border: none;
+        border-radius: tokens.$radius-full;
+        color: tokens.$color-text-tertiary;
+        cursor: pointer;
+        transition: all tokens.$duration-fast tokens.$ease-in-out;
+
+        &:hover {
+            background: tokens.$color-neutral-100;
+            color: tokens.$color-text-secondary;
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+
+    &__suggestions {
+        position: absolute;
+        top: calc(100% + tokens.$spacing-2);
+        left: 0;
+        right: 0;
+        max-height: 400px;
+        overflow-y: auto;
+        background: tokens.$color-bg-primary;
+        border: 1px solid tokens.$color-neutral-200;
+        border-radius: tokens.$radius-lg;
+        box-shadow: tokens.$shadow-lg;
+        list-style: none;
+        padding: tokens.$spacing-2;
+        margin: 0;
+        z-index: 1000;
+        animation: slideDown 0.2s ease-out;
+
+        @include tokens.respond-to-max('sm') {
+            max-height: 300px;
+        }
+
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: tokens.$color-neutral-100;
+            border-radius: tokens.$radius-full;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: tokens.$color-neutral-300;
+            border-radius: tokens.$radius-full;
+
+            &:hover {
+                background: tokens.$color-neutral-400;
+            }
+        }
+    }
+
+    &__suggestion {
+        display: flex;
+        align-items: center;
+        gap: tokens.$spacing-3;
+        padding: tokens.$spacing-3;
+        border-radius: tokens.$radius-md;
+        cursor: pointer;
+        transition: all tokens.$duration-fast tokens.$ease-in-out;
+
+        &:hover,
+        &--active {
+            background: tokens.$color-primary-50;
+        }
+
+        &--active {
+            outline: 2px solid tokens.$color-primary-200;
+            outline-offset: -2px;
+        }
+    }
+
+    &__suggestion-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        flex-shrink: 0;
+        color: tokens.$color-text-tertiary;
+    }
+
+    &__category-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        background: tokens.$color-secondary-100;
+        color: tokens.$color-secondary-700;
+        border-radius: tokens.$radius-md;
+        font-size: tokens.$font-size-xs;
+        font-weight: tokens.$font-weight-semibold;
+        text-transform: uppercase;
+    }
+
+    &__suggestion-content {
+        flex: 1;
+        min-width: 0;
+    }
+
+    &__suggestion-name {
+        font-size: tokens.$font-size-base;
+        color: tokens.$color-text-primary;
+        font-weight: tokens.$font-weight-medium;
+        margin-bottom: tokens.$spacing-1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        @include tokens.respond-to-max('sm') {
+            font-size: tokens.$font-size-sm;
+        }
+    }
+
+    &__suggestion-category {
+        @include tokens.text-small;
+        color: tokens.$color-text-tertiary;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    &__highlight {
+        background: tokens.$color-warning-200;
+        color: tokens.$color-text-primary;
+        font-weight: tokens.$font-weight-semibold;
+        padding: 0 2px;
+        border-radius: 2px;
+    }
+
+    &__no-results {
+        position: absolute;
+        top: calc(100% + tokens.$spacing-2);
+        left: 0;
+        right: 0;
+        background: tokens.$color-bg-primary;
+        border: 1px solid tokens.$color-neutral-200;
+        border-radius: tokens.$radius-lg;
+        box-shadow: tokens.$shadow-lg;
+        padding: tokens.$spacing-8;
+        text-align: center;
+        color: tokens.$color-text-tertiary;
+        z-index: 1000;
+        animation: slideDown 0.2s ease-out;
+
+        svg {
+            font-size: 48px;
+            color: tokens.$color-neutral-300;
+            margin-bottom: tokens.$spacing-2;
+        }
+
+        p {
+            margin: 0;
+            font-size: tokens.$font-size-base;
+            color: tokens.$color-text-secondary;
+        }
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

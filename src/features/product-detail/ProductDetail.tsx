@@ -8,6 +8,7 @@ import type { Product } from "../../services/productsApi";
 
 import { formatPrice } from "../../shared/utils/formatPrice";
 import Loading from "../../shared/components/Loading";
+import Breadcrumbs, { BreadcrumbItem } from "../../shared/components/Breadcrumbs";
 
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -63,8 +64,17 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ item, selectFavorites }) 
   // eslint-disable-next-line react/react-in-jsx-scope
   if (loading) return <Loading />;
 
+  // Generar breadcrumbs dinámicos con información del producto
+  const breadcrumbItems: BreadcrumbItem[] = [
+    { label: "Inicio", path: "/" },
+    { label: "Productos", path: "/products" },
+    { label: product?.category || "Categoría", path: `/products?category=${product?.category}` },
+    { label: product?.name || "Producto" },
+  ];
+
   return (
     <Container className="detail-container">
+      <Breadcrumbs items={breadcrumbItems} />
       <Card className="detail-card">
         <div className="card-favorite-icon">
           {selectFavorites ? (
