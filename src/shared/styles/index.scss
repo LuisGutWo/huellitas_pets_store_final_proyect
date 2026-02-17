@@ -17,6 +17,7 @@
 @use "../../features/home/components/icons.scss";
 @use "../../features/auth/login.scss";
 @use "../../features/products/mainProductsList.scss";
+@use "./microinteractions.scss";
 
 
 //Main App Styles
@@ -34,11 +35,36 @@
   margin: 0;
 }
 
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0.75rem;
+  z-index: 2000;
+  padding: 0.5rem 0.9rem;
+  background: styles.$background-color-dark;
+  color: styles.$white;
+  text-decoration: none;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  left: 1rem;
+}
+
 .app-container {
   margin: 0;
   padding: 0;
+  padding-top: 11rem;
+  /* Espacio para navbar fijo: navbar-top-menu (2.5rem) + main-navbar (8rem) + margen */
   height: 100%;
   width: 100%;
+}
+
+.app-container:focus-visible {
+  outline: 3px solid styles.$background-color-dark;
+  outline-offset: 6px;
 }
 
 

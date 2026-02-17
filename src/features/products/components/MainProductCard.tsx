@@ -3,6 +3,7 @@ import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import { formatPrice } from "../../../shared/utils/formatPrice";
 import OptimizedImage from "../../../shared/components/OptimizedImage";
+import CartSwingAnimation from "../../../shared/components/CartSwingAnimation";
 import "animate.css";
 
 import { useProductsContext } from "../../../context/ProductsContext";
@@ -32,6 +33,7 @@ const MainProductCard: React.FC<MainProductCardProps> = ({
   const [isAdding, setIsAdding] = useState<boolean>(false);
   const [hasAddedFeedback, setHasAddedFeedback] = useState<boolean>(false);
   const target = useRef<HTMLButtonElement>(null);
+  const cartAnimRef = useRef<{ triggerAnimation: (name?: string) => void } | null>(null);
 
   const { user } = useUserContext();
   const toast = useToast();
@@ -59,6 +61,7 @@ const MainProductCard: React.FC<MainProductCardProps> = ({
     addProduct(item);
     toast.success(`${item.name} se agregó al carrito correctamente`);
     setHasAddedFeedback(true);
+    cartAnimRef.current?.triggerAnimation(item.name);
     
     setTimeout(() => {
       setIsAdding(false);
@@ -189,7 +192,7 @@ const MainProductCard: React.FC<MainProductCardProps> = ({
         <button
           className={`product-card__add-button ${
             hasAddedFeedback ? 'product-card__add-button--added' : ''
-          }`}
+          } ${isAdding ? 'loading' : ''}`}
           onClick={handleShoppingCart}
           disabled={isAdding}
           ref={target}
@@ -207,6 +210,7 @@ const MainProductCard: React.FC<MainProductCardProps> = ({
           )}
         </button>
       </Card.Body>
+      <CartSwingAnimation ref={cartAnimRef} />
     </Card>
   );
 };

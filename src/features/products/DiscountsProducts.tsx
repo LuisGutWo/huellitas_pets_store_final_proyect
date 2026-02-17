@@ -3,7 +3,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 import MainProductCard from "./components/MainProductCard";
-import Loading from "../../shared/components/Loading";
+import { ProductListSkeleton, Skeleton } from "../../shared/components/SkeletonLoader";
 import type { Product } from "../../services/productsApi";
 
 import AOS from "aos";
@@ -90,7 +90,26 @@ const DiscountsProducts: React.FC = () => {
     },
   };
 
-  if (loading) return <Loading />;
+  if (loading) {
+    return (
+      <main className="discount-container">
+        <div className="main-featured-container">
+          <section>
+            <Skeleton variant="text" width="50%" height="24px" />
+          </section>
+          <Container>
+            <ProductListSkeleton count={6} />
+          </Container>
+          <section>
+            <Skeleton variant="text" width="35%" height="24px" />
+          </section>
+          <Container>
+            <ProductListSkeleton count={6} />
+          </Container>
+        </div>
+      </main>
+    );
+  }
   if (error) return <div>Error: {error.message}</div>;
 
   return (
@@ -106,11 +125,8 @@ const DiscountsProducts: React.FC = () => {
             Productos con Descuentos
           </h2>
         </section>
-        {loading ? (
-          <Loading />
-        ) : (
-          <Container>
-            <Carousel
+        <Container>
+          <Carousel
               responsive={responsive}
               additionalTransfrom={0}
               arrows={true}
@@ -138,11 +154,10 @@ const DiscountsProducts: React.FC = () => {
               sliderClass=""
               slidesToSlide
               swipeable={true}
-            >
-              {filteredProductDiscount}
-            </Carousel>
-          </Container>
-        )}
+          >
+            {filteredProductDiscount}
+          </Carousel>
+        </Container>
         {/* News products carouse */}
         <section>
           <h2
@@ -154,11 +169,8 @@ const DiscountsProducts: React.FC = () => {
           </h2>
         </section>
 
-        {loading ? (
-          <Loading />
-        ) : (
-          <Container>
-            <Carousel
+        <Container>
+          <Carousel
               responsive={responsive}
               additionalTransfrom={0}
               arrows={true}
@@ -186,11 +198,10 @@ const DiscountsProducts: React.FC = () => {
               sliderClass=""
               slidesToSlide
               swipeable={true}
-            >
-              {filteredProductNews}
-            </Carousel>
-          </Container>
-        )}
+          >
+            {filteredProductNews}
+          </Carousel>
+        </Container>
       </div>
     </main>
   );

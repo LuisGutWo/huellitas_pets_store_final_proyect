@@ -1,0 +1,180 @@
+@use "../../styles/tokens" as tokens;
+
+.spinner {
+    position: relative;
+
+    // Spinner size variants
+    &.spinner-sm {
+        width: 24px;
+        height: 24px;
+
+        &::before,
+        &::after {
+            width: 24px;
+            height: 24px;
+            border-width: 2px;
+        }
+    }
+
+    &.spinner-md {
+        width: 40px;
+        height: 40px;
+
+        &::before,
+        &::after {
+            width: 40px;
+            height: 40px;
+            border-width: 4px;
+        }
+    }
+
+    &.spinner-lg {
+        width: 60px;
+        height: 60px;
+
+        &::before,
+        &::after {
+            width: 60px;
+            height: 60px;
+            border-width: 5px;
+        }
+    }
+
+    // Default spinner - primary color gradient
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 50%;
+        border-style: solid;
+        border-color: transparent;
+    }
+
+    &::before {
+        animation: spin-primary 1.5s linear infinite;
+    }
+
+    &::after {
+        animation: spin-secondary 1.5s linear infinite reverse;
+        filter: blur(1px);
+    }
+
+    // Color variants
+    &.spinner-primary {
+        &::before {
+            border-top-color: tokens.$color-primary-500;
+            border-right-color: tokens.$color-primary-400;
+            border-bottom-color: tokens.$color-primary-300;
+        }
+
+        &::after {
+            border-top-color: tokens.$color-primary-300;
+            border-right-color: tokens.$color-primary-500;
+            border-bottom-color: tokens.$color-primary-400;
+        }
+    }
+
+    &.spinner-secondary {
+        &::before {
+            border-top-color: tokens.$color-secondary-500;
+            border-right-color: tokens.$color-secondary-400;
+            border-bottom-color: tokens.$color-secondary-300;
+        }
+
+        &::after {
+            border-top-color: tokens.$color-secondary-300;
+            border-right-color: tokens.$color-secondary-500;
+            border-bottom-color: tokens.$color-secondary-400;
+        }
+    }
+
+    &.spinner-success {
+        &::before {
+            border-top-color: tokens.$color-success-500;
+            border-right-color: tokens.$color-success-400;
+            border-bottom-color: tokens.$color-success-300;
+        }
+
+        &::after {
+            border-top-color: tokens.$color-success-300;
+            border-right-color: tokens.$color-success-500;
+            border-bottom-color: tokens.$color-success-400;
+        }
+    }
+
+    &.spinner-light {
+        &::before {
+            border-top-color: tokens.$color-neutral-300;
+            border-right-color: tokens.$color-neutral-200;
+            border-bottom-color: tokens.$color-neutral-100;
+        }
+
+        &::after {
+            border-top-color: tokens.$color-neutral-100;
+            border-right-color: tokens.$color-neutral-300;
+            border-bottom-color: tokens.$color-neutral-200;
+        }
+    }
+}
+
+.spinner-fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9998;
+    pointer-events: none;
+
+    &.with-overlay {
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(2px);
+        pointer-events: auto;
+    }
+}
+
+// Spin animations with staggered effect
+@keyframes spin-primary {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin-secondary {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+    .spinner {
+
+        &::before,
+        &::after {
+            animation: none;
+            opacity: 0.5;
+        }
+
+        &::before {
+            border-top-width: 0;
+        }
+
+        &::after {
+            border-bottom-width: 0;
+        }
+    }
+}

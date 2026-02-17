@@ -91,6 +91,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
           <button
             className="filter-panel__clear"
             onClick={onClearFilters}
+            type="button"
           >
             Limpiar
           </button>
@@ -102,12 +103,14 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
         <button
           className="filter-panel__section-header"
           onClick={() => toggleSection('categories')}
+          type="button"
+          aria-controls="filter-categories"
         >
           <span>Categorías</span>
           {expandedSections.categories ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </button>
         {expandedSections.categories && (
-          <div className="filter-panel__section-content">
+          <div className="filter-panel__section-content" id="filter-categories">
             {allCategories.map((category) => (
               <label key={category} className="filter-panel__checkbox">
                 <input
@@ -130,12 +133,14 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
         <button
           className="filter-panel__section-header"
           onClick={() => toggleSection('price')}
+          type="button"
+          aria-controls="filter-price"
         >
           <span>Precio</span>
           {expandedSections.price ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </button>
         {expandedSections.price && (
-          <div className="filter-panel__section-content">
+          <div className="filter-panel__section-content" id="filter-price">
             <div className="filter-panel__price-inputs">
               <div className="filter-panel__price-input">
                 <label htmlFor="price-min">Mínimo</label>
@@ -195,17 +200,20 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
         <button
           className="filter-panel__section-header"
           onClick={() => toggleSection('rating')}
+          type="button"
+          aria-controls="filter-rating"
         >
           <span>Calificación</span>
           {expandedSections.rating ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </button>
         {expandedSections.rating && (
-          <div className="filter-panel__section-content">
+          <div className="filter-panel__section-content" id="filter-rating">
             {[4, 3, 2, 1].map((rating) => (
               <button
                 key={rating}
                 className={`filter-panel__rating-btn ${filters.rating === rating ? 'active' : ''}`}
                 onClick={() => handleRatingChange(rating)}
+                type="button"
               >
                 {[...Array(rating)].map((_, i) => (
                   <StarIcon key={i} className="filter-panel__star" />

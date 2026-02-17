@@ -114,7 +114,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
 
       {/* Estado de error */}
       {hasError && (
-        <div className="optimized-image__error">
+        <div className="optimized-image__error" role="status" aria-live="polite">
           <svg
             width="48"
             height="48"
@@ -133,7 +133,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
 
       {/* Loading spinner */}
       {!isLoaded && !hasError && isInView && (
-        <div className="optimized-image__loader">
+        <div className="optimized-image__loader" aria-hidden="true">
           <div className="optimized-image__spinner"></div>
         </div>
       )}

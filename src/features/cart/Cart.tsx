@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
@@ -5,10 +6,23 @@ import { useProductsContext } from "../../context/ProductsContext";
 import CartItem from "../cart/CartItem";
 import { formatPrice } from "../../shared/utils/formatPrice";
 import Breadcrumbs from "../../shared/components/Breadcrumbs";
+import { CartItemSkeleton, Skeleton } from "../../shared/components/SkeletonLoader";
+import { FakeLoading } from "../../shared/components/FakeLoading";
 
 const Cart: React.FC = () => {
+  const [isHydrating, setIsHydrating] = useState<boolean>(true);
   const { cart, totalCart, totalItemProducts, onCleanCart } =
     useProductsContext();
+
+  useEffect(() => {
+    let active = true;
+    FakeLoading(500).then(() => {
+      if (active) setIsHydrating(false);
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   return (
     <section className="h-100 cart-container">
@@ -21,51 +35,64 @@ const Cart: React.FC = () => {
                 <h1>Detalle de tu pedido</h1>
                 <h3>
                   Total de Productos:{" "}
-                  <b className="fs-5 text-center">{totalItemProducts()}</b>
+                  <b className="fs-5 text-center">
+                    {isHydrating ? "..." : totalItemProducts()}
+                  </b>
                 </h3>
               </div>
               <div className="card-body p-0">
                 {/* /// Single item /// */}
                 <section className="list-group">
-                  {cart.map((item) => (
-                    <CartItem key={item.id} item={item} />
-                  ))}
+                  {isHydrating ? (
+                    <CartItemSkeleton count={3} />
+                  ) : (
+                    cart.map((item) => <CartItem key={item.id} item={item} />)
+                  )}
                 </section>
                 <section
                   className={
                     cart.length === 0 ? "cart-total-flex" : "cart-total"
                   }
                 >
-                  <NavLink to={"/products"}>
-                    {cart.length === 0 ? (
-                      <Button>Volver a la Tienda</Button>
-                    ) : (
-                      <Button className="category-buttons">
-                        Seguir comprando
-                      </Button>
-                    )}
-                  </NavLink>
-                  {cart.length === 0 ? (
-                    <ul className="list-group">
-                      <li className="list-group-empty">
-                        <img
-                          src={
-                            "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/emoticon_gatito.png?alt=media&token=f77e6efc-d1ab-4a07-b6b7-73e3f98ed959"
-                          }
-                          alt=""
-                          className="img-fluid empty-cart-image"
-                        />
-                        <h4>Tu Carrito esta vacío</h4>
-                      </li>
-                    </ul>
+                  {isHydrating ? (
+                    <>
+                      <Skeleton variant="rectangular" width="160px" height="36px" />
+                      <Skeleton variant="text" width="40%" height="18px" />
+                    </>
                   ) : (
-                    <Button
-                      variant="outline-danger"
-                      size="md"
-                      onClick={onCleanCart}
-                    >
-                      Vaciar carrito
-                    </Button>
+                    <>
+                      <NavLink to={"/products"}>
+                        {cart.length === 0 ? (
+                          <Button>Volver a la Tienda</Button>
+                        ) : (
+                          <Button className="category-buttons">
+                            Seguir comprando
+                          </Button>
+                        )}
+                      </NavLink>
+                      {cart.length === 0 ? (
+                        <ul className="list-group">
+                          <li className="list-group-empty">
+                            <img
+                              src={
+                                "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/emoticon_gatito.png?alt=media&token=f77e6efc-d1ab-4a07-b6b7-73e3f98ed959"
+                              }
+                              alt=""
+                              className="img-fluid empty-cart-image"
+                            />
+                            <h4>Tu Carrito esta vacío</h4>
+                          </li>
+                        </ul>
+                      ) : (
+                        <Button
+                          variant="outline-danger"
+                          size="md"
+                          onClick={onCleanCart}
+                        >
+                          Vaciar carrito
+                        </Button>
+                      )}
+                    </>
                   )}
                 </section>
                 {/* /// Single item /// */}
@@ -100,35 +127,46 @@ const Cart: React.FC = () => {
                 <h5 className="mb-0">Resumen</h5>
               </div>
               <div className="card-body">
-                <ul className="list-group list-group-flush">
-                  <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                    Productos
-                    <span>${formatPrice(totalCart())}</span>
-                  </li>
-                  <li className="list-group-item d-flex justify-content-between align-items-center px-0">
-                    Shipping
-                    <span>Gratis</span>
-                  </li>
-                  <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
-                    <div>
-                      <strong>Monto Total</strong>
-                      <strong>
-                        <p className="mb-0">(IVA incluido)</p>
-                      </strong>
-                    </div>
-                    <span>
-                      <strong>${formatPrice(totalCart())}</strong>
-                    </span>
-                  </li>
-                </ul>
-                <NavLink to={"/products"}>
-                  <Button
-                    type="button"
-                    className="category-buttons"
-                  >
-                    Ir a Pagar
-                  </Button>
-                </NavLink>
+                {isHydrating ? (
+                  <div className="list-group list-group-flush">
+                    <Skeleton variant="text" width="80%" height="18px" />
+                    <Skeleton variant="text" width="60%" height="18px" />
+                    <Skeleton variant="text" width="90%" height="18px" />
+                    <Skeleton variant="rectangular" width="100%" height="40px" />
+                  </div>
+                ) : (
+                  <>
+                    <ul className="list-group list-group-flush">
+                      <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                        Productos
+                        <span>${formatPrice(totalCart())}</span>
+                      </li>
+                      <li className="list-group-item d-flex justify-content-between align-items-center px-0">
+                        Shipping
+                        <span>Gratis</span>
+                      </li>
+                      <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                        <div>
+                          <strong>Monto Total</strong>
+                          <strong>
+                            <p className="mb-0">(IVA incluido)</p>
+                          </strong>
+                        </div>
+                        <span>
+                          <strong>${formatPrice(totalCart())}</strong>
+                        </span>
+                      </li>
+                    </ul>
+                    <NavLink to={"/products"}>
+                      <Button
+                        type="button"
+                        className="category-buttons"
+                      >
+                        Ir a Pagar
+                      </Button>
+                    </NavLink>
+                  </>
+                )}
               </div>
             </div>
           </div>

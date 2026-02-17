@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { Formik } from "formik";
@@ -22,6 +22,7 @@ import {
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { LoadingButton } from "@mui/lab";
 import { Container } from "react-bootstrap";
+import SuccessCheckmark from "../../shared/components/SuccessCheckmark";
 
 interface RegisterFormValues {
   email: string;
@@ -30,6 +31,7 @@ interface RegisterFormValues {
 
 const Register: React.FC = () => {
   const [showPsw, setShowPsw] = useState<boolean>(false);
+  const [showSuccess, setShowSuccess] = useState<boolean>(false);
 
   const { user } = useUserContext();
 
@@ -41,9 +43,11 @@ const Register: React.FC = () => {
     { setSubmitting, setErrors, resetForm }: any
   ) => {
     try {
+      setShowSuccess(false);
       await register({ email, password });
       console.log("usuario registrado");
       resetForm();
+      setShowSuccess(true);
     } catch (error) {
       console.log(error.code);
       console.log(error.message);
@@ -62,6 +66,12 @@ const Register: React.FC = () => {
       .min(6, "Mínimo 6 carácteres")
       .required("Password obligatorio"),
   });
+
+  useEffect(() => {
+    if (!showSuccess) return undefined;
+    const timeoutId = setTimeout(() => setShowSuccess(false), 3000);
+    return () => clearTimeout(timeoutId);
+  }, [showSuccess]);
 
   return (
     <>
@@ -147,6 +157,11 @@ const Register: React.FC = () => {
                 >
                   Crear
                 </LoadingButton>
+                {showSuccess && (
+                  <div className="mt-3 d-flex justify-content-center">
+                    <SuccessCheckmark message="Registro exitoso" size="sm" />
+                  </div>
+                )}
                 <Grid container>
                   <Grid item xs>
                     <Button component={Link} to="/loginPage" color="inherit">

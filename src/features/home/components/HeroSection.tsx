@@ -44,7 +44,6 @@ const HeroSection: React.FC = () => {
             <NavLink
               to={"/products"}
               className="category-buttons-hero"
-              variant="light"
             >
               <ArrowForwardIosIcon style={{ width: "12%" }} />
               Productos
@@ -85,7 +84,6 @@ const HeroSection: React.FC = () => {
             <NavLink
               to={"/products"}
               className="category-buttons-hero"
-              variant="dark"
             >
               <ArrowForwardIosIcon style={{ width: "12%" }} /> Productos
             </NavLink>
@@ -126,7 +124,6 @@ const HeroSection: React.FC = () => {
             <NavLink
               to={"/products"}
               className="category-buttons-hero"
-              variant="dark"
             >
               <ArrowForwardIosIcon style={{ width: "12%" }} />
               Productos

@@ -29,7 +29,7 @@ const MainFooter: React.FC = () => {
               width="200"
               height="60"
               className="d-inline-block align-top"
-              alt=""
+              alt="Tarjetas aceptadas"
             />
           </Col>
           <Col className="footer-content">
@@ -46,15 +46,25 @@ const MainFooter: React.FC = () => {
           </Col>
           <Col className="footer-content">
             <h4 className="mt-3">CONTACTO</h4>
-            <p className="footer-text">
+            <address className="footer-text">
               San Pablo 3610, local 2, Quinta Normal - Santiago
               <br />
-              +569 36352145 | +569 98451212
+              <a href="tel:+56936352145" aria-label="Llamar a ventas">
+                +569 36352145
+              </a>
+              <span aria-hidden="true"> | </span>
+              <a href="tel:+56998451212" aria-label="Llamar a soporte">
+                +569 98451212
+              </a>
               <br />
-              ventas@huellitasps.cl
+              <a href="mailto:ventas@huellitasps.cl" aria-label="Enviar correo a ventas">
+                ventas@huellitasps.cl
+              </a>
               <br />
-            </p>
-            {<FacebookRoundedIcon />} {<InstagramIcon />}
+            </address>
+            <div className="footer-social" aria-hidden="true">
+              <FacebookRoundedIcon /> <InstagramIcon />
+            </div>
           </Col>
         </Row>
       </Container>

@@ -1,7 +1,9 @@
 @use "../../shared/styles/styles.scss";
+@use "../../shared/styles/tokens" as tokens;
 
 .cart-container {
-  margin-top: 8%;
+  /* margin-top removido - app-container ya proporciona padding-top */
+  animation: fadeIn 0.3s ease-out both;
 }
 
 .card-header {
@@ -12,6 +14,7 @@
   padding-left: 1rem;
   border-radius: 8px 8px 0px 0px;
   background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+  animation: slideInDown 0.35s ease-out both;
 
   h1 {
     font-size: 1.2rem;
@@ -25,6 +28,7 @@
 .list-group {
   width: auto;
   border-radius: 0rem;
+  animation: fadeIn 0.3s ease-out both;
 }
 
 .list-group-empty {
@@ -35,6 +39,7 @@
   align-items: center;
   width: 100%;
   height: 100%;
+  animation: fadeIn 0.25s ease-out both;
 }
 
 .cart-total {
@@ -47,6 +52,7 @@
   background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
   border: #1c1c1c1d solid 1px;
   color: rgb(0, 0, 0);
+  animation: slideInUp 0.35s ease-out both;
 
 
 }
@@ -61,6 +67,7 @@
   background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
   border: #1c1c1c1d solid 1px;
   color: rgb(0, 0, 0);
+  animation: slideInUp 0.35s ease-out both;
 
 
 }
@@ -81,6 +88,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  animation: fadeIn 0.3s ease-out both;
 
   Button {
     font-size: 0.8rem;
@@ -113,4 +121,27 @@
 
   }
 
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .cart-container,
+  .card-header,
+  .list-group,
+  .list-group-empty,
+  .cart-total,
+  .cart-total-flex,
+  .cart-button-footer {
+    animation: none;
+  }
+}
+
+.cart-container {
+
+  .category-buttons:focus-visible,
+  .btn:focus-visible,
+  button:focus-visible {
+    outline: 2px solid tokens.$color-primary-300;
+    outline-offset: 2px;
+  }
 }

@@ -2,7 +2,6 @@
 
 /* Breadcrumbs wrapper */
 .breadcrumbs-wrapper {
-  padding-top: 1rem;
   position: relative;
   z-index: 100;
 }
@@ -14,14 +13,17 @@
   flex-wrap: nowrap;
   align-items: center;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
+  /* Cambio de height: 100% a min-height */
   margin-top: 0;
+  animation: fadeIn 0.3s ease-out both;
 
 
   // //// contact form section ///
   & .main-contact {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+    /* Cambio de height a min-height */
     margin: 0;
     padding: 0;
     display: flex;
@@ -40,7 +42,7 @@
       height: 100%;
       width: 100%;
       animation: fadeIn;
-      animation-duration: 4s;
+      animation-duration: 1.6s;
     }
 
     & .contact-container {
@@ -57,7 +59,7 @@
       & .contact-logo {
         width: 30%;
         animation: fadeInLeft;
-        animation-duration: 2s;
+        animation-duration: 1.2s;
       }
 
       & .contact-form {
@@ -72,7 +74,18 @@
         padding: 1em;
         color: #1b1b1b;
         animation: fadeInRight;
-        animation-duration: 3s;
+        animation-duration: 1.4s;
+
+        .form-control.is-invalid {
+          border-color: #d9534f;
+        }
+
+        .invalid-feedback {
+          display: block;
+          font-size: 0.85rem;
+          color: #c0392b;
+          margin-top: 0.25rem;
+        }
       }
     }
   }
@@ -90,6 +103,7 @@
 
     width: 100%;
     height: 26rem;
+    animation: fadeIn 0.3s ease-out both;
 
     & .info-map {
       position: absolute;
@@ -106,7 +120,7 @@
       color: #fff;
       font-size: 100%;
       font-weight: 300;
-      animation: fadeIn 1s 1.5s;
+      animation: fadeIn 0.6s 0.6s;
       animation-fill-mode: forwards;
 
 
@@ -128,9 +142,23 @@
         opacity: 0.9;
         width: 100%;
         height: 100%;
-        animation: backInRight 1s 1.2s;
+        animation: backInRight 0.6s 0.6s;
         animation-fill-mode: forwards;
       }
     }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .contact-main-container,
+  .contact-main-container .main-contact,
+  .contact-main-container .contact-img,
+  .contact-main-container .contact-logo,
+  .contact-main-container .contact-form,
+  .contact-main-container .map-section,
+  .contact-main-container .info-map,
+  .contact-main-container .leaflet-container {
+    animation: none !important;
   }
 }

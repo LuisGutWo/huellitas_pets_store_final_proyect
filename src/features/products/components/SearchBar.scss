@@ -50,6 +50,12 @@
         color: tokens.$color-text-primary;
         font-family: tokens.$font-primary;
 
+        &:focus-visible {
+            outline: 2px solid tokens.$color-primary-300;
+            outline-offset: 2px;
+            border-radius: tokens.$radius-md;
+        }
+
         &::placeholder {
             color: tokens.$color-text-tertiary;
         }
@@ -73,6 +79,11 @@
         color: tokens.$color-text-tertiary;
         cursor: pointer;
         transition: all tokens.$duration-fast tokens.$ease-in-out;
+
+        &:focus-visible {
+            outline: 2px solid tokens.$color-primary-400;
+            outline-offset: 2px;
+        }
 
         &:hover {
             background: tokens.$color-neutral-100;
@@ -140,6 +151,11 @@
 
         &--active {
             outline: 2px solid tokens.$color-primary-200;
+            outline-offset: -2px;
+        }
+
+        &:focus-visible {
+            outline: 2px solid tokens.$color-primary-300;
             outline-offset: -2px;
         }
     }

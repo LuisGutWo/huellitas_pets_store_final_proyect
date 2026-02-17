@@ -4,7 +4,7 @@ import "animate.css";
 const NavbarButtons: React.FC = () => {
   return (
     <>
-      <section className="navbar-buttons">
+      <nav className="navbar-buttons" aria-label="Navegacion principal">
         <NavLink
           to="/"
           key="home"
@@ -42,7 +42,7 @@ const NavbarButtons: React.FC = () => {
         >
           <b>CONTACTO</b>
         </NavLink>
-      </section>
+      </nav>
     </>
   );
 };

@@ -1,5 +1,5 @@
-import { lazy, Suspense, useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { useUserContext } from "../context/UserContext";
 
 import MainHeader from "../layout/header/MainHeader";
@@ -47,6 +47,8 @@ const RouteFallback = ({ label }: RouteFallbackProps) => (
 function App() {
   const { user } = useUserContext();
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
+  const mainRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     // Simulate a loading delay (e.g., fetching user data or app initialization)
@@ -65,17 +67,32 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    if (!loading && mainRef.current) {
+      mainRef.current.focus();
+    }
+  }, [loading, location.pathname]);
+
   if (loading) {
     return <Loader />; // Show the loader while loading
   }
 
   return (
     <div id="app">
+      <a className="skip-link" href="#main-content">
+        Saltar al contenido principal
+      </a>
       <header id="header">
         <MainHeader />
       </header>
 
-      <main className="app-container">
+      <main
+        id="main-content"
+        className="app-container"
+        ref={mainRef}
+        tabIndex={-1}
+        aria-label="Contenido principal"
+      >
         <Routes>
           <Route
             path="/"

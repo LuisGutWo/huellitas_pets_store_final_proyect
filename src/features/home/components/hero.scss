@@ -5,8 +5,8 @@
 .main-carousel-item {
   position: relative;
   width: 100%;
-  height: 100vh;
-  margin-top: 9rem;
+  min-height: 100vh;
+  /* Cambio de height a min-height y elimino margin-top */
   margin-bottom: 0;
   padding: 0;
   overflow: hidden;
@@ -14,6 +14,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  animation: fadeIn 0.3s ease-out both;
 
   & img {
     width: 100%;
@@ -41,6 +42,7 @@
   width: 100%;
   height: 100%;
   padding: 4rem 15rem;
+  animation: slideInUp 0.4s ease-out both;
 
 
   & img {
@@ -61,6 +63,7 @@
   width: 100%;
   height: 100%;
   padding: 4rem 15rem;
+  animation: slideInUp 0.4s ease-out both;
 
   & img {
     width: 30%;
@@ -74,6 +77,7 @@
   align-items: center;
   flex-wrap: wrap;
   font-size: 2rem;
+  animation: fadeIn 0.45s ease-out both;
 }
 
 .category-buttons-hero {
@@ -94,6 +98,8 @@
   text-transform: uppercase;
   -webkit-transition: background 0.3s linear, color 0.3s linear;
   transition: background 0.3s linear, color 0.3s linear;
+  -webkit-transition: background 0.3s linear, color 0.3s linear, transform 0.2s ease-in-out;
+  transition: background 0.3s linear, color 0.3s linear, transform 0.2s ease-in-out;
 
   &:focus,
   &:hover {
@@ -101,7 +107,28 @@
     border-color: styles.$background-color-dark;
     color: rgb(10, 10, 10);
     animation: pulse;
-    animation-duration: 1s;
+    animation-duration: 0.8s;
+    transform: translateY(-1px) scale(1.01);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .main-carousel-item,
+  .hero-container,
+  .newhero-container,
+  .text-container {
+    animation: none;
+  }
+
+  .category-buttons-hero {
+    transition: none;
+    transform: none;
+
+    &:hover,
+    &:focus {
+      animation: none;
+    }
   }
 }
 
@@ -109,7 +136,7 @@
 // /// media queries Hero section ///
 @media (width <=1024px) {
   .main-carousel-item {
-    margin-top: 10rem;
+    /* margin-top removido - app-container ya proporciona padding-top */
 
     & img {
       width: 100%;
@@ -123,7 +150,7 @@
 
 @media (width <=768px) {
   .main-carousel-item {
-    margin-top: 12%;
+    /* margin-top removido - app-container ya proporciona padding-top */
 
     & img {
       width: 100%;

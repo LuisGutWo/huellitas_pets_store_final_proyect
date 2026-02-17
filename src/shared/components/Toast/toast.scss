@@ -41,6 +41,10 @@
     position: relative;
     border-left: 4px solid transparent;
 
+    &:focus-within {
+        box-shadow: tokens.$shadow-xl, 0 0 0 2px tokens.$color-primary-200;
+    }
+
     @include tokens.respond-to-max('md') {
         min-width: auto;
         max-width: none;

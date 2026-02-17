@@ -1,0 +1,120 @@
+@use "../../styles/tokens" as tokens;
+
+.cart-swing-animation {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 10000;
+    pointer-events: none;
+
+    @media (max-width: 768px) {
+        bottom: 1rem;
+        right: 1rem;
+    }
+}
+
+.product-item-animate {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: tokens.$spacing-sm;
+    padding: tokens.$spacing-sm tokens.$spacing-md;
+    background: linear-gradient(135deg, tokens.$color-success-500, tokens.$color-success-600);
+    color: white;
+    border-radius: tokens.$radius-lg;
+    box-shadow: tokens.$shadow-card;
+    font-weight: tokens.$font-weight-semibold;
+    font-size: tokens.$font-size-base;
+    line-height: tokens.$line-height-normal;
+
+    // Swing animation for the entire container
+    animation:
+        swingIn 0.5s tokens.$ease-in-out forwards,
+        swingOut 0.3s tokens.$ease-in-out 0.5s forwards;
+
+    @media (max-width: 768px) {
+        padding: tokens.$spacing-xs tokens.$spacing-sm;
+        font-size: tokens.$font-size-sm;
+    }
+
+    .product-text {
+        max-width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        @media (max-width: 480px) {
+            max-width: 120px;
+            font-size: tokens.$font-size-sm;
+        }
+    }
+
+    .check-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        font-weight: tokens.$font-weight-bold;
+        animation: checkmarkPulse 0.6s tokens.$ease-in-out 0.2s;
+
+        @media (max-width: 768px) {
+            width: 20px;
+            height: 20px;
+            font-size: tokens.$font-size-sm;
+        }
+    }
+}
+
+// Animation for swing entry
+@keyframes swingIn {
+    0% {
+        opacity: 0;
+        transform:
+            translateY(30px) translateX(-30px) scale(0.7) rotateZ(-30deg);
+    }
+
+    60% {
+        opacity: 1;
+        transform:
+            translateY(0) translateX(0) scale(1.05) rotateZ(0deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform:
+            translateY(0) translateX(0) scale(1) rotateZ(0deg);
+    }
+}
+
+// Animation for swing exit
+@keyframes swingOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0) translateX(0) scale(1) rotateZ(0deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translateY(-50px) translateX(50px) scale(0.5) rotateZ(30deg);
+    }
+}
+
+// Checkmark pulse animation
+@keyframes checkmarkPulse {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

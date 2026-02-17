@@ -2,7 +2,6 @@
 
 /* Breadcrumbs wrapper */
 .breadcrumbs-wrapper {
-  padding-top: 1rem;
   position: relative;
   z-index: 100;
 }
@@ -15,9 +14,11 @@
   justify-content: center;
   align-items: center;
   margin-top: 0;
-  height: 100vh;
+  min-height: 100vh;
+  /* Cambio de height a min-height */
   width: 100%;
   overflow: hidden;
+  animation: fadeIn 0.3s ease-out both;
 
   & .about-img {
     width: 100vw;
@@ -26,7 +27,7 @@
     z-index: 0;
     margin-bottom: 20%;
     animation: fadeIn;
-    animation-duration: 2s;
+    animation-duration: 1.2s;
     aspect-ratio: 16/9;
   }
 
@@ -39,19 +40,20 @@
     align-items: flex-start;
     gap: auto;
     padding-bottom: 3rem;
+    animation: slideInUp 0.4s ease-out both;
 
     & h1 {
       font-weight: bold;
       font-size: 2rem;
       animation: fadeInLeft;
-      animation-duration: 2s;
+      animation-duration: 1.2s;
       color: styles.$background-color-dark;
     }
 
     & h5 {
       font-size: 1.2rem;
       animation: fadeInRight;
-      animation-duration: 3s;
+      animation-duration: 1.6s;
       color: styles.$background-color-dark;
     }
 
@@ -59,8 +61,20 @@
       width: 25%;
       margin: 2rem 0 2rem 0;
       animation: fadeIn;
-      animation-duration: 5s;
+      animation-duration: 2s;
     }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .about-container,
+  .about-container .card-overlay,
+  .about-container .about-img,
+  .about-container .card-overlay h1,
+  .about-container .card-overlay h5,
+  .about-container .card-overlay .about-image {
+    animation: none;
   }
 }
 
@@ -69,7 +83,8 @@
     margin-top: 0;
 
     .card-overlay {
-      margin-top: 30%;
+      margin-top: 0;
+      /* Eliminado: era 30% */
       padding-bottom: 0;
 
       & h1 {
@@ -97,7 +112,8 @@
     margin-top: 0;
 
     .card-overlay {
-      margin-top: 100%;
+      margin-top: 0;
+      /* Eliminado: era 100% */
       padding-bottom: 0;
 
       & h1 {

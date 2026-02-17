@@ -145,11 +145,16 @@ export default function MainHeader({ item }: MainHeaderProps) {
                 to={"/"}
                 className="header-logo animate__animated animate__fadeIn"
               >
-                <img src={LogoWhite} className="img-fluid" alt="" />
+                <img
+                  src={LogoWhite}
+                  className="img-fluid"
+                  alt="Huellitas Pet Store"
+                />
               </Link>
               {/* Toggler y Link del Navbar */}
               <Navbar.Toggle
                 aria-controls={`offcanvasNavbar-expand-${expand}`}
+                aria-label="Abrir menu"
               />
               <Navbar.Offcanvas
                 id={`offcanvasNavbar-expand-${expand}`}
@@ -179,6 +184,7 @@ export default function MainHeader({ item }: MainHeaderProps) {
                               isActive ? "active-class" : "inactive-class"
                             }
                             onClick={addButtonModalLogin}
+                            aria-label="Iniciar sesión"
                           >
                             <PermIdentityIcon
                               style={{
@@ -202,6 +208,7 @@ export default function MainHeader({ item }: MainHeaderProps) {
                             className={({ isActive }) =>
                               isActive ? "active-class" : "inactive-class"
                             }
+                            aria-label="Favoritos"
                           >
                             <FavoriteIcon style={{ fontSize: "2rem" }} />
                           </NavLink>
@@ -216,6 +223,7 @@ export default function MainHeader({ item }: MainHeaderProps) {
                               isActive ? "active-class" : "inactive-class"
                             }
                             onClick={addButtonModalCart}
+                            aria-label="Carrito"
                           >
                             <div className="header-cart">
                               <ShoppingCartIcon
@@ -242,6 +250,7 @@ export default function MainHeader({ item }: MainHeaderProps) {
                             isActive ? "active-class" : "inactive-class"
                           }
                           onClick={addButtonModalCart}
+                          aria-label={`Carrito${totalItemProducts(item) > 0 ? ` (${totalItemProducts(item)} productos)` : ''}`}
                         >
                           <div className="header-cart">
                             <ShoppingCartIcon

@@ -232,7 +232,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
       {isOpen && suggestions.length > 0 && (
         <ul
           className="search-bar__suggestions"
-          id="search-suggestions"
           role="listbox"
           aria-label="Sugerencias de búsqueda"
         >

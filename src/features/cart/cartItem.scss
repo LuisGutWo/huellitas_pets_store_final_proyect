@@ -9,9 +9,16 @@
     padding: 0rem;
     height: 10rem;
     margin-bottom: 0.1rem;
+    animation: slideInUp 0.3s ease-out both;
+    transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
     border: solid 1px rgba(49, 49, 49, 0.284);
     background-color: #fff;
+
+    &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    }
 
     .cart-product-title {
         display: flex;
@@ -77,4 +84,13 @@
     }
 
 
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cart-product-card {
+        animation: none;
+        transition: none;
+        transform: none;
+        box-shadow: none;
+    }
 }

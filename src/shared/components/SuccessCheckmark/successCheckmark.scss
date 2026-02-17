@@ -1,0 +1,193 @@
+@use "../../styles/tokens" as tokens;
+
+.success-checkmark {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: tokens.$spacing-md;
+
+    &.success-checkmark-sm {
+        .checkmark-circle {
+            width: 60px;
+            height: 60px;
+
+            .checkmark-svg {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        .success-message {
+            font-size: tokens.$font-size-sm;
+        }
+    }
+
+    &.success-checkmark-md {
+        .checkmark-circle {
+            width: 80px;
+            height: 80px;
+
+            .checkmark-svg {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        .success-message {
+            font-size: tokens.$font-size-base;
+        }
+    }
+
+    &.success-checkmark-lg {
+        .checkmark-circle {
+            width: 120px;
+            height: 120px;
+
+            .checkmark-svg {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        .success-message {
+            font-size: tokens.$font-size-lg;
+        }
+    }
+}
+
+.checkmark-circle {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkmark-svg {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+
+    .checkmark-circle-svg {
+        stroke: tokens.$color-success-500;
+        stroke-width: 2;
+        fill: none;
+        animation: circle-fill 0.6s ease-out forwards;
+    }
+
+    .checkmark-check {
+        stroke: tokens.$color-success-500;
+        stroke-width: 3;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        animation: checkmark-draw 0.8s ease-out 0.2s forwards;
+        stroke-dasharray: 48;
+        stroke-dashoffset: 48;
+    }
+}
+
+.success-message {
+    color: tokens.$color-success-500;
+    font-weight: tokens.$font-weight-semibold;
+    text-align: center;
+    margin: 0;
+    animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+// Animation variants for duration
+.success-duration-fast {
+    .checkmark-circle-svg {
+        animation-duration: 0.4s;
+    }
+
+    .checkmark-check {
+        animation-duration: 0.5s !important;
+        animation-delay: 0.1s !important;
+    }
+
+    .success-message {
+        animation-duration: 0.4s !important;
+        animation-delay: 0.2s !important;
+    }
+}
+
+.success-duration-slow {
+    .checkmark-circle-svg {
+        animation-duration: 1s;
+    }
+
+    .checkmark-check {
+        animation-duration: 1.2s !important;
+        animation-delay: 0.3s !important;
+    }
+
+    .success-message {
+        animation-duration: 0.8s !important;
+        animation-delay: 0.6s !important;
+    }
+}
+
+// Animations
+@keyframes circle-fill {
+    0% {
+        stroke-dasharray: 157;
+        stroke-dashoffset: 157;
+        opacity: 0;
+    }
+
+    50% {
+        stroke-dasharray: 157;
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        fill: rgba(102, 204, 102, 0.1);
+        stroke-dasharray: 157;
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes checkmark-draw {
+    0% {
+        stroke-dashoffset: 48;
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+    .checkmark-svg {
+
+        .checkmark-circle-svg,
+        .checkmark-check {
+            animation: none !important;
+            stroke-dashoffset: 0;
+            opacity: 1;
+        }
+    }
+
+    .success-message {
+        animation: none !important;
+        opacity: 1;
+    }
+}

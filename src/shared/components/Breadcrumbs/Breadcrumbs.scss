@@ -6,6 +6,8 @@
     padding: tokens.$spacing-md 0;
     margin-bottom: tokens.$spacing-lg;
     background-color: transparent;
+    margin-top: 0;
+    /* app-container ya proporciona padding-top */
 
     &__list {
         display: flex;

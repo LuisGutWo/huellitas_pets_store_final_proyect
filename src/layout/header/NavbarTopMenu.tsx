@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const NavbarTopMenu: React.FC = () => {
   return (
-    <section className="navbar-top-menu">
+    <nav className="navbar-top-menu" aria-label="Enlaces superiores">
       <Container fluid>
           <article className="navbar-top-menu__left">
             <NavLink
@@ -34,13 +34,25 @@ const NavbarTopMenu: React.FC = () => {
               <b>Servicios</b>
             </NavLink>
           </article>
-          <article className="navbar-top-menu__right">
-            <p>Contáctenos: huellitas.chile@gmail.com</p>
-            <p>|</p>
-            <p>Llámenos: +569 20390272</p>
-          </article>
+          <div className="navbar-top-menu__right" aria-label="Contacto">
+            <a
+              href="mailto:huellitas.chile@gmail.com"
+              aria-label="Enviar correo a Huellitas"
+            >
+              Contáctenos: huellitas.chile@gmail.com
+            </a>
+            <span className="navbar-top-menu__separator" aria-hidden="true">
+              |
+            </span>
+            <a
+              href="tel:+56920390272"
+              aria-label="Llamar a Huellitas"
+            >
+              Llámenos: +569 20390272
+            </a>
+          </div>
       </Container>
-    </section>
+    </nav>
   );
 };
 

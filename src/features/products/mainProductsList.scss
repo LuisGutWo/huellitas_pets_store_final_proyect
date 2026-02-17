@@ -2,7 +2,7 @@
 @use "../../shared/styles/tokens" as tokens;
 
 .products-list-header {
-    margin-top: 15%;
+    /* margin-top eliminado - app-container ya proporciona padding-top */
     display: flex;
     justify-content: center;
 
@@ -28,7 +28,7 @@
                 font-size: 180%;
                 color: styles.$background-color-dark;
                 animation: fadeInRight;
-                animation-duration: 4s;
+                animation-duration: 1.2s;
             }
 
             & h3 {
@@ -37,7 +37,7 @@
                 text-align: center;
                 color: styles.$background-color-dark;
                 animation: fadeInLeft;
-                animation-duration: 5s;
+                animation-duration: 1.4s;
             }
         }
 
@@ -48,7 +48,7 @@
             height: 100%;
             margin-top: 1rem;
             animation: fadeIn;
-            animation-duration: 3s;
+            animation-duration: 1s;
         }
     }
 }
@@ -61,6 +61,7 @@
     align-content: center;
     margin-bottom: 1rem;
     gap: 2%;
+    animation: fadeIn 0.3s ease-out both;
 }
 
 .products-list-container {
@@ -71,12 +72,13 @@
     width: 100%;
     padding: 2rem 0 4rem 0;
     row-gap: 2rem;
+    animation: fadeIn 0.35s ease-out both;
 
 }
 
 @media (width <=768px) {
     .products-list-header {
-        margin-top: 25%;
+        /* margin-top eliminado - app-container proporciona padding-top */
 
         .products-list-container__text {
             padding: 1rem;
@@ -119,7 +121,7 @@
 
 @media (width <=390px) {
     .products-list-header {
-        margin-top: 18%;
+        /* margin-top eliminado - app-container proporciona padding-top */
 
         .products-list-container__text {
             .main-form-products-categories {
@@ -159,6 +161,8 @@
     @include tokens.respond-to('tablet') {
         display: none; // Ocultar en tablets y móviles
     }
+
+    animation: slideInLeft 0.4s ease-out both;
 }
 
 .products-list-content {
@@ -172,6 +176,17 @@
     margin-bottom: tokens.$spacing-lg;
     padding-bottom: tokens.$spacing-md;
     border-bottom: 1px solid tokens.$color-neutral-200;
+    animation: fadeIn 0.3s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .products-list-buttons,
+    .products-list-container,
+    .desktop-filter-panel,
+    .products-list-results {
+        animation: none;
+    }
 }
 
 .products-list-count {

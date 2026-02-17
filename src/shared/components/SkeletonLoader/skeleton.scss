@@ -182,6 +182,20 @@
 }
 
 // ============================================
+// Panel Skeleton (filters/sidebars)
+// ============================================
+
+.skeleton-panel {
+    display: flex;
+    flex-direction: column;
+    gap: tokens.$spacing-3;
+    padding: tokens.$spacing-4;
+    background: tokens.$color-bg-primary;
+    border-radius: tokens.$radius-lg;
+    box-shadow: tokens.$shadow-sm;
+}
+
+// ============================================
 // Animations
 // ============================================
 

@@ -65,6 +65,11 @@
         &:active {
             transform: scale(0.98);
         }
+
+        &:focus-visible {
+            outline: 2px solid tokens.$color-primary-400;
+            outline-offset: 2px;
+        }
     }
 
     &__section {
@@ -91,6 +96,12 @@
 
         &:hover {
             color: tokens.$color-primary-600;
+        }
+
+        &:focus-visible {
+            outline: 2px solid tokens.$color-primary-300;
+            outline-offset: 2px;
+            border-radius: tokens.$radius-sm;
         }
 
         svg {
@@ -123,6 +134,11 @@
             position: absolute;
             opacity: 0;
             cursor: pointer;
+
+            &:focus-visible~.filter-panel__checkbox-checkmark {
+                outline: 2px solid tokens.$color-primary-400;
+                outline-offset: 2px;
+            }
 
             &:checked~.filter-panel__checkbox-checkmark {
                 background: tokens.$color-primary-600;
@@ -200,6 +216,11 @@
                 border-color: tokens.$color-primary-500;
                 box-shadow: 0 0 0 3px rgba(tokens.$color-primary-500, 0.1);
             }
+
+            &:focus-visible {
+                outline: 2px solid tokens.$color-primary-400;
+                outline-offset: 2px;
+            }
         }
     }
 
@@ -272,6 +293,11 @@
                 transform: scale(1.1);
             }
         }
+
+        &:focus-visible {
+            outline: 2px solid tokens.$color-primary-300;
+            outline-offset: 2px;
+        }
     }
 
     &__price-display {
@@ -309,6 +335,11 @@
             box-shadow: 0 0 0 3px rgba(tokens.$color-warning-500, 0.1);
         }
 
+        &:focus-visible {
+            outline: 2px solid tokens.$color-primary-300;
+            outline-offset: 2px;
+        }
+
         span {
             font-size: tokens.$font-size-sm;
             color: tokens.$color-neutral-700;
@@ -339,6 +370,10 @@
                 &::before {
                     transform: translateX(20px);
                 }
+            }
+
+            &:focus-visible+.filter-panel__switch-slider {
+                box-shadow: 0 0 0 3px rgba(tokens.$color-primary-500, 0.2);
             }
         }
 

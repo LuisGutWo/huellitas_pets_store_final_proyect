@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { useUserContext } from "../../context/UserContext";
 import Loading from "../../shared/components/Loading";
+import SuccessCheckmark from "../../shared/components/SuccessCheckmark";
 
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -30,6 +31,7 @@ interface LoginFormValues {
 
 const LoginUserPage: React.FC = () => {
   const [showPsw, setShowPsw] = useState<boolean>(false);
+  const [showSuccess, setShowSuccess] = useState<boolean>(false);
 
   const navigate = useNavigate();
   const { user } = useUserContext();
@@ -45,9 +47,11 @@ const LoginUserPage: React.FC = () => {
     { setSubmitting, setErrors, resetForm }: any
   ) => {
     try {
+      setShowSuccess(false);
       const credentialUser = await login({ email, password });
       if (credentialUser) {
         resetForm();
+        setShowSuccess(true);
       }
     } catch (error) {
       console.log(error);
@@ -69,6 +73,12 @@ const LoginUserPage: React.FC = () => {
       .min(6, "Mínimo 6 caracteres")
       .required("Contraseña requerida"),
   });
+
+  useEffect(() => {
+    if (!showSuccess) return undefined;
+    const timeoutId = setTimeout(() => setShowSuccess(false), 3000);
+    return () => clearTimeout(timeoutId);
+  }, [showSuccess]);
 
   if (user) return <Loading />;
 
@@ -156,6 +166,11 @@ const LoginUserPage: React.FC = () => {
                 >
                   Acceder
                 </LoadingButton>
+                {showSuccess && (
+                  <div className="mt-3 d-flex justify-content-center">
+                    <SuccessCheckmark message="Login exitoso" size="sm" />
+                  </div>
+                )}
                 <Grid container>
                   <Grid item xs>
                     <Button component={Link} to="/create" color="warning">

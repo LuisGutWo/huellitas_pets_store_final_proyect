@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 import type { Product } from "../../services/productsApi";
@@ -17,30 +17,35 @@ interface HeaderFormProps {
 }
 
 const HeaderForm: React.FC<HeaderFormProps> = ({ products }) => {
-  const [show, setShow] = useState<boolean>(false);
   const [selectProduct, setSelectProduct] = useState<string>("");
-  const [error, setError] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
+  const [touched, setTouched] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
   const handleProductsChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectProduct(e.target.value);
-    if (e.target.value) setError(false);
+    if (e.target.value) setError("");
+  };
+
+  const handleBlur = () => {
+    setTouched(true);
+    if (!selectProduct) {
+      setError("Selecciona un producto");
+    }
   };
 
   const handleProductsClick = () => {
     if (selectProduct) {
       navigate(`/products/${selectProduct}`);
     } else {
-      setError(true);
+      setTouched(true);
+      setError("Selecciona un producto");
     }
   };
 
   function addButtonModalSearch() {
     handleProductsClick();
-    handleShow(!show);
   }
   return (
     <Form className="navbar-form">
@@ -51,10 +56,12 @@ const HeaderForm: React.FC<HeaderFormProps> = ({ products }) => {
         size="sm"
         className="navbar-select"
         onChange={handleProductsChange}
+        onBlur={handleBlur}
         id="product-search"
         value={selectProduct}
         aria-label="Buscar productos"
         title="Buscar productos"
+        isInvalid={Boolean(touched && error)}
       >
         <option value="">Buscar productos...</option>
         {products.map((product) => (
@@ -70,13 +77,10 @@ const HeaderForm: React.FC<HeaderFormProps> = ({ products }) => {
       >
         <SearchIcon style={{ width: "17px" }} />
       </Button>
-      {!error ? (
-        ""
-      ) : (
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton></Modal.Header>
-          <Modal.Body>Selecciona un producto 😉</Modal.Body>
-        </Modal>
+      {touched && error && (
+        <Form.Control.Feedback type="invalid" className="navbar-feedback">
+          {error}
+        </Form.Control.Feedback>
       )}
     </Form>
   );

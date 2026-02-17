@@ -7,8 +7,9 @@ import { useProductsContext } from "../../context/ProductsContext";
 import type { Product } from "../../services/productsApi";
 
 import { formatPrice } from "../../shared/utils/formatPrice";
-import Loading from "../../shared/components/Loading";
 import Breadcrumbs, { BreadcrumbItem } from "../../shared/components/Breadcrumbs";
+import CartSwingAnimation from "../../shared/components/CartSwingAnimation";
+import { Skeleton } from "../../shared/components/SkeletonLoader";
 
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -24,6 +25,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ item, selectFavorites }) 
   const [loading, setLoading] = useState<boolean>(true);
   const [show, setShow] = useState<boolean>(false);
   const target = useRef<HTMLButtonElement>(null);
+  const cartAnimRef = useRef<{ triggerAnimation: (name?: string) => void } | null>(null);
   const [showFavorite, setShowFavorite] = useState<boolean>(false);
 
   const handleClose = () => setShow(false);
@@ -54,7 +56,9 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ item, selectFavorites }) 
   }, [params]);
 
   function addButtonShoppingCart() {
+    if (!product) return;
     addProduct(product);
+    cartAnimRef.current?.triggerAnimation(product.name);
     handleShow(!show);
   }
   const setNewRating = (rating) =>
@@ -62,7 +66,30 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ item, selectFavorites }) 
     this.props.dispatch(fooActions.setRating(rating));
 
   // eslint-disable-next-line react/react-in-jsx-scope
-  if (loading) return <Loading />;
+  if (loading) {
+    return (
+      <Container className="detail-container">
+        <Card className="detail-card" aria-busy="true" aria-label="Cargando producto">
+          <div className="card-favorite-icon">
+            <Skeleton variant="circle" width="40px" height="40px" />
+          </div>
+          <div className="card-image img-fluid">
+            <Skeleton variant="rectangular" width="100%" height="100%" />
+          </div>
+          <Card.Body className="card-body-detail">
+            <Skeleton variant="text" width="60%" height="26px" />
+            <Skeleton variant="text" width="90%" height="18px" />
+            <Skeleton variant="text" width="80%" height="18px" />
+            <div className="card-price-button">
+              <Skeleton variant="text" width="40%" height="22px" />
+              <Skeleton variant="rectangular" width="120px" height="36px" />
+            </div>
+            <Skeleton variant="rectangular" width="100%" height="44px" />
+          </Card.Body>
+        </Card>
+      </Container>
+    );
+  }
 
   // Generar breadcrumbs dinámicos con información del producto
   const breadcrumbItems: BreadcrumbItem[] = [
@@ -155,6 +182,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ item, selectFavorites }) 
           ) : null}
         </Card.Body>
       </Card>
+      <CartSwingAnimation ref={cartAnimRef} />
     </Container>
   );
 };

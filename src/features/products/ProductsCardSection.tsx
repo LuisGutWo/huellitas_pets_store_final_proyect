@@ -4,7 +4,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 import MainProductCard from "./components/MainProductCard";
-import Loading from "../../shared/components/Loading";
+import { ProductListSkeleton, Skeleton } from "../../shared/components/SkeletonLoader";
 import type { Product } from "../../services/productsApi";
 
 import AOS from "aos";
@@ -74,7 +74,29 @@ const ProductsCardSection: React.FC = () => {
     },
   };
 
-  if (loading) return <Loading />;
+  if (loading) {
+    return (
+      <main>
+        <Container>
+          <section className="products-header">
+            <div className="products-text-container">
+              <Skeleton variant="text" width="60%" height="28px" />
+              <Skeleton variant="text" width="80%" height="20px" />
+            </div>
+            <Skeleton variant="rectangular" width="100%" height="40px" />
+          </section>
+          <section className="products-navbar">
+            <Navbar className="products-buttons-section">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <Skeleton key={i} variant="rectangular" width="90px" height="36px" />
+              ))}
+            </Navbar>
+          </section>
+          <ProductListSkeleton count={8} />
+        </Container>
+      </main>
+    );
+  }
   if (error) return <div>Error: {error.message}</div>;
 
   return (
@@ -141,11 +163,8 @@ const ProductsCardSection: React.FC = () => {
           </Navbar>
         </section>
         {/* Carousel de productos */}
-        {loading ? (
-          <Loading />
-        ) : (
-          <Container>
-            <Carousel
+        <Container>
+          <Carousel
               responsive={responsive}
               additionalTransfrom={0}
               arrows={true}
@@ -173,13 +192,12 @@ const ProductsCardSection: React.FC = () => {
               sliderClass=""
               slidesToSlide
               swipeable={true}
-            >
-              {filteredData().map((item) => (
-                <MainProductCard key={item.id} item={item} />
-              ))}
-            </Carousel>
-          </Container>
-        )}
+          >
+            {filteredData().map((item) => (
+              <MainProductCard key={item.id} item={item} />
+            ))}
+          </Carousel>
+        </Container>
       </Container>
     </main>
   );

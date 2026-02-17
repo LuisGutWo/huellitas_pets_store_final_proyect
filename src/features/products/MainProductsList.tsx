@@ -6,7 +6,7 @@ import FilterPanel, { FilterState } from "./components/FilterPanel";
 import ActiveFilterChips from "./components/ActiveFilterChips";
 import MobileFilterDrawer from "./components/MobileFilterDrawer";
 import SearchBar from "./components/SearchBar";
-import Loading from "../../shared/components/Loading";
+import { ProductListSkeleton, Skeleton } from "../../shared/components/SkeletonLoader";
 import BackToTopButton from "../../shared/components/BackToTopButton";
 import Breadcrumbs from "../../shared/components/Breadcrumbs";
 import type { Product } from "../../services/productsApi";
@@ -143,7 +143,41 @@ const MainProductsList: React.FC = () => {
     setFilters((prev) => ({ ...prev, hasDiscount: false }));
   };
 
-  if (loading) return <Loading />;
+  if (loading) {
+    return (
+      <div className="container">
+        <Breadcrumbs />
+        <section className="products-list-header">
+          <div className="products-list-container__text">
+            <div className="products-list__text">
+              <Skeleton variant="text" width="60%" height="28px" />
+              <Skeleton variant="text" width="80%" height="20px" />
+            </div>
+            <Skeleton variant="rectangular" width="100%" height="48px" />
+          </div>
+        </section>
+
+        <div className="products-with-filters">
+          <div className="desktop-filter-panel">
+            <div className="skeleton-panel">
+              <Skeleton variant="text" width="70%" height="18px" />
+              <Skeleton variant="text" width="90%" height="16px" />
+              <Skeleton variant="text" width="85%" height="16px" />
+              <Skeleton variant="text" width="60%" height="16px" />
+              <Skeleton variant="rectangular" width="100%" height="36px" />
+            </div>
+          </div>
+
+          <div className="products-list-content">
+            <div className="products-list-results">
+              <Skeleton variant="text" width="40%" height="16px" />
+            </div>
+            <ProductListSkeleton count={9} />
+          </div>
+        </div>
+      </div>
+    );
+  }
   if (error) return <div>Error: {String(error)}</div>;
 
   const products = filteredData();

@@ -1,0 +1,493 @@
+@use "./tokens" as tokens;
+
+// ============================================
+// MICRO-INTERACTIONS & ANIMATIONS
+// ============================================
+
+// ============================================
+// Global Animation Keyframes
+// ============================================
+
+// Fade animations
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+// Slide animations
+@keyframes slideInDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+// Scale animations
+@keyframes scaleIn {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleOut {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+}
+
+// Bounce animations
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+    70% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+// Shake animation
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translateX(-5px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(5px);
+    }
+}
+
+// Pulse animation
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+// Heartbeat animation
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.15);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+}
+
+// Swing animation (for cart add)
+@keyframes swing {
+    20% {
+        transform: rotate(15deg);
+    }
+
+    40% {
+        transform: rotate(-10deg);
+    }
+
+    60% {
+        transform: rotate(5deg);
+    }
+
+    80% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+// Spin animation
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+// Checkmark animation
+@keyframes checkmark {
+    0% {
+        stroke-dashoffset: 50;
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}
+
+// Float animation (subtle up and down)
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+// Glow animation
+@keyframes glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px rgba(102, 89, 49, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(102, 89, 49, 0.8);
+    }
+}
+
+// ============================================
+// Button Interactions
+// ============================================
+
+.btn,
+button,
+input[type="submit"],
+input[type="button"],
+.category-buttons,
+.category-buttons-hero {
+    position: relative;
+    transition: all tokens.$duration-fast tokens.$ease-in-out;
+    overflow: hidden;
+
+    // Ripple effect on click
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+    }
+
+    // Hover state
+    &:where(:hover:not(:disabled)):not(.disabled) {
+        transform: translateY(-2px);
+        box-shadow: tokens.$shadow-card-hover;
+
+        &::before {
+            animation: ripple-effect 0.6s ease-out;
+        }
+    }
+
+    // Active state
+    &:where(:active:not(:disabled)):not(.disabled) {
+        transform: translateY(0px);
+    }
+
+    &:focus-visible {
+        outline: 2px solid tokens.$color-primary-300;
+        outline-offset: 2px;
+    }
+
+    // Disabled state
+    &:disabled,
+    &.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none !important;
+
+        &:hover {
+            box-shadow: none;
+        }
+    }
+
+    // Loading state
+    &.loading {
+        pointer-events: none;
+        opacity: 0.8;
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            top: 50%;
+            left: 50%;
+            margin-left: -8px;
+            margin-top: -8px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: rgba(255, 255, 255, 1);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+    }
+}
+
+@keyframes ripple-effect {
+    to {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
+}
+
+// ============================================
+// Input Interactions
+// ============================================
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea,
+select {
+    transition: all tokens.$duration-fast tokens.$ease-in-out;
+
+    &:focus {
+        transform: scale(1.01);
+        box-shadow: 0 0 0 3px rgba(102, 89, 49, 0.1);
+    }
+
+    // Error state
+    &.error,
+    &.is-invalid {
+        border-color: tokens.$color-error-500;
+        animation: shake 0.4s ease-in-out;
+
+        &:focus {
+            box-shadow: 0 0 0 3px rgba(tokens.$color-error-500, 0.1);
+        }
+    }
+
+    // Success state
+    &.success,
+    &.is-valid {
+        border-color: tokens.$color-success-500;
+
+        &:focus {
+            box-shadow: 0 0 0 3px rgba(tokens.$color-success-500, 0.1);
+        }
+    }
+}
+
+// ============================================
+// Card Interactions
+// ============================================
+
+.card {
+    transition: all tokens.$duration-fast tokens.$ease-in-out;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: tokens.$shadow-card-hover;
+    }
+}
+
+// ============================================
+// Link Interactions
+// ============================================
+
+a,
+[role="link"] {
+    transition: all tokens.$duration-fast tokens.$ease-in-out;
+
+    &:hover:not(.no-hover) {
+        color: tokens.$color-primary-600;
+    }
+
+    &:focus-visible {
+        outline: 2px solid tokens.$color-primary-400;
+        outline-offset: 2px;
+        border-radius: 2px;
+    }
+}
+
+// ============================================
+// Page Transitions
+// ============================================
+
+.page-enter {
+    animation: slideInUp tokens.$duration-slow tokens.$ease-in-out;
+}
+
+.page-exit {
+    animation: slideInUp tokens.$duration-slow tokens.$ease-in-out reverse;
+}
+
+// ============================================
+// Utility Classes
+// ============================================
+
+.animate-fade-in {
+    animation: fadeIn tokens.$duration-slow tokens.$ease-in-out;
+}
+
+.animate-fade-out {
+    animation: fadeOut tokens.$duration-slow tokens.$ease-in-out;
+}
+
+.animate-scale-in {
+    animation: scaleIn tokens.$duration-fast tokens.$ease-in-out;
+}
+
+.animate-slide-in-up {
+    animation: slideInUp tokens.$duration-slow tokens.$ease-in-out;
+}
+
+.animate-slide-in-down {
+    animation: slideInDown tokens.$duration-slow tokens.$ease-in-out;
+}
+
+.animate-slide-in-left {
+    animation: slideInLeft tokens.$duration-slow tokens.$ease-in-out;
+}
+
+.animate-slide-in-right {
+    animation: slideInRight tokens.$duration-slow tokens.$ease-in-out;
+}
+
+.animate-bounce {
+    animation: bounce 1s ease-in-out infinite;
+}
+
+.animate-pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+.animate-glow {
+    animation: glow 2s ease-in-out infinite;
+}
