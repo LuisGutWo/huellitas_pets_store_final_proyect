@@ -4,7 +4,7 @@ import "animate.css";
 const NavbarButtons: React.FC = () => {
   return (
     <>
-      <nav className="navbar-buttons" aria-label="Navegacion principal">
+      <nav className="navbar-buttons" aria-label="Navegación principal">
         <NavLink
           to="/"
           key="home"

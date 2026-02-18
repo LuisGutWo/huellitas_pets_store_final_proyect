@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import Form from "react-bootstrap/Form";
+import L from "leaflet";
 import { sendContactEmail } from "../../services/emailjs";
 import { TextareaAutosize } from "@mui/material";
 import blackLogo from "../../assets/img/huellitas-logo-black-500x500.png";
@@ -189,9 +190,9 @@ const Contact: React.FC = () => {
             <br />
             <span>agutierrezwong@gmail.com</span>
           </div>
-          <MapContainer center={[-33.43659, -70.68413]} zoom={16}>
+          <MapContainer center={L.latLng(-33.43659, -70.68413)} zoom={16}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            <Marker position={[-33.43659, -70.68413]}>
+            <Marker position={L.latLng(-33.43659, -70.68413)}>
               <Popup>Huellitas Pets Store</Popup>
             </Marker>
           </MapContainer>

@@ -6,7 +6,10 @@ import { useProductsContext } from "../../context/ProductsContext";
 import CartItem from "../cart/CartItem";
 import { formatPrice } from "../../shared/utils/formatPrice";
 import Breadcrumbs from "../../shared/components/Breadcrumbs";
-import { CartItemSkeleton, Skeleton } from "../../shared/components/SkeletonLoader";
+import {
+  CartItemSkeleton,
+  Skeleton,
+} from "../../shared/components/SkeletonLoader";
 import { FakeLoading } from "../../shared/components/FakeLoading";
 
 const Cart: React.FC = () => {
@@ -56,7 +59,11 @@ const Cart: React.FC = () => {
                 >
                   {isHydrating ? (
                     <>
-                      <Skeleton variant="rectangular" width="160px" height="36px" />
+                      <Skeleton
+                        variant="rectangular"
+                        width="160px"
+                        height="36px"
+                      />
                       <Skeleton variant="text" width="40%" height="18px" />
                     </>
                   ) : (
@@ -84,11 +91,7 @@ const Cart: React.FC = () => {
                           </li>
                         </ul>
                       ) : (
-                        <Button
-                          variant="outline-danger"
-                          size="md"
-                          onClick={onCleanCart}
-                        >
+                        <Button onClick={onCleanCart} variant="outline-danger">
                           Vaciar carrito
                         </Button>
                       )}
@@ -132,7 +135,11 @@ const Cart: React.FC = () => {
                     <Skeleton variant="text" width="80%" height="18px" />
                     <Skeleton variant="text" width="60%" height="18px" />
                     <Skeleton variant="text" width="90%" height="18px" />
-                    <Skeleton variant="rectangular" width="100%" height="40px" />
+                    <Skeleton
+                      variant="rectangular"
+                      width="100%"
+                      height="40px"
+                    />
                   </div>
                 ) : (
                   <>
@@ -158,10 +165,7 @@ const Cart: React.FC = () => {
                       </li>
                     </ul>
                     <NavLink to={"/products"}>
-                      <Button
-                        type="button"
-                        className="category-buttons"
-                      >
+                      <Button type="button" className="category-buttons">
                         Ir a Pagar
                       </Button>
                     </NavLink>

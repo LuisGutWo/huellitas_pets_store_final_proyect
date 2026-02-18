@@ -4,7 +4,7 @@ import ErrorIcon from '@mui/icons-material/Error';
 import WarningIcon from '@mui/icons-material/Warning';
 import InfoIcon from '@mui/icons-material/Info';
 import CloseIcon from '@mui/icons-material/Close';
-import type { Toast as ToastType } from '../../context/ToastContext.types';
+import type { Toast as ToastType } from '../../../context/ToastContext.types';
 
 interface ToastProps {
   toast: ToastType;

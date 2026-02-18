@@ -19,6 +19,14 @@
       {
         "select-name": "off"
       }
-    ]
-  }
+    ],
+    "typescript-config/consistent-casing": "off"
+  },
+  "browserslist": [
+    "defaults",
+    "not ie 11",
+    "not and_ff <= 139",
+    "not firefox <= 139",
+    "not opera <= 117"
+  ]
 }

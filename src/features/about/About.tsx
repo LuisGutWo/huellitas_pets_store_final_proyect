@@ -20,20 +20,19 @@ const About: React.FC = () => {
           />
         </figure>
         <article className="card-overlay container">
-          <div className="">
-            <h1>
-              En Huellitas lo mas
-              <br /> importante son tus
-              <br /> mascotas
+            <div className="about-content">
+            <h1 className="about-title">
+              Tu tienda de confianza
+              <br /> para el bienestar de
+              <br /> tus mascotas
             </h1>
-            <h5 className="text-dark">
-              Por mas de 14 años
-              <br /> nos preocupamos cada <br /> dia en ser tu mejor aliado y
-              amigo. <br />
-              En brindarte todo lo que necesitas <br /> para tu mascota <br />{" "}
-              Nuestros clientes nos avalan... <br />
-            </h5>
-          </div>
+            <p className="about-subtitle">
+              Desde hace más de 14 años, somos tu aliado en el cuidado y felicidad de tus compañeros peludos. 
+              <br /> Contamos con productos premium y asesoría personalizada 
+              <br /> para que tu mascota reciba lo mejor.
+              <br /> Miles de clientes satisfechos confían en nosotros.
+            </p>
+            </div>
           <NavLink to={"/products"} className="category-buttons-hero mt-4">
             Volver a la tienda
           </NavLink>

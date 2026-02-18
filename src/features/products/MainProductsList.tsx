@@ -6,7 +6,10 @@ import FilterPanel, { FilterState } from "./components/FilterPanel";
 import ActiveFilterChips from "./components/ActiveFilterChips";
 import MobileFilterDrawer from "./components/MobileFilterDrawer";
 import SearchBar from "./components/SearchBar";
-import { ProductListSkeleton, Skeleton } from "../../shared/components/SkeletonLoader";
+import {
+  ProductListSkeleton,
+  Skeleton,
+} from "../../shared/components/SkeletonLoader";
 import BackToTopButton from "../../shared/components/BackToTopButton";
 import Breadcrumbs from "../../shared/components/Breadcrumbs";
 import type { Product } from "../../services/productsApi";
@@ -18,7 +21,7 @@ const MainProductsList: React.FC = () => {
   const [types, setTypes] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
-  
+
   // Estado de filtros avanzados
   const [filters, setFilters] = useState<FilterState>({
     categories: [],
@@ -36,10 +39,15 @@ const MainProductsList: React.FC = () => {
       const data = await res.json();
 
       setData(data);
-      setCategories(["all", ...new Set(data.map((item: Product) => (item as any).category))]);
-      setTypes([...new Set(data.map((item: Product) => (item as any).type))]);
+      setCategories([
+        "all",
+        ...new Set<string>(data.map((item: Product) => (item as any).category)),
+      ]);
+      setTypes([
+        ...new Set<string>(data.map((item: Product) => (item as any).type)),
+      ]);
     } catch (error) {
-      setError(error);
+      setError(true);
       console.error("Error fetching data:", error);
     } finally {
       setLoading(false);
@@ -63,8 +71,8 @@ const MainProductsList: React.FC = () => {
 
       // Filtro de categorías
       if (filters.categories.length > 0) {
-        const itemCategory = (item as any).category || '';
-        const itemType = (item as any).type || '';
+        const itemCategory = (item as any).category || "";
+        const itemType = (item as any).type || "";
         const hasMatch = filters.categories.some(
           (cat) => cat === itemCategory || cat === itemType
         );
@@ -73,7 +81,10 @@ const MainProductsList: React.FC = () => {
 
       // Filtro de precio
       const itemPrice = (item as any).price || 0;
-      if (itemPrice < filters.priceRange[0] || itemPrice > filters.priceRange[1]) {
+      if (
+        itemPrice < filters.priceRange[0] ||
+        itemPrice > filters.priceRange[1]
+      ) {
         return false;
       }
 
@@ -181,7 +192,7 @@ const MainProductsList: React.FC = () => {
   if (error) return <div>Error: {String(error)}</div>;
 
   const products = filteredData();
-  const activeFiltersCount = 
+  const activeFiltersCount =
     filters.categories.length +
     (filters.rating > 0 ? 1 : 0) +
     (filters.inStock ? 1 : 0) +
@@ -234,7 +245,10 @@ const MainProductsList: React.FC = () => {
         <div className="products-list-content">
           <div className="products-list-results">
             <p className="products-list-count">
-              {products.length} {products.length === 1 ? 'producto encontrado' : 'productos encontrados'}
+              {products.length}{" "}
+              {products.length === 1
+                ? "producto encontrado"
+                : "productos encontrados"}
             </p>
           </div>
 

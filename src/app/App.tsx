@@ -83,7 +83,7 @@ function App() {
         Saltar al contenido principal
       </a>
       <header id="header">
-        <MainHeader />
+        <MainHeader item={{}} />
       </header>
 
       <main

@@ -49,9 +49,10 @@ const Register: React.FC = () => {
       resetForm();
       setShowSuccess(true);
     } catch (error) {
-      console.log(error.code);
-      console.log(error.message);
-      if (error.code === "auth/email-already-in-use") {
+      const firebaseError = error as any;
+      console.log(firebaseError.code);
+      console.log(firebaseError.message);
+      if (firebaseError.code === "auth/email-already-in-use") {
         setErrors({ email: "Correo actualmente en uso" });
       }
     } finally {
@@ -113,7 +114,7 @@ const Register: React.FC = () => {
                   onChange={handleChange}
                   name="email"
                   onBlur={handleBlur}
-                  error={errors.email && touched.email}
+                  error={!!(errors.email && touched.email)}
                   helperText={errors.email && touched.email && errors.email}
                 />
                 <div className="d-flex align-items-center justify-content-end">
@@ -131,7 +132,7 @@ const Register: React.FC = () => {
                     onChange={handleChange}
                     name="password"
                     onBlur={handleBlur}
-                    error={errors.password && touched.password}
+                    error={!!(errors.password && touched.password)}
                     helperText={
                       errors.password && touched.password && errors.password
                     }
@@ -162,13 +163,11 @@ const Register: React.FC = () => {
                     <SuccessCheckmark message="Registro exitoso" size="sm" />
                   </div>
                 )}
-                <Grid container>
-                  <Grid item xs>
-                    <Button component={Link} to="/loginPage" color="inherit">
-                      ¿Estas con nosotros? Accede aquí
-                    </Button>
-                  </Grid>
-                </Grid>
+                <Box sx={{ display: "flex", justifyContent: "flex-start" }}>
+                  <Button component={Link} to="/loginPage" color="inherit">
+                    ¿Estas con nosotros? Accede aquí
+                  </Button>
+                </Box>
               </Box>
             )}
           </Formik>

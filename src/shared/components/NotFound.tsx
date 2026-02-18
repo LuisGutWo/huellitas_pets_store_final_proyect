@@ -17,7 +17,11 @@ const NotFound: React.FC = () => {
 
                   <p>Esta pagina no esta Disponible!</p>
 
-                  <NavLink to={"/"} href="" className="link-404">
+                  <NavLink
+                    to={"/"}
+                    className="link-404"
+                    aria-label="Volver al Home"
+                  >
                     Volver al Home
                   </NavLink>
                 </div>

@@ -55,10 +55,11 @@ const LoginUserPage: React.FC = () => {
       }
     } catch (error) {
       console.log(error);
-      if (error.code === "auth/user-not-found") {
+      const firebaseError = error as { code: string };
+      if (firebaseError.code === "auth/user-not-found") {
         setErrors({ email: "Email no registrado" });
       }
-      if (error.code === "auth/wrong-password") {
+      if (firebaseError.code === "auth/wrong-password") {
         setErrors({ password: "Contraseña incorrecta" });
       }
     } finally {
@@ -122,7 +123,7 @@ const LoginUserPage: React.FC = () => {
                   onChange={handleChange}
                   name="email"
                   onBlur={handleBlur}
-                  error={errors.email && touched.email}
+                  error={!!(errors.email && touched.email)}
                   helperText={errors.email && touched.email && errors.email}
                 />
                 <div className="d-flex align-items-center justify-content-end">
@@ -140,7 +141,7 @@ const LoginUserPage: React.FC = () => {
                     onChange={handleChange}
                     name="password"
                     onBlur={handleBlur}
-                    error={errors.password && touched.password}
+                    error={!!(errors.password && touched.password)}
                     helperText={
                       errors.password && touched.password && errors.password
                     }
@@ -171,13 +172,11 @@ const LoginUserPage: React.FC = () => {
                     <SuccessCheckmark message="Login exitoso" size="sm" />
                   </div>
                 )}
-                <Grid container>
-                  <Grid item xs>
-                    <Button component={Link} to="/create" color="warning">
-                      Hola, Registrate con nosotros
-                    </Button>
-                  </Grid>
-                </Grid>
+                <Box sx={{ mt: 2, textAlign: "center" }}>
+                  <Button component={Link} to="/create" color="warning">
+                    Hola, Registrate con nosotros
+                  </Button>
+                </Box>
               </Box>
             )}
           </Formik>

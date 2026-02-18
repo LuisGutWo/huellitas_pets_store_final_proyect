@@ -16,8 +16,8 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
   return (
     <main className="cart-product-card">
       <article className="cart-product-title">
-        <img src={item.img} alt="Product" />
-        <h3>{item.name}</h3>
+        <img src={item.img as string} alt="Product" />
+        <h3>{item.name as string}</h3>
       </article>
       <section className="cart-product-body">
         <section className="cart-product-buttons">
@@ -39,7 +39,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
         </section>
         <small className="text-muted fs-5">${formatPrice(item.price)}</small>
         <Button
-          size="small"
+          size="sm"
           onClick={() => removeProductCart(item)}
           variant="contained"
           className="cart-delete-button"

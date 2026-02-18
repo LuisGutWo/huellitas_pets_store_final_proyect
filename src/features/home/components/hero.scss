@@ -1,203 +1,390 @@
-@use "../../../shared/styles/styles.scss";
+@use "../../../shared/styles/styles.scss" as styles;
+@use "../../../shared/styles/tokens" as tokens;
 
+// ============================================
+// Hero Section Container
+// ============================================
 
-/* Hero Section Styles */
-.main-carousel-item {
+.hero-section {
   position: relative;
   width: 100%;
-  min-height: 100vh;
-  /* Cambio de height a min-height y elimino margin-top */
-  margin-bottom: 0;
-  padding: 0;
+  // Height: full viewport since app-container has padding-top to account for navbar
+  height: 100vh;
+  min-height: 500px;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  animation: fadeIn 0.3s ease-out both;
+  background: styles.$background-color-dark;
+}
 
-  & img {
+// ============================================
+// Hero Swiper
+// ============================================
+
+.hero-swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-swiper .swiper-slide {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// ============================================
+// Hero Slide
+// ============================================
+
+.hero-slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  &__image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: 0;
-    margin-bottom: -1rem;
-    animation: fadeIn;
-    animation-duration: 2s;
-    aspect-ratio: 16/9;
+    object-position: center;
+    z-index: 1;
   }
-}
 
+  // Gradient overlay for text readability
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg,
+        rgba(0, 0, 0, 0.3) 0%,
+        rgba(0, 0, 0, 0.15) 50%,
+        rgba(0, 0, 0, 0.3) 100%);
+    z-index: 2;
+  }
 
+  // Content wrapper
+  &__content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 3rem 5rem;
+    max-width: 1200px;
+    margin: 0 auto;
 
-.hero-container {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 3rem;
+    &--right {
+      align-items: flex-end;
+      text-align: right;
+    }
 
-  width: 100%;
-  height: 100%;
-  padding: 4rem 15rem;
-  animation: slideInUp 0.4s ease-out both;
+    &--left {
+      align-items: flex-start;
+      text-align: left;
+    }
+  }
 
-
-  & img {
-    width: 30%;
+  // Logo
+  &__logo {
+    width: 120px;
     height: auto;
+    margin-bottom: 2rem;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+  }
+
+  // Title
+  &__title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 2.5rem 0;
+    max-width: 600px;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    letter-spacing: -0.5px;
+
+    &--light {
+      color: styles.$white;
+    }
+
+    &--dark {
+      color: styles.$background-color-dark;
+    }
+  }
+
+  // CTA Button
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg,
+        styles.$purple-light 0%,
+        darken(styles.$purple-light, 5%) 100%);
+    color: styles.$background-color-dark;
+    border: 2px solid styles.$background-color-dark;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all tokens.$duration-normal tokens.$ease-in-out;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+      background: linear-gradient(135deg,
+          lighten(styles.$purple-light, 5%) 0%,
+          styles.$purple-light 100%);
+    }
+
+    &:focus-visible {
+      outline: 3px solid styles.$white;
+      outline-offset: 4px;
+    }
+
+    &:active {
+      transform: translateY(-1px);
+    }
+
+    span {
+      display: inline-block;
+    }
+  }
+
+  &__cta-icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    transition: transform tokens.$duration-fast tokens.$ease-in-out;
+  }
+
+  &__cta:hover &__cta-icon {
+    transform: translateX(4px);
   }
 }
 
-.newhero-container {
+// ============================================
+// Pagination Style
+// ============================================
+
+.hero-pagination {
   position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
   display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+  gap: 0.75rem;
+  align-items: center;
   justify-content: center;
-  align-items: flex-end;
-  gap: 3rem;
 
-  width: 100%;
-  height: 100%;
-  padding: 4rem 15rem;
-  animation: slideInUp 0.4s ease-out both;
+  .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(styles.$white, 0.6);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all tokens.$duration-fast tokens.$ease-in-out;
+    border: 2px solid transparent;
 
-  & img {
-    width: 30%;
-    height: auto;
+    &:hover {
+      background-color: rgba(styles.$white, 0.9);
+      transform: scale(1.15);
+    }
+
+    &.swiper-pagination-bullet-active {
+      background-color: styles.$white;
+      width: 32px;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
   }
 }
 
-.text-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  font-size: 2rem;
-  animation: fadeIn 0.45s ease-out both;
-}
+// ============================================
+// Responsive Design
+// ============================================
 
-.category-buttons-hero {
-  background: styles.$purple-light;
-  border: 2px solid styles.$background-color-dark;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  gap: 0.7rem;
-  border-color: styles.$background-color-dark;
-  border-radius: 5px;
-  color: styles.$background-color-dark;
-  padding: 0.8rem 1.8rem;
-  text-decoration: none;
-  font-size: 1.2rem;
-  line-height: 18px;
-  font-weight: bold;
-  text-transform: uppercase;
-  -webkit-transition: background 0.3s linear, color 0.3s linear;
-  transition: background 0.3s linear, color 0.3s linear;
-  -webkit-transition: background 0.3s linear, color 0.3s linear, transform 0.2s ease-in-out;
-  transition: background 0.3s linear, color 0.3s linear, transform 0.2s ease-in-out;
+@media (max-width: 1024px) {
+  .hero-slide {
+    &__content {
+      padding: 2.5rem 3rem;
+    }
 
-  &:focus,
-  &:hover {
-    background: styles.$secondary-color;
-    border-color: styles.$background-color-dark;
-    color: rgb(10, 10, 10);
-    animation: pulse;
-    animation-duration: 0.8s;
-    transform: translateY(-1px) scale(1.01);
+    &__title {
+      font-size: 2.75rem;
+      margin-bottom: 2rem;
+    }
+
+    &__logo {
+      width: 100px;
+      margin-bottom: 1.5rem;
+    }
   }
 }
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: calc(100vh - 10.5rem);
+    min-height: 400px;
+  }
+
+  .hero-slide {
+    &__content {
+      padding: 2rem 2rem;
+      max-width: 100%;
+
+      &--right,
+      &--left {
+        align-items: center;
+        text-align: center;
+      }
+    }
+
+    &__title {
+      font-size: 1.75rem;
+      margin-bottom: 1.5rem;
+      max-width: 100%;
+    }
+
+    &__logo {
+      width: 80px;
+      margin-bottom: 1.25rem;
+    }
+
+    &__cta {
+      padding: 0.8rem 1.6rem;
+      font-size: 0.95rem;
+    }
+
+    &__cta-icon {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  .hero-pagination {
+    bottom: 1.5rem;
+
+    .swiper-pagination-bullet {
+      width: 10px;
+      height: 10px;
+
+      &.swiper-pagination-bullet-active {
+        width: 28px;
+      }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-section {
+    height: calc(100vh - 10.5rem);
+    min-height: 350px;
+  }
+
+  .hero-slide {
+    &__content {
+      padding: 1.5rem 1.5rem;
+      justify-content: center;
+    }
+
+    &__title {
+      font-size: 1.4rem;
+      margin-bottom: 1.25rem;
+      line-height: 1.3;
+    }
+
+    &__logo {
+      width: 70px;
+      margin-bottom: 1rem;
+    }
+
+    &__cta {
+      padding: 0.7rem 1.4rem;
+      font-size: 0.85rem;
+      gap: 0.5rem;
+    }
+
+    &__cta-icon {
+      width: 0.9rem;
+      height: 0.9rem;
+    }
+  }
+
+  .hero-pagination {
+    bottom: 1rem;
+
+    .swiper-pagination-bullet {
+      width: 8px;
+      height: 8px;
+
+      &.swiper-pagination-bullet-active {
+        width: 24px;
+      }
+    }
+  }
+}
+
+// ============================================
+// Accessibility & Motion Preferences
+// ============================================
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-slide {
 
-  .main-carousel-item,
-  .hero-container,
-  .newhero-container,
-  .text-container {
-    animation: none;
-  }
-
-  .category-buttons-hero {
-    transition: none;
-    transform: none;
-
-    &:hover,
-    &:focus {
+    &__image,
+    &__content,
+    &__logo,
+    &__title {
       animation: none;
     }
   }
+
+  .hero-slide__cta,
+  .hero-pagination .swiper-pagination-bullet {
+    transition: none;
+  }
 }
 
+// High contrast mode support
+@media (prefers-contrast: more) {
+  .hero-slide {
+    &__overlay {
+      opacity: 0.5;
+    }
 
-// /// media queries Hero section ///
-@media (width <=1024px) {
-  .main-carousel-item {
-    /* margin-top removido - app-container ya proporciona padding-top */
+    &__title {
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    }
 
-    & img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    &__cta {
+      border-width: 3px;
     }
   }
-
-
 }
 
-@media (width <=768px) {
-  .main-carousel-item {
-    /* margin-top removido - app-container ya proporciona padding-top */
-
-    & img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-
-  .text-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    font-size: 1rem;
-  }
-
-  .category-buttons-hero {
-    padding: 0.6rem 1.5rem;
-    font-size: 0.6rem;
-    line-height: 18px;
-
-    &:focus,
-    &:hover {
-      background: styles.$secondary-color;
-      border-color: styles.$background-color-dark;
-      color: rgb(10, 10, 10);
-      animation: pulse;
-      animation-duration: 1s;
-    }
-  }
-
-  .hero-container {
-    padding: 4rem 4rem;
-
-
-    & img {
-      width: 20rem;
-      height: auto;
-    }
-  }
-
-  .newhero-container {
-    padding: 4rem;
-
-    & img {
-      width: 20rem;
-      height: auto;
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .hero-slide {
+    &__cta {
+      background: linear-gradient(135deg,
+          lighten(styles.$purple-light, 10%) 0%,
+          lighten(styles.$purple-light, 5%) 100%);
     }
   }
 }

@@ -1,15 +1,17 @@
-import { useState, useEffect } from "react";
-import { Container, Navbar } from "react-bootstrap";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+import { useEffect, useMemo, useState } from "react";
+import { Container } from "react-bootstrap";
+import { Navigation, Pagination, Autoplay, A11y } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 import MainProductCard from "./components/MainProductCard";
-import { ProductListSkeleton, Skeleton } from "../../shared/components/SkeletonLoader";
+import {
+  ProductListSkeleton,
+  Skeleton,
+} from "../../shared/components/SkeletonLoader";
 import type { Product } from "../../services/productsApi";
-
-import AOS from "aos";
-import "aos/dist/aos.css";
-AOS.init();
 
 const ProductsCardSection: React.FC = () => {
   const [data, setData] = useState<Product[]>([]);
@@ -18,7 +20,7 @@ const ProductsCardSection: React.FC = () => {
   const [types, setTypes] = useState<string[]>([]);
   const [filter, setFilter] = useState<string>("all");
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
+  const [error, setError] = useState<Error | null>(null);
 
   const fetchData = async () => {
     setLoading(true);
@@ -28,10 +30,25 @@ const ProductsCardSection: React.FC = () => {
       const data = await res.json();
 
       setData(data);
-      setCategories(["all", ...new Set(data.map((item: Product) => (item as any).category))]);
-      setTypes([...new Set(data.map((item: Product) => (item as any).type))]);
+      const categoryList = Array.from(
+        new Set(
+          data
+            .map((item: Product) => (item as { category?: string }).category)
+            .filter(Boolean)
+        )
+      ) as string[];
+      const typeList = Array.from(
+        new Set(
+          data
+            .map((item: Product) => (item as { type?: string }).type)
+            .filter(Boolean)
+        )
+      ) as string[];
+
+      setCategories(["all", ...categoryList]);
+      setTypes(typeList);
     } catch (error) {
-      setError(error);
+      setError(error as Error);
       console.error("Error fetching data:", error);
     } finally {
       setLoading(false);
@@ -42,162 +59,195 @@ const ProductsCardSection: React.FC = () => {
     fetchData();
   }, []);
 
-  const searchData = (item: Product, search: string): boolean => {
-    return (item as any).name.toLowerCase().includes(search.toLowerCase());
-  };
+  const normalizedSearch = search.trim().toLowerCase();
 
-  const filteredData = () => {
+  const filteredItems = useMemo(() => {
+    const matchesSearch = (item: Product) => {
+      const name = (item as { name?: string }).name ?? "";
+      return name.toLowerCase().includes(normalizedSearch);
+    };
+
     if (filter === "all") {
-      return data.filter((item) => searchData(item, search));
-    } else {
-      return data
-        .filter((item: Product) => (item as any).category === filter || (item as any).type === filter)
-        .filter((item) => searchData(item, search));
+      return data.filter((item) =>
+        normalizedSearch ? matchesSearch(item) : true
+      );
     }
-  };
 
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 4,
-      slidesToSlide: 2, // optional, default to 1.
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 3,
-      slidesToSlide: 2, // optional, default to 1.
-    },
-    mobile: {
-      breakpoint: { max: 564, min: 0 },
-      items: 2,
-      slidesToSlide: 1, // optional, default to 1.
-    },
-  };
+    return data
+      .filter((item: Product) => {
+        const category = (item as { category?: string }).category;
+        const type = (item as { type?: string }).type;
+        return category === filter || type === filter;
+      })
+      .filter((item) => (normalizedSearch ? matchesSearch(item) : true));
+  }, [data, filter, normalizedSearch]);
+
+  const filterOptions = useMemo(
+    () => Array.from(new Set([...categories, ...types])),
+    [categories, types]
+  );
+
+  const canLoop = filteredItems.length > 4;
 
   if (loading) {
     return (
       <main>
         <Container>
-          <section className="products-header">
-            <div className="products-text-container">
-              <Skeleton variant="text" width="60%" height="28px" />
-              <Skeleton variant="text" width="80%" height="20px" />
+          <section className="products-hero">
+            <div className="products-hero__content">
+              <Skeleton variant="text" width="40%" height="18px" />
+              <Skeleton variant="text" width="70%" height="32px" />
+              <Skeleton variant="text" width="80%" height="18px" />
             </div>
-            <Skeleton variant="rectangular" width="100%" height="40px" />
+            <div className="products-hero__search">
+              <Skeleton variant="rectangular" width="100%" height="44px" />
+              <Skeleton variant="text" width="65%" height="16px" />
+            </div>
           </section>
-          <section className="products-navbar">
-            <Navbar className="products-buttons-section">
+          <section className="products-filters">
+            <div className="products-filters__scroll">
               {Array.from({ length: 6 }).map((_, i) => (
-                <Skeleton key={i} variant="rectangular" width="90px" height="36px" />
+                <Skeleton
+                  key={i}
+                  variant="rectangular"
+                  width="90px"
+                  height="36px"
+                />
               ))}
-            </Navbar>
+            </div>
           </section>
           <ProductListSkeleton count={8} />
         </Container>
       </main>
     );
   }
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) return <div>Error: {error?.message}</div>;
 
   return (
     <main>
-      {/* Products Header */}
       <Container>
-        <section className="products-header">
-          <div className="products-text-container">
-            <h1
-              data-aos="fade-right"
-              data-aos-offset="100"
-              data-aos-easing="ease-in-sine"
-            >
-              NUESTRA TIENDA EN LINEA
+        <section className="products-hero" aria-labelledby="products-title">
+          <div className="products-hero__content">
+            <span className="products-hero__eyebrow">Tienda online</span>
+            <h1 id="products-title" className="products-hero__title">
+              Nuestra tienda en linea
             </h1>
-            <h3
-              data-aos="fade-left"
-              data-aos-offset="200"
-              data-aos-easing="ease-in-sine"
-            >
-              Conoce esta selección hecha para ti y obtenlos en solo un click
-            </h3>
+            <p className="products-hero__subtitle">
+              Conoce esta selección hecha para ti y obtenlos en solo un click.
+            </p>
           </div>
-          <input
-            data-aos="fade-zoom-in"
-            data-aos-easing="ease-in-back"
-            data-aos-delay="300"
-            data-aos-offset="0"
-            type="text"
-            className="form-products-categories"
-            placeholder="Buscar producto"
-            onChange={(e) => setSearch(e.target.value)}
-          />
+          <div className="products-hero__search">
+            <label className="sr-only" htmlFor="products-search">
+              Buscar producto
+            </label>
+            <div className="products-search">
+              <span className="products-search__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
+                  <path
+                    d="M11 3a8 8 0 1 0 5.293 14.293l3.707 3.707 1.414-1.414-3.707-3.707A8 8 0 0 0 11 3Zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <input
+                id="products-search"
+                type="search"
+                className="products-search__input"
+                placeholder="Buscar productos, marcas o categorías"
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
+                aria-label="Buscar productos"
+              />
+            </div>
+            <p className="products-hero__hint">
+              Filtra por nombre, categoría o tipo para encontrar mas rápido.
+            </p>
+          </div>
         </section>
-        {/* Category Buttons Navbar */}
-        <section className="products-navbar">
-          <Navbar className="products-buttons-section">
-            {categories.map((category) => (
+
+        <section className="products-filters" aria-label="Filtros de productos">
+          <div className="products-filters__scroll">
+            {filterOptions.map((option) => (
               <button
-                data-aos="fade-zoom-in"
-                data-aos-easing="ease-in-back"
-                data-aos-delay="300"
-                data-aos-offset="0"
-                key={category}
-                onClick={() => setFilter(category)}
-                className={`category-buttons ${filter === category ? 'active' : ''}`}
+                key={option}
+                onClick={() => setFilter(option)}
+                className={`category-buttons products-filter ${
+                  filter === option ? "is-active" : ""
+                }`}
               >
-                {category}
+                {option}
               </button>
             ))}
-            {types.map((type) => (
-              <button
-                data-aos="fade-zoom-in"
-                data-aos-easing="ease-in-back"
-                data-aos-delay="300"
-                data-aos-offset="0"
-                key={type}
-                onClick={() => setFilter(type)}
-                className={`category-buttons ${filter === type ? 'active' : ''}`}
-              >
-                {type}
-              </button>
-            ))}
-          </Navbar>
+          </div>
         </section>
-        {/* Carousel de productos */}
-        <Container>
-          <Carousel
-              responsive={responsive}
-              additionalTransfrom={0}
-              arrows={true}
-              autoPlay={true}
-              autoPlaySpeed={9000}
-              customTransition="all 5s linear"
-              centerMode={false}
-              containerClass="container-with-dots"
-              removeArrowOnDeviceType={["tablet", "mobile"]}
-              draggable
-              focusOnSelect={true}
-              infinite={true}
-              keyBoardControl
-              minimumTouchDrag={80}
-              pauseOnHover={true}
-              renderArrowsWhenDisabled={false}
-              renderButtonGroupOutside={true}
-              renderDotsOutside={true}
-              className="products-carousel"
-              rewind={false}
-              rewindWithAnimation={false}
-              rtl={false}
-              shouldResetAutoplay
-              showDots={false}
-              sliderClass=""
-              slidesToSlide
-              swipeable={true}
-          >
-            {filteredData().map((item) => (
-              <MainProductCard key={item.id} item={item} />
-            ))}
-          </Carousel>
-        </Container>
+
+        <section
+          className="products-carousel-section"
+          aria-label="Carrusel de productos"
+        >
+          {filteredItems.length === 0 ? (
+            <div className="products-empty">
+              No encontramos productos con ese filtro.
+            </div>
+          ) : (
+            <>
+              <Swiper
+                modules={[Navigation, Pagination, Autoplay, A11y]}
+                className="products-swiper"
+                navigation={{
+                  prevEl: ".products-swiper-button-prev",
+                  nextEl: ".products-swiper-button-next",
+                }}
+                pagination={{ clickable: true, dynamicBullets: true }}
+                autoplay={{ delay: 6500, disableOnInteraction: false }}
+                loop={canLoop}
+                rewind={!canLoop}
+                spaceBetween={16}
+                slidesPerView={1.05}
+                breakpoints={{
+                  640: { slidesPerView: 2, spaceBetween: 16 },
+                  1024: { slidesPerView: 3, spaceBetween: 18 },
+                  1280: { slidesPerView: 4, spaceBetween: 20 },
+                }}
+                a11y={{ enabled: true }}
+              >
+                {filteredItems.map((item) => (
+                  <SwiperSlide key={item.id}>
+                    <MainProductCard item={item} />
+                  </SwiperSlide>
+                ))}
+                <div className="products-carousel-header">
+                  <div className="products-carousel-nav" aria-hidden="true">
+                    <button
+                      className="products-swiper-button products-swiper-button-prev"
+                      type="button"
+                      aria-label="Productos anteriores"
+                    >
+                      <svg viewBox="0 0 24 24" role="presentation">
+                        <path
+                          d="M15.5 5.5 9 12l6.5 6.5-1.5 1.5L6 12l8-8 1.5 1.5Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </button>
+                    <button
+                      className="products-swiper-button products-swiper-button-next"
+                      type="button"
+                      aria-label="Productos siguientes"
+                    >
+                      <svg viewBox="0 0 24 24" role="presentation">
+                        <path
+                          d="m8.5 18.5 6.5-6.5-6.5-6.5L10 4l8 8-8 8-1.5-1.5Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </Swiper>
+            </>
+          )}
+        </section>
       </Container>
     </main>
   );

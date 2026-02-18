@@ -3,7 +3,10 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 import MainProductCard from "./components/MainProductCard";
-import { ProductListSkeleton, Skeleton } from "../../shared/components/SkeletonLoader";
+import {
+  ProductListSkeleton,
+  Skeleton,
+} from "../../shared/components/SkeletonLoader";
 import type { Product } from "../../services/productsApi";
 
 import AOS from "aos";
@@ -16,7 +19,7 @@ const DiscountsProducts: React.FC = () => {
   const [search, setSearch] = useState<string>("");
   const [filter, setFilter] = useState<string>("all");
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
 
   const fetchData = async () => {
     setLoading(true);
@@ -27,7 +30,7 @@ const DiscountsProducts: React.FC = () => {
 
       setData(data);
     } catch (error) {
-      setError(error);
+      setError(error instanceof Error ? error.message : "Unknown error");
       console.error("Error fetching data:", error);
     } finally {
       setLoading(false);
@@ -44,9 +47,9 @@ const DiscountsProducts: React.FC = () => {
 
   const filteredDataDiscounts = () => {
     if (filter === "discount") {
-      setSearch(true);
-      setFilter(true);
-      return data.filter((item: Product) => (item as any).promotion === "discount");
+      return data.filter(
+        (item: Product) => (item as any).promotion === "discount"
+      );
     } else {
       return data
         .filter((item: Product) => (item as any).promotion === "discount")
@@ -110,7 +113,7 @@ const DiscountsProducts: React.FC = () => {
       </main>
     );
   }
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <main className="discount-container">
@@ -127,33 +130,33 @@ const DiscountsProducts: React.FC = () => {
         </section>
         <Container>
           <Carousel
-              responsive={responsive}
-              additionalTransfrom={0}
-              arrows={true}
-              autoPlay={true}
-              autoPlaySpeed={9000}
-              customTransition="all 5s linear"
-              centerMode={false}
-              containerClass="container-with-dots"
-              removeArrowOnDeviceType={["tablet", "mobile"]}
-              draggable
-              focusOnSelect={true}
-              infinite={true}
-              keyBoardControl
-              minimumTouchDrag={80}
-              pauseOnHover={true}
-              renderArrowsWhenDisabled={false}
-              renderButtonGroupOutside={true}
-              renderDotsOutside={true}
-              className="products-carousel"
-              rewind={false}
-              rewindWithAnimation={false}
-              rtl={false}
-              shouldResetAutoplay
-              showDots={false}
-              sliderClass=""
-              slidesToSlide
-              swipeable={true}
+            responsive={responsive}
+            additionalTransfrom={0}
+            arrows={true}
+            autoPlay={true}
+            autoPlaySpeed={9000}
+            customTransition="all 5s linear"
+            centerMode={false}
+            containerClass="container-with-dots"
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            draggable
+            focusOnSelect={true}
+            infinite={true}
+            keyBoardControl
+            minimumTouchDrag={80}
+            pauseOnHover={true}
+            renderArrowsWhenDisabled={false}
+            renderButtonGroupOutside={true}
+            renderDotsOutside={true}
+            className="products-carousel"
+            rewind={false}
+            rewindWithAnimation={false}
+            rtl={false}
+            shouldResetAutoplay
+            showDots={false}
+            sliderClass=""
+            slidesToSlide={1}
+            swipeable={true}
           >
             {filteredProductDiscount}
           </Carousel>
@@ -171,33 +174,33 @@ const DiscountsProducts: React.FC = () => {
 
         <Container>
           <Carousel
-              responsive={responsive}
-              additionalTransfrom={0}
-              arrows={true}
-              autoPlay={true}
-              autoPlaySpeed={9000}
-              customTransition="all 5s linear"
-              centerMode={false}
-              containerClass="container-with-dots"
-              removeArrowOnDeviceType={["tablet", "mobile"]}
-              draggable
-              focusOnSelect={true}
-              infinite={true}
-              keyBoardControl
-              minimumTouchDrag={80}
-              pauseOnHover={true}
-              renderArrowsWhenDisabled={false}
-              renderButtonGroupOutside={true}
-              renderDotsOutside={true}
-              className="products-carousel"
-              rewind={false}
-              rewindWithAnimation={false}
-              rtl={false}
-              shouldResetAutoplay
-              showDots={false}
-              sliderClass=""
-              slidesToSlide
-              swipeable={true}
+            responsive={responsive}
+            additionalTransfrom={0}
+            arrows={true}
+            autoPlay={true}
+            autoPlaySpeed={9000}
+            customTransition="all 5s linear"
+            centerMode={false}
+            containerClass="container-with-dots"
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            draggable
+            focusOnSelect={true}
+            infinite={true}
+            keyBoardControl
+            minimumTouchDrag={80}
+            pauseOnHover={true}
+            renderArrowsWhenDisabled={false}
+            renderButtonGroupOutside={true}
+            renderDotsOutside={true}
+            className="products-carousel"
+            rewind={false}
+            rewindWithAnimation={false}
+            rtl={false}
+            shouldResetAutoplay
+            showDots={false}
+            sliderClass=""
+            slidesToSlide={1}
+            swipeable={true}
           >
             {filteredProductNews}
           </Carousel>

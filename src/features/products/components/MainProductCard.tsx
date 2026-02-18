@@ -27,13 +27,16 @@ const MainProductCard: React.FC<MainProductCardProps> = ({
   item,
   selectFavorites,
 }) => {
-  const { addFavorites, removeFavorites, addProduct, favorites } = useProductsContext();
+  const { addFavorites, removeFavorites, addProduct, favorites } =
+    useProductsContext();
 
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
   const [isAdding, setIsAdding] = useState<boolean>(false);
   const [hasAddedFeedback, setHasAddedFeedback] = useState<boolean>(false);
   const target = useRef<HTMLButtonElement>(null);
-  const cartAnimRef = useRef<{ triggerAnimation: (name?: string) => void } | null>(null);
+  const cartAnimRef = useRef<{
+    triggerAnimation: (name?: string) => void;
+  } | null>(null);
 
   const { user } = useUserContext();
   const toast = useToast();
@@ -44,25 +47,29 @@ const MainProductCard: React.FC<MainProductCardProps> = ({
   // Calculate discount percentage - solo si tiene originalPrice o promotion="discount"
   const hasPromotion = (item as any).promotion === "discount";
   const originalPrice = (item as any).originalPrice;
-  
-  const discount = originalPrice && originalPrice > item.price
-    ? Math.round((1 - item.price / originalPrice) * 100) 
-    : hasPromotion && !originalPrice
-    ? 15 // Descuento por defecto si tiene promotion pero no originalPrice
-    : 0;
+  const price = (item as any).price as number;
+
+  const discount =
+    originalPrice && originalPrice > price
+      ? Math.round((1 - price / originalPrice) * 100)
+      : hasPromotion && !originalPrice
+        ? 15 // Descuento por defecto si tiene promotion pero no originalPrice
+        : 0;
 
   async function handleShoppingCart() {
     if (!user) {
-      toast.warning('Por favor, inicia sesión para añadir productos al carrito');
+      toast.warning(
+        "Por favor, inicia sesión para añadir productos al carrito"
+      );
       return;
     }
-    
+
     setIsAdding(true);
-    addProduct(item);
+    addProduct({ ...item, price });
     toast.success(`${item.name} se agregó al carrito correctamente`);
     setHasAddedFeedback(true);
-    cartAnimRef.current?.triggerAnimation(item.name);
-    
+    cartAnimRef.current?.triggerAnimation(item.name as string);
+
     setTimeout(() => {
       setIsAdding(false);
       setHasAddedFeedback(false);
@@ -71,15 +78,15 @@ const MainProductCard: React.FC<MainProductCardProps> = ({
 
   function handleProductButton() {
     if (!user) {
-      toast.warning('Por favor, inicia sesión para gestionar favoritos');
+      toast.warning("Por favor, inicia sesión para gestionar favoritos");
       return;
     }
-    
+
     if (isFavorite) {
       removeFavorites(item.id);
       toast.info(`${item.name} se quitó de favoritos`);
     } else {
-      addFavorites(item);
+      addFavorites({ ...item, price });
       toast.success(`${item.name} se agregó a favoritos`);
     }
   }
@@ -89,21 +96,23 @@ const MainProductCard: React.FC<MainProductCardProps> = ({
   const reviewsCount = (item as any).reviewsCount || 0;
 
   return (
-    <Card className={`product-card ${!imageLoaded ? 'product-card--loading' : ''}`}>
+    <Card
+      className={`product-card ${!imageLoaded ? "product-card--loading" : ""}`}
+    >
       {/* Discount Badge */}
-      {discount > 0 && (
-        <div className="product-card__badge">-{discount}%</div>
-      )}
+      {discount > 0 && <div className="product-card__badge">-{discount}%</div>}
 
       {/* Quick Actions */}
       {user && !selectFavorites && (
         <div className="product-card__actions">
           <button
             className={`product-card__action-btn product-card__action-btn--favorite ${
-              isFavorite ? 'active' : ''
+              isFavorite ? "active" : ""
             }`}
             onClick={handleProductButton}
-            aria-label={isFavorite ? 'Quitar de favoritos' : 'Añadir a favoritos'}
+            aria-label={
+              isFavorite ? "Quitar de favoritos" : "Añadir a favoritos"
+            }
           >
             {isFavorite ? (
               <FavoriteIcon fontSize="small" />
@@ -137,10 +146,13 @@ const MainProductCard: React.FC<MainProductCardProps> = ({
       )}
 
       {/* Product Image */}
-      <Link to={`/products/${item.id}`} className="product-card__image-container">
+      <Link
+        to={`/products/${item.id}`}
+        className="product-card__image-container"
+      >
         <OptimizedImage
-          src={item.img}
-          alt={item.name}
+          src={item.img as string}
+          alt={item.name as string}
           className="product-card__image"
           loading="lazy"
           onLoad={() => setImageLoaded(true)}
@@ -151,8 +163,8 @@ const MainProductCard: React.FC<MainProductCardProps> = ({
 
       {/* Card Content */}
       <Card.Body className="product-card__content">
-        <Link to={`/products/${item.id}`} style={{ textDecoration: 'none' }}>
-          <h3 className="product-card__title">{item.name}</h3>
+        <Link to={`/products/${item.id}`} style={{ textDecoration: "none" }}>
+          <h3 className="product-card__title">{item.name as string}</h3>
         </Link>
 
         {/* Rating */}
@@ -163,9 +175,9 @@ const MainProductCard: React.FC<MainProductCardProps> = ({
                 <StarIcon
                   key={i}
                   fontSize="small"
-                  style={{ 
-                    color: i < rating ? '#fbbf24' : '#e5e5e5',
-                    fontSize: '1rem'
+                  style={{
+                    color: i < rating ? "#fbbf24" : "#e5e5e5",
+                    fontSize: "1rem",
                   }}
                 />
               ))}
@@ -178,21 +190,23 @@ const MainProductCard: React.FC<MainProductCardProps> = ({
         <div className="product-card__price-container">
           {discount > 0 && originalPrice ? (
             <>
-              <span className="product-card__price-old">${formatPrice(originalPrice)}</span>
+              <span className="product-card__price-old">
+                ${formatPrice(originalPrice)}
+              </span>
               <span className="product-card__price product-card__price--discounted">
-                ${formatPrice(item.price)}
+                ${formatPrice(price)}
               </span>
             </>
           ) : (
-            <span className="product-card__price">${formatPrice(item.price)}</span>
+            <span className="product-card__price">${formatPrice(price)}</span>
           )}
         </div>
 
         {/* Add to Cart Button */}
         <button
           className={`product-card__add-button ${
-            hasAddedFeedback ? 'product-card__add-button--added' : ''
-          } ${isAdding ? 'loading' : ''}`}
+            hasAddedFeedback ? "product-card__add-button--added" : ""
+          } ${isAdding ? "loading" : ""}`}
           onClick={handleShoppingCart}
           disabled={isAdding}
           ref={target}
@@ -204,7 +218,10 @@ const MainProductCard: React.FC<MainProductCardProps> = ({
             <>✓ Añadido</>
           ) : (
             <>
-              <ShoppingCartIcon fontSize="small" style={{ marginRight: '8px' }} />
+              <ShoppingCartIcon
+                fontSize="small"
+                style={{ marginRight: "8px" }}
+              />
               Añadir al carrito
             </>
           )}

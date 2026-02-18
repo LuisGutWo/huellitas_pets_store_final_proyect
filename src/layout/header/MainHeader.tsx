@@ -35,11 +35,11 @@ export default function MainHeader({ item }: MainHeaderProps) {
   const [selectProduct, setSelectProduct] = useState<string>("");
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [scrollProgress, setScrollProgress] = useState<number>(0);
-  
+
   const { totalItemProducts, totalCart } = useProductsContext();
   const { user } = useUserContext();
   const [error, setError] = useState<boolean>(false);
-  
+
   const handleCloseCart = () => setShowCart(false);
   const handleShowCart = () => setShowCart(true);
   const handleCloseLogin = () => setShowLogin(false);
@@ -67,15 +67,16 @@ export default function MainHeader({ item }: MainHeaderProps) {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.pageYOffset;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
       const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      
+
       setIsScrolled(scrollTop > 50);
       setScrollProgress(progress);
     };
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleProductsClick = () => {
@@ -99,38 +100,44 @@ export default function MainHeader({ item }: MainHeaderProps) {
       setError(true);
       return;
     }
-    handleProductsClick(products);
-    handleShowCart(!showCart);
+    handleProductsClick();
+    handleShowCart();
   }
   function addButtonModalLogin() {
     if (products === null || products === undefined) {
       setError(true);
       return;
     }
-    handleProductsClick(products);
-    handleShowLogin(!showLogin);
+    handleProductsClick();
+    handleShowLogin();
   }
 
   // Create a ref to set CSS variable after mount (must be before early return)
   const scrollIndicatorRef = React.useRef<HTMLDivElement>(null);
-  
+
   React.useEffect(() => {
     if (scrollIndicatorRef.current) {
-      scrollIndicatorRef.current.style.setProperty('--scroll-width', `${scrollProgress}%`);
+      scrollIndicatorRef.current.style.setProperty(
+        "--scroll-width",
+        `${scrollProgress}%`
+      );
     }
   }, [scrollProgress]);
 
   if (loading) return <Loading />;
 
   return (
-    <section className={`main-header ${isScrolled ? 'main-header--scrolled' : ''}`} id="header">
+    <section
+      className={`main-header ${isScrolled ? "main-header--scrolled" : ""}`}
+      id="header"
+    >
       {/* Scroll Progress Indicator - Visual only */}
-      <div 
+      <div
         ref={scrollIndicatorRef}
-        className="main-header__scroll-indicator" 
+        className="main-header__scroll-indicator"
         aria-hidden="true"
       />
-      
+
       {["lg"].map((expand) => (
         <Fragment key={expand}>
           <NavbarTopMenu />
@@ -250,16 +257,16 @@ export default function MainHeader({ item }: MainHeaderProps) {
                             isActive ? "active-class" : "inactive-class"
                           }
                           onClick={addButtonModalCart}
-                          aria-label={`Carrito${totalItemProducts(item) > 0 ? ` (${totalItemProducts(item)} productos)` : ''}`}
+                          aria-label={`Carrito${totalItemProducts() > 0 ? ` (${totalItemProducts()} productos)` : ""}`}
                         >
                           <div className="header-cart">
                             <ShoppingCartIcon
                               className="icon-cart"
                               style={{ width: "3rem", fontSize: "1.8rem" }}
                             />
-                            {totalItemProducts(item) > 0 && (
+                            {totalItemProducts() > 0 && (
                               <span className="header-cart__badge">
-                                {totalItemProducts(item)}
+                                {totalItemProducts()}
                               </span>
                             )}
                           </div>
@@ -275,7 +282,19 @@ export default function MainHeader({ item }: MainHeaderProps) {
                         <small className="text-header-name">{user.email}</small>
                       </div>
                     )}
-                    <HeaderForm products={products} key={products.id} />
+                    <HeaderForm
+                      products={products}
+                      show={showCart}
+                      setShow={setShowCart}
+                      handleShow={handleShowCart}
+                      handleClose={handleCloseCart}
+                      handleProductsChange={(event) =>
+                        setSelectProduct(event.target.value)
+                      }
+                      handleProductsClick={handleProductsClick}
+                      error={error}
+                      setError={setError}
+                    />
                     {user && (
                       <>
                         <Button
