@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "../../../shared/styles/styles.scss" as styles;
 @use "../../../shared/styles/tokens" as tokens;
 
@@ -131,7 +132,7 @@
     padding: 1rem 2rem;
     background: linear-gradient(135deg,
         styles.$purple-light 0%,
-        darken(styles.$purple-light, 5%) 100%);
+        color.adjust(styles.$purple-light, $lightness: -5%) 100%);
     color: styles.$background-color-dark;
     border: 2px solid styles.$background-color-dark;
     border-radius: 8px;
@@ -148,7 +149,7 @@
       transform: translateY(-3px);
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
       background: linear-gradient(135deg,
-          lighten(styles.$purple-light, 5%) 0%,
+          color.adjust(styles.$purple-light, $lightness: 5%) 0%,
           styles.$purple-light 100%);
     }
 
@@ -383,8 +384,8 @@
   .hero-slide {
     &__cta {
       background: linear-gradient(135deg,
-          lighten(styles.$purple-light, 10%) 0%,
-          lighten(styles.$purple-light, 5%) 100%);
+          color.adjust(styles.$purple-light, $lightness: 10%) 0%,
+          color.adjust(styles.$purple-light, $lightness: 5%) 100%);
     }
   }
 }

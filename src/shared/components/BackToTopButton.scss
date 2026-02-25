@@ -1,0 +1,78 @@
+@use "../styles/tokens" as tokens;
+
+.btn-arrow-up {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, tokens.$color-primary-500, tokens.$color-primary-600);
+    box-shadow: 0 4px 12px rgba(244, 139, 72, 0.4);
+    border: none;
+    z-index: 100;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease-out;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(244, 139, 72, 0.6);
+    }
+
+    &:active {
+        transform: translateY(-2px);
+    }
+
+    .back-to-top-arrow {
+        width: 2.2rem;
+        height: 2.2rem;
+        object-fit: contain;
+        display: block;
+        filter: brightness(0) invert(1);
+    }
+
+    @media (max-width: 768px) {
+        bottom: 2rem;
+        left: 1.5rem;
+        width: 4rem;
+        height: 4rem;
+
+        .back-to-top-arrow {
+            width: 2rem;
+            height: 2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        bottom: 2rem;
+        left: 1rem;
+        width: 3.5rem;
+        height: 3.5rem;
+
+        .back-to-top-arrow {
+            width: 1.8rem;
+            height: 1.8rem;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+
+        &:hover {
+            transform: none;
+        }
+    }
+
+    @media (prefers-color-scheme: dark) {
+        background: linear-gradient(135deg, tokens.$color-primary-500, tokens.$color-primary-600);
+        box-shadow: 0 4px 12px rgba(244, 139, 72, 0.3);
+
+        &:hover {
+            box-shadow: 0 8px 20px rgba(244, 139, 72, 0.4);
+        }
+    }
+}

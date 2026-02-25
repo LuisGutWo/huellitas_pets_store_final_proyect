@@ -1,0 +1,291 @@
+@use "../../shared/styles/styles.scss" as styles;
+@use "../../shared/styles/tokens" as tokens;
+@use "sass:color";
+
+// ============================================
+// Cart Dropdown Component
+// ============================================
+
+.cart-dropdown {
+    position: relative;
+    display: inline-flex;
+}
+
+.cart-dropdown__toggle {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    @include tokens.transition(transform, tokens.$duration-fast, tokens.$ease-in-out);
+
+    &:hover {
+        transform: translateY(-2px) scale(1.05);
+    }
+
+    &:focus-visible {
+        outline: 2px solid tokens.$color-primary-300;
+        outline-offset: 4px;
+        border-radius: 4px;
+    }
+}
+
+// Badge styling (item count)
+.cart-dropdown__badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    background: tokens.$color-error-500;
+    color: tokens.$color-text-inverse;
+    border-radius: tokens.$radius-full;
+    font-size: tokens.$font-size-xs;
+    font-weight: tokens.$font-weight-bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: tokens.$shadow-sm;
+    border: 2px solid tokens.$color-bg-primary;
+    animation: pulse 1.8s ease-in-out infinite;
+    @include tokens.animate(scaleIn, 0.3s, tokens.$ease-bounce);
+}
+
+// Dropdown menu
+.cart-dropdown__menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 260px;
+    background: styles.$background-color-dark;
+    border: 1px solid tokens.$color-neutral-600;
+    border-radius: tokens.$radius-md;
+    box-shadow: tokens.$shadow-lg;
+    margin-top: tokens.$spacing-2;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+// Menu header (title)
+.cart-dropdown__header {
+    padding: tokens.$spacing-3 tokens.$spacing-4;
+    border-bottom: 1px solid tokens.$color-neutral-600;
+    color: styles.$white;
+    font-weight: tokens.$font-weight-bold;
+    font-size: tokens.$font-size-sm;
+}
+
+// Cart total amount display
+.cart-dropdown__amount {
+    padding: tokens.$spacing-4;
+    text-align: center;
+    color: tokens.$color-primary-300;
+    font-weight: tokens.$font-weight-bold;
+    font-size: tokens.$font-size-lg;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.cart-dropdown__amount-label {
+    display: block;
+    font-size: tokens.$font-size-xs;
+    color: tokens.$color-neutral-400;
+    font-weight: normal;
+    margin-bottom: tokens.$spacing-1;
+}
+
+.cart-dropdown__amount-value {
+    font-size: tokens.$font-size-lg;
+    color: tokens.$color-primary-300;
+    font-weight: tokens.$font-weight-bold;
+}
+
+// Empty state
+.cart-dropdown__empty {
+    padding: tokens.$spacing-4;
+    text-align: center;
+    color: tokens.$color-neutral-400;
+    font-size: tokens.$font-size-sm;
+}
+
+// Items list (if showing preview)
+.cart-dropdown__items {
+    max-height: 200px;
+    overflow-y: auto;
+    padding: tokens.$spacing-2 0;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: tokens.$color-neutral-600;
+        border-radius: tokens.$radius-full;
+
+        &:hover {
+            background: tokens.$color-neutral-500;
+        }
+    }
+}
+
+// Cart item preview (if showing individual items)
+.cart-dropdown__item {
+    padding: tokens.$spacing-2 tokens.$spacing-3;
+    border-bottom: 1px solid tokens.$color-neutral-700;
+    font-size: tokens.$font-size-xs;
+    color: tokens.$color-neutral-300;
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+// Footer with action buttons
+.cart-dropdown__footer {
+    padding: tokens.$spacing-3 tokens.$spacing-4;
+    border-top: 1px solid tokens.$color-neutral-600;
+    display: flex;
+    flex-direction: column;
+    gap: tokens.$spacing-2;
+}
+
+.cart-dropdown__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: tokens.$spacing-2 tokens.$spacing-3;
+    color: tokens.$color-primary-300;
+    text-decoration: none;
+    text-align: center;
+    font-size: tokens.$font-size-sm;
+    border-radius: tokens.$radius-sm;
+    background: transparent;
+    border: 1px solid tokens.$color-primary-600;
+    cursor: pointer;
+    @include tokens.transition(all, tokens.$duration-fast, tokens.$ease-in-out);
+
+    &:hover,
+    &:focus {
+        color: styles.$white;
+        background: tokens.$color-primary-600;
+        text-decoration: none;
+    }
+
+    &:focus-visible {
+        outline: 2px solid tokens.$color-primary-300;
+        outline-offset: 2px;
+    }
+}
+
+// Authentication required message
+.cart-dropdown__auth-message {
+    padding: tokens.$spacing-3 tokens.$spacing-4;
+    text-align: center;
+    color: tokens.$color-error-500;
+    font-size: tokens.$font-size-sm;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.cart-dropdown__sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+// Animation for dropdown appearance
+@keyframes cart-dropdown-slide {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cart-dropdown__menu {
+    animation: cart-dropdown-slide 0.2s ease-out;
+}
+
+// Mobile responsiveness
+@media (max-width: 768px) {
+    .cart-dropdown__menu {
+        min-width: 200px;
+        right: -10px;
+    }
+
+    .cart-dropdown__toggle {
+        font-size: 1.6rem;
+    }
+
+    .cart-dropdown__amount {
+        padding: tokens.$spacing-3;
+        font-size: tokens.$font-size-md;
+    }
+}
+
+// Small devices
+@media (max-width: 390px) {
+    .cart-dropdown__menu {
+        position: static;
+        min-width: 100%;
+        border: none;
+        border-top: 1px solid tokens.$color-neutral-600;
+        box-shadow: none;
+        margin-top: 0;
+        background: transparent;
+    }
+
+    .cart-dropdown__toggle {
+        font-size: 1.6rem;
+    }
+
+    .cart-dropdown__header,
+    .cart-dropdown__amount,
+    .cart-dropdown__footer {
+        padding: tokens.$spacing-2 tokens.$spacing-3;
+    }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+
+    .cart-dropdown__menu,
+    .cart-dropdown__toggle,
+    .cart-dropdown__link,
+    .cart-dropdown__badge {
+        animation: none;
+        transition: none;
+        transform: none;
+    }
+}
+
+// Dark mode / system color scheme
+@media (prefers-color-scheme: dark) {
+    .cart-dropdown__menu {
+        background: color.adjust(styles.$background-color-dark, $lightness: -5%);
+        border-color: tokens.$color-neutral-700;
+    }
+
+    .cart-dropdown__link:hover,
+    .cart-dropdown__link:focus {
+        background: color.adjust(tokens.$color-primary-600, $lightness: 5%);
+    }
+}

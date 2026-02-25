@@ -1,6 +1,7 @@
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import type { OverlayInjectedProps } from "react-bootstrap/esm/Overlay";
+import "./WhatsAppButton.scss";
 
 const WhatsAppButton: React.FC = () => {
   const renderTooltip = (props: OverlayInjectedProps) => (

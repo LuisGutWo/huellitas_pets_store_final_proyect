@@ -1,0 +1,226 @@
+@use "../../shared/styles/styles.scss" as styles;
+@use "../../shared/styles/tokens" as tokens;
+@use "sass:color";
+
+// ============================================
+// User Dropdown Component
+// ============================================
+
+.user-dropdown {
+    position: relative;
+    display: inline-flex;
+}
+
+.user-dropdown__toggle {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include tokens.transition(transform, tokens.$duration-fast, tokens.$ease-in-out);
+
+    &:hover {
+        transform: translateY(-2px) scale(1.05);
+    }
+
+    &:focus-visible {
+        outline: 2px solid tokens.$color-primary-300;
+        outline-offset: 4px;
+        border-radius: 4px;
+    }
+}
+
+.user-dropdown__menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 220px;
+    background: styles.$background-color-dark;
+    border: 1px solid tokens.$color-neutral-600;
+    border-radius: tokens.$radius-md;
+    box-shadow: tokens.$shadow-lg;
+    margin-top: tokens.$spacing-2;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.user-dropdown__header {
+    padding: tokens.$spacing-3 tokens.$spacing-4;
+    border-bottom: 1px solid tokens.$color-neutral-600;
+    color: styles.$white;
+    font-weight: tokens.$font-weight-bold;
+    font-size: tokens.$font-size-sm;
+}
+
+.user-dropdown__email {
+    padding: tokens.$spacing-2 tokens.$spacing-4;
+    color: tokens.$color-neutral-300;
+    font-size: tokens.$font-size-xs;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-dropdown__item {
+    display: flex;
+    align-items: center;
+    gap: tokens.$spacing-3;
+    padding: tokens.$spacing-3 tokens.$spacing-4;
+    color: styles.$white;
+    text-decoration: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    @include tokens.transition(all, tokens.$duration-fast, tokens.$ease-in-out);
+
+    &:hover,
+    &:focus {
+        background: tokens.$color-primary-600;
+        color: styles.$white;
+        outline: none;
+    }
+
+    &:focus-visible {
+        outline: 2px inset tokens.$color-primary-300;
+        outline-offset: -2px;
+    }
+
+    &.logout-item {
+        color: tokens.$color-error-500;
+        border-top: 1px solid tokens.$color-neutral-600;
+
+        &:hover,
+        &:focus {
+            background: tokens.$color-error-600;
+            color: styles.$white;
+        }
+    }
+
+    svg {
+        width: 1.3rem;
+        height: 1.3rem;
+        flex-shrink: 0;
+    }
+}
+
+.user-dropdown__item-text {
+    flex: 1;
+    font-size: tokens.$font-size-sm;
+}
+
+.user-dropdown__sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+// Error state
+.user-dropdown__error {
+    padding: tokens.$spacing-3 tokens.$spacing-4;
+    color: tokens.$color-error-500;
+    font-size: tokens.$font-size-sm;
+    text-align: center;
+}
+
+// Loading state
+.user-dropdown__loading {
+    padding: tokens.$spacing-3 tokens.$spacing-4;
+    color: tokens.$color-neutral-300;
+    font-size: tokens.$font-size-sm;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: tokens.$spacing-2;
+}
+
+// Animation for dropdown appearance
+@keyframes user-dropdown-slide {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.user-dropdown__menu {
+    animation: user-dropdown-slide 0.2s ease-out;
+}
+
+// Mobile responsiveness
+@media (max-width: 768px) {
+    .user-dropdown__menu {
+        min-width: 180px;
+    }
+
+    .user-dropdown__item {
+        padding: tokens.$spacing-2 tokens.$spacing-3;
+        font-size: tokens.$font-size-sm;
+    }
+
+    .user-dropdown__email {
+        font-size: 0.65rem;
+    }
+}
+
+// Tablet responsiveness
+@media (max-width: 390px) {
+    .user-dropdown__menu {
+        position: static;
+        min-width: 100%;
+        border: none;
+        border-top: 1px solid tokens.$color-neutral-600;
+        box-shadow: none;
+        margin-top: 0;
+        background: transparent;
+    }
+
+    .user-dropdown__toggle {
+        font-size: 1.6rem;
+    }
+
+    .user-dropdown__item {
+        padding: tokens.$spacing-2 tokens.$spacing-3;
+    }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+
+    .user-dropdown__menu,
+    .user-dropdown__toggle,
+    .user-dropdown__item {
+        animation: none;
+        transition: none;
+        transform: none;
+    }
+}
+
+// Dark mode / system color scheme
+@media (prefers-color-scheme: dark) {
+    .user-dropdown__menu {
+        background: color.adjust(styles.$background-color-dark, $lightness: -5%);
+        border-color: tokens.$color-neutral-700;
+    }
+
+    .user-dropdown__item:hover,
+    .user-dropdown__item:focus {
+        background: color.adjust(tokens.$color-primary-600, $lightness: 5%);
+    }
+}

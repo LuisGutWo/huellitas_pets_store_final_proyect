@@ -1,0 +1,786 @@
+@use "../../../shared/styles/styles.scss" as styles;
+@use "../../../shared/styles/tokens" as tokens;
+@use "sass:color";
+
+// ============================================
+// Pet Care Essentials Section
+// ============================================
+
+.pet-care-essentials {
+    position: relative;
+    padding: tokens.$spacing-12 tokens.$spacing-4;
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(252, 250, 247, 1) 100%);
+    overflow: hidden;
+    min-height: 900px;
+
+    @media (prefers-color-scheme: dark) {
+        background: linear-gradient(135deg,
+                rgba(17, 24, 39, 0.95) 0%,
+                rgba(31, 41, 55, 1) 100%);
+    }
+}
+
+// Background Orbes
+.pet-care-essentials__orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.3;
+    animation: float 15s ease-in-out infinite;
+
+    &--1 {
+        width: 400px;
+        height: 400px;
+        top: -100px;
+        right: 10%;
+        background: linear-gradient(135deg,
+                tokens.$color-primary-500,
+                tokens.$color-primary-300 );
+        animation-delay: 0s;
+    }
+
+    &--2 {
+        width: 300px;
+        height: 300px;
+        bottom: 10%;
+        left: 5%;
+        background: linear-gradient(135deg, #0891b2, #06b6d4);
+        animation-delay: 2s;
+    }
+}
+
+// Container
+.pet-care-essentials__container {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+// Header
+.pet-care-essentials__header {
+    text-align: center;
+    margin-bottom: tokens.$spacing-12;
+    animation: slideInUp 0.8s ease-out;
+
+    @media (max-width: 768px) {
+        margin-bottom: tokens.$spacing-8;
+    }
+}
+
+.pet-care-essentials__title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    background: linear-gradient(135deg,
+            tokens.$color-primary-500,
+            tokens.$color-primary-600 );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: tokens.$spacing-3;
+
+    @media (prefers-color-scheme: dark) {
+        background: linear-gradient(135deg,
+                #fdba74,
+                #fbbf24);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+}
+
+.pet-care-essentials__subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: tokens.$color-text-secondary;
+    font-weight: 500;
+
+    @media (prefers-color-scheme: dark) {
+        color: rgba(209, 213, 219, 0.8);
+    }
+}
+
+// Content Grid
+.pet-care-essentials__content {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: tokens.$spacing-8;
+    margin-bottom: tokens.$spacing-12;
+    align-items: center;
+
+    @media (max-width: 1024px) {
+        grid-template-columns: 1fr;
+        gap: tokens.$spacing-6;
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: tokens.$spacing-4;
+    }
+}
+
+// Pillars Grid
+.pet-care-essentials__pillars {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: tokens.$spacing-4;
+
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: tokens.$spacing-3;
+    }
+
+    @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+        gap: tokens.$spacing-2;
+    }
+}
+
+// Pillar Card
+.pet-care-essentials__pillar-card {
+    position: relative;
+    padding: tokens.$spacing-6 tokens.$spacing-4;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(244, 139, 72, 0.1);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    animation: slideInUp 0.6s ease-out;
+    animation-delay: var(--animation-delay);
+    overflow: hidden;
+
+    @media (prefers-color-scheme: dark) {
+        background: rgba(31, 41, 55, 0.6);
+        border-color: rgba(244, 139, 72, 0.2);
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg,
+                rgba(244, 139, 72, 0.1),
+                rgba(253, 186, 116, 0.05));
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        border-radius: 16px;
+    }
+
+    &:hover {
+        border-color: tokens.$color-primary-500;
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(244, 139, 72, 0.15);
+
+        &::before {
+            opacity: 1;
+        }
+
+        .pet-care-essentials__pillar-icon {
+            transform: scale(1.2) rotate(-10deg);
+            color: tokens.$color-primary-500;
+        }
+    }
+
+    &.active {
+        background: linear-gradient(135deg,
+                rgba(244, 139, 72, 0.1),
+                rgba(253, 186, 116, 0.08));
+        border-color: tokens.$color-primary-500;
+        box-shadow: 0 20px 40px rgba(244, 139, 72, 0.2);
+        transform: translateY(-8px);
+
+        @media (prefers-color-scheme: dark) {
+            background: linear-gradient(135deg,
+                    rgba(244, 139, 72, 0.15),
+                    rgba(253, 186, 116, 0.1));
+        }
+
+        .pet-care-essentials__pillar-icon {
+            color: tokens.$color-primary-500;
+            transform: scale(1.2) rotate(-10deg);
+        }
+
+        .pet-care-essentials__pillar-title {
+            color: tokens.$color-primary-500;
+        }
+    }
+}
+
+.pet-care-essentials__pillar-icon {
+    font-size: 2.5rem;
+    color: tokens.$color-primary-400;
+    margin-bottom: tokens.$spacing-3;
+    display: flex;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    svg {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
+
+.pet-care-essentials__pillar-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: tokens.$color-text-primary;
+    margin-bottom: tokens.$spacing-1;
+    transition: color 0.3s ease;
+
+    @media (prefers-color-scheme: dark) {
+        color: #f3f4f6;
+    }
+}
+
+.pet-care-essentials__pillar-subtitle {
+    font-size: 0.85rem;
+    color: tokens.$color-text-secondary;
+    font-weight: 500;
+
+    @media (prefers-color-scheme: dark) {
+        color: rgba(209, 213, 219, 0.7);
+    }
+}
+
+// Detail Panel
+.pet-care-essentials__detail {
+    position: relative;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(244, 139, 72, 0.15);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    animation: slideInUp 0.8s ease-out 0.2s backwards;
+    backdrop-filter: blur(20px);
+
+    @media (prefers-color-scheme: dark) {
+        background: rgba(31, 41, 55, 0.8);
+        border-color: rgba(244, 139, 72, 0.2);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    }
+}
+
+.pet-care-essentials__detail-header {
+    position: relative;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 30% 50%,
+                rgba(255, 255, 255, 0.3),
+                transparent);
+        pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+        height: 140px;
+    }
+}
+
+.pet-care-essentials__detail-icon {
+    font-size: 4rem;
+    color: white;
+    filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.2));
+    animation: bounceIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s backwards;
+
+    svg {
+        width: 4rem;
+        height: 4rem;
+    }
+}
+
+.pet-care-essentials__detail-content {
+    padding: tokens.$spacing-8;
+
+    @media (max-width: 768px) {
+        padding: tokens.$spacing-6;
+    }
+
+    @media (max-width: 480px) {
+        padding: tokens.$spacing-4;
+    }
+}
+
+.pet-care-essentials__detail-title-group {
+    margin-bottom: tokens.$spacing-4;
+    animation: slideInUp 0.6s ease-out 0.3s backwards;
+}
+
+.pet-care-essentials__detail-main-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: tokens.$color-text-primary;
+    margin-bottom: tokens.$spacing-1;
+
+    @media (prefers-color-scheme: dark) {
+        color: #f3f4f6;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 1.5rem;
+    }
+}
+
+.pet-care-essentials__detail-subtitle {
+    display: inline-block;
+    padding: tokens.$spacing-1 tokens.$spacing-3;
+    background: linear-gradient(135deg,
+            rgba(244, 139, 72, 0.1),
+            rgba(253, 186, 116, 0.05));
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: tokens.$color-primary-500;
+    font-weight: 600;
+
+    @media (prefers-color-scheme: dark) {
+        background: linear-gradient(135deg,
+                rgba(244, 139, 72, 0.2),
+                rgba(253, 186, 116, 0.1));
+        color: #fdba74;
+    }
+}
+
+.pet-care-essentials__detail-description {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: tokens.$color-text-secondary;
+    margin-bottom: tokens.$spacing-6;
+    animation: slideInUp 0.6s ease-out 0.4s backwards;
+
+    @media (prefers-color-scheme: dark) {
+        color: rgba(209, 213, 219, 0.8);
+    }
+
+    @media (max-width: 480px) {
+        font-size: 1rem;
+        margin-bottom: tokens.$spacing-4;
+    }
+}
+
+// Benefits
+.pet-care-essentials__benefits {
+    margin-bottom: tokens.$spacing-6;
+    animation: slideInUp 0.6s ease-out 0.5s backwards;
+}
+
+.pet-care-essentials__benefits-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: tokens.$color-primary-500;
+    margin-bottom: tokens.$spacing-3;
+
+    @media (prefers-color-scheme: dark) {
+        color: #fdba74;
+    }
+}
+
+.pet-care-essentials__benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: tokens.$spacing-3;
+
+    @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+        gap: tokens.$spacing-2;
+    }
+}
+
+.pet-care-essentials__benefit-item {
+    display: flex;
+    align-items: center;
+    gap: tokens.$spacing-2;
+    padding: tokens.$spacing-2 tokens.$spacing-3;
+    background: rgba(244, 139, 72, 0.05);
+    border-radius: 8px;
+    border-left: 3px solid tokens.$color-primary-500;
+    font-size: 0.95rem;
+    color: tokens.$color-text-secondary;
+    animation: slideInUp 0.4s ease-out;
+    animation-delay: calc(var(--item-index) * 50ms + 600ms);
+    animation-fill-mode: backwards;
+
+    @media (prefers-color-scheme: dark) {
+        background: rgba(244, 139, 72, 0.08);
+        color: rgba(209, 213, 219, 0.8);
+    }
+
+    &:hover {
+        background: rgba(244, 139, 72, 0.1);
+        transform: translateX(4px);
+    }
+}
+
+.pet-care-essentials__benefit-check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg,
+            tokens.$color-primary-500,
+            tokens.$color-primary-400 );
+    color: white;
+    border-radius: 50%;
+    font-size: 0.85rem;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+// Pro Tip
+.pet-care-essentials__tip {
+    padding: tokens.$spacing-4;
+    background: linear-gradient(135deg,
+            rgba(59, 130, 246, 0.05),
+            rgba(147, 197, 253, 0.05));
+    border-left: 4px solid #3b82f6;
+    border-radius: 8px;
+    margin-bottom: tokens.$spacing-6;
+    animation: slideInUp 0.6s ease-out 0.6s backwards;
+
+    @media (prefers-color-scheme: dark) {
+        background: linear-gradient(135deg,
+                rgba(59, 130, 246, 0.1),
+                rgba(147, 197, 253, 0.08));
+        border-left-color: #60a5fa;
+    }
+}
+
+.pet-care-essentials__tip-label {
+    display: block;
+    font-weight: 600;
+    color: #3b82f6;
+    margin-bottom: tokens.$spacing-1;
+    font-size: 0.95rem;
+
+    @media (prefers-color-scheme: dark) {
+        color: #60a5fa;
+    }
+}
+
+.pet-care-essentials__tip-text {
+    margin: 0;
+    color: tokens.$color-text-secondary;
+    line-height: 1.6;
+    font-size: 0.95rem;
+
+    @media (prefers-color-scheme: dark) {
+        color: rgba(209, 213, 219, 0.8);
+    }
+}
+
+// CTA Button
+.pet-care-essentials__cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: tokens.$spacing-2;
+    padding: tokens.$spacing-3 tokens.$spacing-6;
+    background: linear-gradient(135deg,
+            tokens.$color-primary-500,
+            tokens.$color-primary-600 );
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: slideInUp 0.6s ease-out 0.7s backwards;
+
+    svg {
+        width: 20px;
+        height: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px rgba(244, 139, 72, 0.3);
+
+        svg {
+            transform: translateX(4px);
+        }
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+
+    @media (max-width: 480px) {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+// Stats Section
+.pet-care-essentials__stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: tokens.$spacing-6;
+    margin: tokens.$spacing-12 0;
+
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(3, 1fr);
+        gap: tokens.$spacing-4;
+    }
+
+    @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+        gap: tokens.$spacing-3;
+    }
+}
+
+.pet-care-essentials__stat-card {
+    position: relative;
+    padding: tokens.$spacing-6;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(244, 139, 72, 0.1);
+    border-radius: 16px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    animation: slideInUp 0.6s ease-out;
+    animation-delay: var(--stat-delay);
+    overflow: hidden;
+
+    @media (prefers-color-scheme: dark) {
+        background: rgba(31, 41, 55, 0.6);
+        border-color: rgba(244, 139, 72, 0.2);
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg,
+                rgba(244, 139, 72, 0.05) 0%,
+                transparent 100%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    &:hover {
+        transform: translateY(-8px);
+        border-color: tokens.$color-primary-500;
+        box-shadow: 0 20px 40px rgba(244, 139, 72, 0.15);
+
+        &::before {
+            opacity: 1;
+        }
+
+        .pet-care-essentials__stat-value {
+            color: tokens.$color-primary-500;
+            transform: scale(1.1);
+        }
+    }
+}
+
+.pet-care-essentials__stat-value {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700;
+    background: linear-gradient(135deg,
+            tokens.$color-primary-500,
+            tokens.$color-primary-600 );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: tokens.$spacing-1;
+    transition: all 0.4s ease;
+
+    @media (prefers-color-scheme: dark) {
+        background: linear-gradient(135deg,
+                #fdba74,
+                #fbbf24);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+}
+
+.pet-care-essentials__stat-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: tokens.$color-text-primary;
+    margin-bottom: tokens.$spacing-1;
+
+    @media (prefers-color-scheme: dark) {
+        color: #f3f4f6;
+    }
+}
+
+.pet-care-essentials__stat-unit {
+    font-size: 0.85rem;
+    color: tokens.$color-text-secondary;
+
+    @media (prefers-color-scheme: dark) {
+        color: rgba(209, 213, 219, 0.6);
+    }
+}
+
+// Bottom CTA
+.pet-care-essentials__bottom-cta {
+    text-align: center;
+    padding: tokens.$spacing-8;
+    background: linear-gradient(135deg,
+            rgba(244, 139, 72, 0.08),
+            rgba(253, 186, 116, 0.05));
+    border-radius: 20px;
+    border: 1px solid rgba(244, 139, 72, 0.15);
+    animation: slideInUp 0.8s ease-out 0.8s backwards;
+
+    @media (prefers-color-scheme: dark) {
+        background: linear-gradient(135deg,
+                rgba(244, 139, 72, 0.12),
+                rgba(253, 186, 116, 0.08));
+        border-color: rgba(244, 139, 72, 0.2);
+    }
+
+    h3 {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        color: tokens.$color-text-primary;
+        margin-bottom: tokens.$spacing-2;
+
+        @media (prefers-color-scheme: dark) {
+            color: #f3f4f6;
+        }
+    }
+
+    p {
+        font-size: 1.05rem;
+        color: tokens.$color-text-secondary;
+        margin-bottom: tokens.$spacing-4;
+
+        @media (prefers-color-scheme: dark) {
+            color: rgba(209, 213, 219, 0.8);
+        }
+    }
+}
+
+.pet-care-essentials__primary-button {
+    display: inline-flex;
+    align-items: center;
+    gap: tokens.$spacing-2;
+    padding: tokens.$spacing-3 tokens.$spacing-8;
+    background: linear-gradient(135deg,
+            tokens.$color-primary-500,
+            tokens.$color-primary-600 );
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 25px rgba(244, 139, 72, 0.2);
+
+    svg {
+        width: 20px;
+        height: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 35px rgba(244, 139, 72, 0.3);
+
+        svg {
+            transform: translateX(4px);
+        }
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+
+    @media (max-width: 480px) {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+// Visibility Animation
+.pet-care-essentials.visible {
+    .pet-care-essentials__orb {
+        animation: float 15s ease-in-out infinite;
+    }
+}
+
+// Animations
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+// Reduced Motion
+@media (prefers-reduced-motion: reduce) {
+    .pet-care-essentials {
+
+        .pet-care-essentials__header,
+        .pet-care-essentials__pillars,
+        .pet-care-essentials__detail,
+        .pet-care-essentials__stats,
+        .pet-care-essentials__bottom-cta,
+        .pet-care-essentials__orb {
+            animation: none !important;
+        }
+
+        .pet-care-essentials__pillar-card,
+        .pet-care-essentials__stat-card {
+            animation: none !important;
+            opacity: 1;
+            transform: none !important;
+        }
+
+        * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./BackToTopButton.scss";
 
 const BackToTopButton: React.FC = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);

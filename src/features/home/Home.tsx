@@ -1,16 +1,16 @@
 import HeroSection from "./components/HeroSection";
+import AboutHomeSection from "./components/AboutHomeSection";
+import PetCareEssentials from "./components/PetCareEssentials";
 import ProductsCardSection from "../products/ProductsCardSection";
 import BlogSection from "../blog/BlogSection";
-import IconsSection from "./components/IconsSection";
-import DiscountsProducts from "../products/DiscountsProducts";
 
 const Home: React.FC = () => {
   return (
     <>
       <HeroSection />
-      <IconsSection />
+      <AboutHomeSection />
       <ProductsCardSection />
-      <DiscountsProducts />
+      <PetCareEssentials />
       <BlogSection />
     </>
   );
