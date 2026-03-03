@@ -1,7 +1,13 @@
 import { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay, A11y, EffectFade } from "swiper/modules";
-import { Link } from "react-router-dom";
+import {
+  Navigation,
+  Pagination,
+  Autoplay,
+  A11y,
+  EffectFade,
+} from "swiper/modules";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -12,6 +18,8 @@ import LogoBlack from "../../../assets/img/huellitas-logo-black-500x500.png";
 import HeroImg1 from "../../../assets/img/hero_mascotas.jpg";
 import HeroImg2 from "../../../assets/img/perrito_cachorro.jpg";
 import HeroImg3 from "../../../assets/img/gato_portada.jpg";
+
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
@@ -53,6 +61,8 @@ const heroSlides: HeroSlide[] = [
 ];
 
 const HeroSection: React.FC = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
@@ -135,10 +145,13 @@ const HeroSection: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.5 }}
                 >
-                  <Link to="/products" className="hero-slide__cta">
-                    <ArrowForwardIosIcon className="hero-slide__cta-icon" />
-                    <span>Explorar Productos</span>
-                  </Link>
+                  <button
+                    onClick={() => navigate("/products")}
+                    className="pet-care-essentials__primary-button"
+                  >
+                    Ver Todos los Productos
+                    <ArrowForwardIcon />
+                  </button>
                 </motion.div>
               </motion.div>
             </div>

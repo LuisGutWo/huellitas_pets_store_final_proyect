@@ -8,16 +8,31 @@
 
 .pet-care-essentials {
     position: relative;
-    padding: tokens.$spacing-12 tokens.$spacing-4;
-    background: linear-gradient(135deg,
-            rgba(255, 255, 255, 0.95) 0%,
-            rgba(252, 250, 247, 1) 100%);
+    padding: tokens.$spacing-16 tokens.$spacing-4;
+    background:
+        radial-gradient(circle at 12% 18%,
+            rgba(tokens.$color-primary-400, 0.12) 0%,
+            transparent 42%),
+        radial-gradient(circle at 90% 84%,
+            rgba(tokens.$color-secondary-400, 0.14) 0%,
+            transparent 38%),
+        linear-gradient(145deg,
+            rgba(tokens.$color-primary-50, 0.88) 0%,
+            rgba(tokens.$color-bg-primary, 0.96) 42%,
+            rgba(tokens.$color-secondary-100, 0.54) 100%);
     overflow: hidden;
-    min-height: 900px;
+    min-height: 860px;
 
     @media (prefers-color-scheme: dark) {
-        background: linear-gradient(135deg,
-                rgba(17, 24, 39, 0.95) 0%,
+        background:
+            radial-gradient(circle at 12% 22%,
+                rgba(tokens.$color-primary-600, 0.28) 0%,
+                transparent 44%),
+            radial-gradient(circle at 87% 82%,
+                rgba(tokens.$color-secondary-600, 0.22) 0%,
+                transparent 40%),
+            linear-gradient(145deg,
+                rgba(17, 24, 39, 0.96) 0%,
                 rgba(31, 41, 55, 1) 100%);
     }
 }
@@ -26,27 +41,29 @@
 .pet-care-essentials__orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.3;
-    animation: float 15s ease-in-out infinite;
+    filter: blur(70px);
+    opacity: 0.5;
+    animation: floatOrb 16s ease-in-out infinite;
 
     &--1 {
-        width: 400px;
-        height: 400px;
-        top: -100px;
-        right: 10%;
+        width: clamp(220px, 24vw, 380px);
+        height: clamp(220px, 24vw, 380px);
+        top: -90px;
+        right: 4%;
         background: linear-gradient(135deg,
-                tokens.$color-primary-500,
-                tokens.$color-primary-300 );
+                rgba(tokens.$color-primary-500, 0.92),
+                rgba(tokens.$color-secondary-500, 0.66));
         animation-delay: 0s;
     }
 
     &--2 {
-        width: 300px;
-        height: 300px;
-        bottom: 10%;
-        left: 5%;
-        background: linear-gradient(135deg, #0891b2, #06b6d4);
+        width: clamp(180px, 18vw, 290px);
+        height: clamp(180px, 18vw, 290px);
+        bottom: 6%;
+        left: -3%;
+        background: linear-gradient(135deg,
+                rgba(tokens.$color-secondary-500, 0.82),
+                rgba(tokens.$color-primary-400, 0.56));
         animation-delay: 2s;
     }
 }
@@ -55,7 +72,7 @@
 .pet-care-essentials__container {
     position: relative;
     z-index: 1;
-    max-width: 1400px;
+    max-width: 1240px;
     margin: 0 auto;
 }
 
@@ -64,6 +81,8 @@
     text-align: center;
     margin-bottom: tokens.$spacing-12;
     animation: slideInUp 0.8s ease-out;
+    max-width: 760px;
+    margin-inline: auto;
 
     @media (max-width: 768px) {
         margin-bottom: tokens.$spacing-8;
@@ -71,20 +90,23 @@
 }
 
 .pet-care-essentials__title {
-    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-size: clamp(2rem, 4vw, 2.75rem);
     font-weight: 700;
+    height: max-content;
+    letter-spacing: -0.02em;
     background: linear-gradient(135deg,
             tokens.$color-primary-500,
-            tokens.$color-primary-600 );
+            tokens.$color-primary-700 72%,
+            tokens.$color-secondary-700 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: tokens.$spacing-3;
+    transition: filter 0.3s ease;
+    filter: drop-shadow(0 2px 10px rgba(tokens.$color-primary-500, 0.18));
 
     @media (prefers-color-scheme: dark) {
-        background: linear-gradient(135deg,
-                #fdba74,
-                #fbbf24);
+        background: linear-gradient(135deg, #fdba74, #fbbf24);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -95,6 +117,7 @@
     font-size: clamp(1rem, 2vw, 1.25rem);
     color: tokens.$color-text-secondary;
     font-weight: 500;
+    line-height: 1.7;
 
     @media (prefers-color-scheme: dark) {
         color: rgba(209, 213, 219, 0.8);
@@ -104,10 +127,10 @@
 // Content Grid
 .pet-care-essentials__content {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
+    grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 1.15fr);
     gap: tokens.$spacing-8;
     margin-bottom: tokens.$spacing-12;
-    align-items: center;
+    align-items: start;
 
     @media (max-width: 1024px) {
         grid-template-columns: 1fr;
@@ -125,6 +148,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: tokens.$spacing-4;
+    align-content: start;
 
     @media (max-width: 768px) {
         grid-template-columns: repeat(2, 1fr);
@@ -141,19 +165,28 @@
 .pet-care-essentials__pillar-card {
     position: relative;
     padding: tokens.$spacing-6 tokens.$spacing-4;
-    background: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(244, 139, 72, 0.1);
-    border-radius: 16px;
+    min-height: 180px;
+    background: linear-gradient(165deg,
+            rgba(tokens.$color-bg-primary, 0.9),
+            rgba(tokens.$color-primary-50, 0.58));
+    border: 1px solid rgba(tokens.$color-primary-500, 0.18);
+    border-radius: tokens.$radius-xl;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(10px);
-    animation: slideInUp 0.6s ease-out;
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease,
+        background 0.35s ease;
+    backdrop-filter: blur(14px);
+    animation: slideInUp 0.55s ease-out;
     animation-delay: var(--animation-delay);
+    animation-fill-mode: backwards;
     overflow: hidden;
+    text-align: left;
 
     @media (prefers-color-scheme: dark) {
-        background: rgba(31, 41, 55, 0.6);
-        border-color: rgba(244, 139, 72, 0.2);
+        background: rgba(31, 41, 55, 0.72);
+        border-color: rgba(tokens.$color-primary-300, 0.26);
     }
 
     &::before {
@@ -169,40 +202,38 @@
     }
 
     &:hover {
-        border-color: tokens.$color-primary-500;
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(244, 139, 72, 0.15);
+        border-color: rgba(tokens.$color-primary-500, 0.66);
+        transform: translateY(-7px);
+        box-shadow:
+            0 18px 34px rgba(tokens.$color-primary-500, 0.2),
+            0 2px 0 rgba(255, 255, 255, 0.35) inset;
 
         &::before {
             opacity: 1;
         }
 
         .pet-care-essentials__pillar-icon {
-            transform: scale(1.2) rotate(-10deg);
-            color: tokens.$color-primary-500;
+            transform: scale(1.06) rotate(-7deg);
+            color: tokens.$color-primary-300;
         }
     }
 
     &.active {
         background: linear-gradient(135deg,
-                rgba(244, 139, 72, 0.1),
-                rgba(253, 186, 116, 0.08));
-        border-color: tokens.$color-primary-500;
-        box-shadow: 0 20px 40px rgba(244, 139, 72, 0.2);
-        transform: translateY(-8px);
+                rgba(tokens.$color-primary-100, 0.75),
+                rgba(tokens.$color-secondary-100, 0.58));
+        border-color: rgba(tokens.$color-primary-700, 0.74);
+        box-shadow:
+            0 22px 38px rgba(tokens.$color-primary-500, 0.23),
+            0 1px 0 rgba(255, 255, 255, 0.5) inset;
+        transform: translateY(-6px);
 
-        @media (prefers-color-scheme: dark) {
-            background: linear-gradient(135deg,
-                    rgba(244, 139, 72, 0.15),
-                    rgba(253, 186, 116, 0.1));
+        &::before {
+            opacity: 1;
         }
 
         .pet-care-essentials__pillar-icon {
-            color: tokens.$color-primary-500;
-            transform: scale(1.2) rotate(-10deg);
-        }
-
-        .pet-care-essentials__pillar-title {
+            transform: scale(1.05) rotate(-7deg);
             color: tokens.$color-primary-500;
         }
     }
@@ -210,14 +241,28 @@
 
 .pet-care-essentials__pillar-icon {
     font-size: 2.5rem;
-    color: tokens.$color-primary-400;
+    color: tokens.$color-primary-500;
     margin-bottom: tokens.$spacing-3;
     display: flex;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    align-items: center;
+    justify-content: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 12px;
+    background: linear-gradient(145deg,
+            rgba(tokens.$color-primary-100, 0.9),
+            rgba(tokens.$color-secondary-100, 0.75));
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.85),
+        0 10px 20px rgba(tokens.$color-primary-500, 0.16);
+    transition:
+        transform 0.35s ease,
+        color 0.3s ease,
+        background 0.35s ease;
 
     svg {
-        width: 2.5rem;
-        height: 2.5rem;
+        width: 1.85rem;
+        height: 1.85rem;
     }
 }
 
@@ -246,28 +291,51 @@
 // Detail Panel
 .pet-care-essentials__detail {
     position: relative;
-    background: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(244, 139, 72, 0.15);
-    border-radius: 20px;
+    background: linear-gradient(175deg,
+            rgba(tokens.$color-bg-primary, 0.95),
+            rgba(tokens.$color-primary-50, 0.72));
+    border: 1px solid rgba(tokens.$color-primary-500, 0.22);
+    border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    box-shadow:
+        0 26px 50px rgba(17, 24, 39, 0.14),
+        0 1px 0 rgba(255, 255, 255, 0.52) inset;
     animation: slideInUp 0.8s ease-out 0.2s backwards;
     backdrop-filter: blur(20px);
+    position: sticky;
+    top: 100px;
 
     @media (prefers-color-scheme: dark) {
         background: rgba(31, 41, 55, 0.8);
         border-color: rgba(244, 139, 72, 0.2);
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     }
+
+    @media (max-width: 1024px) {
+        position: relative;
+        top: auto;
+    }
 }
 
 .pet-care-essentials__detail-header {
     position: relative;
-    height: 180px;
+    height: 170px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(100deg,
+                rgba(255, 255, 255, 0.16) 0%,
+                transparent 48%,
+                rgba(255, 255, 255, 0.1) 100%);
+        mix-blend-mode: screen;
+        pointer-events: none;
+    }
 
     &::before {
         content: "";
@@ -287,8 +355,8 @@
 .pet-care-essentials__detail-icon {
     font-size: 4rem;
     color: white;
-    filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.2));
-    animation: bounceIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s backwards;
+    filter: drop-shadow(0 10px 24px rgba(17, 24, 39, 0.26));
+    animation: popIn 0.6s cubic-bezier(0.2, 0.75, 0.25, 1.1) 0.35s backwards;
 
     svg {
         width: 4rem;
@@ -297,7 +365,7 @@
 }
 
 .pet-care-essentials__detail-content {
-    padding: tokens.$spacing-8;
+    padding: tokens.$spacing-7;
 
     @media (max-width: 768px) {
         padding: tokens.$spacing-6;
@@ -335,6 +403,7 @@
             rgba(244, 139, 72, 0.1),
             rgba(253, 186, 116, 0.05));
     border-radius: 8px;
+    border: 1px solid rgba(tokens.$color-primary-500, 0.22);
     font-size: 0.9rem;
     color: tokens.$color-primary-500;
     font-weight: 600;
@@ -403,8 +472,9 @@
     gap: tokens.$spacing-2;
     padding: tokens.$spacing-2 tokens.$spacing-3;
     background: rgba(244, 139, 72, 0.05);
-    border-radius: 8px;
+    border-radius: 10px;
     border-left: 3px solid tokens.$color-primary-500;
+    border: 1px solid rgba(tokens.$color-primary-500, 0.14);
     font-size: 0.95rem;
     color: tokens.$color-text-secondary;
     animation: slideInUp 0.4s ease-out;
@@ -418,7 +488,7 @@
 
     &:hover {
         background: rgba(244, 139, 72, 0.1);
-        transform: translateX(4px);
+        transform: translateX(3px);
     }
 }
 
@@ -442,30 +512,30 @@
 .pet-care-essentials__tip {
     padding: tokens.$spacing-4;
     background: linear-gradient(135deg,
-            rgba(59, 130, 246, 0.05),
-            rgba(147, 197, 253, 0.05));
-    border-left: 4px solid #3b82f6;
+            rgba(tokens.$color-secondary-500, 0.14),
+            rgba(tokens.$color-primary-200, 0.12));
+    border-left: 4px solid tokens.$color-secondary-600;
     border-radius: 8px;
     margin-bottom: tokens.$spacing-6;
     animation: slideInUp 0.6s ease-out 0.6s backwards;
 
     @media (prefers-color-scheme: dark) {
         background: linear-gradient(135deg,
-                rgba(59, 130, 246, 0.1),
-                rgba(147, 197, 253, 0.08));
-        border-left-color: #60a5fa;
+                rgba(tokens.$color-secondary-600, 0.2),
+                rgba(tokens.$color-primary-500, 0.15));
+        border-left-color: tokens.$color-secondary-400;
     }
 }
 
 .pet-care-essentials__tip-label {
     display: block;
     font-weight: 600;
-    color: #3b82f6;
+    color: tokens.$color-secondary-700;
     margin-bottom: tokens.$spacing-1;
     font-size: 0.95rem;
 
     @media (prefers-color-scheme: dark) {
-        color: #60a5fa;
+        color: tokens.$color-secondary-400;
     }
 }
 
@@ -497,6 +567,7 @@
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     animation: slideInUp 0.6s ease-out 0.7s backwards;
+    box-shadow: 0 10px 24px rgba(tokens.$color-primary-500, 0.25);
 
     svg {
         width: 20px;
@@ -506,7 +577,7 @@
 
     &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 12px 24px rgba(244, 139, 72, 0.3);
+        box-shadow: 0 14px 28px rgba(tokens.$color-primary-500, 0.33);
 
         svg {
             transform: translateX(4px);
@@ -528,7 +599,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: tokens.$spacing-6;
-    margin: tokens.$spacing-12 0;
+    margin: tokens.$spacing-10 0;
 
     @media (max-width: 768px) {
         grid-template-columns: repeat(3, 1fr);
@@ -544,12 +615,14 @@
 .pet-care-essentials__stat-card {
     position: relative;
     padding: tokens.$spacing-6;
-    background: rgba(255, 255, 255, 0.6);
+    background: linear-gradient(175deg,
+            rgba(tokens.$color-bg-primary, 0.88),
+            rgba(tokens.$color-primary-50, 0.5));
     border: 1px solid rgba(244, 139, 72, 0.1);
-    border-radius: 16px;
+    border-radius: tokens.$radius-xl;
     text-align: center;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
     animation: slideInUp 0.6s ease-out;
     animation-delay: var(--stat-delay);
     overflow: hidden;
@@ -573,7 +646,9 @@
     &:hover {
         transform: translateY(-8px);
         border-color: tokens.$color-primary-500;
-        box-shadow: 0 20px 40px rgba(244, 139, 72, 0.15);
+        box-shadow:
+            0 20px 40px rgba(244, 139, 72, 0.18),
+            0 1px 0 rgba(255, 255, 255, 0.45) inset;
 
         &::before {
             opacity: 1;
@@ -599,9 +674,7 @@
     transition: all 0.4s ease;
 
     @media (prefers-color-scheme: dark) {
-        background: linear-gradient(135deg,
-                #fdba74,
-                #fbbf24);
+        background: linear-gradient(135deg, #fdba74, #fbbf24);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -633,10 +706,11 @@
     text-align: center;
     padding: tokens.$spacing-8;
     background: linear-gradient(135deg,
-            rgba(244, 139, 72, 0.08),
-            rgba(253, 186, 116, 0.05));
-    border-radius: 20px;
-    border: 1px solid rgba(244, 139, 72, 0.15);
+            rgba(244, 139, 72, 0.14),
+            rgba(253, 186, 116, 0.09));
+    border-radius: 24px;
+    border: 1px solid rgba(244, 139, 72, 0.24);
+    box-shadow: 0 18px 36px rgba(tokens.$color-primary-500, 0.16);
     animation: slideInUp 0.8s ease-out 0.8s backwards;
 
     @media (prefers-color-scheme: dark) {
@@ -682,7 +756,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 10px 25px rgba(244, 139, 72, 0.2);
+    box-shadow: 0 12px 28px rgba(244, 139, 72, 0.24);
 
     svg {
         width: 20px;
@@ -692,7 +766,7 @@
 
     &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 15px 35px rgba(244, 139, 72, 0.3);
+        box-shadow: 0 18px 38px rgba(244, 139, 72, 0.34);
 
         svg {
             transform: translateX(4px);
@@ -712,7 +786,7 @@
 // Visibility Animation
 .pet-care-essentials.visible {
     .pet-care-essentials__orb {
-        animation: float 15s ease-in-out infinite;
+        animation: floatOrb 16s ease-in-out infinite;
     }
 }
 
@@ -720,7 +794,7 @@
 @keyframes slideInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(26px);
     }
 
     to {
@@ -729,31 +803,31 @@
     }
 }
 
-@keyframes float {
+@keyframes floatOrb {
 
     0%,
     100% {
-        transform: translateY(0px);
+        transform: translate3d(0, 0, 0);
     }
 
     50% {
-        transform: translateY(-20px);
+        transform: translate3d(0, -18px, 0);
     }
 }
 
-@keyframes bounceIn {
+@keyframes popIn {
     0% {
         opacity: 0;
-        transform: scale(0.3);
+        transform: scale(0.85) translateY(10px);
     }
 
     50% {
         opacity: 1;
-        transform: scale(1.05);
+        transform: scale(1.04) translateY(-2px);
     }
 
     100% {
-        transform: scale(1);
+        transform: scale(1) translateY(0);
     }
 }
 

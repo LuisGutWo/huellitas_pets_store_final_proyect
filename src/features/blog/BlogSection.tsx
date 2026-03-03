@@ -128,9 +128,8 @@ interface CategoryConfig {
 
 const BlogSection: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>("all");
-  const [filteredArticles, setFilteredArticles] = useState<BlogArticle[]>(
-    blogArticles
-  );
+  const [filteredArticles, setFilteredArticles] =
+    useState<BlogArticle[]>(blogArticles);
 
   useEffect(() => {
     AOS.refresh();
@@ -141,9 +140,7 @@ const BlogSection: React.FC = () => {
       setFilteredArticles(blogArticles);
     } else {
       setFilteredArticles(
-        blogArticles.filter(
-          (article) => article.category === activeCategory
-        )
+        blogArticles.filter((article) => article.category === activeCategory)
       );
     }
   }, [activeCategory]);
@@ -203,27 +200,15 @@ const BlogSection: React.FC = () => {
       {/* Header Section */}
       <div className="blog-section__header">
         <div className="blog-section__header-content">
-          <h2
-            className="blog-section__title"
-            data-aos="fade-right"
-            data-aos-offset="300"
-            data-aos-easing="ease-in-sine"
-          >
-            Blog
-          </h2>
-          <p
-            className="blog-section__subtitle"
-            data-aos="fade-up"
-            data-aos-offset="300"
-            data-aos-delay="100"
-          >
+          <h2 className="blog-section__title">Blog</h2>
+          <p className="blog-section__subtitle text-center">
             Descubre consejos, historias y guías para el cuidado integral de tu
             mascota
           </p>
         </div>
 
         {/* Category Filter */}
-        <div className="blog-section__filters" data-aos="fade-up" data-aos-delay="200">
+        <div className="blog-section__filters">
           {categories.map((category) => (
             <button
               key={category.id}
@@ -233,7 +218,9 @@ const BlogSection: React.FC = () => {
               onClick={() => setActiveCategory(category.id)}
               type="button"
             >
-              <span className="blog-category-button__icon">{category.icon}</span>
+              <span className="blog-category-button__icon">
+                {category.icon}
+              </span>
               <div className="blog-category-button__content">
                 <span className="blog-category-button__label">
                   {category.label}
@@ -307,7 +294,10 @@ const BlogSection: React.FC = () => {
                       {article.category === "salud" && <FavoriteBorderIcon />}
                       {article.category === "cuidados" && <SpaIcon />}
                       {article.category === "moda" && <ShoppingBagIcon />}
-                      <span>{article.category.charAt(0).toUpperCase() + article.category.slice(1)}</span>
+                      <span>
+                        {article.category.charAt(0).toUpperCase() +
+                          article.category.slice(1)}
+                      </span>
                     </div>
 
                     {/* Main Content */}

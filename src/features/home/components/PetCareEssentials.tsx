@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import RestaurantIcon from "@mui/icons-material/Restaurant";
-import SpaIcon from "@mui/icons-material/Spa";
-import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import LocalDiningRoundedIcon from "@mui/icons-material/LocalDiningRounded";
+import AutoAwesomeRoundedIcon from "@mui/icons-material/AutoAwesomeRounded";
+import FitnessCenterRoundedIcon from "@mui/icons-material/FitnessCenterRounded";
+import HealthAndSafetyRoundedIcon from "@mui/icons-material/HealthAndSafetyRounded";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import "../styles/petCareEssentials.scss";
 
@@ -33,7 +33,7 @@ const PetCareEssentials: React.FC = () => {
   const carePillars: CarePillar[] = [
     {
       id: "nutrition",
-      icon: <RestaurantIcon />,
+      icon: <LocalDiningRoundedIcon />,
       title: "Nutrición",
       subtitle: "Alimentación Balanceada",
       description: "Una dieta de calidad es el fundamento de una mascota saludable y feliz.",
@@ -44,11 +44,11 @@ const PetCareEssentials: React.FC = () => {
         "Digestión óptima",
       ],
       tips: "Elige alimentos con ingredientes naturales. La calidad importa más que la cantidad.",
-      accentColor: "linear-gradient(135deg, #f48b48 0%, #fdba74 100%)",
+      accentColor: "linear-gradient(135deg, #f48b48 0%, #fedd62 100%)",
     },
     {
       id: "hygiene",
-      icon: <SpaIcon />,
+      icon: <AutoAwesomeRoundedIcon />,
       title: "Higiene",
       subtitle: "Cuidado Personal",
       description: "El aseo regular previene enfermedades y mantiene a tu mascota cómoda.",
@@ -59,11 +59,11 @@ const PetCareEssentials: React.FC = () => {
         "Vínculo reforzado",
       ],
       tips: "Baños regulares con productos suaves. La frecuencia depende de la raza y clima.",
-      accentColor: "linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)",
+      accentColor: "linear-gradient(135deg, #f59e0b 0%, #fedd62 100%)",
     },
     {
       id: "exercise",
-      icon: <DirectionsRunIcon />,
+      icon: <FitnessCenterRoundedIcon />,
       title: "Ejercicio",
       subtitle: "Actividad Física",
       description: "El movimiento es esencial para mantener un peso saludable y una mente activa.",
@@ -74,11 +74,11 @@ const PetCareEssentials: React.FC = () => {
         "Longevidad",
       ],
       tips: "30-60 minutos de actividad diaria. Juegos variados mantienen el interés.",
-      accentColor: "linear-gradient(135deg, #ec4899 0%, #f472b6 100%)",
+      accentColor: "linear-gradient(135deg, #e67938 0%, #f59e0b 100%)",
     },
     {
       id: "health",
-      icon: <FavoriteBorderIcon />,
+      icon: <HealthAndSafetyRoundedIcon />,
       title: "Salud",
       subtitle: "Bienestar Integral",
       description: "Revisiones veterinarias regulares garantizan la detección temprana de problemas.",
@@ -89,7 +89,7 @@ const PetCareEssentials: React.FC = () => {
         "Vida más larga",
       ],
       tips: "Visita al veterinario 1-2 veces al año. La prevención es el mejor remedio.",
-      accentColor: "linear-gradient(135deg, #10b981 0%, #6ee7b7 100%)",
+      accentColor: "linear-gradient(135deg, #f48b48 0%, #e67938 100%)",
     },
   ];
 
@@ -128,10 +128,8 @@ const PetCareEssentials: React.FC = () => {
       ref={sectionRef}
       className={`pet-care-essentials ${isVisible ? "visible" : ""}`}
     >
-      {/* Background Orbes */}
       <div className="pet-care-essentials__orb pet-care-essentials__orb--1" />
       <div className="pet-care-essentials__orb pet-care-essentials__orb--2" />
-
       <div className="pet-care-essentials__container">
         {/* Header Section */}
         <div className="pet-care-essentials__header">

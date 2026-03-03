@@ -91,7 +91,7 @@ const ProductsCardSection: React.FC = () => {
 
   if (loading) {
     return (
-      <main>
+      <main className="products-page-main">
         <Container>
           <section className="products-hero">
             <div className="products-hero__content">
@@ -124,7 +124,7 @@ const ProductsCardSection: React.FC = () => {
   if (error) return <div>Error: {error?.message}</div>;
 
   return (
-    <main>
+    <main className="products-page-main">
       <Container>
         <section className="products-hero" aria-labelledby="products-title">
           <div className="products-hero__content">
