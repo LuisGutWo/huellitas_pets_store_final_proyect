@@ -156,37 +156,43 @@ const MainProductsList: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="container">
-        <Breadcrumbs />
-        <section className="products-list-header">
-          <div className="products-list-container__text">
-            <div className="products-list__text">
-              <Skeleton variant="text" width="60%" height="28px" />
-              <Skeleton variant="text" width="80%" height="20px" />
-            </div>
-            <Skeleton variant="rectangular" width="100%" height="48px" />
-          </div>
-        </section>
+      <section className="products-list-wrapper">
+        <div className="products-list-wrapper__breadcrumb">
+          <Breadcrumbs />
+        </div>
+        <div className="products-list-wrapper__content">
+          <div className="container">
+            <section className="products-list-header">
+              <div className="products-list-container__text">
+                <div className="products-list__text">
+                  <Skeleton variant="text" width="60%" height="28px" />
+                  <Skeleton variant="text" width="80%" height="20px" />
+                </div>
+                <Skeleton variant="rectangular" width="100%" height="48px" />
+              </div>
+            </section>
 
-        <div className="products-with-filters">
-          <div className="desktop-filter-panel">
-            <div className="skeleton-panel">
-              <Skeleton variant="text" width="70%" height="18px" />
-              <Skeleton variant="text" width="90%" height="16px" />
-              <Skeleton variant="text" width="85%" height="16px" />
-              <Skeleton variant="text" width="60%" height="16px" />
-              <Skeleton variant="rectangular" width="100%" height="36px" />
-            </div>
-          </div>
+            <div className="products-with-filters">
+              <div className="desktop-filter-panel">
+                <div className="skeleton-panel">
+                  <Skeleton variant="text" width="70%" height="18px" />
+                  <Skeleton variant="text" width="90%" height="16px" />
+                  <Skeleton variant="text" width="85%" height="16px" />
+                  <Skeleton variant="text" width="60%" height="16px" />
+                  <Skeleton variant="rectangular" width="100%" height="36px" />
+                </div>
+              </div>
 
-          <div className="products-list-content">
-            <div className="products-list-results">
-              <Skeleton variant="text" width="40%" height="16px" />
+              <div className="products-list-content">
+                <div className="products-list-results">
+                  <Skeleton variant="text" width="40%" height="16px" />
+                </div>
+                <ProductListSkeleton count={9} />
+              </div>
             </div>
-            <ProductListSkeleton count={9} />
           </div>
         </div>
-      </div>
+      </section>
     );
   }
   if (error) return <div>Error: {String(error)}</div>;
@@ -200,93 +206,99 @@ const MainProductsList: React.FC = () => {
     (filters.priceRange[0] > 0 || filters.priceRange[1] < 100000 ? 1 : 0);
 
   return (
-    <div className="container">
-      <Breadcrumbs />
-      {/* Products list section */}
-      <section className="products-list-header">
-        <div className="products-list-container__text">
-          <div className="products-list__text">
-            <h1>NUESTRA TIENDA ONLINE</h1>
-            <h3>Selecciona tu producto favorito de nuestra tienda online</h3>
-          </div>
-          <SearchBar
-            products={data}
-            value={search}
-            onChange={setSearch}
-            placeholder="Buscar producto por nombre, categoría o tipo..."
+    <section className="products-list-wrapper">
+      <div className="products-list-wrapper__breadcrumb">
+        <Breadcrumbs />
+      </div>
+      <div className="products-list-wrapper__content">
+        <div className="container">
+          {/* Products list section */}
+          <section className="products-list-header">
+            <div className="products-list-container__text">
+              <div className="products-list__text">
+                <h1>NUESTRA TIENDA ONLINE</h1>
+                <h3>Selecciona tu producto favorito de nuestra tienda online</h3>
+              </div>
+              <SearchBar
+                products={data}
+                value={search}
+                onChange={setSearch}
+                placeholder="Buscar producto por nombre, categoría o tipo..."
+              />
+            </div>
+          </section>
+
+          {/* Active Filter Chips */}
+          <ActiveFilterChips
+            filters={filters}
+            onRemoveCategory={handleRemoveCategory}
+            onRemoveRating={handleRemoveRating}
+            onRemoveStock={handleRemoveStock}
+            onRemovePriceRange={handleRemovePriceRange}
+            onRemoveDiscount={handleRemoveDiscount}
+            onClearAll={handleClearFilters}
           />
-        </div>
-      </section>
 
-      {/* Active Filter Chips */}
-      <ActiveFilterChips
-        filters={filters}
-        onRemoveCategory={handleRemoveCategory}
-        onRemoveRating={handleRemoveRating}
-        onRemoveStock={handleRemoveStock}
-        onRemovePriceRange={handleRemovePriceRange}
-        onRemoveDiscount={handleRemoveDiscount}
-        onClearAll={handleClearFilters}
-      />
+          {/* Main content with sidebar and products */}
+          <div className="products-with-filters">
+            {/* Desktop Filter Panel */}
+            <div className="desktop-filter-panel">
+              <FilterPanel
+                categories={categories}
+                types={types}
+                filters={filters}
+                onFilterChange={handleFilterChange}
+                onClearFilters={handleClearFilters}
+              />
+            </div>
 
-      {/* Main content with sidebar and products */}
-      <div className="products-with-filters">
-        {/* Desktop Filter Panel */}
-        <div className="desktop-filter-panel">
-          <FilterPanel
+            <div className="products-list-content">
+              <div className="products-list-results">
+                <p className="products-list-count">
+                  {products.length}{" "}
+                  {products.length === 1
+                    ? "producto encontrado"
+                    : "productos encontrados"}
+                </p>
+              </div>
+
+              <Row xs={1} sm={2} lg={3} className="products-list-container">
+                {products.map((item) => (
+                  <Col key={item.id}>
+                    <MainProductCard item={item} />
+                  </Col>
+                ))}
+              </Row>
+
+              {products.length === 0 && (
+                <div className="products-empty-state">
+                  <h3>No se encontraron productos</h3>
+                  <p>Intenta ajustar los filtros o buscar otro término</p>
+                  <button
+                    className="products-empty-btn"
+                    onClick={handleClearFilters}
+                  >
+                    Limpiar filtros
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Mobile Filter Drawer */}
+          <MobileFilterDrawer
             categories={categories}
             types={types}
             filters={filters}
             onFilterChange={handleFilterChange}
             onClearFilters={handleClearFilters}
+            activeFiltersCount={activeFiltersCount}
           />
-        </div>
 
-        <div className="products-list-content">
-          <div className="products-list-results">
-            <p className="products-list-count">
-              {products.length}{" "}
-              {products.length === 1
-                ? "producto encontrado"
-                : "productos encontrados"}
-            </p>
-          </div>
-
-          <Row xs={1} sm={2} lg={3} className="products-list-container">
-            {products.map((item) => (
-              <Col key={item.id}>
-                <MainProductCard item={item} />
-              </Col>
-            ))}
-          </Row>
-
-          {products.length === 0 && (
-            <div className="products-empty-state">
-              <h3>No se encontraron productos</h3>
-              <p>Intenta ajustar los filtros o buscar otro término</p>
-              <button
-                className="products-empty-btn"
-                onClick={handleClearFilters}
-              >
-                Limpiar filtros
-              </button>
-            </div>
-          )}
+          <BackToTopButton />
         </div>
       </div>
-
-      {/* Mobile Filter Drawer */}
-      <MobileFilterDrawer
-        categories={categories}
-        types={types}
-        filters={filters}
-        onFilterChange={handleFilterChange}
-        onClearFilters={handleClearFilters}
-        activeFiltersCount={activeFiltersCount}
-      />
-
-      <BackToTopButton />
-    </div>
+    </section>
   );
 };
 

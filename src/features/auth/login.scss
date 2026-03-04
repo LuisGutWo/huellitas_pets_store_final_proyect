@@ -1,45 +1,172 @@
-@use "../../shared/styles/styles.scss";
+@use "../../shared/styles/styles.scss" as styles;
+@use "../../shared/styles/tokens" as tokens;
 
-
-.main-login-box {
-    background: styles.$background-color;
+.auth-page {
+    width: 100%;
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    margin-top: 10%;
+    justify-content: center;
+    padding: calc(8.5rem + tokens.$spacing-lg) tokens.$spacing-lg tokens.$spacing-2xl;
+    background: linear-gradient(135deg,
+            rgba(tokens.$color-primary-50, 0.52) 0%,
+            rgba(tokens.$color-secondary-50, 0.34) 55%,
+            rgba(tokens.$color-neutral-50, 0.4) 100%),
+        linear-gradient(to bottom,
+            tokens.$color-primary-50 0%,
+            tokens.$color-neutral-50 100%);
+
+    &__container {
+        width: 100%;
+        max-width: 560px;
+    }
+}
+
+.main-login-box.auth-card {
+    width: 100%;
     text-align: center;
-    padding: 4rem 3rem;
-
-    & .login-container {
-        width: 35%;
-        height: 30rem;
-        padding: 3.2rem;
-        background-color: rgba(236, 236, 236, 0.53);
-        box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
-        border-radius: 30px;
-        animation: heartBeat;
-        animation-duration: 2s;
-    }
+    padding: tokens.$spacing-xl;
+    border-radius: tokens.$radius-lg;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.94) 0%,
+            rgba(tokens.$color-primary-50, 0.86) 100%);
+    backdrop-filter: blur(10px);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        0 20px 60px rgba(tokens.$color-neutral-900, 0.12);
+    animation: authFadeUp 0.55s ease-out both;
 }
 
-@media (width <=768px) {
-    .main-login-box {
-        margin-top: 20%;
+.auth-card {
+    &__avatar {
+        box-shadow: 0 8px 20px rgba(tokens.$color-primary-600, 0.3);
+        margin-bottom: tokens.$spacing-sm;
+    }
 
-        & .login-container {
-            width: 100%;
+    &__title {
+        margin-bottom: tokens.$spacing-xs !important;
+        font-weight: tokens.$font-weight-bold !important;
+        color: tokens.$color-neutral-800;
+        letter-spacing: -0.2px;
+    }
+
+    &__subtitle {
+        margin: 0 0 tokens.$spacing-lg;
+        font-size: tokens.$font-size-sm;
+        color: tokens.$color-neutral-600;
+        line-height: 1.6;
+    }
+
+    &__form {
+        text-align: left;
+
+        .MuiFormHelperText-root {
+            margin-left: 0;
         }
     }
 
+    &__footer-link {
+        margin-top: tokens.$spacing-sm;
+    }
+
+    &__inline-link {
+        button {
+            text-transform: none;
+            font-size: tokens.$font-size-xs;
+            color: tokens.$color-neutral-600;
+
+            &:hover {
+                color: tokens.$color-primary-600;
+                background-color: rgba(tokens.$color-primary-50, 0.5);
+            }
+        }
+    }
+
+    &__hint {
+        margin: 0;
+        font-size: tokens.$font-size-xs;
+        color: tokens.$color-neutral-600;
+        text-align: center;
+        line-height: 1.5;
+    }
 }
 
-@media (width <=390px) {
-    .main-login-box {
-        margin-top: 10%;
+.password-visibility-toggle {
+    margin-left: tokens.$spacing-sm;
+    width: 2.4rem;
+    height: 2.4rem;
+    border: 1px solid tokens.$color-border-medium;
+    border-radius: tokens.$radius-md;
+    background: rgba(255, 255, 255, 0.9);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: tokens.$color-neutral-700;
+    cursor: pointer;
+    transition: all tokens.$duration-fast tokens.$ease-in-out;
 
-        & .login-container {
-            width: 100%;
-        }
+    &:hover {
+        color: tokens.$color-primary-600;
+        border-color: tokens.$color-primary-300;
+        background: rgba(tokens.$color-primary-50, 0.95);
+    }
+
+    &:focus-visible {
+        outline: 2px solid tokens.$color-primary-400;
+        outline-offset: 2px;
+    }
+}
+
+.auth-card {
+    .category-buttons {
+        width: 100%;
+        margin-top: tokens.$spacing-md;
+    }
+}
+
+@media (max-width: 768px) {
+    .auth-page {
+        padding: calc(8rem + tokens.$spacing-md) tokens.$spacing-md tokens.$spacing-xl;
+    }
+
+    .main-login-box.auth-card {
+        padding: tokens.$spacing-lg;
+    }
+}
+
+@media (max-width: 390px) {
+    .auth-page {
+        padding: calc(7.8rem + tokens.$spacing-sm) tokens.$spacing-sm tokens.$spacing-lg;
+    }
+
+    .main-login-box.auth-card {
+        padding: tokens.$spacing-md;
+        border-radius: tokens.$radius-md;
+    }
+
+    .auth-card__title {
+        font-size: 1.3rem !important;
+    }
+}
+
+@keyframes authFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .auth-page,
+    .auth-page * {
+        animation: none !important;
+        transition: none !important;
     }
 }

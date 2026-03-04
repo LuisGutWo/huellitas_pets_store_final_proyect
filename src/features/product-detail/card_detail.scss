@@ -1,152 +1,252 @@
-@use "../../shared/styles/styles.scss";
+@use "../../shared/styles/styles.scss" as styles;
+@use "../../shared/styles/tokens" as tokens;
 
-// Product Detail Section
+.product-detail-page {
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 4rem;
+    background: linear-gradient(135deg,
+            rgba(tokens.$color-primary-50, 0.5) 0%,
+            rgba(tokens.$color-secondary-50, 0.3) 50%,
+            rgba(tokens.$color-neutral-50, 0.4) 100%),
+        linear-gradient(to bottom,
+            tokens.$color-primary-50 0%,
+            tokens.$color-neutral-50 100%);
+
+    &__breadcrumb {
+        width: 100%;
+        margin-bottom: tokens.$spacing-lg;
+        animation: detailFadeInDown 0.45s ease-out both;
+    }
+}
 
 .detail-container {
-    background: transparent;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-bottom: tokens.$spacing-2xl;
+}
 
+.detail-layout {
+    width: 100%;
+    min-height: calc(100vh - 14rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .detail-card {
-    overflow: hidden;
-    margin: 15rem 0 5rem 0;
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    position: relative;
+    width: min(100%, 1020px);
+    margin: 0 auto;
+    padding: tokens.$spacing-xl;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: tokens.$radius-lg;
+    display: grid;
+    grid-template-columns: minmax(260px, 36%) 1fr;
+    gap: tokens.$spacing-xl;
     align-items: center;
-    justify-content: center;
-    height: 100%;
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    -webkit-backdrop-filter: blur(10px);
+    overflow: hidden;
+    background: linear-gradient(120deg,
+            rgba(255, 255, 255, 0.93) 0%,
+            rgba(tokens.$color-primary-50, 0.86) 100%);
     backdrop-filter: blur(10px);
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.75),
+        0 20px 60px rgba(tokens.$color-neutral-900, 0.12);
+    animation: detailFadeInUp 0.55s ease-out both;
 
-    & .card-favorite-icon {
+    .card-favorite-icon {
         position: absolute;
-        cursor: pointer;
-        top: 65%;
-        left: 82%;
-        z-index: 100;
-        -webkit-transition: 2s ease-in-out;
-        transition: all 2s ease-in-out;
-        transition-delay: initial 2s;
+        top: tokens.$spacing-lg;
+        right: tokens.$spacing-lg;
+        z-index: 4;
 
-        .card-icons {
-            font-size: 200%;
-            color: #7a7fc6;
+        .btn {
+            border: none !important;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: tokens.$radius-full;
+            box-shadow: 0 6px 16px rgba(tokens.$color-neutral-900, 0.16);
 
             &:hover {
-                color: #7a7fc6 !important;
-                -webkit-transform: scale(1.3);
-                transform: scale(1.3);
-                transition: all 0.5s ease-in-out;
-                transition-delay: 0.1s;
+                filter: brightness(1.03);
+            }
+        }
+
+        .card-icons {
+            font-size: 1.7rem;
+            color: tokens.$color-primary-600;
+            transition: transform tokens.$duration-fast tokens.$ease-in-out;
+
+            &:hover {
+                transform: scale(1.1);
             }
         }
     }
 
-    & .card-image {
-        width: 30%;
+    .card-image {
+        width: 100%;
+        aspect-ratio: 1 / 1;
         object-fit: cover;
-        border-radius: inherit;
-        -webkit-transform: scale(1);
-        transform: scale(1);
-        -webkit-transition: 1s ease-in-out;
-        transition: 1s ease-in-out;
+        border-radius: tokens.$radius-lg;
+        transition: transform tokens.$duration-normal tokens.$ease-in-out;
 
         &:hover {
-            -webkit-transform: scale(1.1);
-            transform: scale(1.1);
+            transform: scale(1.03);
         }
     }
 }
 
 .card-body-detail {
+    padding: 0 !important;
     display: flex;
     flex-direction: column;
+    gap: tokens.$spacing-md;
     align-items: flex-start;
-    justify-content: center;
 
-    & .card-title {
+    .card-title {
+        margin: 0;
+        padding-bottom: tokens.$spacing-sm;
         font-size: 2rem;
-        border-bottom: solid 2px rgb(20, 20, 20);
-        margin-bottom: 2rem;
-        color: #1e1e1e;
+        font-weight: tokens.$font-weight-bold;
+        line-height: 1.2;
+        color: tokens.$color-neutral-800;
+        border-bottom: 2px solid rgba(tokens.$color-neutral-800, 0.2);
     }
 
-    & .card-text {
-        font-weight: lighter;
-        font-family: 'Roboto', sans-serif;
-        font-size: 1.3rem;
-        color: #515151;
-
+    .card-text {
+        margin: 0;
+        font-size: 1.08rem;
+        line-height: 1.7;
+        color: tokens.$color-neutral-600;
     }
-
 }
 
 .card-price-button {
-    display: flex;
     width: 100%;
-    flex-direction: column;
+    display: flex;
+    align-items: center;
     justify-content: space-between;
-    gap: 0.5rem;
-    align-items: flex-start;
-    margin: 0.2rem 0rem 2rem 0rem;
-    font-size: 1.2rem;
-    color: #480808ce;
+    margin: tokens.$spacing-sm 0;
+    gap: tokens.$spacing-md;
+    color: tokens.$color-primary-700;
 
-    & b {
-        font-size: 1.5rem;
-
+    b {
+        margin: 0;
+        font-size: 1.8rem;
+        font-weight: tokens.$font-weight-bold;
+        color: tokens.$color-primary-700;
     }
 
+    .btn {
+        border-radius: tokens.$radius-md;
+    }
 }
 
-
-@media (width <=768px) {
-    .detail-card {
-        height: 100%;
+.detail-card {
+    .category-buttons {
+        width: 100%;
         justify-content: center;
-        margin: 8.5rem 0 3rem 0;
-        flex-direction: column;
-        padding-top: 4rem;
+        align-items: center;
+        gap: tokens.$spacing-sm;
+        margin-top: tokens.$spacing-sm;
+    }
+}
 
-        & .card-favorite-icon {
-            top: 50%;
-            left: 82%;
-        }
-
-        & .card-image {
-            width: 80%;
-        }
+@media (max-width: 992px) {
+    .detail-card {
+        grid-template-columns: 1fr;
+        max-width: 760px;
+        padding: tokens.$spacing-lg;
     }
 
     .card-body-detail {
-        & .card-title {
-            font-size: 1.1rem;
-            border-bottom: solid 1px black;
-            margin-bottom: 1.1rem;
+        .card-title {
+            font-size: 1.6rem;
         }
 
-        & .card-text {
-            font-size: 0.8rem;
-
+        .card-text {
+            font-size: 1rem;
         }
+    }
+}
 
+@media (max-width: 768px) {
+    .product-detail-page {
+        &__breadcrumb {
+            margin-bottom: tokens.$spacing-md;
+        }
+    }
+
+    .detail-layout {
+        min-height: auto;
+    }
+
+    .detail-card {
+        padding: tokens.$spacing-md;
+
+        .card-favorite-icon {
+            top: tokens.$spacing-sm;
+            right: tokens.$spacing-sm;
+        }
     }
 
     .card-price-button {
-        font-size: 1.2rem;
+        flex-direction: column;
+        align-items: flex-start;
 
         b {
-            font-size: 1rem;
-
+            font-size: 1.4rem;
         }
+    }
+}
 
+@media (max-width: 390px) {
+    .product-detail-page {
+        padding-top: 3.6rem;
     }
 
+    .card-body-detail {
+        .card-title {
+            font-size: 1.3rem;
+        }
+
+        .card-text {
+            font-size: 0.92rem;
+        }
+    }
+}
+
+@keyframes detailFadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes detailFadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .product-detail-page,
+    .product-detail-page * {
+        animation: none !important;
+        transition: none !important;
+    }
 }

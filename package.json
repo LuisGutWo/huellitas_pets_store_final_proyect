@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,scss,css,md}\""
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,scss,css,md}\"",
+    "check:overflow": "node ./scripts/check-overflow.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

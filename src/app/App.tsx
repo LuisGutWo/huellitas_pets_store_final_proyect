@@ -14,6 +14,7 @@ const aboutImport = () => import("../features/about/About");
 const productDetailImport = () => import("../features/product-detail/ProductDetail");
 const loginImport = () => import("../features/auth/LoginUserPage");
 const createUserImport = () => import("../features/auth/CreateUser");
+const recoverImport = () => import("../features/auth/RecoverPassword");
 const cartImport = () => import("../features/cart/Cart");
 const favoritesImport = () => import("../features/favorites/SelectFavorites");
 const contactImport = () => import("../features/contact/Contact");
@@ -26,6 +27,7 @@ const About = lazy(aboutImport);
 const ProductDetail = lazy(productDetailImport);
 const LoginUserPage = lazy(loginImport);
 const CreateUser = lazy(createUserImport);
+const RecoverPassword = lazy(recoverImport);
 const Cart = lazy(cartImport);
 const SelectFavorites = lazy(favoritesImport);
 const Contact = lazy(contactImport);
@@ -62,6 +64,7 @@ function App() {
       void aboutImport();
       void contactImport();
       void blogImport();
+      void recoverImport();
     }, 1200);
 
     return () => clearTimeout(timer);
@@ -163,6 +166,14 @@ function App() {
             element={
               <Suspense fallback={<RouteFallback label="Cargando registro..." />}>
                 <CreateUser />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/recover-password"
+            element={
+              <Suspense fallback={<RouteFallback label="Cargando recuperación..." />}>
+                <RecoverPassword />
               </Suspense>
             }
           />

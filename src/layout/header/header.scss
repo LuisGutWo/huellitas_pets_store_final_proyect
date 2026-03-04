@@ -60,7 +60,7 @@
   left: 0;
   right: 0;
   top: 0;
-  z-index: 100;
+  z-index: 1300;
   position: fixed;
   border: none;
 }
@@ -70,15 +70,25 @@
 // ============================================
 
 .navbar-top-menu {
-  background-color: tokens.$color-neutral-800;
+  // Premium gradient background with glasmorphism
+  background: linear-gradient(165deg,
+      rgba(tokens.$color-secondary-50, 0.95) 0%,
+      rgba(tokens.$color-primary-50, 0.92) 50%,
+      rgba(tokens.$color-secondary-100, 0.95) 100%);
+  backdrop-filter: blur(8px);
+
+  // Premium styling
   padding: 0;
   margin: 0;
   border: none;
+  border-bottom: 1px solid rgba(tokens.$color-neutral-400, 0.25);
   border-radius: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 2.5rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 4px 12px rgba(tokens.$color-neutral-900, 0.08);
   @include tokens.transition(all, tokens.$duration-slow, tokens.$ease-in-out);
 
   & .container-fluid {
@@ -87,34 +97,88 @@
     justify-content: space-between;
     align-items: center;
   }
+
+  @media (prefers-color-scheme: dark) {
+    background: linear-gradient(165deg,
+        rgba(tokens.$color-neutral-800, 0.92) 0%,
+        rgba(tokens.$color-neutral-850, 0.95) 50%,
+        rgba(tokens.$color-neutral-800, 0.92) 100%);
+    border-bottom-color: rgba(tokens.$color-neutral-600, 0.35);
+  }
 }
 
 .navbar-top-menu__left {
   width: 50%;
   margin-right: 0;
   text-align: left;
+  display: flex;
+  gap: tokens.$spacing-1;
+}
 
-  & a {
-    color: styles.$white-dark;
-    margin-left: 15px;
-    font-size: 0.9rem;
-    line-height: 78px;
-    letter-spacing: -0.9px;
-    font-weight: normal;
-    transition: all 0.3s ease-in-out;
-    cursor: pointer;
+.navbar-top-menu__link {
+  position: relative;
+  color: tokens.$color-neutral-700;
+  margin-left: tokens.$spacing-3;
+  padding: 0;
+  font-size: 0.85rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.3px;
+  font-weight: tokens.$font-weight-medium;
+  text-decoration: none;
+  cursor: pointer;
+  @include tokens.transition(color, tokens.$duration-fast, tokens.$ease-in-out);
 
-    &:hover,
-    &:focus {
-      outline: none;
-      opacity: 0.7;
+  // Animated underline effect
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 8px;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg,
+        tokens.$color-primary-500,
+        tokens.$color-secondary-500);
+    transform: scaleX(0);
+    transform-origin: left;
+    @include tokens.transition(transform, tokens.$duration-fast, tokens.$ease-in-out);
+  }
+
+  &:hover {
+    color: tokens.$color-primary-600;
+
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid tokens.$color-primary-400;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  &--active {
+    color: tokens.$color-primary-600;
+    font-weight: tokens.$font-weight-bold;
+
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    color: tokens.$color-neutral-200;
+
+    &:hover {
+      color: tokens.$color-primary-400;
+    }
+
+    &--active {
+      color: tokens.$color-primary-400;
     }
   }
 }
-
-// .offcanvas-end {
-//   display: none;
-// }
 
 .navbar-top-menu__right {
   display: flex;
@@ -125,31 +189,52 @@
   width: 50%;
   margin-left: auto;
   text-align: right;
+  gap: tokens.$spacing-2;
+}
 
-  & a,
-  & p {
-    color: styles.$white-dark;
-    margin: 0;
-    padding-right: 14px;
-    font-size: 0.7rem;
-    line-height: 78px;
-    font-weight: lighter;
-    text-decoration: none;
-    transition: all 0.3s ease-in-out;
-    cursor: pointer;
+.navbar-top-menu__contact-link {
+  color: tokens.$color-neutral-700;
+  margin: 0;
+  padding: 0;
+  font-size: 0.7rem;
+  line-height: 2.5rem;
+  font-weight: tokens.$font-weight-regular;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  @include tokens.transition(all, tokens.$duration-fast, tokens.$ease-in-out);
 
-    &:hover,
-    &:focus {
-      outline: none;
-      opacity: 0.7;
-    }
+  &:hover {
+    color: tokens.$color-primary-600;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
   }
 
-  .navbar-top-menu__separator {
-    color: styles.$white-dark;
-    margin: 0 10px;
-    font-size: 0.7rem;
-    line-height: 78px;
+  &:focus-visible {
+    outline: 2px solid tokens.$color-primary-400;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    color: tokens.$color-neutral-300;
+
+    &:hover {
+      color: tokens.$color-primary-300;
+    }
+  }
+}
+
+.navbar-top-menu__separator {
+  color: tokens.$color-neutral-400;
+  margin: 0 tokens.$spacing-2;
+  font-size: 0.5rem;
+  line-height: 2.5rem;
+  opacity: 0.6;
+
+  @media (prefers-color-scheme: dark) {
+    color: tokens.$color-neutral-600;
   }
 }
 

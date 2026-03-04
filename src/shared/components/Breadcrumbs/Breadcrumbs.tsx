@@ -42,7 +42,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, className = "" }) => {
       {
         label: "Inicio",
         path: "/",
-        icon: <HomeIcon fontSize="small" />,
+        icon: <HomeIcon />,
       },
     ];
 
@@ -95,8 +95,10 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, className = "" }) => {
                     aria-current="page"
                     itemProp="name"
                   >
-                    {item.icon && <span className="breadcrumbs__icon">{item.icon}</span>}
-                    {item.label}
+                    <span className="breadcrumbs__label">
+                      {item.icon && <span className="breadcrumbs__icon">{item.icon}</span>}
+                      {item.label}
+                    </span>
                   </span>
                   <meta itemProp="position" content={String(itemPosition)} />
                 </>
@@ -107,7 +109,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, className = "" }) => {
                     className="breadcrumbs__link"
                     itemProp="item"
                   >
-                    <span itemProp="name">
+                    <span className="breadcrumbs__label" itemProp="name">
                       {item.icon && <span className="breadcrumbs__icon">{item.icon}</span>}
                       {item.label}
                     </span>

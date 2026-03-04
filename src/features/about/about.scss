@@ -1,137 +1,383 @@
 @use "../../shared/styles/styles.scss";
-
-/* Breadcrumbs wrapper */
-.breadcrumbs-wrapper {
-  position: relative;
-  z-index: 100;
-}
+@use "../../shared/styles/tokens" as tokens;
 
 /* About section Styles */
 .about-container {
   position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  margin-top: 0;
-  min-height: 100vh;
-  /* Cambio de height a min-height */
   width: 100%;
+  min-height: 120vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   overflow: hidden;
-  animation: fadeIn 0.3s ease-out both;
+  background: linear-gradient(165deg,
+      rgba(tokens.$color-secondary-50, 0.3) 0%,
+      rgba(tokens.$color-primary-50, 0.2) 100%);
 
-  & .about-img {
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    z-index: 0;
-    margin-bottom: 20%;
-    animation: fadeIn;
-    animation-duration: 1.2s;
-    aspect-ratio: 16/9;
+  /* Background image container */
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
   }
 
-  .card-overlay {
-    position: absolute;
-    display: flex;
+  /* Background image itself */
+  .about-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center bottom;
+    animation: fadeIn 0.8s ease-out both;
+  }
+
+  /* Breadcrumb positioned inside background */
+  &__breadcrumb {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    padding: tokens.$spacing-xl tokens.$spacing-lg;
+    animation: slideInDown 0.6s ease-out both;
+
+    @media (max-width: 768px) {
+      padding: tokens.$spacing-lg tokens.$spacing-md;
+    }
+
+    @media (max-width: 390px) {
+      padding: tokens.$spacing-md tokens.$spacing-md;
+    }
+  }
+
+  /* Content overlay with glassmorphism */
+  &__content {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    margin-top: tokens.$spacing-xl;
+    margin-left: tokens.$spacing-xl;
+    padding: tokens.$spacing-xl;
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.92) 0%,
+        rgba(tokens.$color-primary-50, 0.85) 100%);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: tokens.$radius-lg;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.8),
+      0 20px 60px rgba(tokens.$color-neutral-900, 0.12);
+    animation: slideInLeft 0.7s ease-out both;
+
+    @media (prefers-color-scheme: dark) {
+      background: linear-gradient(135deg,
+          rgba(tokens.$color-neutral-800, 0.92) 0%,
+          rgba(tokens.$color-neutral-850, 0.88) 100%);
+      border-color: rgba(tokens.$color-neutral-600, 0.5);
+    }
+
+    @media (max-width: 768px) {
+      max-width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      padding: tokens.$spacing-lg;
+    }
+
+    @media (max-width: 390px) {
+      max-width: 95%;
+      padding: tokens.$spacing-md;
+      margin-top: tokens.$spacing-lg;
+    }
+  }
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: tokens.$spacing-lg;
+}
+
+.about-header {
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.about-title {
+  font-size: 2.5rem;
+  font-weight: tokens.$font-weight-bold;
+  line-height: 1.2;
+  margin: 0 0 tokens.$spacing-sm 0;
+  color: tokens.$color-neutral-800;
+  letter-spacing: -0.5px;
+
+  @media (prefers-color-scheme: dark) {
+    color: tokens.$color-neutral-100;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 390px) {
+    font-size: 1.5rem;
+  }
+}
+
+.about-tagline {
+  font-size: tokens.$font-size-lg;
+  color: tokens.$color-primary-600;
+  font-weight: tokens.$font-weight-medium;
+  margin: 0;
+  letter-spacing: 0.3px;
+
+  @media (prefers-color-scheme: dark) {
+    color: tokens.$color-primary-300;
+  }
+
+  @media (max-width: 768px) {
+    font-size: tokens.$font-size-md;
+  }
+}
+
+.about-description {
+  display: flex;
+  flex-direction: column;
+  gap: tokens.$spacing-md;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.about-intro {
+  font-size: tokens.$font-size-md;
+  line-height: 1.7;
+  color: tokens.$color-neutral-700;
+  margin: 0;
+
+  strong {
+    color: tokens.$color-primary-600;
+    font-weight: tokens.$font-weight-bold;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    color: tokens.$color-neutral-300;
+
+    strong {
+      color: tokens.$color-primary-300;
+    }
+  }
+
+  @media (max-width: 390px) {
+    font-size: tokens.$font-size-sm;
+  }
+}
+
+.about-features {
+  display: flex;
+  flex-direction: column;
+  gap: tokens.$spacing-md;
+}
+
+.about-feature {
+  display: flex;
+  gap: tokens.$spacing-md;
+  align-items: flex-start;
+  padding: tokens.$spacing-md;
+  background: rgba(tokens.$color-primary-500, 0.08);
+  border-left: 4px solid tokens.$color-primary-500;
+  border-radius: tokens.$radius-md;
+  transition: all tokens.$duration-fast tokens.$ease-in-out;
+
+  &:hover {
+    background: rgba(tokens.$color-primary-500, 0.12);
+    transform: translateX(4px);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background: rgba(tokens.$color-primary-500, 0.15);
+    border-left-color: tokens.$color-primary-400;
+
+    &:hover {
+      background: rgba(tokens.$color-primary-500, 0.2);
+    }
+  }
+}
+
+.feature-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: tokens.$color-primary-500;
+  color: white;
+  border-radius: tokens.$radius-full;
+  font-size: tokens.$font-size-sm;
+  font-weight: tokens.$font-weight-bold;
+  margin-top: 2px;
+}
+
+.about-feature>div {
+  flex: 1;
+
+  strong {
+    display: block;
+    color: tokens.$color-neutral-800;
+    margin-bottom: 4px;
+    font-size: tokens.$font-size-md;
+
+    @media (prefers-color-scheme: dark) {
+      color: tokens.$color-neutral-100;
+    }
+  }
+
+  p {
+    margin: 0;
+    font-size: tokens.$font-size-sm;
+    color: tokens.$color-neutral-600;
+    line-height: 1.5;
+
+    @media (prefers-color-scheme: dark) {
+      color: tokens.$color-neutral-400;
+    }
+  }
+}
+
+.about-cta {
+  display: flex;
+  flex-direction: column;
+  gap: tokens.$spacing-md;
+  margin-top: tokens.$spacing-md;
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+
+  @media (max-width: 390px) {
     flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    gap: auto;
-    padding-bottom: 3rem;
-    animation: slideInUp 0.4s ease-out both;
+  }
+}
 
-    & h1 {
-      font-weight: bold;
-      font-size: 2rem;
-      animation: fadeInLeft;
-      animation-duration: 1.2s;
-      color: styles.$background-color-dark;
+.about-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: tokens.$spacing-md tokens.$spacing-lg;
+  background: linear-gradient(135deg,
+      tokens.$color-primary-500,
+      tokens.$color-secondary-500);
+  color: white;
+  text-decoration: none;
+  border-radius: tokens.$radius-md;
+  font-weight: tokens.$font-weight-bold;
+  font-size: tokens.$font-size-md;
+  transition: all tokens.$duration-fast tokens.$ease-in-out;
+  border: 2px solid transparent;
+  box-shadow: 0 10px 30px rgba(tokens.$color-primary-500, 0.25);
+  letter-spacing: 0.5px;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(tokens.$color-primary-500, 0.35);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 2px solid tokens.$color-primary-400;
+    outline-offset: 4px;
+  }
+
+  &--secondary {
+    background: transparent;
+    color: tokens.$color-primary-600;
+    border: 2px solid tokens.$color-primary-600;
+    box-shadow: none;
+
+    &:hover {
+      background: tokens.$color-primary-500;
+      color: white;
+      box-shadow: 0 10px 30px rgba(tokens.$color-primary-500, 0.25);
     }
 
-    & h5 {
-      font-size: 1.2rem;
-      animation: fadeInRight;
-      animation-duration: 1.6s;
-      color: styles.$background-color-dark;
-    }
+    @media (prefers-color-scheme: dark) {
+      color: tokens.$color-primary-300;
+      border-color: tokens.$color-primary-300;
 
-    & .about-image {
-      width: 25%;
-      margin: 2rem 0 2rem 0;
-      animation: fadeIn;
-      animation-duration: 2s;
+      &:hover {
+        background: tokens.$color-primary-500;
+        color: white;
+      }
     }
+  }
+
+  @media (max-width: 390px) {
+    padding: tokens.$spacing-sm tokens.$spacing-md;
+    font-size: tokens.$font-size-sm;
+  }
+}
+
+/* Animations */
+@keyframes slideInDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
 
   .about-container,
-  .about-container .card-overlay,
-  .about-container .about-img,
-  .about-container .card-overlay h1,
-  .about-container .card-overlay h5,
-  .about-container .card-overlay .about-image {
+  .about-container__breadcrumb,
+  .about-container__content,
+  .about-header,
+  .about-description,
+  .about-cta,
+  .about-feature {
     animation: none;
+    transform: none;
   }
-}
-
-@media (width <=768px) {
-  .about-container {
-    margin-top: 0;
-
-    .card-overlay {
-      margin-top: 0;
-      /* Eliminado: era 30% */
-      padding-bottom: 0;
-
-      & h1 {
-        font-size: 1.5rem;
-      }
-
-      & h5 {
-        font-size: 1rem;
-      }
-
-      & .about-image {
-        width: 20%;
-        margin: 0;
-        animation: fadeIn;
-        animation-duration: 5s;
-      }
-    }
-  }
-
-
-}
-
-@media (width <=390px) {
-  .about-container {
-    margin-top: 0;
-
-    .card-overlay {
-      margin-top: 0;
-      /* Eliminado: era 100% */
-      padding-bottom: 0;
-
-      & h1 {
-        font-size: 1rem;
-      }
-
-      & h5 {
-        font-size: 0.7rem;
-      }
-
-      & .about-image {
-        width: 20%;
-        margin: 0;
-        animation: fadeIn;
-        animation-duration: 5s;
-      }
-    }
-  }
-
-
 }

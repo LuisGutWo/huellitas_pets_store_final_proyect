@@ -3,49 +3,54 @@ import { NavLink } from "react-router-dom";
 
 const NavbarTopMenu: React.FC = () => {
   return (
-    <nav className="navbar-top-menu" aria-label="Enlaces superiores">
+    <nav className="navbar-top-menu" aria-label="Navegación superior">
       <Container fluid>
-        <article className="navbar-top-menu__left">
+        <div className="navbar-top-menu__left">
           <NavLink
             to="/contact"
-            key="contact"
             className={({ isActive }) =>
-              isActive ? "active-class-2" : "inactive-class-2"
+              `navbar-top-menu__link ${isActive ? "navbar-top-menu__link--active" : ""}`
             }
+            aria-label="Ir a Mapa"
           >
-            <b>Mapa</b>
+            Mapa
           </NavLink>
           <NavLink
             to="/blog"
-            key="blog"
             className={({ isActive }) =>
-              isActive ? "active-class-2" : "inactive-class-2"
+              `navbar-top-menu__link ${isActive ? "navbar-top-menu__link--active" : ""}`
             }
+            aria-label="Ir a Blog"
           >
-            <b>Blog</b>
+            Blog
           </NavLink>
           <NavLink
             to="/products"
-            key="products"
             className={({ isActive }) =>
-              isActive ? "active-class-2" : "inactive-class-2"
+              `navbar-top-menu__link ${isActive ? "navbar-top-menu__link--active" : ""}`
             }
+            aria-label="Ir a Productos"
           >
-            <b>Productos</b>
+            Productos
           </NavLink>
-        </article>
-        <div className="navbar-top-menu__right" aria-label="Contacto">
+        </div>
+        <div className="navbar-top-menu__right">
           <a
             href="mailto:huellitas.chile@gmail.com"
+            className="navbar-top-menu__contact-link"
             aria-label="Enviar correo a Huellitas"
           >
             Contáctenos: huellitas.chile@gmail.com
           </a>
           <span className="navbar-top-menu__separator" aria-hidden="true">
-            |
+            •
           </span>
-          <a href="tel:+56920390272" aria-label="Llamar a Huellitas">
-            Llámenos: +569 20390272
+          <a
+            href="tel:+56920390272"
+            className="navbar-top-menu__contact-link"
+            aria-label="Llamar a Huellitas"
+          >
+            +569 20390272
           </a>
         </div>
       </Container>

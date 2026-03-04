@@ -5,40 +5,74 @@ import "./about.scss";
 
 const About: React.FC = () => {
   return (
-    <>
-      <div className="container breadcrumbs-wrapper">
+    <section className="about-container">
+      {/* Background image */}
+      <figure className="about-container__background">
+        <img
+          src="https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/perrito_fondo_rosado.png?alt=media&token=c0cee521-7c9d-4511-a1f8-44edfd8f66b6"
+          alt="Mascota feliz en tienda Huellitas"
+          className="about-img"
+        />
+      </figure>
+
+      {/* Breadcrumb integrated */}
+      <div className="about-container__breadcrumb">
         <Breadcrumbs />
       </div>
-      <div className="about-container">
-        <figure>
-          <img
-            src={
-              "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/perrito_fondo_rosado.png?alt=media&token=c0cee521-7c9d-4511-a1f8-44edfd8f66b6"
-            }
-            alt=""
-            className="about-img img-fluid"
-          />
-        </figure>
-        <article className="card-overlay container">
-            <div className="about-content">
+
+      {/* Content overlay */}
+      <article className="about-container__content">
+        <div className="about-content">
+          <header className="about-header">
             <h1 className="about-title">
-              Tu tienda de confianza
-              <br /> para el bienestar de
-              <br /> tus mascotas
+              Tu Tienda Confiable <br /> para el Bienestar <br /> de Tus Mascotas
             </h1>
-            <p className="about-subtitle">
-              Desde hace más de 14 años, somos tu aliado en el cuidado y felicidad de tus compañeros peludos. 
-              <br /> Contamos con productos premium y asesoría personalizada 
-              <br /> para que tu mascota reciba lo mejor.
-              <br /> Miles de clientes satisfechos confían en nosotros.
+            <p className="about-tagline">
+              Más de 14 años cuidando a tus compañeros peludos
             </p>
+          </header>
+
+          <section className="about-description">
+            <p className="about-intro">
+              En <strong>Huellitas Pet Store</strong>, nos especializa en ofrecer productos premium y asesoría personalizada para el cuidado integral de tus mascotas. Desde alimentos nutritivos hasta accesorios innovadores, tenemos todo lo que necesita tu compañero felino o canino.
+            </p>
+
+            <div className="about-features">
+              <div className="about-feature">
+                <span className="feature-icon">✓</span>
+                <div>
+                  <strong>Productos Certificados</strong>
+                  <p>Seleccionamos marcas premium con garantía de calidad y seguridad</p>
+                </div>
+              </div>
+              <div className="about-feature">
+                <span className="feature-icon">✓</span>
+                <div>
+                  <strong>Asesoría Experta</strong>
+                  <p>Nuestro equipo te guía en la elección correcta para tu mascota</p>
+                </div>
+              </div>
+              <div className="about-feature">
+                <span className="feature-icon">✓</span>
+                <div>
+                  <strong>Miles de Clientes Satisfechos</strong>
+                  <p>Confían en nosotros para el cuidado y felicidad de sus mascotas</p>
+                </div>
+              </div>
             </div>
-          <NavLink to={"/products"} className="category-buttons-hero mt-4">
-            Volver a la tienda
-          </NavLink>
-        </article>
-      </div>
-    </>
+          </section>
+
+          <div className="about-cta">
+            <NavLink to="/products" className="about-button">
+              Descubre Nuestros Productos
+            </NavLink>
+            <NavLink to="/contact" className="about-button about-button--secondary">
+              Contáctanos
+            </NavLink>
+          </div>
+        </div>
+      </article>
+    </section>
   );
 };
 

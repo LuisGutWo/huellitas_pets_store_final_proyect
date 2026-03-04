@@ -1,25 +1,62 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import Form from "react-bootstrap/Form";
 import L from "leaflet";
 import { sendContactEmail } from "../../services/emailjs";
 import { TextareaAutosize } from "@mui/material";
-import blackLogo from "../../assets/img/huellitas-logo-black-500x500.png";
 import Breadcrumbs from "../../shared/components/Breadcrumbs";
 import Spinner from "../../shared/components/Spinner";
 import SuccessCheckmark from "../../shared/components/SuccessCheckmark";
 import "./contact.scss";
 
+const CONTACT_COOLDOWN_SECONDS = 30;
+const CONTACT_COOLDOWN_KEY = "contact-form-cooldown-until";
+
 const Contact: React.FC = () => {
   const [showEmailSend, setShowEmailSend] = useState<boolean>(false);
   const [isSending, setIsSending] = useState<boolean>(false);
+  const [cooldownSeconds, setCooldownSeconds] = useState<number>(0);
   const [sendError, setSendError] = useState<string | null>(null);
   const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
   const [touched, setTouched] = useState<{ name?: boolean; email?: boolean; message?: boolean }>({});
   const form = useRef<HTMLFormElement>(null);
 
   const handleCloseEmailSend = () => setShowEmailSend(false);
+
+  useEffect(() => {
+    const storedUntil = sessionStorage.getItem(CONTACT_COOLDOWN_KEY);
+    if (!storedUntil) return;
+
+    const until = Number(storedUntil);
+    if (Number.isNaN(until)) {
+      sessionStorage.removeItem(CONTACT_COOLDOWN_KEY);
+      return;
+    }
+
+    const remainingMs = until - Date.now();
+    if (remainingMs > 0) {
+      setCooldownSeconds(Math.ceil(remainingMs / 1000));
+    } else {
+      sessionStorage.removeItem(CONTACT_COOLDOWN_KEY);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (cooldownSeconds <= 0) return undefined;
+
+    const intervalId = setInterval(() => {
+      setCooldownSeconds((prev) => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [cooldownSeconds]);
+
+  useEffect(() => {
+    if (cooldownSeconds <= 0) {
+      sessionStorage.removeItem(CONTACT_COOLDOWN_KEY);
+    }
+  }, [cooldownSeconds]);
 
   const validateField = (field: "name" | "email" | "message", value: string) => {
     const trimmedValue = value.trim();
@@ -51,7 +88,7 @@ const Contact: React.FC = () => {
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!form.current || isSending) {
+    if (!form.current || isSending || cooldownSeconds > 0) {
       return;
     }
 
@@ -82,6 +119,11 @@ const Contact: React.FC = () => {
         form.current?.reset();
         setErrors({});
         setTouched({});
+        setCooldownSeconds(CONTACT_COOLDOWN_SECONDS);
+        sessionStorage.setItem(
+          CONTACT_COOLDOWN_KEY,
+          String(Date.now() + CONTACT_COOLDOWN_SECONDS * 1000)
+        );
         setShowEmailSend(true);
       })
       .catch((error) => {
@@ -95,78 +137,100 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <>
-      <div className="container breadcrumbs-wrapper">
+    <section className="contact-wrapper">
+      {/* Breadcrumb integrado */}
+      <div className="contact-wrapper__breadcrumb">
         <Breadcrumbs />
       </div>
-      <div className="contact-main-container">
-        <article className="main-contact">
-        <section className="contact-img"></section>
-        <section className="contact-container">
-          <img src={blackLogo} alt="" className="img-fluid contact-logo" />
-          <h3 className="contact-title text-center">
-            Hola Pet lover, en que te podemos ayudar...
-          </h3>
+
+      {/* Contact form section */}
+      <section className="contact-wrapper__content">
+        <div className="contact-section">
+          {/* Background image */}
+          <figure className="contact-section__background"></figure>
+
+          {/* Form overlay */}
+          <article className="contact-section__form-container">
+            <div className="contact-form-box">
+              <header className="contact-form-box__header">
+                <h1 className="contact-form-box__title">
+                  ¿Cómo podemos ayudarte?
+                </h1>
+                <p className="contact-form-box__subtitle">
+                  Cuéntanos tu pregunta o necesidad y nos pondremos en contacto pronto
+                </p>
+              </header>
           <Form ref={form} onSubmit={sendEmail} className="contact-form">
-            <Form.Group className="mb-1">
-              <Form.Label>Nombre</Form.Label>
+                <Form.Group className="contact-form__group">
+                  <Form.Label className="contact-form__label">Nombre</Form.Label>
               <Form.Control
                 type="text"
-                size="lg"
-                placeholder="Ingresar nombre"
+                placeholder="Tu nombre completo"
                 name="user_name"
+                className="contact-form__input"
                 isInvalid={Boolean(touched.name && errors.name)}
                 onBlur={handleBlur("name")}
                 aria-invalid={Boolean(touched.name && errors.name)}
               />
-              <Form.Control.Feedback type="invalid">
+                  <Form.Control.Feedback type="invalid" className="contact-form__error">
                 {errors.name}
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group className="mb-1">
-              <Form.Label>Email</Form.Label>
+                  </Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group className="contact-form__group">
+                  <Form.Label className="contact-form__label">Email</Form.Label>
               <Form.Control
                 type="email"
-                size="lg"
                 placeholder="nombre@ejemplo.com"
                 name="user_email"
+                className="contact-form__input"
                 isInvalid={Boolean(touched.email && errors.email)}
                 onBlur={handleBlur("email")}
                 aria-invalid={Boolean(touched.email && errors.email)}
               />
-              <Form.Control.Feedback type="invalid">
+                  <Form.Control.Feedback type="invalid" className="contact-form__error">
                 {errors.email}
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group className="mb-1">
-              <Form.Label>Cuéntanos que necesitas?</Form.Label>
+                  </Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group className="contact-form__group">
+                  <Form.Label className="contact-form__label">Tu mensaje</Form.Label>
               <Form.Control
                 as={TextareaAutosize}
+                placeholder="Cuéntanos con detalle qué necesitas..."
                 name="message"
+                className="contact-form__textarea"
+                minRows={4}
                 isInvalid={Boolean(touched.message && errors.message)}
                 onBlur={handleBlur("message")}
                 aria-invalid={Boolean(touched.message && errors.message)}
               />
-              <Form.Control.Feedback type="invalid">
+                  <Form.Control.Feedback type="invalid" className="contact-form__error">
                 {errors.message}
-              </Form.Control.Feedback>
-            </Form.Group>
+                  </Form.Control.Feedback>
+                </Form.Group>
+
             <Button
-              className="category-buttons mt-3"
+                  className="contact-form__submit"
               type="submit"
-              size="lg"
-              value="Send"
-              disabled={isSending}
+              disabled={isSending || cooldownSeconds > 0}
             >
               {isSending ? (
                 <span className="d-inline-flex align-items-center gap-2">
                   <Spinner size="sm" variant="light" />
                   Enviando...
                 </span>
+              ) : cooldownSeconds > 0 ? (
+                `Reenviar en ${cooldownSeconds}s`
               ) : (
-                "Enviar"
+                    "Enviar Mensaje"
               )}
             </Button>
+            {cooldownSeconds > 0 && (
+              <p className="contact-form__hint" aria-live="polite">
+                Puedes volver a enviar el formulario cuando finalice el contador.
+              </p>
+            )}
             <Modal show={showEmailSend} onHide={handleCloseEmailSend}>
               <Modal.Header closeButton>
                 <Modal.Body>
@@ -178,28 +242,35 @@ const Contact: React.FC = () => {
                 </Modal.Body>
               </Modal.Header>
             </Modal>
-          </Form>
-        </section>
-      </article>
-      <article className="map-section">
-        <div className="map-wrap">
-          <div className="info-map">
-            Huellitas PetsStore,
-            <br />
-            Santiago de Chile,
-            <br />
-            <span>agutierrezwong@gmail.com</span>
+              </Form>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      {/* Map section */}
+      <section className="contact-wrapper__map">
+        <div className="map-container">
+          <div className="map-info">
+            <h2 className="map-info__title">Huellitas Pet Store</h2>
+            <address className="map-info__address">
+              Santiago de Chile
+            </address>
+            <a href="mailto:agutierrezwong@gmail.com" className="map-info__link">
+              agutierrezwong@gmail.com
+            </a>
           </div>
+          <div className="map-wrapper">
           <MapContainer center={L.latLng(-33.43659, -70.68413)} zoom={16}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             <Marker position={L.latLng(-33.43659, -70.68413)}>
               <Popup>Huellitas Pets Store</Popup>
             </Marker>
           </MapContainer>
+          </div>
         </div>
-      </article>
-      </div>
-    </>
+      </section>
+    </section>
   );
 };
 

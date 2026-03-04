@@ -11,9 +11,10 @@
 
     &__list {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         align-items: center;
-        gap: tokens.$spacing-xs;
+        justify-content: flex-start;
+        gap: tokens.$spacing-sm;
         margin: 0;
         padding: 0;
         list-style: none;
@@ -22,7 +23,8 @@
     &__item {
         display: flex;
         align-items: center;
-        gap: tokens.$spacing-xs;
+        justify-content: center;
+        gap: tokens.$spacing-sm;
         font-size: tokens.$font-size-sm;
         color: tokens.$color-neutral-600;
 
@@ -34,8 +36,9 @@
 
     &__link {
         display: inline-flex;
+        flex-direction: row;
         align-items: center;
-        gap: tokens.$spacing-xs;
+        justify-content: center;
         color: tokens.$color-neutral-600;
         text-decoration: none;
         padding: tokens.$spacing-xs tokens.$spacing-sm;
@@ -66,16 +69,29 @@
         }
     }
 
+    &__label {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: tokens.$spacing-sm;
+        line-height: 1;
+    }
+
     &__icon {
         display: inline-flex;
         align-items: center;
         justify-content: center;
         width: 18px;
         height: 18px;
+        color: tokens.$color-neutral-600;
+        line-height: 1;
+        flex-shrink: 0;
 
         svg {
             width: 100%;
             height: 100%;
+            display: block;
+            fill: currentColor;
         }
     }
 

@@ -19,12 +19,20 @@
 @use "../../features/products/mainProductsList.scss";
 @use "./microinteractions.scss";
 
+html,
+body,
+#root,
+#app {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 
 //Main App Styles
 #app {
   font-family: styles.$primary-font;
   height: 100%;
-  width: 100vw;
+  width: 100%;
   overflow: hidden;
 
   display: flex;

@@ -16,7 +16,6 @@ import {
   Avatar,
   Box,
   Button,
-  Grid,
   TextField,
   Typography,
 } from "@mui/material";
@@ -40,7 +39,33 @@ const LoginUserPage: React.FC = () => {
     if (user) {
       navigate("/");
     }
-  }, [user]);
+  }, [user, navigate]);
+
+  useEffect(() => {
+    const previousTitle = document.title;
+    const title = "Iniciar sesión | Huellitas Pet Store";
+    const description =
+      "Accede a tu cuenta de Huellitas Pet Store para gestionar favoritos, carrito y compras de productos para mascotas.";
+
+    document.title = title;
+
+    let meta = document.querySelector('meta[name="description"]');
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.setAttribute("name", "description");
+      document.head.appendChild(meta);
+    }
+
+    const previousDescription = meta.getAttribute("content");
+    meta.setAttribute("content", description);
+
+    return () => {
+      document.title = previousTitle;
+      if (previousDescription) {
+        meta?.setAttribute("content", previousDescription);
+      }
+    };
+  }, []);
 
   const onSubmit = async (
     { email, password }: LoginFormValues,
@@ -84,14 +109,17 @@ const LoginUserPage: React.FC = () => {
   if (user) return <Loading />;
 
   return (
-    <>
-      <Box className="main-login-box">
-        <Container className="login-container">
-          <Avatar sx={{ mx: "auto", bgcolor: "primary.main" }}>
+    <main className="auth-page auth-page--login" aria-labelledby="login-title">
+      <Container className="auth-page__container">
+        <Box className="main-login-box auth-card">
+          <Avatar sx={{ mx: "auto", bgcolor: "primary.main" }} className="auth-card__avatar">
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" id="login-title" className="auth-card__title">
             Ingrese usuario
+          </Typography>
+          <Typography component="p" className="auth-card__subtitle">
+            Accede a tu cuenta para continuar con tus compras y favoritos.
           </Typography>
           <Formik
             initialValues={{ email: "", password: "" }}
@@ -107,16 +135,17 @@ const LoginUserPage: React.FC = () => {
               touched,
               handleBlur,
             }) => (
-              <Box onSubmit={handleSubmit} component="form" sx={{ mt: 1 }}>
+              <Box onSubmit={handleSubmit} component="form" sx={{ mt: 1 }} className="auth-card__form">
                 <TextField
                   sx={{
                     mb: 3,
-                    backgroundColor: "ButtonShadow",
-                    borderRadius: "5px",
+                    backgroundColor: "rgba(255,255,255,0.82)",
+                    borderRadius: "10px",
                   }}
                   fullWidth
                   label="@Email"
                   id="email"
+                  autoComplete="email"
                   type="text"
                   placeholder="Ingrese email"
                   value={values.email}
@@ -129,12 +158,13 @@ const LoginUserPage: React.FC = () => {
                 <div className="d-flex align-items-center justify-content-end">
                   <TextField
                     sx={{
-                      backgroundColor: "ButtonShadow",
-                      borderRadius: "5px",
+                      backgroundColor: "rgba(255,255,255,0.82)",
+                      borderRadius: "10px",
                     }}
                     fullWidth
                     label="Contraseña"
                     id="password"
+                    autoComplete="current-password"
                     type={showPsw ? "text" : "password"}
                     placeholder="Ingrese contraseña"
                     value={values.password}
@@ -146,13 +176,22 @@ const LoginUserPage: React.FC = () => {
                       errors.password && touched.password && errors.password
                     }
                   />
-                  <div
+                  <button
+                    type="button"
                     className="password-visibility-toggle"
                     onClick={() => setShowPsw(!showPsw)}
+                    aria-label={showPsw ? "Ocultar contraseña" : "Mostrar contraseña"}
                   >
                     {showPsw ? <VisibilityIcon /> : <VisibilityOffIcon />}
-                  </div>
+                  </button>
                 </div>
+
+                <Box sx={{ mt: 1, textAlign: "right" }} className="auth-card__inline-link">
+                  <Button component={Link} to="/recover-password" color="inherit" size="small">
+                    ¿Olvidaste tu contraseña?
+                  </Button>
+                </Box>
+
                 <LoadingButton
                   variant="contained"
                   className="category-buttons"
@@ -172,7 +211,7 @@ const LoginUserPage: React.FC = () => {
                     <SuccessCheckmark message="Login exitoso" size="sm" />
                   </div>
                 )}
-                <Box sx={{ mt: 2, textAlign: "center" }}>
+                <Box sx={{ mt: 2, textAlign: "center" }} className="auth-card__footer-link">
                   <Button component={Link} to="/create" color="warning">
                     Hola, Registrate con nosotros
                   </Button>
@@ -180,9 +219,9 @@ const LoginUserPage: React.FC = () => {
               </Box>
             )}
           </Formik>
-        </Container>
-      </Box>
-    </>
+        </Box>
+      </Container>
+    </main>
   );
 };
 
