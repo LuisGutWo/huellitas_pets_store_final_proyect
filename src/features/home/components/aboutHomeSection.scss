@@ -365,6 +365,10 @@
         padding: tokens.$spacing-12 tokens.$spacing-4;
     }
 
+    .about-home-section__title {
+        margin-bottom: tokens.$spacing-12;
+    }
+
     .about-home-section__header {
         margin-bottom: tokens.$spacing-12;
     }
@@ -402,10 +406,6 @@
         &::after {
             opacity: 0.5;
         }
-    }
-
-    .about-home-section__title {
-        margin-bottom: tokens.$spacing-3;
     }
 
     .about-home-section__header {

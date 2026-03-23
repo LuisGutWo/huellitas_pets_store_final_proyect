@@ -246,7 +246,8 @@
 
 @media (max-width: 768px) {
   .hero-section {
-    height: calc(100vh - 10.5rem);
+    margin-top: -8.8rem;
+    height: 100vh;
     min-height: 400px;
   }
 
@@ -257,25 +258,26 @@
 
       &--right,
       &--left {
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        text-align: left;
       }
     }
 
     &__title {
-      font-size: 1.75rem;
+      font-size: clamp(2.8rem, 8.5vw, 3.8rem);
       margin-bottom: 1.5rem;
       max-width: 100%;
+      line-height: 1.18;
     }
 
     &__logo {
-      width: 80px;
-      margin-bottom: 1.25rem;
+      width: clamp(160px, 42vw, 210px);
+      margin-bottom: 1.5rem;
     }
 
     &__cta {
-      padding: 0.8rem 1.6rem;
-      font-size: 0.95rem;
+      padding: 0.85rem 1.8rem;
+      font-size: 1rem;
     }
 
     &__cta-icon {
@@ -300,30 +302,32 @@
 
 @media (max-width: 640px) {
   .hero-section {
-    height: calc(100vh - 10.5rem);
+    height: 100vh;
     min-height: 350px;
   }
 
   .hero-slide {
     &__content {
-      padding: 1.5rem 1.5rem;
+      padding: 1.5rem 1.8rem;
       justify-content: center;
+      align-items: flex-start;
+      text-align: left;
     }
 
     &__title {
-      font-size: 1.4rem;
+      font-size: clamp(2.4rem, 7.5vw, 3.2rem);
       margin-bottom: 1.25rem;
-      line-height: 1.3;
+      line-height: 1.2;
     }
 
     &__logo {
-      width: 70px;
-      margin-bottom: 1rem;
+      width: clamp(140px, 37vw, 180px);
+      margin-bottom: 1.25rem;
     }
 
     &__cta {
-      padding: 0.7rem 1.4rem;
-      font-size: 0.85rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.95rem;
       gap: 0.5rem;
     }
 
@@ -365,6 +369,13 @@
   .hero-slide__cta,
   .hero-pagination .swiper-pagination-bullet {
     transition: none;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero-section {
+    margin-top: -5.5rem;
+    height: 100vh;
   }
 }
 

@@ -73,6 +73,18 @@ body,
   outline-offset: 6px;
 }
 
+@media (max-width: 768px) {
+  .app-container {
+    padding-top: 8.8rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .app-container {
+    padding-top: 5.5rem;
+  }
+}
+
 
 // IsActive class
 .active-class {
