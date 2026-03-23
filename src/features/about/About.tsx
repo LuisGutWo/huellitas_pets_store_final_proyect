@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "animate.css";
 import Breadcrumbs from "../../shared/components/Breadcrumbs";
+import aboutBackground from "../../assets/img/perrito_fondo_rosado_II.jpg";
 import "./about.scss";
 
 const About: React.FC = () => {
@@ -9,7 +10,7 @@ const About: React.FC = () => {
       {/* Background image */}
       <figure className="about-container__background">
         <img
-          src="https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/perrito_fondo_rosado.png?alt=media&token=c0cee521-7c9d-4511-a1f8-44edfd8f66b6"
+          src={aboutBackground}
           alt="Mascota feliz en tienda Huellitas"
           className="about-img"
         />

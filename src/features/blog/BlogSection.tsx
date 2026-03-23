@@ -14,6 +14,14 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import SpaIcon from "@mui/icons-material/Spa";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import blogImage1 from "../../assets/img/1-Petstore-Despacho-48hrs.jpg";
+import blogImage2 from "../../assets/img/2-petstore-wp.jpg";
+import blogImage3 from "../../assets/img/3-Petstore-Sitio-100-seguro.jpg";
+import blogImage4 from "../../assets/img/4-Petstore-devoluciones.jpg";
+import blogImage5 from "../../assets/img/5-Petstore-depacho-chile.jpg";
+import blogImage6 from "../../assets/img/gato_portada.jpg";
+import blogImage7 from "../../assets/img/perrito_cachorro.jpg";
+import blogImage8 from "../../assets/img/hero_mascotas.jpg";
 
 AOS.init();
 
@@ -33,8 +41,7 @@ const blogArticles: BlogArticle[] = [
     title: "Alimentos holísticos",
     description:
       "Las primeras investigaciones que se adentraron en la elaboración de alimentos de alta gama comenzaron en 1982, y en la actualidad, el mercado de alimentos para mascotas domesticas se ha...",
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/imagen_blog_1.jpg?alt=media&token=3ad99489-dfaf-40fd-9c78-54e21da6aeaa",
+    image: blogImage1,
     category: "nutricion",
     readTime: 4,
     date: "15 Feb 2026",
@@ -44,8 +51,7 @@ const blogArticles: BlogArticle[] = [
     title: "Dia mundial de los animales",
     description:
       "El 4 de Octubre se celebra el dia internacional de los animales en conmemoración de San Francisco de Asís. Este santo que nació en 1182 en Italia y dejo...",
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/img_blog_2.jpg?alt=media&token=4615a7a9-1d88-4dbc-8d67-d510fd72026d",
+    image: blogImage2,
     category: "cuidados",
     readTime: 3,
     date: "12 Feb 2026",
@@ -55,8 +61,7 @@ const blogArticles: BlogArticle[] = [
     title: "¿Se aburren de su alimento?",
     description:
       "¿Se aburrirá nuestra mascota si lo alimentamos siempre con la misma dieta? La respuesta es no. El aburrimiento hacia los alimentos es una característica humana. Los perros y los...",
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/img_blog_3.jpg?alt=media&token=bbd0b141-1e25-41cb-8986-7773edd16296",
+    image: blogImage3,
     category: "nutricion",
     readTime: 5,
     date: "10 Feb 2026",
@@ -66,8 +71,7 @@ const blogArticles: BlogArticle[] = [
     title: "Tu perro y las altas temperaturas",
     description:
       "El verano es una gran época para disfrutar de sol, el calor y refrescarse en las piletas y playas. Pero los perros, al igual que las personas, pueden sufrir con las altas temperaturas e...",
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/img_blog_4.jpg?alt=media&token=781a89bf-d66e-4d2d-a290-942017535a81",
+    image: blogImage4,
     category: "salud",
     readTime: 6,
     date: "8 Feb 2026",
@@ -77,8 +81,7 @@ const blogArticles: BlogArticle[] = [
     title: "El universo para la moda de las mascotas",
     description:
       "Hoy las mascotas son un miembro mas de las familias en el mundo. Su fidelidad, sus expresiones de cariño y, por su puesto, la compañía que ofrecen, son suficientes para...",
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/img_blog_5.jpg?alt=media&token=734a6599-210d-4bc2-b9b7-134cc8419d52",
+    image: blogImage5,
     category: "moda",
     readTime: 4,
     date: "5 Feb 2026",
@@ -88,8 +91,7 @@ const blogArticles: BlogArticle[] = [
     title: "Las Mascotas y el Invierno",
     description:
       "Durante el invierno es imprescindible que limites el tiempo que pasa tu mascota al ire libre. La mayoría de las mascotas que viven en el interior no están acostumbradas a las bajas...",
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/img_blog_6.jpg?alt=media&token=223f8d0f-b8d8-4468-a5a8-9428e218f5e5",
+    image: blogImage6,
     category: "cuidados",
     readTime: 5,
     date: "3 Feb 2026",
@@ -99,8 +101,7 @@ const blogArticles: BlogArticle[] = [
     title: "Cuidados básicos de tu mascota",
     description:
       "¡Hola Adoptantes novatos! Vamos a dar un repaso por los puntos básicos a tener en cuenta para los cuidados de tu animal de compañía. Si quieres ser muy responsable, sigues estos consejos...",
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/img_blog_7.jpg?alt=media&token=edeb7b89-1800-4737-a072-497edbff73d2",
+    image: blogImage7,
     category: "cuidados",
     readTime: 7,
     date: "1 Feb 2026",
@@ -110,8 +111,7 @@ const blogArticles: BlogArticle[] = [
     title: "El Vinculo afectivo con los animales",
     description:
       "Convivir con perros y gatos ayuda a disminuir el estrés, la tensión arterial y la frecuencia cardíaca. No sólo eso, los estudios constatan que esa compañía mejora...",
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/img_blog_8.jpg?alt=media&token=e0d94e7a-53b6-455b-a477-7b0b192e5054",
+    image: blogImage8,
     category: "salud",
     readTime: 6,
     date: "28 Jan 2026",

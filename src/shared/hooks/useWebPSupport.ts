@@ -17,12 +17,12 @@ export const useWebPSupport = (): boolean => {
 
       // Crear una pequeña imagen WebP
       const webpData = 'data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA=';
-      
+
       try {
         const response = await fetch(webpData);
         const blob = await response.blob();
         const imageBitmap = await createImageBitmap(blob);
-        
+
         // Si llegamos aquí, el navegador soporta WebP
         setSupportsWebP(imageBitmap.width === 1 && imageBitmap.height === 1);
       } catch {
@@ -48,14 +48,14 @@ export const getOptimizedImageSrc = (src: string, supportsWebP: boolean): string
     return src;
   }
 
-  // Solo intentar convertir URLs de Firebase Storage
-  if (src.includes('firebasestorage.googleapis.com')) {
-    // Firebase no convierte automáticamente, retornar original
+  // Evitar transformar URLs remotas absolutas porque no controlamos
+  // si existe una versión .webp del recurso.
+  if (/^https?:\/\//i.test(src)) {
     return src;
   }
 
   // Para otras URLs, intentar reemplazar la extensión
   const webpSrc = src.replace(/\.(jpg|jpeg|png)$/i, '.webp');
-  
+
   return webpSrc;
 };

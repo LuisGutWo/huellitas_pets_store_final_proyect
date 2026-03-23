@@ -1,6 +1,7 @@
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import type { OverlayInjectedProps } from "react-bootstrap/esm/Overlay";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import "./WhatsAppButton.scss";
 
 const WhatsAppButton: React.FC = () => {
@@ -24,11 +25,7 @@ const WhatsAppButton: React.FC = () => {
           target="_blank"
           title="Contáctanos por WhatsApp"
         >
-          <img
-            src="https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/wa_chat_icon.png?alt=media&token=ce6cb743-6822-4223-9279-0bdd5efe6677"
-            alt=""
-            className="wsp-image"
-          />
+          <WhatsAppIcon className="wsp-image" aria-hidden="true" />
         </a>
       </OverlayTrigger>
     </>

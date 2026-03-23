@@ -11,6 +11,7 @@ import {
   Skeleton,
 } from "../../shared/components/SkeletonLoader";
 import { FakeLoading } from "../../shared/components/FakeLoading";
+import emptyCartImage from "../../assets/img/emoticon_gatito.png";
 
 const Cart: React.FC = () => {
   const [isHydrating, setIsHydrating] = useState<boolean>(true);
@@ -81,9 +82,7 @@ const Cart: React.FC = () => {
                         <ul className="list-group">
                           <li className="list-group-empty">
                             <img
-                              src={
-                                "https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/emoticon_gatito.png?alt=media&token=f77e6efc-d1ab-4a07-b6b7-73e3f98ed959"
-                              }
+                              src={emptyCartImage}
                               alt=""
                               className="img-fluid empty-cart-image"
                             />

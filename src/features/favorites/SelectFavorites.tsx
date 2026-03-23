@@ -5,6 +5,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useProductsContext } from "../../context/ProductsContext";
 import MainProductCard from "../products/components/MainProductCard";
 import Breadcrumbs from "../../shared/components/Breadcrumbs";
+import emptyFavoritesImage from "../../assets/img/emoticon_gatito.png";
 
 const SelectFavorites: React.FC = () => {
   const { favorites } = useProductsContext();
@@ -26,7 +27,7 @@ const SelectFavorites: React.FC = () => {
         {favorites.length === 0 ? (
           <div className="favorites-empty">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/login-huellitas.appspot.com/o/emoticon_gatito.png?alt=media&token=f77e6efc-d1ab-4a07-b6b7-73e3f98ed959"
+              src={emptyFavoritesImage}
               alt="Sin favoritos"
               className="favorites-empty__image"
             />
