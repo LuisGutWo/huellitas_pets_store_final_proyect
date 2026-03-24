@@ -35,6 +35,10 @@
     }
 }
 
+.cart-dropdown__toggle-label {
+    display: none;
+}
+
 // Badge styling (item count)
 .cart-dropdown__badge {
     position: absolute;
@@ -195,6 +199,24 @@
     background: rgba(239, 68, 68, 0.1);
 }
 
+// react-bootstrap Dropdown.Item overrides for dark background
+.cart-dropdown__menu .dropdown-item {
+    color: styles.$white;
+    padding: tokens.$spacing-3 tokens.$spacing-4;
+    @include tokens.transition(all, tokens.$duration-fast, tokens.$ease-in-out);
+
+    &:hover,
+    &:focus {
+        background: tokens.$color-primary-600;
+        color: styles.$white;
+    }
+}
+
+.cart-dropdown__menu .dropdown-divider {
+    background: tokens.$color-neutral-600;
+    margin: 0;
+}
+
 .cart-dropdown__sr-only {
     position: absolute;
     width: 1px;
@@ -233,7 +255,8 @@
 
     .offcanvas .cart-dropdown__toggle {
         width: 100%;
-        justify-content: flex-start;
+        justify-content: space-between;
+        gap: tokens.$spacing-3;
     }
 
     .offcanvas .cart-dropdown__menu,

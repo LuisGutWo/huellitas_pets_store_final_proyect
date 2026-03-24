@@ -1,13 +1,18 @@
 import { NavLink } from "react-router-dom";
 import "animate.css";
 
-const NavbarButtons: React.FC = () => {
+interface NavbarButtonsProps {
+  onNavigate?: () => void;
+}
+
+const NavbarButtons: React.FC<NavbarButtonsProps> = ({ onNavigate }) => {
   return (
     <>
       <nav className="navbar-buttons" aria-label="Navegación principal">
         <NavLink
           to="/"
           key="home"
+          onClick={onNavigate}
           className={({ isActive }) =>
             isActive ? "active-class" : "inactive-class"
           }
@@ -17,6 +22,7 @@ const NavbarButtons: React.FC = () => {
         <NavLink
           to="/about"
           key="about"
+          onClick={onNavigate}
           className={({ isActive }) =>
             isActive ? "active-class" : "inactive-class"
           }
@@ -26,6 +32,7 @@ const NavbarButtons: React.FC = () => {
         <NavLink
           to="/products"
           key="products"
+          onClick={onNavigate}
           className={({ isActive }) =>
             isActive ? "active-class" : "inactive-class"
           }
@@ -36,6 +43,7 @@ const NavbarButtons: React.FC = () => {
         <NavLink
           to="/contact"
           key="contact"
+          onClick={onNavigate}
           className={({ isActive }) =>
             isActive ? "active-class" : "inactive-class"
           }

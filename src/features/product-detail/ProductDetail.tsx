@@ -1,8 +1,7 @@
 import { useEffect, useState, useRef } from "react";
-import { useParams, NavLink } from "react-router-dom";
+import { useParams, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Button, Card, Container } from "react-bootstrap";
 import { useUserContext } from "../../context/UserContext";
-import Modal from "react-bootstrap/Modal";
 import { useProductsContext } from "../../context/ProductsContext";
 import type { Product } from "../../services/productsApi";
 
@@ -14,10 +13,13 @@ import Breadcrumbs, {
 } from "../../shared/components/Breadcrumbs";
 import CartSwingAnimation from "../../shared/components/CartSwingAnimation";
 import { Skeleton } from "../../shared/components/SkeletonLoader";
+import { useToast } from "../../context/ToastContext";
+import { userFeedback } from "../../shared/utils/userFeedback";
 
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 interface ProductDetailProps {
   item?: Product;
@@ -30,29 +32,41 @@ const ProductDetail: React.FC<ProductDetailProps> = ({
 }) => {
   const [product, setProduct] = useState<ProductWithPrice | undefined>();
   const [loading, setLoading] = useState<boolean>(true);
-  const [show, setShow] = useState<boolean>(false);
-  const target = useRef<HTMLButtonElement>(null);
   const cartAnimRef = useRef<{
     triggerAnimation: (name?: string) => void;
   } | null>(null);
-  const [showFavorite, setShowFavorite] = useState<boolean>(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
   const params = useParams();
   const { id } = useParams();
 
-  const handleCloseFavorite = () => setShowFavorite(false);
-  const handleShowFavorite = () => setShowFavorite(true);
-
-  const { addProduct, addFavorites, removeFavorites } = useProductsContext();
+  const { addProduct, addFavorites, removeFavorites, favorites } = useProductsContext();
   const { user } = useUserContext();
+  const toast = useToast();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const isFavorite = product
+    ? favorites.some((favorite) => favorite.id === product.id)
+    : false;
 
   function handleProductButton() {
+    if (!product) return;
+
+    if (!user) {
+      toast.warning(userFeedback.authRequiredForFavorites);
+      navigate(`/loginPage?return=${encodeURIComponent(location.pathname)}`);
+      return;
+    }
+
+    if (isFavorite) {
+      removeFavorites(product.id);
+      toast.info(userFeedback.favoriteRemoved(product.name as string));
+      return;
+    }
+
     if (product) {
       addFavorites(product);
+      toast.success(userFeedback.favoriteAdded(product.name as string));
     }
-    handleShowFavorite();
   }
 
   useEffect(() => {
@@ -68,9 +82,16 @@ const ProductDetail: React.FC<ProductDetailProps> = ({
 
   function addButtonShoppingCart() {
     if (!product) return;
+
+    if (!user) {
+      toast.warning(userFeedback.authRequiredForCart);
+      navigate(`/loginPage?return=${encodeURIComponent(location.pathname)}`);
+      return;
+    }
+
     addProduct(product);
+    toast.success(userFeedback.cartAdded(product.name as string));
     cartAnimRef.current?.triggerAnimation(product.name as string);
-    handleShow();
   }
 
   // Generar breadcrumbs dinámicos con información del producto
@@ -130,10 +151,12 @@ const ProductDetail: React.FC<ProductDetailProps> = ({
             <div className="card-favorite-icon">
               {selectFavorites ? (
                 <Button
+                  type="button"
                   size="sm"
                   onClick={() => {
                     if (item) {
                       removeFavorites(item.id);
+                      toast.info(userFeedback.favoriteRemoved(item.name as string));
                     }
                   }}
                   variant="outline-danger"
@@ -144,28 +167,18 @@ const ProductDetail: React.FC<ProductDetailProps> = ({
               ) : (
                 <>
                   <Button
+                    type="button"
                     onClick={handleProductButton}
                     size="sm"
                     variant="light"
                     style={{ border: "0" }}
                   >
-                    <FavoriteIcon className="card-icons" />
+                    {isFavorite ? (
+                      <FavoriteIcon className="card-icons" />
+                    ) : (
+                      <FavoriteBorderIcon className="card-icons" />
+                    )}
                   </Button>
-                  {user ? (
-                    <Modal show={showFavorite} onHide={handleCloseFavorite}>
-                      <Modal.Header closeButton>
-                        <Modal.Title>
-                          <b>{product?.name as string}</b>! se agrego a favoritos 🥰
-                        </Modal.Title>
-                      </Modal.Header>
-                    </Modal>
-                  ) : (
-                    <Modal show={showFavorite} onHide={handleCloseFavorite}>
-                      <Modal.Header closeButton>
-                        <Modal.Title>Ingrese para acceder a favoritos</Modal.Title>
-                      </Modal.Header>
-                    </Modal>
-                  )}
                 </>
               )}
             </div>
@@ -189,21 +202,12 @@ const ProductDetail: React.FC<ProductDetailProps> = ({
               </div>
               <Button
                 className="category-buttons"
-                ref={target}
+                type="button"
                 onClick={addButtonShoppingCart}
               >
                 Añadir al carrito
                 <ShoppingCartIcon className="shopping-icon" />
               </Button>
-              {user ? (
-                <Modal show={show} onHide={handleClose}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>
-                      ¡<b>{product?.name as string}</b> se agregó al carrito! 😎
-                    </Modal.Title>
-                  </Modal.Header>
-                </Modal>
-              ) : null}
             </Card.Body>
           </Card>
         </section>

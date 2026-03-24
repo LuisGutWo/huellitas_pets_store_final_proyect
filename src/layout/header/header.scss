@@ -333,6 +333,13 @@
   }
 }
 
+// Labels ocultas por defecto en desktop.
+// Las labels de cada componente son gestionadas en cartDropdown.scss y userDropdown.scss.
+// Los overrides del offcanvas (mostrarlas en móvil) están en la media query de abajo.
+.header-icon__label {
+  display: none;
+}
+
 // ============================================
 // Navigation Buttons
 // ============================================
@@ -495,114 +502,12 @@
 // ============================================
 // Dropdowns (UserDropdown, CartDropdown)
 // ============================================
+// Los estilos base de los toggles y menús están en
+// cartDropdown.scss y userDropdown.scss respectivamente.
+// Los overrides del contexto offcanvas están en la media query de abajo.
 
-.user-dropdown__toggle,
-.cart-dropdown__toggle {
-  position: relative;
-  background: none;
-  border: none;
-  color: inherit;
-  font-size: 1.8rem;
-  cursor: pointer;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  @include tokens.transition(transform,
-    tokens.$duration-fast,
-    tokens.$ease-in-out );
-
-  &:hover {
-    transform: translateY(-2px) scale(1.05);
-  }
-
-  &:focus-visible {
-    outline: 2px solid tokens.$color-primary-300;
-    outline-offset: 4px;
-    border-radius: 4px;
-  }
-}
-
-.user-dropdown__menu,
-.cart-dropdown__menu {
-  min-width: 200px;
-  background: styles.$background-color-dark;
-  border: 1px solid tokens.$color-neutral-600;
-  border-radius: tokens.$radius-md;
-  box-shadow: tokens.$shadow-lg;
-
-  .dropdown-item {
-    color: styles.$white;
-    padding: tokens.$spacing-3 tokens.$spacing-4;
-    @include tokens.transition(all, tokens.$duration-fast, tokens.$ease-in-out);
-
-    &:hover,
-    &:focus {
-      background: tokens.$color-primary-600;
-      color: styles.$white;
-    }
-
-    &.logout-item {
-      color: tokens.$color-error-500;
-
-      &:hover,
-      &:focus {
-        background: tokens.$color-error-600;
-        color: styles.$white;
-      }
-    }
-  }
-
-  .dropdown-divider {
-    background: tokens.$color-neutral-600;
-    margin: 0;
-  }
-}
-
-.user-dropdown__email {
-  padding: tokens.$spacing-3 tokens.$spacing-4;
-  color: tokens.$color-neutral-300;
-  font-size: tokens.$font-size-sm;
-  border-bottom: 1px solid tokens.$color-neutral-600;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.cart-dropdown__header {
-  padding: tokens.$spacing-3 tokens.$spacing-4;
-  border-bottom: 1px solid tokens.$color-neutral-600;
-  color: styles.$white;
-  font-weight: tokens.$font-weight-bold;
-}
-
-.cart-dropdown__amount {
-  padding: tokens.$spacing-3 tokens.$spacing-4;
-  text-align: center;
-  color: tokens.$color-primary-300;
-  font-weight: tokens.$font-weight-bold;
-  font-size: tokens.$font-size-lg;
-}
-
-.cart-dropdown__footer {
-  padding: tokens.$spacing-3 tokens.$spacing-4;
-  border-top: 1px solid tokens.$color-neutral-600;
-
-  a {
-    display: block;
-    color: tokens.$color-primary-300;
-    text-decoration: none;
-    text-align: center;
-    @include tokens.transition(color,
-      tokens.$duration-fast,
-      tokens.$ease-in-out );
-
-    &:hover,
-    &:focus {
-      color: tokens.$color-primary-200;
-    }
-  }
-}
+// .user-dropdown__email, .cart-dropdown__header, .cart-dropdown__amount y
+// .cart-dropdown__footer están definidos en cartDropdown.scss y userDropdown.scss.
 
 // ============================================
 // Offcanvas Menu (Mobile)
@@ -620,6 +525,7 @@
   .offcanvas-header {
     background-color: styles.$secondary-color;
     border-bottom: 1px solid tokens.$color-neutral-600;
+    padding: tokens.$spacing-4 tokens.$spacing-4 tokens.$spacing-3;
   }
 
   .offcanvas-title {
@@ -634,6 +540,9 @@
 
   .offcanvas-body {
     padding: tokens.$spacing-3;
+    display: flex;
+    flex-direction: column;
+    gap: tokens.$spacing-2;
   }
 }
 
@@ -685,6 +594,12 @@
     padding: tokens.$spacing-1 tokens.$spacing-2;
     font-size: 1.1rem;
     line-height: 1;
+
+    &:focus-visible {
+      outline: 2px solid tokens.$color-primary-300;
+      outline-offset: 4px;
+      box-shadow: none;
+    }
   }
 
   .main-header--scrolled .main-navbar {
@@ -707,10 +622,17 @@
     width: 100%;
     flex-direction: column;
     gap: tokens.$spacing-3;
+
+    a {
+      width: 100%;
+      padding: tokens.$spacing-3 tokens.$spacing-4;
+      border-radius: tokens.$radius-lg;
+      background: rgba(255, 255, 255, 0.06);
+    }
   }
 
   .offcanvas-end {
-    width: 50vw !important;
+    width: min(24rem, 82vw) !important;
   }
 
   .header-icons {
@@ -728,6 +650,34 @@
 
   .offcanvas .header-icons>* {
     width: 100%;
+  }
+
+  .offcanvas .header-icon,
+  .offcanvas .cart-dropdown__toggle,
+  .offcanvas .user-dropdown__toggle,
+  .offcanvas .user-button--login {
+    width: 100%;
+    min-height: 3.25rem;
+    padding: tokens.$spacing-3 tokens.$spacing-4;
+    border-radius: tokens.$radius-lg;
+    background: rgba(255, 255, 255, 0.06);
+    justify-content: space-between;
+    color: styles.$white;
+  }
+
+  .offcanvas .header-icon__label,
+  .offcanvas .cart-dropdown__toggle-label,
+  .offcanvas .user-dropdown__toggle-label,
+  .offcanvas .user-button__label {
+    display: inline-flex;
+    align-items: center;
+    font-size: tokens.$font-size-sm;
+    font-weight: tokens.$font-weight-medium;
+    letter-spacing: 0.02em;
+  }
+
+  .offcanvas .header-search-wrapper-mobile {
+    padding: tokens.$spacing-2 0 tokens.$spacing-3;
   }
 }
 
@@ -769,6 +719,12 @@
     padding: tokens.$spacing-1;
     font-size: 0.95rem;
     line-height: 1;
+
+    &:focus-visible {
+      outline: 2px solid tokens.$color-primary-300;
+      outline-offset: 3px;
+      box-shadow: none;
+    }
   }
 
   .main-header--scrolled .main-navbar {
@@ -789,13 +745,18 @@
   }
 
   .offcanvas-end {
-    width: 65vw !important;
+    width: min(22rem, 88vw) !important;
   }
 
   .navbar-buttons {
     width: 100%;
     flex-direction: column;
     gap: tokens.$spacing-3;
+
+    a {
+      width: 100%;
+      padding: tokens.$spacing-3;
+    }
   }
 
   .header-divider {
@@ -817,6 +778,14 @@
 
   .offcanvas .header-icons>* {
     width: 100%;
+  }
+
+  .offcanvas .header-icon,
+  .offcanvas .cart-dropdown__toggle,
+  .offcanvas .user-dropdown__toggle,
+  .offcanvas .user-button--login {
+    min-height: 3rem;
+    padding: tokens.$spacing-2 tokens.$spacing-3;
   }
 
   .user-dropdown__menu,

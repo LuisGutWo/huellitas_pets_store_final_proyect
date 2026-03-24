@@ -1,21 +1,27 @@
 import { useState } from "react";
 import { Dropdown } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useUserContext } from "../../context/UserContext";
 import { logout } from "../../services/firebase";
 import "./userDropdown.scss";
 
-const UserDropdown: React.FC = () => {
+interface UserDropdownProps {
+  onNavigate?: () => void;
+}
+
+const UserDropdown: React.FC<UserDropdownProps> = ({ onNavigate }) => {
   const { user } = useUserContext();
   const navigate = useNavigate();
+  const location = useLocation();
   const [error, setError] = useState<string>("");
 
   const handleLogout = async () => {
     try {
       await logout();
       navigate("/");
+      onNavigate?.();
     } catch (err) {
       setError("Error al cerrar sesión");
       console.error(err);
@@ -25,11 +31,20 @@ const UserDropdown: React.FC = () => {
   if (!user) {
     return (
       <button
+        type="button"
         className="user-button user-button--login"
-        onClick={() => navigate("/loginPage")}
+        onClick={() => {
+          navigate(
+            `/loginPage?return=${encodeURIComponent(
+              `${location.pathname}${location.search}`
+            )}`
+          );
+          onNavigate?.();
+        }}
         aria-label="Iniciar sesión"
       >
         <PermIdentityIcon />
+        <span className="user-button__label">Ingresar</span>
       </button>
     );
   }
@@ -43,6 +58,7 @@ const UserDropdown: React.FC = () => {
         aria-label={`Perfil de ${user.email}`}
       >
         <PermIdentityIcon />
+        <span className="user-dropdown__toggle-label">Mi cuenta</span>
       </Dropdown.Toggle>
 
       <Dropdown.Menu className="user-dropdown__menu">
@@ -53,15 +69,19 @@ const UserDropdown: React.FC = () => {
         <Dropdown.Divider />
 
         <Dropdown.Item
-          href="/favorites"
+          as={Link}
+          to="/favorites"
           className="user-dropdown__item"
+          onClick={onNavigate}
         >
           ❤️ Mis Favoritos
         </Dropdown.Item>
 
         <Dropdown.Item
-          href="/cart"
+          as={Link}
+          to="/cart"
           className="user-dropdown__item"
+          onClick={onNavigate}
         >
           🛒 Mi Carrito
         </Dropdown.Item>

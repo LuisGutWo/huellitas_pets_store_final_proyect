@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 import { useUserContext } from "../../context/UserContext";
 import Loading from "../../shared/components/Loading";
@@ -33,13 +33,28 @@ const LoginUserPage: React.FC = () => {
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const [searchParams] = useSearchParams();
   const { user } = useUserContext();
+  const returnTo = useMemo(() => {
+    const returnParam = searchParams.get("return");
+
+    if (returnParam) {
+      return returnParam;
+    }
+
+    if (location.pathname !== "/loginPage") {
+      return `${location.pathname}${location.search}`;
+    }
+
+    return "/";
+  }, [location.pathname, location.search, searchParams]);
 
   useEffect(() => {
     if (user) {
-      navigate("/");
+      navigate(returnTo);
     }
-  }, [user, navigate]);
+  }, [user, navigate, returnTo]);
 
   useEffect(() => {
     const previousTitle = document.title;

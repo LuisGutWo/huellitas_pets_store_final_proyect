@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import Card from "react-bootstrap/Card";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { formatPrice } from "../../../shared/utils/formatPrice";
 import OptimizedImage from "../../../shared/components/OptimizedImage";
 import CartSwingAnimation from "../../../shared/components/CartSwingAnimation";
@@ -10,6 +10,7 @@ import { useProductsContext } from "../../../context/ProductsContext";
 import { useUserContext } from "../../../context/UserContext";
 import { useToast } from "../../../context/ToastContext";
 import type { Product } from "../../../services/productsApi";
+import { userFeedback } from "../../../shared/utils/userFeedback";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -40,6 +41,8 @@ const MainProductCard: React.FC<MainProductCardProps> = ({
 
   const { user } = useUserContext();
   const toast = useToast();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // Check if item is in favorites
   const isFavorite = favorites.some((fav) => fav.id === item.id);
@@ -56,17 +59,19 @@ const MainProductCard: React.FC<MainProductCardProps> = ({
         ? 15 // Descuento por defecto si tiene promotion pero no originalPrice
         : 0;
 
-  async function handleShoppingCart() {
+  function handleShoppingCart(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    event.stopPropagation();
+
     if (!user) {
-      toast.warning(
-        "Por favor, inicia sesión para añadir productos al carrito"
-      );
+      toast.warning(userFeedback.authRequiredForCart);
+      navigate(`/loginPage?return=${encodeURIComponent(location.pathname)}`);
       return;
     }
 
     setIsAdding(true);
     addProduct({ ...item, price });
-    toast.success(`${item.name} se agregó al carrito correctamente`);
+    toast.success(userFeedback.cartAdded(item.name as string));
     setHasAddedFeedback(true);
     cartAnimRef.current?.triggerAnimation(item.name as string);
 
@@ -78,16 +83,17 @@ const MainProductCard: React.FC<MainProductCardProps> = ({
 
   function handleProductButton() {
     if (!user) {
-      toast.warning("Por favor, inicia sesión para gestionar favoritos");
+      toast.warning(userFeedback.authRequiredForFavorites);
+      navigate(`/loginPage?return=${encodeURIComponent(location.pathname)}`);
       return;
     }
 
     if (isFavorite) {
       removeFavorites(item.id);
-      toast.info(`${item.name} se quitó de favoritos`);
+      toast.info(userFeedback.favoriteRemoved(item.name as string));
     } else {
       addFavorites({ ...item, price });
-      toast.success(`${item.name} se agregó a favoritos`);
+      toast.success(userFeedback.favoriteAdded(item.name as string));
     }
   }
 
@@ -106,6 +112,7 @@ const MainProductCard: React.FC<MainProductCardProps> = ({
       {user && !selectFavorites && (
         <div className="product-card__actions">
           <button
+            type="button"
             className={`product-card__action-btn product-card__action-btn--favorite ${
               isFavorite ? "active" : ""
             }`}
@@ -121,13 +128,12 @@ const MainProductCard: React.FC<MainProductCardProps> = ({
             )}
           </button>
 
-          <Link to={`/products/${item.id}`}>
-            <button
-              className="product-card__action-btn"
-              aria-label="Ver detalles"
-            >
-              <InfoOutlinedIcon fontSize="small" />
-            </button>
+          <Link
+            to={`/products/${item.id}`}
+            className="product-card__action-btn"
+            aria-label="Ver detalles"
+          >
+            <InfoOutlinedIcon fontSize="small" />
           </Link>
         </div>
       )}
@@ -136,8 +142,12 @@ const MainProductCard: React.FC<MainProductCardProps> = ({
       {selectFavorites && (
         <div className="product-card__delete-btn">
           <button
+            type="button"
             className="product-card__action-btn product-card__action-btn--delete"
-            onClick={() => removeFavorites(item.id)}
+            onClick={() => {
+              removeFavorites(item.id);
+              toast.info(userFeedback.favoriteRemoved(item.name as string));
+            }}
             aria-label="Eliminar de favoritos"
           >
             <DeleteIcon fontSize="small" />
@@ -204,6 +214,7 @@ const MainProductCard: React.FC<MainProductCardProps> = ({
 
         {/* Add to Cart Button */}
         <button
+          type="button"
           className={`product-card__add-button ${
             hasAddedFeedback ? "product-card__add-button--added" : ""
           } ${isAdding ? "loading" : ""}`}

@@ -1,5 +1,6 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
+import { useUserContext } from "./UserContext";
 
 type ProductBase = {
   id: number | string;
@@ -10,6 +11,71 @@ type ProductBase = {
 export type CartItem = ProductBase & {
   count: number;
 };
+
+const LEGACY_CART_STORAGE_KEY = "huellitas:cart";
+const LEGACY_FAVORITES_STORAGE_KEY = "huellitas:favorites";
+const GUEST_SCOPE = "guest";
+
+type ProductsState = {
+  scope: string;
+  cart: CartItem[];
+  favorites: ProductBase[];
+};
+
+const readStorage = <T,>(storageKey: string, fallback: T): T => {
+  if (typeof window === "undefined") {
+    return fallback;
+  }
+
+  try {
+    const rawValue = window.localStorage.getItem(storageKey);
+
+    if (!rawValue) {
+      return fallback;
+    }
+
+    return JSON.parse(rawValue) as T;
+  } catch {
+    return fallback;
+  }
+};
+
+const buildStorageKey = (scope: string, resource: "cart" | "favorites") =>
+  `huellitas:${scope}:${resource}`;
+
+const readScopedStorage = <T,>(
+  storageKey: string,
+  fallback: T,
+  legacyKey?: string
+): T => {
+  const scopedValue = readStorage<T | null>(storageKey, null);
+
+  if (scopedValue !== null) {
+    return scopedValue;
+  }
+
+  if (legacyKey) {
+    return readStorage<T>(legacyKey, fallback);
+  }
+
+  return fallback;
+};
+
+const loadProductsState = (scope: string): ProductsState => ({
+  scope,
+  cart: readScopedStorage<CartItem[]>(
+    buildStorageKey(scope, "cart"),
+    [],
+    scope === GUEST_SCOPE ? LEGACY_CART_STORAGE_KEY : LEGACY_CART_STORAGE_KEY
+  ),
+  favorites: readScopedStorage<ProductBase[]>(
+    buildStorageKey(scope, "favorites"),
+    [],
+    scope === GUEST_SCOPE
+      ? LEGACY_FAVORITES_STORAGE_KEY
+      : LEGACY_FAVORITES_STORAGE_KEY
+  ),
+});
 
 type ProductsContextValue = {
   cart: CartItem[];
@@ -36,49 +102,90 @@ type ProductsContextProviderProps = {
 export default function ProductsContextProvider({
   children,
 }: ProductsContextProviderProps) {
-  const [cart, setCart] = useState<CartItem[]>([]);
-  const [favorites, setFavorites] = useState<ProductBase[]>([]);
+  const { user } = useUserContext();
+  const activeScope = useMemo(
+    () => (user?.uid ? `user:${user.uid}` : GUEST_SCOPE),
+    [user]
+  );
+  const [productsState, setProductsState] = useState<ProductsState>(() =>
+    loadProductsState(activeScope)
+  );
 
-  const addProduct = (item: ProductBase) => {
-    const itemExists = cart.find((current) => current.id === item.id);
+  const { cart, favorites } = productsState;
 
-    if (itemExists) {
-      setCart(
-        cart.map((current) =>
-          current.id === item.id
-            ? { ...current, count: current.count + 1 }
-            : current
-        )
-      );
+  useEffect(() => {
+    if (productsState.scope !== activeScope) {
+      setProductsState(loadProductsState(activeScope));
       return;
     }
 
-    setCart([...cart, { ...item, count: 1 }]);
+    window.localStorage.setItem(
+      buildStorageKey(activeScope, "cart"),
+      JSON.stringify(cart)
+    );
+    window.localStorage.setItem(
+      buildStorageKey(activeScope, "favorites"),
+      JSON.stringify(favorites)
+    );
+  }, [activeScope, cart, favorites, productsState.scope]);
+
+  const addProduct = (item: ProductBase) => {
+    setProductsState((currentState) => {
+      const itemExists = currentState.cart.find(
+        (current) => current.id === item.id
+      );
+
+      if (itemExists) {
+        return {
+          ...currentState,
+          cart: currentState.cart.map((current) =>
+            current.id === item.id
+              ? { ...current, count: current.count + 1 }
+              : current
+          ),
+        };
+      }
+
+      return {
+        ...currentState,
+        cart: [...currentState.cart, { ...item, count: 1 }],
+      };
+    });
   };
 
   const removeProduct = (item: ProductBase) => {
-    const itemExists = cart.find((current) => current.id === item.id);
+    setProductsState((currentState) => {
+      const itemExists = currentState.cart.find(
+        (current) => current.id === item.id
+      );
 
-    if (!itemExists) {
-      return;
-    }
+      if (!itemExists) {
+        return currentState;
+      }
 
-    if (itemExists.count === 1) {
-      setCart(cart.filter((current) => current.id !== item.id));
-      return;
-    }
+      if (itemExists.count === 1) {
+        return {
+          ...currentState,
+          cart: currentState.cart.filter((current) => current.id !== item.id),
+        };
+      }
 
-    setCart(
-      cart.map((current) =>
-        current.id === item.id
-          ? { ...current, count: current.count - 1 }
-          : current
-      )
-    );
+      return {
+        ...currentState,
+        cart: currentState.cart.map((current) =>
+          current.id === item.id
+            ? { ...current, count: current.count - 1 }
+            : current
+        ),
+      };
+    });
   };
 
   const removeProductCart = (item: ProductBase) => {
-    setCart(cart.filter((current) => item.id !== current.id));
+    setProductsState((currentState) => ({
+      ...currentState,
+      cart: currentState.cart.filter((current) => item.id !== current.id),
+    }));
   };
 
   const totalItemProducts = () => {
@@ -90,7 +197,10 @@ export default function ProductsContextProvider({
   };
 
   const onCleanCart = () => {
-    setCart([]);
+    setProductsState((currentState) => ({
+      ...currentState,
+      cart: [],
+    }));
   };
 
   const findItemCount = (id: ProductBase["id"]) => {
@@ -99,11 +209,27 @@ export default function ProductsContextProvider({
   };
 
   const addFavorites = (item: ProductBase) => {
-    setFavorites([...favorites, item]);
+    setProductsState((currentState) => {
+      const alreadyExists = currentState.favorites.some(
+        (favorite) => favorite.id === item.id
+      );
+
+      if (alreadyExists) {
+        return currentState;
+      }
+
+      return {
+        ...currentState,
+        favorites: [...currentState.favorites, item],
+      };
+    });
   };
 
   const removeFavorites = (id: ProductBase["id"]) => {
-    setFavorites(favorites.filter((item) => item.id !== id));
+    setProductsState((currentState) => ({
+      ...currentState,
+      favorites: currentState.favorites.filter((item) => item.id !== id),
+    }));
   };
 
   return (

@@ -15,13 +15,13 @@ if (rootElement) {
   ReactDOM.createRoot(rootElement).render(
     <React.StrictMode>
       <ToastProvider>
-        <ProductsContextProvider>
-          <UserContextProvider>
+        <UserContextProvider>
+          <ProductsContextProvider>
             <BrowserRouter>
               <App />
             </BrowserRouter>
-          </UserContextProvider>
-        </ProductsContextProvider>
+          </ProductsContextProvider>
+        </UserContextProvider>
       </ToastProvider>
     </React.StrictMode>
   );

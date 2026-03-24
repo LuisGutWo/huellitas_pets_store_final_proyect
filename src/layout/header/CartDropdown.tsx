@@ -1,12 +1,16 @@
 import { Dropdown } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useProductsContext } from "../../context/ProductsContext";
 import { useUserContext } from "../../context/UserContext";
 import { formatPrice } from "../../shared/utils/formatPrice";
 import "./cartDropdown.scss";
 
-const CartDropdown: React.FC = () => {
+interface CartDropdownProps {
+  onNavigate?: () => void;
+}
+
+const CartDropdown: React.FC<CartDropdownProps> = ({ onNavigate }) => {
   const { totalItemProducts, totalCart } = useProductsContext();
   const { user } = useUserContext();
   const navigate = useNavigate();
@@ -20,6 +24,8 @@ const CartDropdown: React.FC = () => {
     } else {
       navigate("/cart");
     }
+
+    onNavigate?.();
   };
 
   return (
@@ -38,6 +44,7 @@ const CartDropdown: React.FC = () => {
             </span>
           )}
         </div>
+        <span className="cart-dropdown__toggle-label">Carrito</span>
       </Dropdown.Toggle>
 
       <Dropdown.Menu className="cart-dropdown__menu">
@@ -76,7 +83,12 @@ const CartDropdown: React.FC = () => {
         {itemCount === 0 && (
           <>
             <Dropdown.Divider />
-            <Dropdown.Item href="/products" className="cart-dropdown__action">
+            <Dropdown.Item
+              as={Link}
+              to="/products"
+              className="cart-dropdown__action"
+              onClick={onNavigate}
+            >
               Explorar productos
             </Dropdown.Item>
           </>

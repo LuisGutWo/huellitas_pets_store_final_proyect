@@ -19,9 +19,11 @@ export default function MainHeader() {
   const [loading, setLoading] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [scrollProgress, setScrollProgress] = useState<number>(0);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const { user } = useUserContext();
   const navigate = useNavigate();
+  const handleCloseMenu = () => setIsMenuOpen(false);
 
   // Scroll effect handler
   useEffect(() => {
@@ -67,13 +69,21 @@ export default function MainHeader() {
       <Fragment>
         <NavbarTopMenu />
 
-        <Navbar expand="lg" className="main-navbar" variant="dark" sticky="top">
+        <Navbar
+          expand="lg"
+          expanded={isMenuOpen}
+          onToggle={(nextExpanded) => setIsMenuOpen(Boolean(nextExpanded))}
+          className="main-navbar"
+          variant="dark"
+          sticky="top"
+        >
           <Container fluid>
             {/* Logo */}
             <Link
               to="/"
               className="header-logo animate__animated animate__fadeIn"
               aria-label="Huellitas Pet Store - Ir a inicio"
+              onClick={handleCloseMenu}
             >
               <img
                 src={LogoWhite}
@@ -85,7 +95,8 @@ export default function MainHeader() {
             {/* Navbar Toggle */}
             <Navbar.Toggle
               aria-controls="offcanvasNavbar-expand-lg"
-              aria-label="Abrir menú de navegación"
+              aria-label={isMenuOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
+              aria-expanded={isMenuOpen}
             />
 
             {/* Offcanvas Menu */}
@@ -93,6 +104,7 @@ export default function MainHeader() {
               id="offcanvasNavbar-expand-lg"
               aria-labelledby="offcanvasNavbarLabel-expand-lg"
               placement="end"
+              onHide={handleCloseMenu}
             >
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id="offcanvasNavbarLabel-expand-lg">
@@ -104,11 +116,11 @@ export default function MainHeader() {
                 <Nav className="justify-content-end flex-grow-1">
                   {/* Search Bar (Mobile) */}
                   <div className="header-search-wrapper-mobile">
-                    <SearchBar />
+                    <SearchBar onSearchComplete={handleCloseMenu} />
                   </div>
 
                   {/* Navigation Buttons */}
-                  <NavbarButtons />
+                  <NavbarButtons onNavigate={handleCloseMenu} />
 
                   {/* Vertical Divider */}
                   <div className="header-divider" />
@@ -118,19 +130,26 @@ export default function MainHeader() {
                     {/* Favorites (only logged in) */}
                     {user && (
                       <button
+                        type="button"
                         className="header-icon header-icon--favorites"
-                        onClick={() => navigate("/favorites")}
+                        onClick={() => {
+                          navigate("/favorites");
+                          handleCloseMenu();
+                        }}
                         aria-label="Mis favoritos"
                       >
-                        ❤️
+                        <span className="header-icon__symbol" aria-hidden="true">
+                          ❤️
+                        </span>
+                        <span className="header-icon__label">Favoritos</span>
                       </button>
                     )}
 
                     {/* Cart */}
-                    <CartDropdown />
+                    <CartDropdown onNavigate={handleCloseMenu} />
 
                     {/* User */}
-                    <UserDropdown />
+                    <UserDropdown onNavigate={handleCloseMenu} />
                   </div>
                 </Nav>
               </Offcanvas.Body>

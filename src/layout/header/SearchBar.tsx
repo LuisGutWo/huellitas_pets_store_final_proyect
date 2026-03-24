@@ -3,7 +3,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 import "./searchBar.scss";
 
-const SearchBar: React.FC = () => {
+interface SearchBarProps {
+  onSearchComplete?: () => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ onSearchComplete }) => {
   const [search, setSearch] = useState<string>("");
   const navigate = useNavigate();
 
@@ -12,6 +16,7 @@ const SearchBar: React.FC = () => {
     if (search.trim()) {
       navigate(`/products?search=${encodeURIComponent(search)}`);
       setSearch("");
+      onSearchComplete?.();
     }
   };
 
