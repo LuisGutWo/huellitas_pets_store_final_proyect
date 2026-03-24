@@ -3,11 +3,11 @@
 
 .auth-page {
     width: 100%;
-    min-height: 100vh;
+    min-height: 70vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: calc(8.5rem + tokens.$spacing-lg) tokens.$spacing-lg tokens.$spacing-2xl;
+    padding: calc(1rem + tokens.$spacing-lg) tokens.$spacing-lg tokens.$spacing-2xl;
     background: linear-gradient(135deg,
             rgba(tokens.$color-primary-50, 0.52) 0%,
             rgba(tokens.$color-secondary-50, 0.34) 55%,
@@ -127,7 +127,8 @@
 
 @media (max-width: 768px) {
     .auth-page {
-        padding: calc(8rem + tokens.$spacing-md) tokens.$spacing-md tokens.$spacing-xl;
+        min-height: 60vh;
+        padding: calc(1rem + tokens.$spacing-md) tokens.$spacing-md tokens.$spacing-xl;
     }
 
     .main-login-box.auth-card {

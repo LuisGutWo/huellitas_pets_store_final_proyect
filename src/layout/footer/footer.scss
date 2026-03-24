@@ -58,6 +58,20 @@ h4 {
   height: 2rem;
 }
 
+/* Credit Cards Image Styles */
+.footer-content img[alt="Tarjetas aceptadas"] {
+  display: block;
+  margin-top: 1.5rem;
+  object-fit: contain;
+  object-position: left center;
+  filter: brightness(1.05) contrast(1.08);
+  transition: filter 0.3s ease;
+
+  &:hover {
+    filter: brightness(1.1) contrast(1.12);
+  }
+}
+
 @media (width <=768px) {
   h4 {
     font-size: 90%;

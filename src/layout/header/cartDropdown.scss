@@ -226,6 +226,28 @@
 
 // Mobile responsiveness
 @media (max-width: 768px) {
+    .offcanvas .cart-dropdown {
+        width: 100%;
+        display: block;
+    }
+
+    .offcanvas .cart-dropdown__toggle {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .offcanvas .cart-dropdown__menu,
+    .offcanvas .cart-dropdown__menu.dropdown-menu,
+    .offcanvas .cart-dropdown__menu.dropdown-menu[data-bs-popper] {
+        position: static !important;
+        inset: auto !important;
+        transform: none !important;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        margin-top: tokens.$spacing-2;
+    }
+
     .cart-dropdown__menu {
         min-width: 200px;
         right: -10px;
@@ -243,6 +265,15 @@
 
 // Small devices
 @media (max-width: 390px) {
+
+    .offcanvas .cart-dropdown__menu,
+    .offcanvas .cart-dropdown__menu.dropdown-menu,
+    .offcanvas .cart-dropdown__menu.dropdown-menu[data-bs-popper] {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+    }
+
     .cart-dropdown__menu {
         position: static;
         min-width: 100%;

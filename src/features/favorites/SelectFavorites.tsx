@@ -5,7 +5,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useProductsContext } from "../../context/ProductsContext";
 import MainProductCard from "../products/components/MainProductCard";
 import Breadcrumbs from "../../shared/components/Breadcrumbs";
-import emptyFavoritesImage from "../../assets/img/emoticon_gatito.png";
+import emptyFavoritesImage from "../../assets/img/hero_gatito.webp";
 
 const SelectFavorites: React.FC = () => {
   const { favorites } = useProductsContext();

@@ -26,5 +26,4 @@ const ProductListSkeleton: React.FC<ProductListSkeletonProps> = ({ count = 8 }) 
   </div>
 );
 
-export { ProductCardSkeleton, ProductListSkeleton };
-export default ProductListSkeleton;
+export { ProductListSkeleton };

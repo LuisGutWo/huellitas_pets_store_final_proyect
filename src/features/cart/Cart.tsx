@@ -11,7 +11,8 @@ import {
   Skeleton,
 } from "../../shared/components/SkeletonLoader";
 import { FakeLoading } from "../../shared/components/FakeLoading";
-import emptyCartImage from "../../assets/img/emoticon_gatito.png";
+import emptyCartImage from "../../assets/img/hero_gatito.webp";
+import creditCardsImage from "../../assets/img/tarjetas_logo.webp";
 
 const Cart: React.FC = () => {
   const [isHydrating, setIsHydrating] = useState<boolean>(true);
@@ -116,7 +117,7 @@ const Cart: React.FC = () => {
                 <img
                   className="me-2"
                   width="170rem"
-                  src="src/assets/img/tarjetas_logo.png"
+                  src={creditCardsImage}
                   alt="Logos de tarjetas de crédito aceptadas"
                   title="Logos de tarjetas de crédito aceptadas"
                 />

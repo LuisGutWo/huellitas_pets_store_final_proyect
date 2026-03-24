@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "animate.css";
 import Breadcrumbs from "../../shared/components/Breadcrumbs";
-import aboutBackground from "../../assets/img/perrito_fondo_rosado_II.jpg";
+import aboutBackground from "../../assets/img/perrito_fondo_rosado_II.webp";
 import "./about.scss";
 
 const About: React.FC = () => {

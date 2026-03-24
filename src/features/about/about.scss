@@ -15,6 +15,18 @@
       rgba(tokens.$color-secondary-50, 0.3) 0%,
       rgba(tokens.$color-primary-50, 0.2) 100%);
 
+  @media (max-width: 768px) {
+    // Compensa el padding-top global del contenedor de la app en mobile.
+    margin-top: -8.8rem;
+    min-height: calc(100vh + 8.8rem);
+  }
+
+  @media (max-width: 390px) {
+    // Ajuste para el breakpoint pequeño con padding-top global reducido.
+    margin-top: -5.5rem;
+    min-height: calc(100vh + 5.5rem);
+  }
+
   /* Background image container */
   &__background {
     position: absolute;
@@ -43,7 +55,7 @@
     position: relative;
     z-index: 10;
     width: 100%;
-    padding: tokens.$spacing-xl tokens.$spacing-lg;
+    padding: tokens.$spacing-lg;
     animation: slideInDown 0.6s ease-out both;
 
     @media (max-width: 768px) {
@@ -51,7 +63,7 @@
     }
 
     @media (max-width: 390px) {
-      padding: tokens.$spacing-md tokens.$spacing-md;
+      padding: 0;
     }
   }
 
@@ -84,9 +96,11 @@
     }
 
     @media (max-width: 768px) {
+      margin-top: tokens.$spacing-16;
       max-width: 90%;
       margin-left: auto;
       margin-right: auto;
+      margin-bottom: 2rem;
       padding: tokens.$spacing-lg;
     }
 
@@ -267,7 +281,7 @@
   padding: tokens.$spacing-md tokens.$spacing-lg;
   background: linear-gradient(135deg,
       tokens.$color-primary-500,
-      tokens.$color-secondary-500);
+      tokens.$color-secondary-500 );
   color: white;
   text-decoration: none;
   border-radius: tokens.$radius-md;
@@ -300,18 +314,8 @@
 
     &:hover {
       background: tokens.$color-primary-500;
-      color: white;
+      color: tokens.$color-neutral-900;
       box-shadow: 0 10px 30px rgba(tokens.$color-primary-500, 0.25);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      color: tokens.$color-primary-300;
-      border-color: tokens.$color-primary-300;
-
-      &:hover {
-        background: tokens.$color-primary-500;
-        color: white;
-      }
     }
   }
 

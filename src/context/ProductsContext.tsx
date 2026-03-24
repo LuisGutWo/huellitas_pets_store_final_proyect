@@ -25,7 +25,7 @@ type ProductsContextValue = {
   removeFavorites: (id: ProductBase["id"]) => void;
 };
 
-export const ProductsContext = createContext<
+const ProductsContext = createContext<
   ProductsContextValue | undefined
 >(undefined);
 

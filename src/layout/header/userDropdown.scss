@@ -165,6 +165,28 @@
 
 // Mobile responsiveness
 @media (max-width: 768px) {
+    .offcanvas .user-dropdown {
+        width: 100%;
+        display: block;
+    }
+
+    .offcanvas .user-dropdown__toggle {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .offcanvas .user-dropdown__menu,
+    .offcanvas .user-dropdown__menu.dropdown-menu,
+    .offcanvas .user-dropdown__menu.dropdown-menu[data-bs-popper] {
+        position: static !important;
+        inset: auto !important;
+        transform: none !important;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        margin-top: tokens.$spacing-2;
+    }
+
     .user-dropdown__menu {
         min-width: 180px;
     }
@@ -181,6 +203,15 @@
 
 // Tablet responsiveness
 @media (max-width: 390px) {
+
+    .offcanvas .user-dropdown__menu,
+    .offcanvas .user-dropdown__menu.dropdown-menu,
+    .offcanvas .user-dropdown__menu.dropdown-menu[data-bs-popper] {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+    }
+
     .user-dropdown__menu {
         position: static;
         min-width: 100%;

@@ -8,7 +8,7 @@ import Loading from "../../shared/components/Loading";
 import "animate.css";
 
 import { useUserContext } from "../../context/UserContext";
-import LogoWhite from "../../assets/img/huellitas-logo-white-500x500.png";
+import LogoWhite from "../../assets/img/huellitas-logo-white-500x500.webp";
 import NavbarButtons from "../header/NavbarButtons";
 import NavbarTopMenu from "./NavbarTopMenu";
 import UserDropdown from "./UserDropdown";

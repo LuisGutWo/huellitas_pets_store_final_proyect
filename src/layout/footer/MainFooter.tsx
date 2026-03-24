@@ -3,8 +3,8 @@ import { Col, Container, Row } from "react-bootstrap";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import InstagramIcon from "@mui/icons-material/Instagram";
 
-import LogoWhite from "../../assets/img/huellitas-logo-white-500x500.png";
-import LogoCreditCards from "../../assets/img/tarjetas_logo.png";
+import LogoWhite from "../../assets/img/huellitas-logo-white-500x500.webp";
+import LogoCreditCards from "../../assets/img/tarjetas_logo.webp";
 
 const MainFooter: React.FC = () => {
   return (

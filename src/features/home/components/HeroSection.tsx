@@ -13,11 +13,11 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 
-import LogoWhite from "../../../assets/img/huellitas-logo-white-500x500.png";
-import LogoBlack from "../../../assets/img/huellitas-logo-black-500x500.png";
-import HeroImg1 from "../../../assets/img/hero_mascotas.jpg";
-import HeroImg2 from "../../../assets/img/perrito_cachorro.jpg";
-import HeroImg3 from "../../../assets/img/gato_portada.jpg";
+import LogoWhite from "../../../assets/img/huellitas-logo-white-500x500.webp";
+import LogoBlack from "../../../assets/img/huellitas-logo-black-500x500.webp";
+import HeroImg1 from "../../../assets/img/hero_mascotas.webp";
+import HeroImg2 from "../../../assets/img/perrito_cachorro.webp";
+import HeroImg3 from "../../../assets/img/gato_portada.webp";
 
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 

@@ -1,14 +1,14 @@
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import Form from "react-bootstrap/Form";
-import L from "leaflet";
 import { sendContactEmail } from "../../services/emailjs";
 import { TextareaAutosize } from "@mui/material";
 import Breadcrumbs from "../../shared/components/Breadcrumbs";
 import Spinner from "../../shared/components/Spinner";
 import SuccessCheckmark from "../../shared/components/SuccessCheckmark";
 import "./contact.scss";
+
+const ContactMap = lazy(() => import("./components/ContactMap"));
 
 const CONTACT_COOLDOWN_SECONDS = 30;
 const CONTACT_COOLDOWN_KEY = "contact-form-cooldown-until";
@@ -261,12 +261,9 @@ const Contact: React.FC = () => {
             </a>
           </div>
           <div className="map-wrapper">
-          <MapContainer center={L.latLng(-33.43659, -70.68413)} zoom={16}>
-            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            <Marker position={L.latLng(-33.43659, -70.68413)}>
-              <Popup>Huellitas Pets Store</Popup>
-            </Marker>
-          </MapContainer>
+            <Suspense fallback={<p className="m-0 p-3">Cargando mapa...</p>}>
+              <ContactMap />
+            </Suspense>
           </div>
         </div>
       </section>
