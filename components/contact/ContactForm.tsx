@@ -3,6 +3,7 @@
 import { useRef, useState, type FormEvent } from "react";
 import Icon from "@/components/ui/Icon";
 import { isEmailConfigured, sendContactEmail } from "@/lib/emailjs";
+import { phone } from "@/lib/contact";
 import styles from "./ContactForm.module.css";
 
 type Field = "user_name" | "user_email" | "message";
@@ -165,15 +166,17 @@ export default function ContactForm() {
         {status === "failed" && (
           <p data-tone="bad">
             <Icon name="alerta" size={17} />
-            No se pudo enviar. Vuelve a intentar, o escríbenos directo por
-            WhatsApp al +569 2039 0272.
+            No se pudo enviar. Vuelve a intentar
+            {phone ? `, o escríbenos directo por WhatsApp al ${phone.label}.` : "."}
           </p>
         )}
         {status === "unconfigured" && (
           <p data-tone="bad">
             <Icon name="alerta" size={17} />
-            El envío de correo no está configurado en este despliegue. Escríbenos
-            por WhatsApp al +569 2039 0272 y te respondemos igual.
+            El envío de correo no está configurado en este despliegue.
+            {phone
+              ? ` Escríbenos por WhatsApp al ${phone.label} y te respondemos igual.`
+              : " Escríbenos al correo que aparece más abajo y te respondemos igual."}
           </p>
         )}
       </div>

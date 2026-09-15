@@ -19,9 +19,15 @@ npm run dev      # http://localhost:3000
 ```
 
 No necesitas configurar nada para ver el sitio completo: el catálogo vive en el
-repositorio y el carrito usa `localStorage`. Las variables de entorno solo
-habilitan las cuentas y el formulario de contacto; copia `.env.example` a
-`.env.local` si las quieres.
+repositorio y el carrito usa `localStorage`. Las variables de entorno habilitan
+las cuentas, el formulario de contacto y el teléfono del local; copia
+`.env.example` a `.env.local` si las quieres.
+
+El teléfono no está versionado. Vive en `NEXT_PUBLIC_CONTACT_PHONE` y se
+configura en el despliegue, porque el repositorio es público. Sin esa variable
+el sitio no inventa un número: las filas de teléfono y WhatsApp no se muestran,
+el botón flotante no aparece, y el carrito cierra el pedido por correo con el
+mismo detalle. Toda la lógica está en [lib/contact.ts](lib/contact.ts).
 
 ```bash
 npm run build      # build de producción (el mismo que corre Vercel)

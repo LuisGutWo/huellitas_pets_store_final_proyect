@@ -140,6 +140,19 @@ La medida de línea ya estaba resuelta por los topes en `ch` sobre cada bloque
 de texto. Estrechar el contenedor encima era redundante para la prosa y
 destructivo para todo lo demás.
 
+### El teléfono no se versiona
+
+El número real del local vive en `NEXT_PUBLIC_CONTACT_PHONE`, no en el
+repositorio, porque el repositorio es público. `lib/contact.ts` es la única
+fuente de verdad: deriva de la variable el texto visible, el `href` de `tel:` y
+los dígitos de `wa.me`, y expone `null` cuando no está configurada.
+
+La degradación es la misma que la de Firebase y EmailJS: sin variable, las filas
+de teléfono y WhatsApp no se renderizan, el botón flotante no aparece, el
+mensaje de error del formulario deja de ofrecer un canal que no existe, y el
+carrito cambia su acción de cierre de WhatsApp a correo, con el mismo detalle
+del pedido. En ningún caso se muestra un número inventado.
+
 ### Accesibilidad
 
 Se conservó lo que el original hacía bien y se agregó verificación: contraste

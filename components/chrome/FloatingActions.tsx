@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Icon from "@/components/ui/Icon";
+import { whatsappLink } from "@/lib/contact";
 import styles from "./FloatingActions.module.css";
 
 /* Rutas donde escribir por WhatsApp ya está a la vista dentro de la página:
@@ -14,7 +15,8 @@ export default function FloatingActions() {
   const [scrolled, setScrolled] = useState(false);
   // Solo aparece una vez que el visitante dejó atrás la primera pantalla: así
   // no aterriza sobre la imagen del héroe ni sobre el panel de compra.
-  const mostrarPildora = scrolled && !SIN_PILDORA.includes(pathname);
+  const mostrarPildora =
+    scrolled && !SIN_PILDORA.includes(pathname) && whatsappLink() !== null;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 700);
@@ -28,7 +30,7 @@ export default function FloatingActions() {
       {mostrarPildora && (
         <a
           className={styles.whatsapp}
-          href="https://wa.me/56920390272"
+          href={whatsappLink() ?? undefined}
           target="_blank"
           rel="noreferrer"
         >

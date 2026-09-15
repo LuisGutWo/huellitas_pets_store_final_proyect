@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Icon from "@/components/ui/Icon";
+import { address, email, phone, whatsappLink } from "@/lib/contact";
 import styles from "./SiteFooter.module.css";
 
 const YEAR = new Date().getFullYear();
@@ -33,14 +34,16 @@ export default function SiteFooter() {
                 <Icon name="facebook" size={20} />
               </a>
             </li>
-            <li>
-              <a
-                href="https://wa.me/56920390272"
-                aria-label="Escribir por WhatsApp"
-              >
-                <Icon name="whatsapp" size={20} />
-              </a>
-            </li>
+            {whatsappLink() && (
+              <li>
+                <a
+                  href={whatsappLink() ?? undefined}
+                  aria-label="Escribir por WhatsApp"
+                >
+                  <Icon name="whatsapp" size={20} />
+                </a>
+              </li>
+            )}
           </ul>
         </div>
 
@@ -85,21 +88,21 @@ export default function SiteFooter() {
           <address className={styles.contact}>
             <p>
               <Icon name="lugar" size={17} />
-              San Pablo 3610, local 2
+              {address.line1}
               <br />
-              Quinta Normal, Santiago
+              {address.line2}
             </p>
-            <p>
-              <Icon name="telefono" size={17} />
-              <a href="tel:+56920390272" data-numeral>
-                +569 2039 0272
-              </a>
-            </p>
+            {phone && (
+              <p>
+                <Icon name="telefono" size={17} />
+                <a href={`tel:${phone.tel}`} data-numeral>
+                  {phone.label}
+                </a>
+              </p>
+            )}
             <p>
               <Icon name="correo" size={17} />
-              <a href="mailto:agutierrezwong@gmail.com">
-                agutierrezwong@gmail.com
-              </a>
+              <a href={`mailto:${email}`}>{email}</a>
             </p>
           </address>
         </div>

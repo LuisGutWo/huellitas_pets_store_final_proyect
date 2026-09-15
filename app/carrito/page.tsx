@@ -8,9 +8,8 @@ import StampedNumber from "@/components/ui/StampedNumber";
 import { useStore } from "@/components/providers/StoreProvider";
 import { BRAND_LABELS } from "@/lib/catalog";
 import { formatPrice, formatUnits } from "@/lib/format";
+import { email, whatsappLink } from "@/lib/contact";
 import styles from "./carrito.module.css";
-
-const WHATSAPP = "56920390272";
 
 export default function CartPage() {
   const {
@@ -24,16 +23,21 @@ export default function CartPage() {
     totalAmount,
   } = useStore();
 
-  const orderText = encodeURIComponent(
-    `Hola Huellitas, quiero coordinar este pedido:\n\n${cart
-      .map(
-        (line) =>
-          `· ${line.units} × ${line.product.name} (${line.product.id}) — ${formatPrice(
-            line.product.price * line.units
-          )}`
-      )
-      .join("\n")}\n\nTotal: ${formatPrice(totalAmount)}`
-  );
+  const orderBody = `Hola Huellitas, quiero coordinar este pedido:\n\n${cart
+    .map(
+      (line) =>
+        `· ${line.units} × ${line.product.name} (${line.product.id}) — ${formatPrice(
+          line.product.price * line.units
+        )}`
+    )
+    .join("\n")}\n\nTotal: ${formatPrice(totalAmount)}`;
+
+  // Sin WhatsApp configurado el pedido se cierra por correo, con el mismo
+  // detalle: la acción de cierre del carrito nunca desaparece.
+  const whatsapp = whatsappLink(orderBody);
+  const mailto = `mailto:${email}?subject=${encodeURIComponent(
+    "Pedido desde el sitio"
+  )}&body=${encodeURIComponent(orderBody)}`;
 
   return (
     <>
@@ -154,17 +158,18 @@ export default function CartPage() {
 
             <a
               className={styles.confirm}
-              href={`https://wa.me/${WHATSAPP}?text=${orderText}`}
-              target="_blank"
-              rel="noreferrer"
+              href={whatsapp ?? mailto}
+              target={whatsapp ? "_blank" : undefined}
+              rel={whatsapp ? "noreferrer" : undefined}
             >
-              <Icon name="whatsapp" size={19} />
-              Coordinar por WhatsApp
+              <Icon name={whatsapp ? "whatsapp" : "correo"} size={19} />
+              {whatsapp ? "Coordinar por WhatsApp" : "Enviar el pedido por correo"}
             </a>
 
             <p className={styles.honesty}>
-              Este sitio no procesa pagos. El pedido se confirma por WhatsApp y el
-              pago se coordina al retirar o despachar.
+              Este sitio no procesa pagos. El pedido se confirma{" "}
+              {whatsapp ? "por WhatsApp" : "por correo"} y el pago se coordina al
+              retirar o despachar.
             </p>
 
             <div className={styles.secondary}>
