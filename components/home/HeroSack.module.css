@@ -1,0 +1,308 @@
+/*
+  Primera pantalla: campo de tinta a sangre, numeral monumental en kraft,
+  producto recortado por la derecha, panel kraft con la ficha y la acción.
+  El texto de lectura nunca queda sobre la tinta media.
+*/
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 6px minmax(0, 0.92fr);
+  grid-template-areas:
+    "ink seam shot"
+    "panel seam shot";
+  align-items: start;
+  gap: 0 var(--s-6);
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding: var(--s-7) var(--gutter) var(--s-8);
+}
+
+.inkField {
+  grid-area: ink;
+  padding-right: var(--s-4);
+}
+
+/* El numeral es el objeto, no un dato de apoyo. */
+.numeral {
+  display: flex;
+  align-items: flex-start;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-stretch: 62%;
+  font-size: var(--numeral-lg);
+  line-height: 0.8;
+  letter-spacing: -0.045em;
+  color: var(--display-on-ink);
+}
+
+.currency {
+  margin-top: 0.12em;
+  font-size: 0.34em;
+  font-stretch: 78%;
+  letter-spacing: 0;
+}
+
+.quote {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: var(--s-3) var(--s-5);
+}
+
+.quoteFor {
+  display: grid;
+  gap: 2px;
+  padding-bottom: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: var(--label-md);
+  color: var(--text-on-ink);
+}
+
+.quoteFor b {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 74%;
+  font-size: var(--step-1);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--text-on-ink);
+}
+
+.quoteFor > span {
+  letter-spacing: 0.06em;
+}
+
+.quoteFor em {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-2);
+  margin-top: var(--s-1);
+  font-style: normal;
+}
+
+.quoteFor s {
+  text-decoration-thickness: 2px;
+}
+
+.quoteFor i {
+  padding: 2px 7px;
+  background: var(--ink-blue);
+  color: var(--stock);
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+/* La costura separa la cotización de la promesa de la tienda. */
+.split {
+  margin: var(--s-5) 0 var(--s-5);
+  max-width: 22rem;
+}
+
+.headline {
+  margin-top: 0;
+  font-size: var(--step-2);
+  font-stretch: 70%;
+  color: var(--display-on-ink);
+  max-width: 22ch;
+}
+
+/* La ubicación, a escala de lectura y no de letra chica. */
+.claim {
+  margin-top: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--label-lg);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-on-ink);
+}
+
+.lede {
+  max-width: 46ch;
+  margin-top: var(--s-4);
+  color: var(--text-on-ink);
+}
+
+.lede b {
+  font-weight: 700;
+  color: var(--text-on-ink);
+}
+
+/* La costura se imprime en fibra: contra la tinta da 3.49:1, que es lo que
+   necesita un elemento gráfico, y deja el rastro del fuelle a la vista. */
+.seamRail {
+  grid-area: seam;
+  align-self: stretch;
+}
+
+/*
+  El saco sale del contenedor y se corta contra el borde del viewport: no es una
+  foto enmarcada, es el producto entrando en la página a tamaño casi real. El
+  blanco del recorte se funde con la plancha por multiplicación.
+*/
+.shot {
+  grid-area: shot;
+  position: relative;
+  align-self: stretch;
+  min-height: 32rem;
+  margin-right: calc(var(--bleed) * -1);
+  overflow: hidden;
+  background: var(--photo-bed);
+  border: var(--rule);
+  border-right: 0;
+}
+
+.shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 38% center;
+  mix-blend-mode: multiply;
+}
+
+/* Panel kraft: única superficie de lectura y de acción. */
+.panel {
+  grid-area: panel;
+  margin-top: var(--s-7);
+  padding: var(--s-5);
+  background: var(--kraft);
+  color: var(--fiber);
+  border: var(--rule);
+}
+
+.spec {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: var(--label-lg);
+}
+
+.spec caption {
+  margin-bottom: var(--s-3);
+  font-size: var(--label-xs);
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--fiber-soft);
+}
+
+.spec tr + tr {
+  border-top: 1px dashed color-mix(in srgb, var(--fiber) 38%, transparent);
+}
+
+.spec th,
+.spec td {
+  padding-block: var(--s-2);
+  text-align: left;
+}
+
+.spec th {
+  width: 8.5rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fiber-soft);
+}
+
+.spec td {
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin-top: var(--s-5);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  min-height: 52px;
+  padding: var(--s-3) var(--s-5);
+  background: var(--ink-blue);
+  color: var(--stock);
+  font-family: var(--font-mono);
+  font-size: var(--label-lg);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 160ms ease-out, transform 160ms ease-out;
+}
+
+.cta:hover {
+  background: var(--ink-blue-deep);
+  transform: translateY(-2px);
+}
+
+.cta svg {
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cta:hover svg {
+  transform: translateX(4px);
+}
+
+.ctaGhost {
+  display: inline-flex;
+  align-items: center;
+  min-height: 52px;
+  padding: var(--s-3) var(--s-5);
+  border: var(--rule);
+  color: var(--fiber);
+  font-family: var(--font-mono);
+  font-size: var(--label-lg);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 160ms ease-out;
+}
+
+.ctaGhost:hover {
+  background: color-mix(in srgb, var(--fiber) 12%, transparent);
+}
+
+@media (max-width: 62rem) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "ink"
+      "shot"
+      "panel";
+    gap: var(--s-5);
+    padding-block: var(--s-6) var(--s-8);
+  }
+
+  .seamRail {
+    display: none;
+  }
+
+  .inkField {
+    padding-right: 0;
+  }
+
+  .shot {
+    margin-right: calc(var(--bleed) * -1);
+    min-height: 20rem;
+  }
+
+  .panel {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 34rem) {
+  .spec th {
+    width: 6.5rem;
+  }
+
+  .actions .cta,
+  .actions .ctaGhost {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+}

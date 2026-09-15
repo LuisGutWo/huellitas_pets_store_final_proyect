@@ -1,0 +1,510 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-15T00:00:00.000Z",
+  "title": "Design System: Huellitas Pet Store",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "primary",
+        "displayName": "Vermellón de Saco",
+        "canonical": "#c8321e",
+        "tonalRamp": [
+          "#2b0a05",
+          "#4d130a",
+          "#7a1e12",
+          "#a52818",
+          "#c8321e",
+          "#e05a45",
+          "#ef9182",
+          "#f9d3cb"
+        ]
+      },
+      "ink-deep": {
+        "role": "primary",
+        "displayName": "Vermellón Profundo",
+        "canonical": "#7a1e12",
+        "tonalRamp": [
+          "#1f0704",
+          "#3a0d07",
+          "#56140b",
+          "#7a1e12",
+          "#9c2a1b",
+          "#c25340",
+          "#dd8e7f",
+          "#f2cfc8"
+        ]
+      },
+      "ink-blue": {
+        "role": "secondary",
+        "displayName": "Ultramarina de Dato",
+        "canonical": "#1b3a8c",
+        "tonalRamp": [
+          "#070e23",
+          "#0c1840",
+          "#12276b",
+          "#1b3a8c",
+          "#2a52bd",
+          "#5a7ed6",
+          "#94adea",
+          "#d3def8"
+        ]
+      },
+      "ink-blue-deep": {
+        "role": "secondary",
+        "displayName": "Ultramarina Asentada",
+        "canonical": "#12276b",
+        "tonalRamp": [
+          "#050a1c",
+          "#091334",
+          "#12276b",
+          "#1b3a8c",
+          "#2b4fae",
+          "#5674ce",
+          "#93a9e6",
+          "#d2daf6"
+        ]
+      },
+      "kraft": {
+        "role": "neutral",
+        "displayName": "Kraft",
+        "canonical": "#c9a97a",
+        "tonalRamp": [
+          "#251c10",
+          "#3f3119",
+          "#5c4826",
+          "#8a6c3d",
+          "#b8945f",
+          "#c9a97a",
+          "#dcc7a2",
+          "#efe3cd"
+        ]
+      },
+      "kraft-dim": {
+        "role": "neutral",
+        "displayName": "Kraft Apagado",
+        "canonical": "#b8945f",
+        "tonalRamp": [
+          "#1f1709",
+          "#372911",
+          "#51401c",
+          "#7a612c",
+          "#a2803f",
+          "#b8945f",
+          "#d0b58c",
+          "#e9dcc4"
+        ]
+      },
+      "stock": {
+        "role": "neutral",
+        "displayName": "Stock",
+        "canonical": "#e8dcc4",
+        "tonalRamp": [
+          "#2a2318",
+          "#463c29",
+          "#63563d",
+          "#8a7b5c",
+          "#b3a484",
+          "#d0c3a6",
+          "#e8dcc4",
+          "#f7f1e6"
+        ]
+      },
+      "stock-light": {
+        "role": "neutral",
+        "displayName": "Stock Claro (cama fotográfica)",
+        "canonical": "#f5efe3",
+        "tonalRamp": [
+          "#2e281c",
+          "#4b432f",
+          "#6a6044",
+          "#938763",
+          "#bcae88",
+          "#dbd0b4",
+          "#f5efe3",
+          "#fcf9f3"
+        ]
+      },
+      "fiber": {
+        "role": "neutral",
+        "displayName": "Fibra",
+        "canonical": "#17140f",
+        "tonalRamp": [
+          "#0a0806",
+          "#17140f",
+          "#2c2619",
+          "#4a3f30",
+          "#6d5f49",
+          "#948468",
+          "#bfae91",
+          "#e4dac7"
+        ]
+      },
+      "fiber-soft": {
+        "role": "neutral",
+        "displayName": "Fibra Suave",
+        "canonical": "#4a3f30",
+        "tonalRamp": [
+          "#0d0b08",
+          "#1d1912",
+          "#332c20",
+          "#4a3f30",
+          "#6a5b45",
+          "#8e7c61",
+          "#b8a68a",
+          "#ded2bd"
+        ]
+      },
+      "text-on-ink": {
+        "role": "neutral",
+        "displayName": "Blanco de Papel (rol de texto, no material)",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#1a1a1a",
+          "#333333",
+          "#4d4d4d",
+          "#737373",
+          "#999999",
+          "#c2c2c2",
+          "#e6e6e6",
+          "#ffffff"
+        ]
+      },
+      "display-on-ink": {
+        "role": "neutral",
+        "displayName": "Stock sobre Tinta (solo escala display)",
+        "canonical": "#e8dcc4",
+        "tonalRamp": [
+          "#2a2318",
+          "#463c29",
+          "#63563d",
+          "#8a7b5c",
+          "#b3a484",
+          "#d0c3a6",
+          "#e8dcc4",
+          "#f7f1e6"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "numeral": {
+        "displayName": "Numeral Troquelado",
+        "purpose": "La cifra del 404.",
+        "ramp": "numeral"
+      },
+      "numeral-lg": {
+        "displayName": "Numeral LG",
+        "purpose": "El precio del héroe: el objeto de la primera pantalla.",
+        "ramp": "numeral"
+      },
+      "numeral-md": {
+        "displayName": "Numeral MD",
+        "purpose": "Total del carrito, cifras de la tienda, precio en la ficha de producto.",
+        "ramp": "numeral"
+      },
+      "numeral-sm": {
+        "displayName": "Numeral SM",
+        "purpose": "El conteo del mecanismo de filtros y la lectura del presupuesto.",
+        "ramp": "numeral"
+      },
+      "display": {
+        "displayName": "Display",
+        "purpose": "Título de página en la cabecera de ruta.",
+        "ramp": "reading"
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Títulos de sección en home y catálogo.",
+        "ramp": "reading"
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Títulos de panel, estado vacío, cabecera del cajón móvil.",
+        "ramp": "reading"
+      },
+      "subtitle": {
+        "displayName": "Subtitle",
+        "purpose": "Subtítulos dentro de plancha.",
+        "ramp": "reading"
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Texto corrido, acotado entre 46ch y 62ch.",
+        "ramp": "reading"
+      },
+      "body-sm": {
+        "displayName": "Body SM",
+        "purpose": "Texto secundario dentro de planchas: descripciones de tarjeta y copy de apoyo.",
+        "ramp": "reading"
+      },
+      "label-lg": {
+        "displayName": "Label LG",
+        "purpose": "Botones, estados impresos, fichas de datos.",
+        "ramp": "label"
+      },
+      "label-md": {
+        "displayName": "Label MD",
+        "purpose": "Navegación, chips, tallies, mensajes de error.",
+        "ramp": "label"
+      },
+      "label-sm": {
+        "displayName": "Label SM",
+        "purpose": "Migas, filas de la tira de atributos, metadatos de artículo.",
+        "ramp": "label"
+      },
+      "label-xs": {
+        "displayName": "Label XS",
+        "purpose": "Leyendas de campo, banderas de producto, pie de imprenta, micro-etiqueta del lockup.",
+        "ramp": "label"
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease-die",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Transformaciones: zoom de foto en hover, despegue de tarjeta."
+      },
+      {
+        "name": "ease-ink",
+        "value": "ease-out",
+        "purpose": "Cambios de color y de borde, 140–160ms."
+      },
+      {
+        "name": "stamp-travel",
+        "value": "gsap power3.out 0.62s",
+        "purpose": "Recorrido del numeral cuando cambia de valor."
+      },
+      {
+        "name": "stamp-settle",
+        "value": "gsap back.out(2.4) 0.5s, scaleY 0.955 → 1, transformOrigin 50% 100%",
+        "purpose": "El asentamiento del troquel sobre el papel."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce → animation/transition 0.01ms + salida temprana en cada componente GSAP",
+        "purpose": "Toda la animación es opcional; nada depende de ella para ser legible."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "xs",
+        "value": "30rem"
+      },
+      {
+        "name": "sm",
+        "value": "34rem"
+      },
+      {
+        "name": "md",
+        "value": "48rem"
+      },
+      {
+        "name": "lg",
+        "value": "62rem"
+      },
+      {
+        "name": "shell",
+        "value": "78rem (trabajo) / 50rem (lectura, vía .reading)"
+      }
+    ],
+    "notes": [
+      "Pie de sitio: la línea de base dice «© 2026 Huellitas Pet Store - Lagmedia» y la nota de transparencia acredita a Lagmedia como desarrollador."
+    ]
+  },
+  "components": [
+    {
+      "name": "Botón Primario",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Acción principal en ultramarina: agregar al carrito, ver catálogo, entrar, aplicar filtros.",
+      "html": "<button class=\"ds-btn-primary\"><svg class=\"ds-ico\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M2 4h3.2l2.4 11.2h10.1L20 7.2H6.1\"/><path d=\"M9 20.5h.01M17 20.5h.01\"/></svg>Agregar</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 48px; padding-inline: 1.5rem; background: var(--ink-blue, #1b3a8c); color: var(--stock, #e8dcc4); border: none; border-radius: 0; font-family: var(--font-mono, ui-monospace, monospace); font-size: var(--label-md, 0.74rem); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; transition: background-color 160ms ease-out; } .ds-btn-primary .ds-ico { width: 18px; height: 18px; } .ds-btn-primary:hover { background: var(--ink-blue-deep, #12276b); } .ds-btn-primary:focus-visible { outline: 3px solid var(--ink-blue, #1b3a8c); outline-offset: 3px; } .ds-btn-primary:active { transform: translateY(1px); }"
+    },
+    {
+      "name": "Botón Sobrio",
+      "kind": "button",
+      "refersTo": "button-quiet",
+      "description": "Acción de menor jerarquía sobre plancha kraft: limpiar filtros, descartar.",
+      "html": "<button class=\"ds-btn-quiet\">Limpiar filtros</button>",
+      "css": ".ds-btn-quiet { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 44px; padding-inline: 1rem; background: var(--ink-deep, #7a1e12); color: var(--stock, #e8dcc4); border: none; border-radius: 0; font-family: var(--font-mono, ui-monospace, monospace); font-size: var(--label-md, 0.74rem); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: background-color 160ms ease-out; } .ds-btn-quiet:hover { background: var(--fiber, #17140f); } .ds-btn-quiet:focus-visible { outline: 3px solid var(--ink-deep, #7a1e12); outline-offset: 3px; }"
+    },
+    {
+      "name": "Campo de Formulario",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Campo de stock dentro de marco de 2px en fibra; el foco se dibuja sobre el marco completo.",
+      "html": "<label class=\"ds-field\"><span>Correo</span><span class=\"ds-control\"><input type=\"email\" placeholder=\"tu@correo.cl\" /></span></label>",
+      "css": ".ds-field span:first-child { display: block; margin-bottom: 0.5rem; font-family: var(--font-mono, ui-monospace, monospace); font-size: var(--label-xs, 0.62rem); font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fiber-soft, #4a3f30); } .ds-control { display: flex; align-items: center; background: var(--stock, #e8dcc4); border: 2px solid var(--fiber, #17140f); border-radius: 0; } .ds-control input { flex: 1; min-width: 0; min-height: 48px; padding: 0.75rem; background: none; border: 0; color: var(--fiber, #17140f); font-size: 0.95rem; } .ds-control input:focus { outline: none; } .ds-control input::placeholder { color: var(--fiber-soft, #4a3f30); } .ds-control:focus-within { outline: 3px solid var(--ink-blue, #1b3a8c); outline-offset: 2px; }"
+    },
+    {
+      "name": "Chip de Filtro Activo",
+      "kind": "chip",
+      "refersTo": "chip-filter",
+      "description": "Solo existe cuando el filtro está puesto; se quita al hacer clic. No hay estado no seleccionado.",
+      "html": "<button class=\"ds-chip\">Gatitos<svg class=\"ds-ico\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M5 5l14 14M19 5 5 19\"/></svg></button>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 34px; padding-inline: 0.75rem; background: var(--kraft, #c9a97a); color: var(--fiber, #17140f); border: none; border-radius: 0; font-family: var(--font-mono, ui-monospace, monospace); font-size: var(--label-md, 0.74rem); letter-spacing: 0.06em; cursor: pointer; transition: background-color 140ms ease-out; } .ds-chip .ds-ico { width: 14px; height: 14px; } .ds-chip:hover { background: var(--stock, #e8dcc4); } .ds-chip:focus-visible { outline: 3px solid var(--ink-deep, #7a1e12); outline-offset: 2px; }"
+    },
+    {
+      "name": "Ficha de Espécimen",
+      "kind": "card",
+      "refersTo": "card-specimen",
+      "description": "La tarjeta de producto: foto multiplicada sobre la cama fotográfica, banderas de tinta, tira de atributos visible y precio en numeral condensado.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-frame\"><span class=\"ds-flag\">-25%</span><div class=\"ds-shot\"></div></div><div class=\"ds-body\"><h3 class=\"ds-name\">Alimento Adulto Salmón 15 kg</h3><dl class=\"ds-attrs\"><div><dt>Marca</dt><dd>Royal</dd></div><div><dt>Tipo</dt><dd>Alimento</dd></div></dl><p class=\"ds-price\"><span class=\"ds-price-now\">$32.990</span><s>$43.990</s></p></div></article>",
+      "css": ".ds-card { display: flex; flex-direction: column; width: 15rem; background: var(--kraft, #c9a97a); color: var(--fiber, #17140f); border: 2px solid var(--fiber, #17140f); border-radius: 0; } .ds-frame { position: relative; background: var(--stock-light, #f5efe3); border-bottom: 2px solid var(--fiber, #17140f); } .ds-shot { aspect-ratio: 1 / 1; margin: 1rem; background: repeating-linear-gradient(45deg, #e2d8c4 0 8px, #f5efe3 8px 16px); mix-blend-mode: multiply; transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-card:hover .ds-shot { transform: scale(1.04); } .ds-flag { position: absolute; top: 0; left: 0; padding: 3px 8px; background: var(--ink-blue, #1b3a8c); color: var(--stock, #e8dcc4); font-family: var(--font-mono, ui-monospace, monospace); font-size: var(--label-sm, 0.68rem); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; } .ds-body { padding: 1rem; } .ds-name { margin: 0; font-family: var(--font-display, system-ui, sans-serif); font-weight: 800; font-stretch: 78%; font-size: 1rem; line-height: 1.12; letter-spacing: -0.01em; text-transform: uppercase; } .ds-attrs { margin: 0.75rem 0 1rem; padding-top: 0.75rem; border-top: 1px dashed color-mix(in srgb, #17140f 40%, transparent); font-family: var(--font-mono, ui-monospace, monospace); font-size: var(--label-sm, 0.68rem); } .ds-attrs > div { display: flex; justify-content: space-between; gap: 0.75rem; } .ds-attrs dt { letter-spacing: 0.12em; text-transform: uppercase; color: var(--fiber-soft, #4a3f30); } .ds-attrs dd { margin: 0; font-weight: 700; } .ds-price { display: flex; align-items: baseline; gap: 0.75rem; margin: 0; } .ds-price-now { font-family: var(--font-display, system-ui, sans-serif); font-weight: 900; font-stretch: 68%; font-size: 1.85rem; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; } .ds-price s { font-family: var(--font-mono, ui-monospace, monospace); font-size: var(--label-md, 0.74rem); color: var(--fiber-soft, #4a3f30); text-decoration-thickness: 2px; }"
+    },
+    {
+      "name": "Panel de Ficha de Pedido",
+      "kind": "card",
+      "refersTo": "panel-order-slip",
+      "description": "La plancha kraft del panel de filtros: campos reglados, leyenda en versales, separación punteada. Orden de la ficha: Buscar → Quitar los N filtros (solo con filtros activos) → Para → Pasillo → Precio hasta → Solo mostrar → Marcas; la lista larga de 33 marcas va al final con su propio desplazamiento acotado.",
+      "html": "<section class=\"ds-slip\"><span class=\"ds-legend\">Categoría</span><label class=\"ds-option\" data-on=\"true\"><input type=\"checkbox\" checked /><span>Perritos</span><b>31</b></label><label class=\"ds-option\"><input type=\"checkbox\" /><span>Gatitos</span><b>26</b></label></section>",
+      "css": ".ds-slip { display: grid; gap: 2px; width: 17.5rem; padding: 1rem; background: var(--kraft, #c9a97a); color: var(--fiber, #17140f); border: 2px solid var(--fiber, #17140f); border-radius: 0; } .ds-legend { margin-bottom: 0.75rem; font-family: var(--font-mono, ui-monospace, monospace); font-size: var(--label-xs, 0.62rem); font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--fiber-soft, #4a3f30); } .ds-option { display: grid; grid-template-columns: 18px minmax(0, 1fr) auto; align-items: center; gap: 0.75rem; min-height: 38px; padding: 0.25rem 0.5rem; font-family: var(--font-mono, ui-monospace, monospace); font-size: var(--label-md, 0.74rem); cursor: pointer; transition: background-color 140ms ease-out; } .ds-option:hover { background: color-mix(in srgb, #17140f 10%, transparent); } .ds-option[data-on=\"true\"] { background: var(--fiber, #17140f); color: var(--stock, #e8dcc4); } .ds-option input { appearance: none; width: 16px; height: 16px; margin: 0; background: var(--stock, #e8dcc4); border: 2px solid var(--fiber, #17140f); border-radius: 0; cursor: pointer; } .ds-option input:checked { background: var(--ink-blue, #1b3a8c); border-color: var(--stock, #e8dcc4); box-shadow: inset 0 0 0 3px var(--ink-blue, #1b3a8c); } .ds-option input:focus-visible { outline: 3px solid var(--ink-blue, #1b3a8c); outline-offset: 2px; } .ds-option b { font-size: var(--label-sm, 0.68rem); font-weight: 700; color: var(--fiber-soft, #4a3f30); } .ds-option[data-on=\"true\"] b { color: var(--kraft, #c9a97a); }"
+    },
+    {
+      "name": "Navegación de Imprenta",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Enlaces en Chivo Mono versales sobre la cabecera de vermellón profundo; el activo deja rastro con subrayado sólido de 2px.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" class=\"ds-nav-link ds-nav-active\">Catálogo</a><a href=\"#\" class=\"ds-nav-link\">Nosotros</a><a href=\"#\" class=\"ds-nav-link\">Contacto</a><span class=\"ds-count\">3</span></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 1.5rem; padding: 0.75rem 1.5rem; background: var(--ink-deep, #7a1e12); } .ds-nav-link { display: block; padding-block: 0.5rem; color: var(--kraft, #c9a97a); font-family: var(--font-mono, ui-monospace, monospace); font-size: var(--label-md, 0.74rem); letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; border-bottom: 2px solid transparent; transition: color 160ms ease-out, border-color 160ms ease-out; } .ds-nav-link:hover { color: var(--stock, #e8dcc4); border-bottom-color: color-mix(in srgb, #e8dcc4 45%, transparent); } .ds-nav-active { color: var(--stock, #e8dcc4); border-bottom-color: var(--stock, #e8dcc4); } .ds-nav-link:focus-visible { outline: 3px solid var(--ink-blue, #1b3a8c); outline-offset: 3px; } .ds-count { min-width: 22px; padding-inline: 5px; background: var(--ink-blue, #1b3a8c); color: var(--stock, #e8dcc4); font-family: var(--font-mono, ui-monospace, monospace); font-size: var(--label-md, 0.74rem); font-weight: 700; line-height: 22px; text-align: center; font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Costura de Fuelle",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "La única regla divisoria del sistema, horizontal y vertical.",
+      "html": "<hr class=\"ds-seam\" /><div class=\"ds-seam-v\"></div>",
+      "css": ".ds-seam { block-size: 6px; border: 0; margin: 1.5rem 0; background-image: repeating-linear-gradient(90deg, var(--fiber, #17140f) 0 10px, transparent 10px 20px); background-size: 20px 2px; background-repeat: repeat-x; background-position-y: center; } .ds-seam-v { inline-size: 6px; block-size: 6rem; background-image: repeating-linear-gradient(0deg, var(--fiber, #17140f) 0 10px, transparent 10px 20px); background-size: 2px 20px; background-repeat: repeat-y; background-position-x: center; }"
+    },
+    {
+      "name": "Pie de Imprenta",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "El cierre del pliego: marcas de registro, barra de cuatro pasadas de tinta, lockup y sello de lote.",
+      "html": "<footer class=\"ds-press\"><span class=\"ds-press-bar\"></span><span class=\"ds-press-lockup\">Huellitas Pet Store · Quinta Normal, Santiago</span><span class=\"ds-press-lot\">Lote 477d5e5c</span></footer>",
+      "css": ".ds-press { display: flex; align-items: center; gap: 1rem; padding: 1.5rem; background: var(--ink, #c8321e); border-top: 2px solid var(--stock, #e8dcc4); font-family: var(--font-mono, ui-monospace, monospace); font-size: var(--label-xs, 0.62rem); font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #ffffff; } .ds-press-bar { display: block; flex-shrink: 0; width: 72px; height: 10px; background-image: linear-gradient(90deg, #e8dcc4 0 18px, #1b3a8c 18px 36px, #17140f 36px 54px, #c9a97a 54px 72px); } .ds-press-lockup { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .ds-press-lot { margin-inline-start: auto; flex-shrink: 0; padding: 3px 8px; background: var(--fiber, #17140f); color: var(--kraft, #c9a97a); letter-spacing: 0.16em; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "El Saco de 15 Kilos",
+    "overview": "El sistema toma su gramática del objeto que todo dueño de mascota carga al hombro: el saco de alimento impreso. Tintas planas que nunca se mezclan, un numeral monumental troquelado en el frente, una tabla de análisis en monoespaciada al costado, y una costura de fuelle como única regla divisoria. No hay degradados, no hay vidrio, no hay desenfoque, no hay sombras suaves. Lo que en otras tiendas de la categoría es una grilla de tarjetas redondeadas pastel sobre crema, aquí es un pliego impreso a cuatro pasadas.\n\nLa densidad es alta y deliberada: el catálogo es el producto, y cada espécimen viaja con su ficha de datos reales —marca, categoría, tipo, precio, precio original— porque los datos son la prueba de que la tienda existe. Donde no hay evidencia (reseñas, ratings, stock, pagos) el sistema no fabrica un adorno para taparlo: simplemente no existe el componente. No hay estrellas, no hay barras de \"quedan 3 unidades\", no hay logotipos de tarjetas de crédito. El numeral monumental es el precio, y solo el precio, porque el precio es el único dato a escala de página que el proyecto puede sostener con verdad.\n\nEl campo de tinta vermellón es el suelo del sitio: cubre el documento a sangre y todo lo demás se imprime encima o se recorta contra él. Kraft y stock son papel, no tinta: aparecen como planchas donde el texto de lectura tiene que vivir. La ultramarina es la segunda pasada, reservada a la acción y al dato.",
+    "keyCharacteristics": [
+      "Tintas planas sin mezcla; el campo vermellón a sangre como suelo del documento.",
+      "Numeral Archivo condensado a escala de monumento; el precio como objeto, no como etiqueta.",
+      "Chivo Mono en versales espaciadas para toda etiqueta, ficha y dato, con numerales tabulares.",
+      "Radio máximo 2px, borde de 2px sólido fibra, cero sombras.",
+      "La costura de fuelle como única regla divisoria del sistema.",
+      "Ausencias diseñadas: sin reseñas, sin ratings, sin stock, sin pasarela de pago."
+    ],
+    "rules": [
+      {
+        "name": "La Regla de los Dos Roles",
+        "body": "El campo de tinta vermellón es de tono medio y carga exactamente dos roles de texto, ni uno más: blanco de papel (text-on-ink, 5.34:1) para todo lo que se lee a tamaño de lectura, y stock (display-on-ink, 3.93:1) solo a escala display. Kraft nunca es texto sobre la tinta y nunca es borde de un control sobre la tinta: llega a 2.40:1. La regla está escrita como comentario en la cabeza de globals.css y todo componente la obedece.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla del Blanco que no es Material",
+        "body": "El blanco de papel es un rol de texto, no una superficie. Ninguna plancha, panel ni tarjeta del sistema lo usa como fondo. El sitio no tiene una sola superficie blanca.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla de la Cama Fotográfica",
+        "body": "La fotografía de producto se imprime sobre stock claro con mix-blend-mode: multiply, de modo que el fondo blanco del recorte se disuelve en la plancha en vez de introducir un material blanco nuevo. La cama es la pasada más clara del mismo papel, no una tinta nueva: sobre ella el empaque claro se desplaza un 4% en vez de un 9%. Es el compromiso que ships; lo correcto sería un canal alfa por recorte.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla de la Segunda Tinta",
+        "body": "La ultramarina no decora. Si algo es ultramarina, o es una acción que el usuario puede ejecutar, o es un número. Nunca es fondo de sección ni acento estético.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla del Ancho Autorado",
+        "body": "Lo condensado viene del eje wdth de Archivo (62–78 según el rol), nunca de transform: scaleX ni de una fuente estrecha distinta. El ancho es una decisión tipográfica, no una deformación.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla del Numeral Tabular",
+        "body": "Todo precio, contador, total y celda de tabla lleva tabular-nums y \"tnum\" 1 (clase .tabular o atributo data-numeral). Las cifras no bailan al cambiar de valor.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla de la Caja Alta de Imprenta",
+        "body": "Todo encabezado h1–h4 se imprime en versales con text-wrap: balance. Toda etiqueta monoespaciada se imprime en versales con letter-spacing ≥ 0.10em. Entre ambas no hay una tercera voz tipográfica.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla del Documento Cerrado",
+        "body": "Nada desborda horizontalmente. En 390 / 768 / 1440 el scrollWidth es exactamente el ancho de la ventana en todas las rutas.",
+        "section": "layout"
+      },
+      {
+        "name": "La Regla del Estado Impreso",
+        "body": "Los estados se imprimen en el documento, no flotan sobre él. Un filtro activo invierte su plancha a fibra; un favorito guardado tiñe su celda de kraft; un contador es un bloque de segunda tinta, no un globo. No hay tooltips flotantes ni insignias con radio.",
+        "section": "elevation"
+      },
+      {
+        "name": "La Regla de la Costura Única",
+        "body": "La única regla divisoria del sistema es la costura de fuelle (.seam / .seamVertical): un punteado de 2px en fibra, 10px de trazo y 10px de aire, dentro de un canal de 6px. Donde haga falta un separador más leve dentro de una plancha, se usa 1px dashed de fibra al 40%. No existe una tercera divisoria.",
+        "section": "elevation"
+      },
+      {
+        "name": "La Regla del Trazo Único",
+        "body": "Todo icono del producto sale del set autorado de 20. Si un icono no existe en él, se dibuja dentro del set con el mismo trazo; no se importa de otra fuente, y el sistema no usa emoji ni glifos unicode como iconos.",
+        "section": "components"
+      },
+      {
+        "name": "La Regla de las Superficies Prestadas",
+        "body": "Las superficies que normalmente pinta un tercero también son del sistema y se reclaman con sus tintas: selección de texto y cursor en ultramarina, anillo de foco en ultramarina (vermellón profundo sobre plancha kraft), barra de desplazamiento con pista en vermellón profundo y pulgar en ultramarina, y el mapa de Leaflet con sus controles de zoom, su globo y su atribución retematizados — el enlace de atribución pasa del azul por defecto de Leaflet (3.64:1 sobre stock) a ultramarina (7.62:1). Ningún componente de terceros conserva su paleta de fábrica.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla de la Ruta de Lectura",
+        "body": "Una ruta se declara de lectura envolviendo su página completa —cabecera de ruta incluida— en <div className=\"reading\">, y esa clase reasigna el token localmente (.reading { --shell: var(--shell-read); }). Todo contenedor dentro hereda la medida estrecha, de modo que el título de la página se angosta junto con la columna que lleva debajo en vez de quedar más ancho que ella. Hoy la usan /nosotros, /blog y /contacto. Es el único mecanismo admitido para estrechar: no se ponen max-width por página. El chrome del sitio vive en app/layout.tsx, fuera de esos envoltorios, así que conserva el ancho de trabajo.",
+        "section": "layout"
+      },
+      {
+        "name": "La Regla de la Lista Larga al Final",
+        "body": "Toda lista larga y acotada va al final de su panel y lleva su propio desplazamiento (las 33 marcas: max-height 16rem, barra delgada con pista en stock y pulgar en ultramarina). Una lista larga arriba empuja fuera de la altura visible del panel pegajoso los controles cortos y de mayor uso; al final no desplaza nada.",
+        "section": "components"
+      },
+      {
+        "name": "La Regla de las Dos Rampas",
+        "body": "Las dos familias no se prestan pasos: Archivo vive en la rampa de lectura/display y en la de numeral; Chivo Mono vive en la rampa de etiqueta. Todo tamaño por debajo de --step-0 sale de la rampa de etiqueta (--label-xs a --label-lg) y de ningún otro lugar.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla del Cero Literal",
+        "body": "Ningún font-size literal en el proyecto. Todo tamaño sale de un token de la escala. La única excepción admitida es una proporción relativa a su propio numeral (el signo de peso del héroe, 0.34em), que no es un peldaño sino una fracción del glifo que acompaña.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "Do respetar la Regla de los Dos Roles: sobre el campo de tinta, texto de lectura en blanco de papel y display en stock; cualquier otro color de texto sobre la tinta es un error de contraste.",
+      "Do poner todo texto de párrafo sobre una plancha de papel (kraft o stock) o sobre vermellón profundo, nunca sobre el vermellón medio.",
+      "Do usar la ultramarina únicamente para acción y para dato.",
+      "Do imprimir toda etiqueta, ficha y dato en Chivo Mono, versales, con letter-spacing ≥ 0.10em y numerales tabulares.",
+      "Do derivar el sangrado de --bleed, nunca de un porcentaje dentro de un grid.",
+      "Do dibujar bordes con el trazo canónico de 2px en fibra y separar filas internas con el punteado de 1px.",
+      "Do animar solo transformaciones con GSAP, como entrada opcional, y desactivar todo bajo prefers-reduced-motion.",
+      "Do diseñar las ausencias que el producto no puede sostener: sin reseñas, sin ratings, sin stock, sin pasarela de pago. Donde no hay dato, no se imprime componente.",
+      "Do mantener todo objetivo interactivo en 44px o más.",
+      "Do declarar una ruta de lectura con <div className=\"reading\"> envolviendo la página completa, en vez de poner max-width por página.",
+      "Do tomar todo tamaño de texto de un token de la escala; por debajo del cuerpo, siempre de la rampa de etiqueta.",
+      "Do retematizar toda superficie de terceros (Leaflet, superficies del navegador) con las tintas del sistema antes de publicarla."
+    ],
+    "donts": [
+      "Don't usar degradados, vidrio, desenfoque, backdrop-filter ni sombras suaves: no existen en este sistema.",
+      "Don't superar 2px de radio en ningún elemento.",
+      "Don't usar kraft como texto o como borde de control sobre el campo de tinta: no alcanza 3:1.",
+      "Don't introducir una superficie blanca; el blanco de papel es un rol de texto.",
+      "Don't inventar una divisoria nueva: la costura de fuelle es la única regla del sistema.",
+      "Don't fabricar estrellas, reseñas, contadores de stock ni insignias de medios de pago; el producto no tiene esos datos.",
+      "Don't condensar tipografía con scaleX ni caer a una fuente de display del sistema: Archivo y Chivo Mono viajan autoalojadas.",
+      "Don't usar emoji ni glifos unicode como iconos; el set autorado de 20 es el vocabulario completo.",
+      "Don't hacer que un estado flote: los estados se imprimen en el documento.",
+      "Don't poner una lista larga arriba de un panel pegajoso: desplaza fuera de vista los controles cortos y de mayor uso.",
+      "Don't escribir un font-size literal ni improvisar un clamp() en un componente: la escala ya tiene el peldaño.",
+      "Don't cruzar las rampas: Chivo Mono no usa pasos de Archivo ni al revés."
+    ]
+  }
+}

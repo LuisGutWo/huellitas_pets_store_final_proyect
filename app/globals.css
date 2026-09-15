@@ -1,0 +1,301 @@
+/*
+  Huellitas — sistema del saco impreso.
+
+  Regla de contraste del mundo: el campo de tinta vermellón es de tono medio,
+  así que solo carga tipografía a escala display. Todo texto de lectura vive
+  sobre kraft, sobre stock, o sobre tinta profunda. No hay excepciones.
+*/
+
+:root {
+  /* Tintas planas. Ninguna se mezcla con otra. */
+  --ink: #c8321e;
+  --ink-deep: #7a1e12;
+  --ink-blue: #1b3a8c;
+  --ink-blue-deep: #12276b;
+  --kraft: #c9a97a;
+  --kraft-dim: #b8945f;
+  --stock: #e8dcc4;
+  --fiber: #17140f;
+  --fiber-soft: #4a3f30;
+
+  /* Roles */
+  --surface: var(--ink);
+  --panel: var(--kraft);
+  --panel-alt: var(--stock);
+  /* La pasada más clara del mismo papel, no una tinta nueva. Las fotos del
+     catálogo vienen recortadas sobre blanco y se funden con la plancha por
+     multiplicación; sobre esta pasada el empaque claro se desplaza un 4% en
+     vez de un 9%, así que el producto se sigue viendo en su color.
+     Lo correcto sería un canal alfa por recorte: no hay herramienta de imagen
+     en este entorno, y esto es lo más cerca que se llega sin inventarlo. */
+  --stock-light: #f5efe3;
+  --photo-bed: var(--stock-light);
+  --text-on-panel: var(--fiber);
+  --text-on-panel-soft: var(--fiber-soft);
+  /* El campo de tinta es de tono medio: el texto de lectura va en blanco de
+     papel (5.34:1) y solo el display puede ir en stock (3.93:1, AA grande).
+     Kraft nunca es texto ni borde de control sobre la tinta: no llega a 3:1. */
+  /* Blanco de papel: es un rol de TEXTO sobre el campo de tinta (5.34:1), no
+     un material de superficie. Ninguna plancha ni panel usa este valor. */
+  --text-on-ink: #ffffff;
+  --display-on-ink: var(--stock);
+  --action: var(--ink-blue);
+  --action-text: var(--stock);
+
+  /* Tipografía */
+  --font-display: var(--font-archivo), system-ui, sans-serif;
+  --font-body: var(--font-archivo), system-ui, sans-serif;
+  --font-mono: var(--font-chivo-mono), ui-monospace, "Courier New", monospace;
+
+  /* Escala de etiqueta (Chivo Mono, versales): leyendas, fichas y datos.
+     La rampa de lectura empieza en --step-0; debajo de eso manda esta. */
+  --label-xs: 0.62rem;
+  --label-sm: 0.68rem;
+  --label-md: 0.74rem;
+  --label-lg: 0.8rem;
+
+  /* Escala de lectura y display (Archivo). */
+  --step-0-sm: 0.92rem;
+  --step-0: clamp(0.95rem, 0.92rem + 0.15vw, 1.05rem);
+  --step-1: clamp(1.15rem, 1.05rem + 0.4vw, 1.4rem);
+  --step-2: clamp(1.45rem, 1.25rem + 0.9vw, 2rem);
+  --step-3: clamp(1.9rem, 1.5rem + 1.8vw, 3rem);
+  --step-4: clamp(2.6rem, 1.8rem + 3.4vw, 4.6rem);
+  /* Numerales troquelados, cuatro tamaños. El precio es el objeto de la
+     página, así que tiene su propia escala y no comparte la de titulares. */
+  --numeral-sm: clamp(2rem, 1.2rem + 2.5vw, 3rem);
+  --numeral-md: clamp(2.5rem, 1.6rem + 3vw, 3.9rem);
+  --numeral-lg: clamp(3.4rem, 1.8rem + 10vw, 8.5rem);
+  --numeral: clamp(4rem, 2rem + 13vw, 11rem);
+
+  /* Espaciado: pasos duros, como troquel. */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4.5rem;
+  --s-9: 7rem;
+
+  /* Ancho de trabajo: el catálogo, la portada y la ficha necesitan la grilla
+     completa. --shell-read estrecha solo las rutas de lectura. */
+  --shell: 78rem;
+  --shell-read: 50rem;
+  --gutter: clamp(1rem, 4vw, 3rem);
+  /* Lo que hay entre el borde del contenedor y el borde de la pantalla.
+     Se deriva de --shell: un porcentaje dentro de un grid resolvería contra
+     la pista y no contra el contenedor, y eso desborda el documento. */
+  --bleed: calc(max(0px, (100vw - var(--shell)) / 2) + var(--gutter));
+
+  /* El saco no tiene esquinas redondeadas ni sombras suaves. */
+  --radius: 2px;
+  --rule: 2px solid var(--fiber);
+  --rule-thin: 1px solid color-mix(in srgb, var(--fiber) 35%, transparent);
+
+  color-scheme: light;
+}
+
+/* Fibra del papel: ruido autorado, muy bajo, sobre los paneles kraft. */
+@property --seam-shift {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scrollbar-color: var(--ink-blue) var(--ink-deep);
+}
+
+/* 100vw incluye la barra de scroll: el sangrado del héroe se pasa por ese
+   ancho exacto. clip recorta el sobrante sin crear contenedor de scroll, así
+   que las columnas sticky del catálogo y la ficha siguen funcionando. */
+main {
+  overflow-x: clip;
+}
+
+body {
+  min-height: 100dvh;
+  background: var(--ink);
+  color: var(--text-on-ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 75%;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  text-transform: uppercase;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.22em;
+}
+
+/* Superficies del navegador: también son del sistema. */
+::selection {
+  background: var(--ink-blue);
+  color: var(--stock);
+}
+
+:focus-visible {
+  outline: 3px solid var(--ink-blue);
+  outline-offset: 3px;
+}
+
+.panel :focus-visible,
+.onKraft :focus-visible {
+  outline-color: var(--ink-deep);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ink-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--ink-blue);
+  border: 3px solid var(--ink-deep);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-blue-deep);
+}
+
+input,
+textarea {
+  caret-color: var(--ink-blue);
+}
+
+/* Numerales tabulares en todo dato: precios, contadores, tablas. */
+.tabular,
+[data-numeral] {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* La costura de fuelle: única regla divisoria del sistema. */
+.seam {
+  block-size: 6px;
+  border: 0;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--fiber) 0 10px,
+    transparent 10px 20px
+  );
+  background-position-x: var(--seam-shift);
+  background-size: 20px 2px;
+  background-repeat: repeat-x;
+  background-position-y: center;
+}
+
+.seamVertical {
+  inline-size: 6px;
+  background-image: repeating-linear-gradient(
+    0deg,
+    var(--fiber) 0 10px,
+    transparent 10px 20px
+  );
+  background-size: 2px 20px;
+  background-repeat: repeat-y;
+  background-position-x: center;
+}
+
+.reading {
+  --shell: var(--shell-read);
+}
+
+.skipLink {
+  position: absolute;
+  inset-inline-start: -9999px;
+  inset-block-start: var(--s-3);
+  z-index: 100;
+  padding: var(--s-3) var(--s-4);
+  background: var(--ink-blue);
+  color: var(--stock);
+  font-family: var(--font-mono);
+  font-size: var(--label-lg);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.skipLink:focus-visible {
+  inset-inline-start: var(--gutter);
+}
+
+.visuallyHidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

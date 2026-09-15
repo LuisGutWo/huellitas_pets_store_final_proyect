@@ -1,0 +1,76 @@
+.header {
+  border-bottom: 2px solid var(--kraft);
+  background: var(--ink-deep);
+}
+
+.inner {
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding: var(--s-6) var(--gutter);
+}
+
+.crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2);
+  margin: 0 0 var(--s-4);
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: var(--label-sm);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--kraft);
+}
+
+.crumbs li {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.crumbs a {
+  color: var(--kraft);
+  text-decoration: none;
+}
+
+.crumbs a:hover {
+  color: var(--stock);
+  text-decoration: underline;
+}
+
+.crumbs span {
+  color: var(--stock);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-4);
+}
+
+.title {
+  font-size: var(--step-4);
+  font-stretch: 66%;
+  color: var(--stock);
+}
+
+.tally {
+  padding: var(--s-2) var(--s-3);
+  background: var(--kraft);
+  color: var(--fiber);
+  font-family: var(--font-mono);
+  font-size: var(--label-md);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.lede {
+  max-width: 62ch;
+  margin-top: var(--s-4);
+  color: color-mix(in srgb, var(--stock) 86%, var(--ink-deep));
+}

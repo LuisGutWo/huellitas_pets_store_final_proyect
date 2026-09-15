@@ -1,0 +1,144 @@
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--s-6);
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding: var(--s-7) var(--gutter) var(--s-8);
+}
+
+.shot {
+  position: sticky;
+  top: 9rem;
+  align-self: start;
+  padding: var(--s-6);
+  background: var(--photo-bed);
+  border: var(--rule);
+}
+
+.shot img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.panel {
+  padding: var(--s-6);
+  background: var(--kraft);
+  color: var(--fiber);
+  border: var(--rule);
+}
+
+.name {
+  margin-top: var(--s-2);
+  font-size: var(--step-3);
+  font-stretch: 70%;
+}
+
+.desc {
+  max-width: 62ch;
+  margin-top: var(--s-4);
+  color: var(--fiber-soft);
+}
+
+.spec {
+  width: 100%;
+  margin-top: var(--s-5);
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: var(--label-lg);
+}
+
+.spec caption {
+  margin-bottom: var(--s-3);
+  font-size: var(--label-xs);
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--fiber-soft);
+}
+
+.spec tr {
+  border-top: 1px dashed color-mix(in srgb, var(--fiber) 40%, transparent);
+}
+
+.spec th,
+.spec td {
+  padding-block: var(--s-2);
+  text-align: left;
+}
+
+.spec th {
+  width: 9rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fiber-soft);
+}
+
+.spec td {
+  font-weight: 700;
+}
+
+.spec a {
+  color: var(--ink-blue);
+}
+
+.caution {
+  display: block;
+  margin-top: var(--s-5);
+  padding: var(--s-3) var(--s-4);
+  background: var(--stock);
+  border: 2px solid var(--ink-deep);
+  font-size: var(--label-lg);
+  color: var(--ink-deep);
+}
+
+.related {
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding: 0 var(--gutter) var(--s-8);
+}
+
+.relatedTitle {
+  margin-top: var(--s-6);
+  margin-bottom: var(--s-5);
+  font-size: var(--step-2);
+  color: var(--display-on-ink);
+}
+
+.related ul {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s-4);
+  padding: 0;
+  list-style: none;
+}
+
+@media (max-width: 62rem) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .shot {
+    position: static;
+  }
+
+  .related ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 34rem) {
+  .panel,
+  .shot {
+    padding: var(--s-4);
+  }
+
+  .related ul {
+    gap: var(--s-3);
+  }
+}

@@ -1,0 +1,205 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--kraft);
+  color: var(--fiber);
+  border: var(--rule);
+}
+
+/* La foto vive sobre papel blanco: el producto se lee, no se estiliza. */
+.frame {
+  position: relative;
+  background: var(--photo-bed);
+  border-bottom: var(--rule);
+}
+
+.shot {
+  display: block;
+  padding: var(--s-4);
+}
+
+.shot img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover .shot img {
+  transform: scale(1.04);
+}
+
+.flags {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.off,
+.new {
+  padding: 3px 8px;
+  font-family: var(--font-mono);
+  font-size: var(--label-sm);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.off {
+  background: var(--ink-blue);
+  color: var(--stock);
+}
+
+.new {
+  background: var(--fiber);
+  color: var(--kraft);
+}
+
+.save {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--fiber-soft);
+  border-left: var(--rule);
+  border-bottom: var(--rule);
+  transition: color 160ms ease-out, background-color 160ms ease-out;
+}
+
+.save:hover {
+  background: var(--kraft);
+  color: var(--ink-deep);
+}
+
+.save[data-on="true"] {
+  color: var(--ink-deep);
+  background: var(--kraft);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: var(--s-4);
+}
+
+.name {
+  font-size: var(--step-0);
+  font-stretch: 78%;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+.name a {
+  text-decoration: none;
+}
+
+.name a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+/* Tira de atributos: la ficha va al lado del espécimen, siempre visible. */
+.attrs {
+  display: grid;
+  gap: 1px;
+  margin: var(--s-3) 0 var(--s-4);
+  padding-top: var(--s-3);
+  border-top: 1px dashed color-mix(in srgb, var(--fiber) 40%, transparent);
+  font-family: var(--font-mono);
+  font-size: var(--label-sm);
+}
+
+.attrs > div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-3);
+}
+
+.attrs dt {
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fiber-soft);
+}
+
+.attrs dd {
+  margin: 0;
+  font-weight: 700;
+  text-align: right;
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-3);
+  margin-top: auto;
+}
+
+.priceNow {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-stretch: 68%;
+  font-size: var(--step-3);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  display: inline-block;
+}
+
+.price s {
+  font-family: var(--font-mono);
+  font-size: var(--label-md);
+  color: var(--fiber-soft);
+  text-decoration-thickness: 2px;
+}
+
+.add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  min-height: 48px;
+  margin-top: var(--s-4);
+  background: var(--ink-blue);
+  color: var(--stock);
+  font-family: var(--font-mono);
+  font-size: var(--label-md);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: background-color 160ms ease-out;
+}
+
+.add:hover {
+  background: var(--ink-blue-deep);
+}
+
+.units {
+  min-width: 20px;
+  padding-inline: 4px;
+  background: var(--stock);
+  color: var(--ink-blue);
+  line-height: 20px;
+}
+
+@media (max-width: 34rem) {
+  .body {
+    padding: var(--s-3);
+  }
+
+  .priceNow {
+    font-size: var(--step-2);
+  }
+
+  .attrs > div:nth-child(3) {
+    display: none;
+  }
+}

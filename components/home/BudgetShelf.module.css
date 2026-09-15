@@ -1,0 +1,232 @@
+.section {
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding: var(--s-8) var(--gutter);
+}
+
+.head {
+  max-width: 54ch;
+  margin-bottom: var(--s-6);
+}
+
+.title {
+  font-size: var(--step-3);
+  color: var(--display-on-ink);
+}
+
+.lede {
+  margin-top: var(--s-3);
+  color: var(--text-on-ink);
+}
+
+/* El control vive sobre panel kraft, con el numeral troquelado a la izquierda. */
+.control {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--s-6);
+  padding: var(--s-5) var(--s-6);
+  background: var(--kraft);
+  color: var(--fiber);
+  border: var(--rule);
+}
+
+.readout {
+  min-width: 14ch;
+}
+
+.numeral {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-stretch: 64%;
+  font-size: var(--numeral-sm);
+  line-height: 0.86;
+  letter-spacing: -0.04em;
+}
+
+.tally {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: var(--s-3);
+  padding-top: var(--s-3);
+  border-top: 1px dashed color-mix(in srgb, var(--fiber) 40%, transparent);
+  font-family: var(--font-mono);
+  font-size: var(--label-md);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fiber-soft);
+}
+
+.tally b {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-stretch: 64%;
+  font-size: var(--numeral-sm);
+  line-height: 0.86;
+  letter-spacing: -0.03em;
+  color: var(--ink-blue);
+}
+
+.tally i {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--fiber);
+}
+
+.slider {
+  display: block;
+}
+
+.slider input {
+  width: 100%;
+  height: 44px;
+  appearance: none;
+  background: transparent;
+  cursor: grab;
+}
+
+.slider input:active {
+  cursor: grabbing;
+}
+
+.slider input::-webkit-slider-runnable-track {
+  height: 6px;
+  background: var(--fiber);
+}
+
+.slider input::-moz-range-track {
+  height: 6px;
+  background: var(--fiber);
+}
+
+/* El pulgar es una plancha troquelada, no una perilla redonda. */
+.slider input::-webkit-slider-thumb {
+  appearance: none;
+  width: 22px;
+  height: 34px;
+  margin-top: -14px;
+  background: var(--ink-blue);
+  border: 2px solid var(--fiber);
+}
+
+.slider input::-moz-range-thumb {
+  width: 22px;
+  height: 34px;
+  border-radius: 0;
+  background: var(--ink-blue);
+  border: 2px solid var(--fiber);
+}
+
+.slider input:focus-visible {
+  outline: 3px solid var(--ink-deep);
+  outline-offset: 4px;
+}
+
+.bounds {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: var(--label-sm);
+  letter-spacing: 0.08em;
+  color: var(--fiber-soft);
+}
+
+.shelf {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s-4);
+  margin-top: var(--s-6);
+  padding: 0 0 var(--s-4);
+  list-style: none;
+  border-bottom: 6px solid var(--stock);
+}
+
+/* El canto de la repisa: la fila se apoya en algo, no flota en la tinta. */
+.shelfEdge {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding: var(--s-2) 0 0;
+  font-family: var(--font-mono);
+  font-size: var(--label-xs);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-on-ink);
+}
+
+.slot {
+  display: flex;
+}
+
+.slot > * {
+  width: 100%;
+}
+
+/* Estado vacío diseñado, no un hueco: dice el problema y el dato que falta. */
+.nothing {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-top: var(--s-6);
+  padding: var(--s-5);
+  background: var(--ink-deep);
+  color: var(--stock);
+  border: 2px solid var(--kraft);
+  font-family: var(--font-mono);
+  font-size: var(--label-lg);
+}
+
+.jump {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  min-height: 52px;
+  margin-top: var(--s-6);
+  padding: var(--s-3) var(--s-5);
+  border: 2px solid var(--display-on-ink);
+  color: var(--text-on-ink);
+  font-family: var(--font-mono);
+  font-size: var(--label-lg);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 160ms ease-out, color 160ms ease-out;
+}
+
+.jump:hover {
+  background: var(--display-on-ink);
+  color: var(--fiber);
+}
+
+.jump svg {
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.jump:hover svg {
+  transform: translateX(4px);
+}
+
+@media (max-width: 62rem) {
+  .shelf {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 44rem) {
+  .control {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-4);
+    padding: var(--s-4);
+  }
+}
+
+@media (max-width: 34rem) {
+  .shelf {
+    gap: var(--s-3);
+  }
+}
