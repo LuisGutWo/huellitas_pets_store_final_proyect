@@ -16,7 +16,7 @@
   background: var(--fiber);
   color: var(--kraft);
   font-family: var(--font-mono);
-  font-size: var(--label-sm);
+  font-size: var(--label-md);
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -127,7 +127,7 @@
 
 .actionLabel {
   font-family: var(--font-mono);
-  font-size: var(--label-sm);
+  font-size: var(--label-md);
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
