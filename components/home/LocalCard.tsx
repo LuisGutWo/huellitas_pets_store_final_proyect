@@ -28,11 +28,11 @@ export default function LocalCard() {
             <div>
               <dt>
                 <Icon name="telefono" size={17} />
-                Ventas
+                Teléfono
               </dt>
               <dd>
-                <a href="tel:+56936352145" data-numeral>
-                  +569 3635 2145
+                <a href="tel:+56920390272" data-numeral>
+                  +569 2039 0272
                 </a>
               </dd>
             </div>
@@ -42,7 +42,7 @@ export default function LocalCard() {
                 WhatsApp
               </dt>
               <dd>
-                <a href="https://wa.me/56936352145">Escribir ahora</a>
+                <a href="https://wa.me/56920390272">Escribir ahora</a>
               </dd>
             </div>
           </dl>

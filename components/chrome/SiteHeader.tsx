@@ -49,9 +49,9 @@ export default function SiteHeader() {
       <div className={styles.bar}>
         <Link href="/" className={styles.brand} aria-label="Huellitas, ir al inicio">
           <Image
-            src="/assets/img/huellitas-logo-white-500x500.webp"
+            src="/assets/img/huellitas-logo-white.webp"
             alt=""
-            width={100}
+            width={130}
             height={100}
             priority
           />

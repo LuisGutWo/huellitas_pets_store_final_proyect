@@ -128,6 +128,18 @@ directorio `.next`, y correr uno con el otro vivo deja el build a medias
 eso `next.config.mjs` acepta `NEXT_DIST_DIR` para compilar a un directorio
 aparte.
 
+### Una corrección posterior, por si sirve de aviso
+
+Se probó estrechar el contenedor en las rutas con más texto (nosotros, blog,
+contacto) mediante un segundo token de ancho aplicado a la ruta completa.
+Fue un error y se revirtió: esas páginas no son columnas de prosa. Contacto es
+formulario más mapa y blog es una grilla de tarjetas, así que el resultado fue
+un mapa de 336 px y tarjetas de 224 px en una pantalla de 1440.
+
+La medida de línea ya estaba resuelta por los topes en `ch` sobre cada bloque
+de texto. Estrechar el contenedor encima era redundante para la prosa y
+destructivo para todo lo demás.
+
 ### Accesibilidad
 
 Se conservó lo que el original hacía bien y se agregó verificación: contraste

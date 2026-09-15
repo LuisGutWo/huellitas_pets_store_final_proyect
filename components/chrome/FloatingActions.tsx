@@ -28,7 +28,7 @@ export default function FloatingActions() {
       {mostrarPildora && (
         <a
           className={styles.whatsapp}
-          href="https://wa.me/56936352145"
+          href="https://wa.me/56920390272"
           target="_blank"
           rel="noreferrer"
         >

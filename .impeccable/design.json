@@ -304,7 +304,7 @@
       },
       {
         "name": "shell",
-        "value": "78rem (trabajo) / 50rem (lectura, vía .reading)"
+        "value": "78rem (contenedor único, todas las rutas)"
       }
     ],
     "notes": [
@@ -458,11 +458,6 @@
         "section": "colors"
       },
       {
-        "name": "La Regla de la Ruta de Lectura",
-        "body": "Una ruta se declara de lectura envolviendo su página completa —cabecera de ruta incluida— en <div className=\"reading\">, y esa clase reasigna el token localmente (.reading { --shell: var(--shell-read); }). Todo contenedor dentro hereda la medida estrecha, de modo que el título de la página se angosta junto con la columna que lleva debajo en vez de quedar más ancho que ella. Hoy la usan /nosotros, /blog y /contacto. Es el único mecanismo admitido para estrechar: no se ponen max-width por página. El chrome del sitio vive en app/layout.tsx, fuera de esos envoltorios, así que conserva el ancho de trabajo.",
-        "section": "layout"
-      },
-      {
         "name": "La Regla de la Lista Larga al Final",
         "body": "Toda lista larga y acotada va al final de su panel y lleva su propio desplazamiento (las 33 marcas: max-height 16rem, barra delgada con pista en stock y pulgar en ultramarina). Una lista larga arriba empuja fuera de la altura visible del panel pegajoso los controles cortos y de mayor uso; al final no desplaza nada.",
         "section": "components"
@@ -476,6 +471,16 @@
         "name": "La Regla del Cero Literal",
         "body": "Ningún font-size literal en el proyecto. Todo tamaño sale de un token de la escala. La única excepción admitida es una proporción relativa a su propio numeral (el signo de peso del héroe, 0.34em), que no es un peldaño sino una fracción del glifo que acompaña.",
         "section": "typography"
+      },
+      {
+        "name": "La Regla de la Medida en el Bloque",
+        "body": "La medida de línea es asunto del bloque de texto, no del contenedor. El proyecto la gobierna con 22 topes en ch puestos sobre los propios bloques (46ch en paneles de autenticación, 48ch en estados vacíos, 54ch y 62ch en entradillas y prosa). Estrechar el contenedor para corregir la medida es redundante para la prosa y destructivo para todo lo que viaja a su lado: medido a 1440, un contenedor de 50rem dejaba el mapa de contacto en 336px y la grilla del blog en columnas de 224px, mientras que los párrafos de /nosotros ya estaban acotados a 62ch por su cuenta. Con el contenedor único, esas mismas rutas miden 560 + 560, 373 × 3 y 672 + 448.",
+        "section": "layout"
+      },
+      {
+        "name": "La Regla del Contenido que se Dimensiona Solo",
+        "body": "Los elementos toman su tamaño del contenido y del ancho disponible, no de una medida fija: el mapa de tienda es una ventana de proporción 4 / 3 con min-height de 22rem en vez de una franja de altura fija, y las filas de datos de contacto y de la tarjeta de local usan minmax(7rem, max-content) minmax(0, 1fr), de modo que la etiqueta toma lo que necesita y el valor se queda con el resto a cualquier ancho.",
+        "section": "layout"
       }
     ],
     "dos": [
@@ -488,7 +493,6 @@
       "Do animar solo transformaciones con GSAP, como entrada opcional, y desactivar todo bajo prefers-reduced-motion.",
       "Do diseñar las ausencias que el producto no puede sostener: sin reseñas, sin ratings, sin stock, sin pasarela de pago. Donde no hay dato, no se imprime componente.",
       "Do mantener todo objetivo interactivo en 44px o más.",
-      "Do declarar una ruta de lectura con <div className=\"reading\"> envolviendo la página completa, en vez de poner max-width por página.",
       "Do tomar todo tamaño de texto de un token de la escala; por debajo del cuerpo, siempre de la rampa de etiqueta.",
       "Do retematizar toda superficie de terceros (Leaflet, superficies del navegador) con las tintas del sistema antes de publicarla."
     ],
@@ -504,7 +508,8 @@
       "Don't hacer que un estado flote: los estados se imprimen en el documento.",
       "Don't poner una lista larga arriba de un panel pegajoso: desplaza fuera de vista los controles cortos y de mayor uso.",
       "Don't escribir un font-size literal ni improvisar un clamp() en un componente: la escala ya tiene el peldaño.",
-      "Don't cruzar las rampas: Chivo Mono no usa pasos de Archivo ni al revés."
+      "Don't cruzar las rampas: Chivo Mono no usa pasos de Archivo ni al revés.",
+      "Don't estrechar el contenedor para arreglar la medida de línea: acotar el bloque de texto en ch y dejar el contenedor en paz."
     ]
   }
 }

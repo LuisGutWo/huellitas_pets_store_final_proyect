@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="reading">
+    <>
       <PageHeader
         title="Contacto"
         crumbs={[{ href: "/contacto", label: "Contacto" }]}
@@ -39,22 +39,11 @@ export default function ContactPage() {
             <div>
               <dt>
                 <Icon name="telefono" size={17} />
-                Ventas
+                Teléfono
               </dt>
               <dd>
-                <a href="tel:+56936352145" data-numeral>
-                  +569 3635 2145
-                </a>
-              </dd>
-            </div>
-            <div>
-              <dt>
-                <Icon name="telefono" size={17} />
-                Soporte
-              </dt>
-              <dd>
-                <a href="tel:+56998451212" data-numeral>
-                  +569 9845 1212
+                <a href="tel:+56920390272" data-numeral>
+                  +569 2039 0272
                 </a>
               </dd>
             </div>
@@ -75,7 +64,7 @@ export default function ContactPage() {
                 WhatsApp
               </dt>
               <dd>
-                <a href="https://wa.me/56936352145">Abrir conversación</a>
+                <a href="https://wa.me/56920390272">Abrir conversación</a>
               </dd>
             </div>
           </dl>
@@ -83,6 +72,6 @@ export default function ContactPage() {
           <StoreMap />
         </div>
       </div>
-    </div>
+    </>
   );
 }

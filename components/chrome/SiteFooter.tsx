@@ -13,10 +13,10 @@ export default function SiteFooter() {
       <div className={styles.grid}>
         <div className={styles.identity}>
           <Image
-            src="/assets/img/huellitas-logo-white-500x500.webp"
+            src="/assets/img/huellitas-logo-white.webp"
             alt="Huellitas Pet Store"
-            width={64}
-            height={64}
+            width={130}
+            height={100}
           />
           <p>
             Alimento, accesorios y salud para perros y gatos. Atendemos en Quinta

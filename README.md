@@ -96,11 +96,11 @@ cuenta lo informan y el resto sigue operando.
 transformaciones: nada depende de la animación para ser legible, y
 `prefers-reduced-motion` las desactiva por completo.
 
-**Dos anchos, no uno.** `--shell` (78rem) es el ancho de trabajo: catálogo,
-portada y ficha necesitan la grilla completa. Las rutas de lectura —nosotros,
-blog y contacto— se envuelven en `.reading`, que redefine `--shell` como
-`--shell-read` (50rem) localmente, así el encabezado de página se estrecha
-junto con su columna en vez de quedar más ancho que ella.
+**Un solo ancho de contenedor, y la medida de línea aparte.** `--shell` (78rem)
+gobierna todas las rutas. La legibilidad del texto no se resuelve estrechando el
+contenedor —eso aplasta grillas, mapas y formularios— sino con topes en `ch`
+sobre el bloque de texto: hay 22 en el proyecto, y son los que fijan la medida
+de línea donde importa.
 
 ## Migración
 

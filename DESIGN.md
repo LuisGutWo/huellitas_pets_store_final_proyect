@@ -287,7 +287,7 @@ El sistema tiene **dos rampas paralelas que nunca se prestan pasos**. Archivo ll
 
 ## Layout
 
-El documento se compone sobre dos anchos de contenedor. El **ancho de trabajo** (`--shell`, **78rem**) gobierna el catálogo, la portada, la ficha de producto, el carrito, guardados, cuenta y todo el chrome del sitio (cabecera, pie, pie de imprenta, cabecera de ruta). El **ancho de lectura** (`--shell-read`, **50rem**) es la medida de las rutas de texto. La canaleta es fluida (`--gutter`, `clamp(1rem, 4vw, 3rem)`). Lo que queda entre el borde del contenedor y el borde de la pantalla se deriva del contenedor mismo (`--bleed` = `calc(max(0px, (100vw - --shell) / 2) + --gutter)`): un porcentaje dentro de un grid resolvería contra la pista y no contra el contenedor, y eso desborda el documento. Todo elemento que sale a sangre usa `--bleed`, así que el sangrado derecho del héroe sigue automáticamente el ancho que esté en alcance.
+El documento se compone sobre **un solo contenedor** (`--shell`, **78rem**), el mismo para todas las rutas, con canaleta fluida (`--gutter`, `clamp(1rem, 4vw, 3rem)`). Lo que queda entre el borde del contenedor y el borde de la pantalla se deriva del contenedor mismo (`--bleed` = `calc(max(0px, (100vw - --shell) / 2) + --gutter)`): un porcentaje dentro de un grid resolvería contra la pista y no contra el contenedor, y eso desborda el documento. Todo elemento que sale a sangre usa `--bleed`.
 
 El ritmo de espaciado son nueve pasos duros, como troquel: 0.25 / 0.5 / 0.75 / 1 / 1.5 / 2 / 3 / 4.5 / 7rem. Padding interno de panel y ficha en el paso 4 (1rem) o 6 (2rem); separación entre secciones en los pasos 8 y 9.
 
@@ -295,11 +295,13 @@ Puntos de quiebre reales del build, en orden de uso: **62rem** —el corte princ
 
 Densidad: el catálogo es una grilla `auto-fill` con mínimo de 13.5rem y separación de 1rem; los departamentos van a tres columnas fijas. Todo objetivo táctil tiene 44px o más de altura, y la acción principal de una ficha tiene 48px.
 
+**La Regla del Contenido que se Dimensiona Solo.** Los elementos toman su tamaño del contenido y del ancho disponible, no de una medida fija: el mapa de tienda es una ventana de proporción `4 / 3` con `min-height` de 22rem en vez de una franja de altura fija, y las filas de datos de contacto y de la tarjeta de local usan `minmax(7rem, max-content) minmax(0, 1fr)`, de modo que la etiqueta toma lo que necesita y el valor se queda con el resto a cualquier ancho.
+
 **La Regla del Documento Cerrado.** Nada desborda horizontalmente. En 390 / 768 / 1440 el `scrollWidth` es exactamente el ancho de la ventana en todas las rutas.
 
-**La Regla de la Ruta de Lectura.** Una ruta se declara de lectura envolviendo su página completa —cabecera de ruta incluida— en `<div className="reading">`, y esa clase reasigna el token localmente (`.reading { --shell: var(--shell-read); }`). Todo contenedor dentro hereda la medida estrecha, de modo que el título de la página se angosta junto con la columna que lleva debajo en vez de quedar más ancho que ella. Hoy la usan `/nosotros`, `/blog` y `/contacto`. Es el único mecanismo admitido para estrechar: no se ponen `max-width` por página. El chrome del sitio vive en `app/layout.tsx`, fuera de esos envoltorios, así que conserva el ancho de trabajo.
+**La Regla de la Medida en el Bloque.** La medida de línea es asunto del bloque de texto, no del contenedor. El proyecto la gobierna con 22 topes en `ch` puestos sobre los propios bloques (46ch en paneles de autenticación, 48ch en estados vacíos, 54ch y 62ch en entradillas y prosa). Estrechar el contenedor para corregir la medida es redundante para la prosa y destructivo para todo lo que viaja a su lado: medido a 1440, un contenedor de 50rem dejaba el mapa de contacto en 336px y la grilla del blog en columnas de 224px, mientras que los párrafos de `/nosotros` ya estaban acotados a 62ch por su cuenta. Con el contenedor único, esas mismas rutas miden 560 + 560, 373 × 3 y 672 + 448.
 
-Evidencia del cambio: con el ancho de trabajo en 78rem, a 1440 el catálogo vuelve a su grilla de tres columnas de especímenes al costado del panel de filtros; bajo 50rem había colapsado a una sola columna.
+Evidencia del ancho único: a 1440 el catálogo se compone en tres columnas de especímenes al costado del panel de filtros, el mapa de contacto se abre como ventana y la grilla del blog conserva columnas legibles.
 
 ## Elevation & Depth
 
@@ -397,12 +399,15 @@ Las entradas GSAP animan **solo transformaciones** (`yPercent`, `xPercent`, `y`,
 - **Don't** usar emoji ni glifos unicode como iconos; el set autorado de 20 es el vocabulario completo.
 - **Don't** escribir un `font-size` literal ni improvisar un `clamp()` en un componente: la escala ya tiene el peldaño.
 - **Don't** cruzar las rampas: Chivo Mono no usa pasos de Archivo ni al revés.
+- **Don't** estrechar el contenedor para arreglar la medida de línea: acotar el bloque de texto en `ch` y dejar el contenedor en paz.
 - **Don't** hacer que un estado flote: los estados se imprimen en el documento.
 
 ---
 
 ## Verificación del build publicado
 
+- `npm run verify:ui` → sin fallos en 9 rutas × 3 anchos.
+- `tsc --noEmit` → limpio.
 - `detect.mjs --json app components` → `[]`, cero hallazgos. La escala de etiqueta nació de este detector: antes del refactor reportaba 76 hallazgos de `design-system-font-size` (26 literales distintos más siete `clamp()` improvisados en componente). Hoy no queda un solo `font-size` literal en el proyecto.
 - Barrido WCAG AA a nivel DOM en nueve rutas, sobre colores computados contra los fondos realmente pintados → cero fallas.
 - Desbordamiento horizontal en 390 / 768 / 1440 → `scrollWidth` igual al viewport en todas las rutas.

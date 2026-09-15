@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <div className="reading">
+    <>
       <PageHeader
         title="Cuidados"
         crumbs={[{ href: "/blog", label: "Cuidados" }]}
@@ -53,6 +53,6 @@ export default function BlogPage() {
           página de lectura detrás de cada título.
         </p>
       </div>
-    </div>
+    </>
   );
 }

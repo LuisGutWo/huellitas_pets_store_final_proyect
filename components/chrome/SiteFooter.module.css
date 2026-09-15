@@ -14,7 +14,7 @@
 }
 
 .identity img {
-  width: 56px;
+  width: 10rem;
   height: auto;
   margin-bottom: var(--s-4);
 }
@@ -40,7 +40,9 @@
   height: 44px;
   color: var(--kraft);
   border: 2px solid color-mix(in srgb, var(--kraft) 45%, transparent);
-  transition: color 160ms ease-out, border-color 160ms ease-out;
+  transition:
+    color 160ms ease-out,
+    border-color 160ms ease-out;
 }
 
 .social a:hover {

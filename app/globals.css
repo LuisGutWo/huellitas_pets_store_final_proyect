@@ -79,10 +79,10 @@
   --s-8: 4.5rem;
   --s-9: 7rem;
 
-  /* Ancho de trabajo: el catálogo, la portada y la ficha necesitan la grilla
-     completa. --shell-read estrecha solo las rutas de lectura. */
+  /* Ancho de trabajo, uno solo. La medida de línea no se resuelve estrechando
+     el contenedor —eso aplasta grillas, mapas y formularios— sino con topes en
+     ch sobre el bloque de texto, que es lo que hace el resto del sistema. */
   --shell: 78rem;
-  --shell-read: 50rem;
   --gutter: clamp(1rem, 4vw, 3rem);
   /* Lo que hay entre el borde del contenedor y el borde de la pantalla.
      Se deriva de --shell: un porcentaje dentro de un grid resolvería contra
@@ -254,10 +254,6 @@ textarea {
   background-size: 2px 20px;
   background-repeat: repeat-y;
   background-position-x: center;
-}
-
-.reading {
-  --shell: var(--shell-read);
 }
 
 .skipLink {

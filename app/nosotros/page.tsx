@@ -24,7 +24,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="reading">
+    <>
       <PageHeader
         title="La tienda"
         crumbs={[{ href: "/nosotros", label: "La tienda" }]}
@@ -112,6 +112,6 @@ export default function AboutPage() {
           </Link>
         </section>
       </div>
-    </div>
+    </>
   );
 }

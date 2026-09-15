@@ -166,14 +166,14 @@ export default function ContactForm() {
           <p data-tone="bad">
             <Icon name="alerta" size={17} />
             No se pudo enviar. Vuelve a intentar, o escríbenos directo por
-            WhatsApp al +569 3635 2145.
+            WhatsApp al +569 2039 0272.
           </p>
         )}
         {status === "unconfigured" && (
           <p data-tone="bad">
             <Icon name="alerta" size={17} />
             El envío de correo no está configurado en este despliegue. Escríbenos
-            por WhatsApp al +569 3635 2145 y te respondemos igual.
+            por WhatsApp al +569 2039 0272 y te respondemos igual.
           </p>
         )}
       </div>

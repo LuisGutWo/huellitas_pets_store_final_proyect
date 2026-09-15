@@ -61,7 +61,8 @@ Explícitamente indeciso: dominio propio y nombre de despliegue final en Vercel.
 - Nombre: **Huellitas Pet Store**.
 - Logotipos existentes en dos versiones (negro y blanco), 500×500, en `src/assets/img/huellitas-logo-{black,white}-500x500.webp`. Son activos vinculantes: la identidad tipográfica y cromática nueva debe convivir con ellos.
 - Voz en español de Chile, cercana y sin solemnidad, hablando de mascotas como miembros de la familia.
-- Datos de tienda usados hoy en el sitio: San Pablo 3610, local 2, Quinta Normal — Santiago; teléfonos +569 36352145 y +569 98451212. Son datos de demo del proyecto académico, no de un negocio operativo; se conservan por consistencia y no se presentan como comercio activo.
+- Teléfono y WhatsApp: **+569 2039 0272**. Es el número real del autor, no un dato de demostración: los enlaces `tel:` y `wa.me` del sitio llegan a una persona. Es el único canal de contacto real del proyecto, así que no debe duplicarse en una segunda línea inventada de "soporte".
+- Dirección usada en el sitio: San Pablo 3610, local 2, Quinta Normal — Santiago. Esto sí es dato de demostración del proyecto académico; se conserva por consistencia y no se presenta como comercio activo.
 
 ## Evidence on Hand
 

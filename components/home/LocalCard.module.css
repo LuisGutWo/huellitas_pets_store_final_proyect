@@ -40,8 +40,8 @@
 
 .facts > div {
   display: grid;
-  grid-template-columns: 10rem minmax(0, 1fr);
-  gap: var(--s-3);
+  grid-template-columns: minmax(7rem, max-content) minmax(0, 1fr);
+  gap: var(--s-3) var(--s-5);
   align-items: start;
 }
 

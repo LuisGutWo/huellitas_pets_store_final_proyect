@@ -10,7 +10,7 @@ import { BRAND_LABELS } from "@/lib/catalog";
 import { formatPrice, formatUnits } from "@/lib/format";
 import styles from "./carrito.module.css";
 
-const WHATSAPP = "56936352145";
+const WHATSAPP = "56920390272";
 
 export default function CartPage() {
   const {
