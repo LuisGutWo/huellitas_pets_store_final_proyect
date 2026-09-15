@@ -1,0 +1,100 @@
+.strip {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding: var(--s-2) var(--gutter);
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: var(--label-sm);
+  letter-spacing: 0.08em;
+}
+
+.label {
+  flex-shrink: 0;
+  padding: 2px 7px;
+  background: var(--fiber);
+  color: var(--kraft);
+  font-size: var(--label-xs);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.strip[data-empty="true"] {
+  padding-block: 0;
+}
+
+.entries {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.entries::-webkit-scrollbar {
+  display: none;
+}
+
+.entries li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-2);
+  flex-shrink: 0;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+/* La entrada más reciente se lee; las anteriores se apagan como tinta seca. */
+.entries li[data-age="fresh"] {
+  color: var(--text-on-ink);
+}
+
+.entries li[data-age="older"] {
+  color: var(--text-on-ink);
+  opacity: 0.82;
+}
+
+.entries b {
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.entries li[data-age="fresh"] b {
+  padding: 2px 6px;
+  background: var(--ink-blue);
+  color: var(--stock);
+}
+
+.entries span {
+  text-transform: none;
+  letter-spacing: 0;
+  max-width: 26ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.entries i {
+  font-style: normal;
+  color: var(--text-on-ink);
+}
+
+@media (max-width: 48rem) {
+  .strip {
+    gap: var(--s-3);
+  }
+
+  .entries li[data-age="older"] {
+    display: none;
+  }
+
+  .entries span {
+    max-width: 18ch;
+  }
+}

@@ -1,0 +1,120 @@
+.form {
+  padding: var(--s-6);
+  background: var(--kraft);
+  color: var(--fiber);
+  border: var(--rule);
+}
+
+.title {
+  font-size: var(--step-2);
+  margin-bottom: var(--s-5);
+}
+
+.field + .field {
+  margin-top: var(--s-4);
+}
+
+.field label {
+  display: block;
+  margin-bottom: var(--s-2);
+  font-family: var(--font-mono);
+  font-size: var(--label-xs);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fiber-soft);
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: var(--s-3);
+  background: var(--stock);
+  color: var(--fiber);
+  border: var(--rule);
+  border-radius: 0;
+  font-size: var(--step-0);
+  resize: vertical;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: color-mix(in srgb, var(--fiber) 55%, var(--stock));
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline: 3px solid var(--ink-blue);
+  outline-offset: 2px;
+}
+
+.field input[aria-invalid="true"],
+.field textarea[aria-invalid="true"] {
+  border-color: var(--ink-deep);
+  background: color-mix(in srgb, var(--ink) 12%, var(--stock));
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-top: var(--s-2);
+  font-family: var(--font-mono);
+  font-size: var(--label-md);
+  color: var(--ink-deep);
+}
+
+.submit {
+  width: 100%;
+  min-height: 54px;
+  margin-top: var(--s-5);
+  background: var(--ink-blue);
+  color: var(--stock);
+  font-family: var(--font-mono);
+  font-size: var(--label-lg);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: background-color 160ms ease-out;
+}
+
+.submit:hover:not(:disabled) {
+  background: var(--ink-blue-deep);
+}
+
+.submit:disabled {
+  background: var(--fiber-soft);
+  cursor: progress;
+}
+
+.status:empty {
+  display: none;
+}
+
+.status p {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-top: var(--s-4);
+  padding: var(--s-3) var(--s-4);
+  font-family: var(--font-mono);
+  font-size: var(--label-lg);
+}
+
+.status p[data-tone="ok"] {
+  background: var(--fiber);
+  color: var(--stock);
+}
+
+.status p[data-tone="bad"] {
+  background: var(--stock);
+  color: var(--ink-deep);
+  border: 2px solid var(--ink-deep);
+}
+
+@media (max-width: 40rem) {
+  .form {
+    padding: var(--s-4);
+  }
+}

@@ -1,0 +1,66 @@
+.foot {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding: var(--s-5) var(--gutter) var(--s-6);
+  border-top: 2px solid var(--display-on-ink);
+  font-family: var(--font-mono);
+  font-size: var(--label-xs);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-on-ink);
+}
+
+.marks {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  flex-shrink: 0;
+}
+
+/* Barra de registro: cuatro pasadas de tinta, como en el pie de un pliego. */
+.bar {
+  display: block;
+  width: 72px;
+  height: 10px;
+  background-image: linear-gradient(
+    90deg,
+    var(--display-on-ink) 0 18px,
+    var(--ink-blue) 18px 36px,
+    var(--fiber) 36px 54px,
+    var(--kraft) 54px 72px
+  );
+}
+
+.lockup {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lot {
+  margin-inline-start: auto;
+  flex-shrink: 0;
+  padding: 3px 8px;
+  background: var(--fiber);
+  color: var(--kraft);
+  letter-spacing: 0.16em;
+}
+
+@media (max-width: 48rem) {
+  .foot {
+    flex-wrap: wrap;
+    gap: var(--s-3);
+    font-size: var(--label-xs);
+  }
+
+  .lockup {
+    order: 3;
+    flex: 1 1 100%;
+    white-space: normal;
+  }
+}

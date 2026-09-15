@@ -1,0 +1,109 @@
+.frame {
+  background: var(--stock);
+  border: var(--rule);
+}
+
+.caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-4);
+  border-bottom: var(--rule);
+  font-family: var(--font-mono);
+  font-size: var(--label-md);
+  color: var(--fiber);
+}
+
+.caption span {
+  padding: 2px 8px;
+  background: var(--ink-blue);
+  color: var(--stock);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.map {
+  height: 22rem;
+  background: var(--kraft);
+}
+
+/* Leaflet trae su propio look; lo traemos al sistema. */
+.map :global(.leaflet-container) {
+  height: 100%;
+  font-family: var(--font-mono);
+  background: var(--kraft);
+}
+
+.map :global(.leaflet-control-zoom a) {
+  border-radius: 0;
+  border: 2px solid var(--fiber);
+  color: var(--fiber);
+  background: var(--stock);
+  font-weight: 700;
+}
+
+.map :global(.leaflet-control-zoom a:hover) {
+  background: var(--kraft);
+}
+
+.map :global(.leaflet-control-attribution) {
+  background: var(--stock);
+  color: var(--fiber-soft);
+  font-size: var(--label-xs);
+}
+
+/* Leaflet trae su propio azul de enlace, que no llega a AA sobre el stock. */
+.map :global(.leaflet-control-attribution a) {
+  color: var(--ink-blue);
+}
+
+.map :global(.leaflet-popup-content-wrapper),
+.map :global(.leaflet-popup-tip) {
+  border-radius: 0;
+  background: var(--fiber);
+  color: var(--stock);
+}
+
+.map :global(.leaflet-popup-content) {
+  font-family: var(--font-mono);
+  font-size: var(--label-md);
+  margin: var(--s-3);
+}
+
+.pinWrap {
+  background: none;
+  border: 0;
+}
+
+.pin {
+  display: block;
+  padding: 5px 8px;
+  background: var(--ink-blue);
+  color: var(--stock);
+  border: 2px solid var(--fiber);
+  font-family: var(--font-mono);
+  font-size: var(--label-sm);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.directions {
+  display: block;
+  padding: var(--s-3) var(--s-4);
+  border-top: var(--rule);
+  color: var(--ink-blue);
+  font-family: var(--font-mono);
+  font-size: var(--label-md);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.directions:hover {
+  background: var(--kraft);
+}

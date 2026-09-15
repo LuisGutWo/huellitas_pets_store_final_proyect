@@ -1,0 +1,186 @@
+.wrap {
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding: var(--s-7) var(--gutter) var(--s-8);
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: var(--s-6);
+  align-items: start;
+}
+
+.copy h2 {
+  font-size: var(--step-3);
+  color: var(--display-on-ink);
+  max-width: 16ch;
+}
+
+.copy p {
+  max-width: 62ch;
+  margin-top: var(--s-4);
+  color: var(--text-on-ink);
+}
+
+.portrait {
+  width: 100%;
+  height: auto;
+  background: var(--stock);
+  border: var(--rule);
+}
+
+/* Cifras: numerales troquelados sobre panel kraft. */
+.figures {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  margin-top: var(--s-7);
+  background: var(--kraft);
+  border: var(--rule);
+}
+
+.figures > div {
+  padding: var(--s-5) var(--s-4);
+  color: var(--fiber);
+}
+
+.figures > div + div {
+  border-left: 1px dashed color-mix(in srgb, var(--fiber) 40%, transparent);
+}
+
+.figures b {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-stretch: 62%;
+  font-size: var(--numeral-md);
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+}
+
+.figures span {
+  display: block;
+  margin-top: var(--s-2);
+  font-family: var(--font-mono);
+  font-size: var(--label-sm);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fiber-soft);
+}
+
+.rules {
+  margin-top: var(--s-8);
+}
+
+.rules > h2 {
+  font-size: var(--step-2);
+  color: var(--display-on-ink);
+}
+
+/* Una sola plancha con tres cláusulas regladas, como el reverso de un saco. */
+.rules dl {
+  margin: var(--s-5) 0 0;
+  background: var(--stock);
+  color: var(--fiber);
+  border: var(--rule);
+}
+
+.rules dl > div {
+  display: grid;
+  grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+  gap: var(--s-5);
+  padding: var(--s-5);
+}
+
+.rules dl > div + div {
+  border-top: 1px dashed color-mix(in srgb, var(--fiber) 40%, transparent);
+}
+
+.rules dt {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 74%;
+  font-size: var(--step-1);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+}
+
+.rules dd {
+  margin: 0;
+  max-width: 58ch;
+  font-size: var(--step-0);
+  color: var(--fiber-soft);
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-5);
+  margin-top: var(--s-8);
+  padding: var(--s-6);
+  background: var(--fiber);
+  color: var(--stock);
+}
+
+.cta h2 {
+  font-size: var(--step-2);
+}
+
+.cta p {
+  margin-top: var(--s-2);
+  color: var(--kraft);
+  font-family: var(--font-mono);
+  font-size: var(--label-lg);
+}
+
+.cta a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  min-height: 54px;
+  padding-inline: var(--s-5);
+  background: var(--ink-blue);
+  color: var(--stock);
+  font-family: var(--font-mono);
+  font-size: var(--label-lg);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 160ms ease-out;
+}
+
+.cta a:hover {
+  background: var(--ink-blue-deep);
+}
+
+@media (max-width: 62rem) {
+  .intro {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .portrait {
+    max-width: 24rem;
+  }
+
+  .figures {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .figures > div:nth-child(3) {
+    border-left: 0;
+  }
+
+  .figures > div:nth-child(n + 3) {
+    border-top: 1px dashed color-mix(in srgb, var(--fiber) 40%, transparent);
+  }
+
+  .rules dl > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-2);
+  }
+}

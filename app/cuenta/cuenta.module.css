@@ -1,0 +1,143 @@
+.notice,
+.wrap {
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding: var(--s-7) var(--gutter) var(--s-8);
+}
+
+.notice {
+  font-family: var(--font-mono);
+  font-size: var(--label-lg);
+  color: var(--text-on-ink);
+}
+
+.identity {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  background: var(--kraft);
+  color: var(--fiber);
+  border: var(--rule);
+  font-family: var(--font-mono);
+}
+
+.identity > div {
+  padding: var(--s-4);
+}
+
+.identity > div + div {
+  border-left: 1px dashed color-mix(in srgb, var(--fiber) 40%, transparent);
+}
+
+.identity dt {
+  font-size: var(--label-xs);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fiber-soft);
+}
+
+.identity dd {
+  margin: var(--s-2) 0 0;
+  font-size: var(--step-0);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-4);
+  margin-top: var(--s-5);
+}
+
+.card {
+  display: block;
+  padding: var(--s-5);
+  background: var(--stock);
+  color: var(--fiber);
+  border: var(--rule);
+  text-decoration: none;
+  transition: background-color 180ms ease-out, transform 180ms ease-out;
+}
+
+.card:hover {
+  background: var(--kraft);
+  transform: translateY(-3px);
+}
+
+.card svg {
+  color: var(--ink-blue);
+}
+
+.card b {
+  display: block;
+  margin-top: var(--s-2);
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-stretch: 62%;
+  font-size: var(--numeral-md);
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+}
+
+.card span {
+  display: block;
+  margin-top: var(--s-2);
+  font-family: var(--font-mono);
+  font-size: var(--label-sm);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fiber-soft);
+}
+
+.card em {
+  display: block;
+  margin-top: var(--s-1);
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: var(--label-lg);
+  font-weight: 700;
+}
+
+.leave {
+  min-height: 52px;
+  margin-top: var(--s-6);
+  padding-inline: var(--s-5);
+  border: 2px solid var(--display-on-ink);
+  color: var(--text-on-ink);
+  font-family: var(--font-mono);
+  font-size: var(--label-lg);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: background-color 160ms ease-out, color 160ms ease-out;
+}
+
+.leave:hover {
+  background: var(--display-on-ink);
+  color: var(--fiber);
+}
+
+.problem {
+  margin-top: var(--s-4);
+  padding: var(--s-3) var(--s-4);
+  background: var(--stock);
+  color: var(--ink-deep);
+  border: 2px solid var(--ink-deep);
+  font-family: var(--font-mono);
+  font-size: var(--label-lg);
+}
+
+@media (max-width: 44rem) {
+  .identity,
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .identity > div + div {
+    border-left: 0;
+    border-top: 1px dashed color-mix(in srgb, var(--fiber) 40%, transparent);
+  }
+}

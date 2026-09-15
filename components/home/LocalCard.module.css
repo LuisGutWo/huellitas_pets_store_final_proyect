@@ -1,0 +1,135 @@
+.section {
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding: 0 var(--gutter) var(--s-8);
+}
+
+.card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: stretch;
+  background: var(--kraft);
+  color: var(--fiber);
+  border: var(--rule);
+}
+
+.text {
+  padding: var(--s-6);
+}
+
+.title {
+  font-size: var(--step-2);
+  max-width: 16ch;
+}
+
+.copy {
+  margin-top: var(--s-4);
+  max-width: 52ch;
+  color: var(--fiber-soft);
+}
+
+.facts {
+  display: grid;
+  gap: var(--s-3);
+  margin-top: var(--s-5);
+  padding-top: var(--s-4);
+  border-top: 1px dashed color-mix(in srgb, var(--fiber) 40%, transparent);
+  font-family: var(--font-mono);
+  font-size: var(--label-lg);
+}
+
+.facts > div {
+  display: grid;
+  grid-template-columns: 10rem minmax(0, 1fr);
+  gap: var(--s-3);
+  align-items: start;
+}
+
+.facts dt {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fiber-soft);
+}
+
+.facts dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.facts a {
+  color: var(--ink-blue);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  min-height: 52px;
+  margin-top: var(--s-5);
+  padding: var(--s-3) var(--s-5);
+  background: var(--ink-blue);
+  color: var(--stock);
+  font-family: var(--font-mono);
+  font-size: var(--label-lg);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 160ms ease-out;
+}
+
+.cta:hover {
+  background: var(--ink-blue-deep);
+}
+
+.cta svg {
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cta:hover svg {
+  transform: translateX(4px);
+}
+
+.shot {
+  position: relative;
+  border-left: var(--rule);
+  background: var(--stock);
+  overflow: hidden;
+}
+
+.shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 62rem) {
+  .card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .shot {
+    border-left: 0;
+    border-top: var(--rule);
+    order: -1;
+  }
+
+  .shot img {
+    aspect-ratio: 16 / 9;
+    height: auto;
+  }
+}
+
+@media (max-width: 40rem) {
+  .text {
+    padding: var(--s-4);
+  }
+
+  .facts > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-1);
+  }
+}
