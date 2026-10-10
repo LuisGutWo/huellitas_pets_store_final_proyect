@@ -140,6 +140,42 @@ La medida de línea ya estaba resuelta por los topes en `ch` sobre cada bloque
 de texto. Estrechar el contenedor encima era redundante para la prosa y
 destructivo para todo lo demás.
 
+### Coste de optimización de imágenes en Vercel
+
+Vercel factura por *transformación*: una combinación única de imagen, ancho,
+calidad y formato. Con la configuración por defecto este catálogo generaba
+**1.610 transformaciones distintas**, y medido archivo por archivo, el **37% de
+ellas devolvía un resultado byte-idéntico a otra variante**. La causa: la
+mayoría de las fotos de producto miden entre 180 y 800 px de ancho, y la lista
+de anchos por defecto llega hasta 3840, así que a una imagen de 640 px se le
+pedían 640, 828, 1080, 1200, 1920, 2048 y 3840 y se cobraban siete veces el
+mismo archivo.
+
+Lo que **no** era el problema: el optimizador en sí. Medido pidiéndole las
+variantes al endpoint, sobre una muestra de diez imágenes en seis anchos pasa
+de 3.768 KB a 1.014 KB. Apagarlo, o mover las imágenes a un bucket externo y
+servirlas sin transformar, multiplicaría por cinco los bytes servidos. Un
+bucket tipo R2 además es almacenamiento, no transformación: no reduce la
+cuota de Vercel salvo que se renuncie al optimizador.
+
+Lo que se hizo, en `next.config.mjs`:
+
+| Ajuste | Efecto |
+|---|---|
+| `deviceSizes` y `imageSizes` recortados a los seis anchos que el layout pide | 1.610 → 548 |
+| `formats: ["image/webp"]`, sin AVIF | 548 → **274** |
+| `minimumCacheTTL` a 31 días | el catálogo solo cambia al desplegar; no se re-paga al caducar |
+| `qualities: [75]` y `localPatterns` al catálogo propio | cierra el endpoint: `?w=3840` y `?q=1` devuelven 400 |
+
+Los seis anchos (256, 384, 640, 828, 1200, 1920) salen de los `sizes` de cada
+componente contando pantallas de densidad doble, no de una estimación. Quitar
+AVIF cuesta unos 353 KB sobre la muestra; a cambio no se codifica cada ancho
+dos veces.
+
+También se eliminó `new_huellitas_screenshot.png`, 7,6 MB sin una sola
+referencia en el código que se desplegaba en cada build. La carpeta de
+imágenes pasó de 9,7 MB a 2,1 MB.
+
 ### El teléfono no se versiona
 
 El número real del local vive en `NEXT_PUBLIC_CONTACT_PHONE`, no en el
