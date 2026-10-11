@@ -62,13 +62,17 @@ export default async function ProductPage({
 
       <div className={styles.layout}>
         <div className={styles.shot}>
+          {/* Sin optimizador: las fuentes de producto ya están al tamaño que se
+              muestran (tope 800px, ver scripts/fit-images.mjs). Pasarlas por el
+              optimizador cuesta el 62% de la cuota de transformaciones de Vercel
+              para ahorrar 121 KB en todo el catálogo. */}
           <Image
             src={product.image}
             alt={product.name}
             width={880}
             height={880}
             priority
-            sizes="(max-width: 62rem) 92vw, 46vw"
+            unoptimized
           />
         </div>
 

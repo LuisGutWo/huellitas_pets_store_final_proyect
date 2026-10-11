@@ -108,7 +108,14 @@ contenedor —eso aplasta grillas, mapas y formularios— sino con topes en `ch`
 sobre el bloque de texto: hay 22 en el proyecto, y son los que fijan la medida
 de línea donde importa.
 
-**Las imágenes se optimizan con precisión, no por defecto.** `next.config.mjs`
+**Las fotos de producto no pasan por el optimizador.** Ya vienen al tamaño en
+que se muestran, así que optimizarlas costaba el 62% de la cuota de
+transformaciones de Vercel para ahorrar 183 KB en todo el catálogo. Se sirven
+con `unoptimized` y sus fuentes se mantienen a 800 px con `npm run images:fit`.
+Si agregas un producto con una foto más grande, corre ese script. El blog y los
+héroes sí se optimizan: ahí el ahorro llega al 90%.
+
+**El resto se optimiza con precisión, no por defecto.** `next.config.mjs`
 limita el optimizador a los seis anchos que el layout realmente pide y a WebP,
 porque Vercel cobra por transformación y los anchos por defecto generaban un
 37% de variantes byte-idénticas. Si agregas un componente con un `sizes` que

@@ -30,13 +30,17 @@ export default function ProductCard({
     <article className={styles.card}>
       <div className={styles.frame}>
         <Link href={`/productos/${product.slug}`} className={styles.shot}>
+          {/* Sin optimizador: las fuentes de producto ya están al tamaño que se
+              muestran (tope 800px, ver scripts/fit-images.mjs). Pasarlas por el
+              optimizador cuesta el 62% de la cuota de transformaciones de Vercel
+              para ahorrar 121 KB en todo el catálogo. */}
           <Image
             src={product.image}
             alt={product.name}
             width={420}
             height={420}
             priority={priority}
-            sizes="(max-width: 34rem) 44vw, (max-width: 62rem) 30vw, 230px"
+            unoptimized
           />
           <span className="visuallyHidden">Ver {product.name}</span>
         </Link>

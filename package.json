@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "verify:ui": "node scripts/verify-ui.mjs"
+    "verify:ui": "node scripts/verify-ui.mjs",
+    "images:fit": "node scripts/fit-images.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

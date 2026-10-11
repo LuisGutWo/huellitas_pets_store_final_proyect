@@ -176,6 +176,45 @@ También se eliminó `new_huellitas_screenshot.png`, 7,6 MB sin una sola
 referencia en el código que se desplegaba en cada build. La carpeta de
 imágenes pasó de 9,7 MB a 2,1 MB.
 
+### Segunda pasada: por qué las fotos de producto ya no se optimizan
+
+Tras el primer ajuste el contador seguía subiendo, así que se midió qué ahorra
+el optimizador **por grupo de imagen** en vez de en agregado. El agregado
+engañaba:
+
+| grupo | archivos | ahorro del optimizador | techo de transformaciones |
+|---|---|---|---|
+| fotos de producto | 57 | **22%** (841 → 658 KB) | 166 |
+| blog, héroes, marca | 21 | 90%+ | 101 |
+
+El 82% de ahorro que mostraba la primera medición estaba dominado por los
+héroes. Las fotos de producto ya vienen al tamaño en que se muestran, así que
+optimizarlas costaba **el 62% de la cuota para ahorrar 183 KB en todo el
+catálogo**. Solo 7 de las 57 ahorraban más del 40%, y eran justo las que tenían
+la fuente sobredimensionada.
+
+Resolución: esas 7 se arreglaron en origen con `npm run images:fit` (tope de
+800 px para producto, que cubre la ficha de catálogo a densidad triple y la de
+detalle en pantallas normales), y las fotos de producto pasan a servirse sin
+optimizador con `unoptimized`. El blog y los héroes siguen optimizados, donde
+el ahorro sí lo justifica y donde protege la carga en móvil.
+
+Medido sobre el sitio ya construido, recorriendo todas las rutas:
+
+| | antes | después |
+|---|---|---|
+| `/productos`, una visita | 58 | **1** |
+| recorrido completo, un perfil de pantalla | 75 | **17** |
+| recorrido completo, tres perfiles | 214 | **44** |
+| techo teórico del sitio | 267 | **101** |
+
+Sobre almacenar las imágenes fuera de Vercel: no resuelve esto. R2 o Supabase
+son almacenamiento, no transformación; si se sirven con `next/image` y
+`remotePatterns`, Vercel las sigue transformando igual. Solo un servicio con su
+propio optimizador (Cloudinary, imgix) reemplazaría el recurso, y eso cambia una
+cuota por otra sumando un servicio. Para 78 archivos estáticos de 1,6 MB,
+`/public` sigue siendo lo correcto.
+
 ### El teléfono no se versiona
 
 El número real del local vive en `NEXT_PUBLIC_CONTACT_PHONE`, no en el

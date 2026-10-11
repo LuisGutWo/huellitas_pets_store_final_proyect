@@ -83,6 +83,7 @@ export default function CartPage() {
                     alt={line.product.name}
                     width={180}
                     height={180}
+                    unoptimized
                   />
                 </Link>
 
