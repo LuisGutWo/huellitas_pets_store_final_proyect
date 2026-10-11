@@ -131,3 +131,10 @@ hallazgos y cómo se resolvió cada uno están en [MIGRATION.md](MIGRATION.md).
 ## Sistema de diseño
 
 Documentado en [DESIGN.md](DESIGN.md).
+
+## Política de imágenes
+
+El estándar de trabajo con imágenes —cómo clasificarlas, cuándo optimizar en
+desarrollo y cuándo usar `putImage`, y cómo verificar que no se consume el
+optimizador de Vercel— está en [IMAGES.md](IMAGES.md). Incluye un prompt para
+aplicar las mismas normas a otro proyecto.

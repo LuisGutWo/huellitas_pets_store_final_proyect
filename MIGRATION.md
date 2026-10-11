@@ -208,6 +208,9 @@ Medido sobre el sitio ya construido, recorriendo todas las rutas:
 | recorrido completo, tres perfiles | 214 | **44** |
 | techo teórico del sitio | 267 | **101** |
 
+Lo aprendido en estas dos pasadas quedó estandarizado en [IMAGES.md](IMAGES.md),
+para no repetir el análisis en el próximo proyecto.
+
 Sobre almacenar las imágenes fuera de Vercel: no resuelve esto. R2 o Supabase
 son almacenamiento, no transformación; si se sirven con `next/image` y
 `remotePatterns`, Vercel las sigue transformando igual. Solo un servicio con su
