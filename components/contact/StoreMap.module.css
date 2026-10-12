@@ -1,4 +1,11 @@
+/* Leaflet reparte z-index altos desde su propia hoja (paneles 400, controles
+   1000) dando por hecho que es el dueño de la página. Aquí no lo es: el
+   header es sticky en 40, así que sin aislar, el mapa se le monta encima al
+   scrollear. isolation: isolate encierra esa numeración dentro del marco,
+   donde sí ordena algo, y deja el marco como un bloque más del flujo. */
 .frame {
+  position: relative;
+  isolation: isolate;
   background: var(--stock);
   border: var(--rule);
 }

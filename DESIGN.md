@@ -309,6 +309,10 @@ Evidencia del ancho único: a 1440 el catálogo se compone en tres columnas de e
 
 Las superficies realmente flotantes (cajón de filtros móvil, dock de acciones) se resuelven con plancha opaca y `z-index`, sin `backdrop-filter` y sin velo.
 
+El orden de capas del sitio es corto y vive completo en cuatro valores: **40** header sticky, **50** dock de acciones flotantes, **60** cajón de filtros móvil, **100** enlace de salto. Nada más apila. Quien necesite una capa nueva se inserta en esa escala; no se improvisa un 9999.
+
+Las bibliotecas de terceros no respetan esa escala —Leaflet reparte 400 a sus paneles y 1000 a sus controles desde su propia hoja, dando por hecho que es dueño de la página— así que **todo widget de terceros se encierra en su propio contexto de apilamiento** con `isolation: isolate` sobre el contenedor que lo envuelve. Encerrado, su numeración ordena lo suyo y no compite con el header.
+
 ### Named Rules
 
 **La Regla del Estado Impreso.** Los estados se imprimen en el documento, no flotan sobre él. Un filtro activo invierte su plancha a fibra; un favorito guardado tiñe su celda de kraft; un contador es un bloque de segunda tinta, no un globo. No hay tooltips flotantes ni insignias con radio.
