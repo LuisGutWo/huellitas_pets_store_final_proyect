@@ -63,7 +63,7 @@ directo al Perfil A.
 
 ---
 
-## 3. Las ocho reglas
+## 3. Las nueve reglas
 
 ### Regla 1 — Controla los anchos permitidos
 
@@ -86,6 +86,10 @@ resto sobra.
 
 > Un ancho que no está en estas listas devuelve **400**. Eso es deseable: cierra
 > el endpoint a peticiones arbitrarias.
+
+Esta regla fija el espacio de anchos posibles. **Cuántos de ellos pide cada
+imagen lo decide la regla 9**, y las dos se necesitan: una config recortada
+limita el daño de un `sizes` mal escrito, pero no lo arregla.
 
 ### Regla 2 — Maximiza el `minimumCacheTTL`
 
@@ -333,6 +337,80 @@ Declara siempre `width` y `height` para no provocar salto de layout, y
 que es genuinamente más grande que su caja. **Usa `<img>` cuando** la imagen ya
 está al tamaño correcto.
 
+### Regla 9 — El `sizes` del componente decide cuántas variantes se piden
+
+La regla 1 acota el espacio de anchos posibles. Esta decide **cuántos de ellos
+pide cada imagen**, y es la de mayor impacto medido, porque su comportamiento
+es contraintuitivo y casi nadie lo revisa.
+
+Next elige los anchos del `srcset` en `getWidths`, en
+`next/dist/shared/lib/get-img-props.js`. Con `allSizes = imageSizes +
+deviceSizes`, la lógica es:
+
+| Forma del componente | Anchos que se piden | Con la config por defecto |
+|---|---|---|
+| `width={n}` numérico, **sin** `sizes` | `n` y `n×2`, subidos al escalón siguiente | **2** |
+| `fill` sin `sizes` | todo `deviceSizes` | 8 |
+| `sizes` con `vw` | `allSizes` ≥ `deviceSizes[0] × (vw menor / 100)` | 6 a 12 |
+| `sizes` **solo en px** | **todo `allSizes`** | **16** |
+
+Lo último es la trampa: **un `sizes` sin unidades `vw` no reduce nada, habilita
+la escalera completa.** `sizes="140px"` sobre una caja de 140 px pide todos los
+anchos configurados, hasta el mayor.
+
+Medido en producción, agrupando por cuántos anchos distintos pide cada imagen:
+
+```text
+proyecto A (config por defecto)   43 de 48 imágenes × 16 anchos  ← sizes en px
+proyecto B (config recortada)      7 de  9 imágenes ×  6 anchos  ← sizes en px
+                                   1 de  9 imágenes ×  2 anchos  ← width sin sizes
+```
+
+La prescripción, en orden:
+
+**1. Caja de tamaño conocido: `width`/`height` numéricos y nada de `sizes`.**
+Es la forma más barata del componente —dos variantes, 1x y 2x— y la que más se
+pasa por alto.
+
+```tsx
+// Avatar, miniatura, tarjeta de ancho fijo: 2 variantes.
+<Image src={foto} alt="" width={140} height={140} />
+```
+
+**2. Caja fluida: `sizes` con `vw` reales.** Declara la fracción del viewport que
+la imagen ocupa de verdad en cada corte. El filtro usa el `vw` **menor**, así que
+un `vw` pequeño de más deja entrar anchos pequeños que nunca se usan.
+
+```tsx
+// 92vw en móvil, 30vw en escritorio → anchos ≥ 192px
+<Image src={foto} alt="" fill sizes="(max-width: 62rem) 92vw, 30vw" />
+```
+
+**3. Nunca un `sizes` solo en píxeles.** Si el ancho es fijo y conocido, es el
+caso 1: quita el `sizes`. Si es fluido, es el caso 2: escríbelo en `vw`.
+
+**4. `fill` siempre con `sizes`.** Sin él Next asume `100vw` y pide todo
+`deviceSizes`.
+
+Para encontrarlos:
+
+```bash
+# sizes sin ninguna unidad vw: candidatos a la escalera completa
+grep -rn 'sizes="[^"]*"' --include=*.tsx . | grep -v vw
+```
+
+Y para medir el resultado sobre el HTML servido, contando anchos distintos por
+imagen:
+
+```bash
+curl -s https://tu-sitio.com/ \
+  | grep -o '_next/image?[^"]*' | sort -u \
+  | grep -o 'url=[^&]*' | uniq -c | sort -rn | head
+```
+
+Cada línea es una imagen y su número de variantes. Si ves 16, 10 u 8 donde la
+caja es de tamaño fijo, esta regla es tu mayor ahorro disponible.
+
 ---
 
 ## 4. Perfiles de proyecto
@@ -491,7 +569,9 @@ Mide primero, no asumas. Antes de proponer cualquier cambio:
    reales en píxeles de cada imagen.
 2. Lista cada uso de next/image y <img> en el proyecto, con su prop `sizes`
    y el ancho CSS máximo al que se renderiza. Deriva de ahí los anchos que
-   el layout realmente necesita, contando densidad doble.
+   el layout realmente necesita, contando densidad doble. Marca aparte los
+   `sizes` que no llevan unidades vw y los `fill` sin `sizes`: esos piden
+   muchos más anchos de los que parecen (ver regla 9).
 3. Clasifica cada imagen en A (estática, en el repo), B (dinámica, entra en
    runtime) o C (remota de terceros).
 4. Calcula el techo de transformaciones actual: por cada imagen, los anchos
@@ -503,7 +583,7 @@ Mide primero, no asumas. Antes de proponer cualquier cambio:
    queda dominado por las imágenes grandes y oculta que las pequeñas no
    ganan nada.
 
-Con esos datos, aplica las ocho reglas de IMAGES.md:
+Con esos datos, aplica las nueve reglas de IMAGES.md:
 
   1. Recorta deviceSizes e imageSizes a los anchos derivados en el paso 2.
   2. Sube minimumCacheTTL al máximo que tolere el contenido.
@@ -522,6 +602,11 @@ Con esos datos, aplica las ocho reglas de IMAGES.md:
   6. Acota remotePatterns, localPatterns y qualities.
   7. Deja un solo formato de salida salvo que una medición justifique dos.
   8. Pasa a <img> nativo lo decorativo y lo de tamaño fijo.
+  9. Revisa el `sizes` de cada <Image>. Un `sizes` sin unidades vw pide la
+     escalera completa de anchos: si la caja es de tamaño fijo, quita el
+     `sizes` y deja width/height numéricos (2 variantes); si es fluida,
+     escríbelo en vw reales. Un `fill` sin `sizes` pide todo deviceSizes.
+     Reporta cuántos anchos distintos pide cada imagen antes y después.
 
 Entrega:
 - Un script versionado, idempotente, que ajuste las fuentes al ancho en que
@@ -554,3 +639,7 @@ Reglas de trabajo:
 
 Si tu proyecto solo tiene la primera columna —y es lo más común— el objetivo
 es cero, y las reglas 4 y 6 no te aplican.
+
+De las nueve, las dos que más mueven la aguja son la **1** (recortar los anchos
+configurados) y la **9** (que cada componente pida solo los que necesita). La
+primera limita el techo; la segunda es la que normalmente está rota.

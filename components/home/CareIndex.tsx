@@ -22,12 +22,14 @@ export default function CareIndex({ articles }: { articles: Article[] }) {
       <ul className={styles.list}>
         {articles.map((article) => (
           <li key={article.id} className={styles.row}>
+            {/* Caja fija de 140x100 por CSS. Sin `sizes`, Next pide solo 1x y 2x
+                (256 y 384); un `sizes` en px pediria los seis anchos. Ver IMAGES.md,
+                regla 9. */}
             <Image
               src={article.image}
               alt=""
-              width={220}
-              height={160}
-              sizes="140px"
+              width={140}
+              height={100}
               className={styles.thumb}
             />
             <div className={styles.text}>
