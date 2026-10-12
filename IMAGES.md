@@ -49,11 +49,17 @@ tratamiento; no hay una configuración única que sirva para todas.
 | Casilla | Qué es | Tratamiento | Costo |
 |---|---|---|---|
 | **A — Estática** | Vive en el repo, la conoces en build: catálogo, logos, fondos, ilustraciones, fotos editoriales. | Optimizada en desarrollo + `unoptimized` o `<img>`. | **Cero** |
-| **B — Dinámica** | La sube un usuario o llega de un CMS en runtime: avatares, adjuntos, fotos de producto cargadas por un admin. | `putImage` al momento de guardarla. | **Una** transformación por imagen, de por vida |
+| **B — Dinámica** | La sube un usuario o llega de un CMS en runtime: avatares, adjuntos, fotos de producto cargadas por un admin. | Optimizar **al guardarla**, no al mostrarla. Ver regla 4 para las cuatro formas de hacerlo. | **Cero o una** operación por imagen, de por vida |
 | **C — Remota ajena** | Imagen de un tercero que no controlas. | Evitarla. Si es obligatoria, `remotePatterns` estricto y anchos acotados. | Variable — la que más se descontrola |
 
 **El error típico** es tratar la casilla A como si fuera B: dejar que el
 optimizador redimensione en producción, cada vez, algo que no cambia nunca.
+
+**Y lo más probable es que tu proyecto no tenga casilla B en absoluto.** Un
+portafolio, una landing, un catálogo que se edita por código: todo eso es A de
+punta a punta. Si es tu caso, la regla 4 no te aplica, no necesitas Vercel Blob
+ni `putImage`, y el objetivo es sencillamente **cero transformaciones**. Pasa
+directo al Perfil A.
 
 ---
 
@@ -131,47 +137,124 @@ justamente lo que no hacía falta.
 > muestra —un héroe de 1920 px en un teléfono de 390— el optimizador sí paga su
 > costo. La regla es por grupo, no global.
 
-### Regla 4 — Pre-optimiza con `putImage`, no en cada petición
+### Regla 4 — Pre-optimiza al guardar, no en cada petición
 
-Para la casilla B, la transformación ocurre **una vez, al guardar**, y nunca
-más. `putImage` optimiza y almacena solo el resultado.
+**Esta regla solo aplica si el proyecto tiene imágenes de clase B.** Si todas
+tus imágenes están en el repo —que es el caso de la mayoría de los
+portafolios, landings y catálogos estáticos— sáltala entera: no hay nada que
+pre-optimizar en runtime y el proyecto es un Perfil A.
+
+El principio, cuando sí hay clase B, es independiente de la herramienta:
+
+> La imagen dinámica se optimiza **una vez, al entrar al sistema**, no cada
+> vez que alguien la mira. Una foto subida una vez y vista mil veces debe
+> costar una operación, no mil.
+
+Cómo implementarlo depende de dónde guardes. En orden de menor a mayor
+compromiso:
+
+#### Opción 1 — Redimensionar en el navegador antes de subir
+
+Cero costo de servidor, cero transformaciones, funciona con cualquier
+almacenamiento. El archivo llega al backend ya pequeño.
+
+```ts
+async function encoger(file: File, anchoMax = 1200): Promise<Blob> {
+  const bitmap = await createImageBitmap(file);
+  const escala = Math.min(1, anchoMax / bitmap.width);
+
+  const canvas = new OffscreenCanvas(
+    Math.round(bitmap.width * escala),
+    Math.round(bitmap.height * escala)
+  );
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) throw new Error('sin contexto 2d');
+  ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+  bitmap.close();
+
+  return canvas.convertToBlob({ type: 'image/webp', quality: 0.8 });
+}
+```
+
+Es la opción más barata y la que menos piezas agrega. Su límite: depende del
+cliente, así que **valida en el servidor de todos modos** — nunca confíes en
+que el archivo llegó del tamaño que pediste.
+
+#### Opción 2 — `sharp` en tu propio route handler
+
+Cero transformaciones de Vercel, y sirve con cualquier almacenamiento: Blob,
+R2, S3, Supabase o el que sea. Es la opción por defecto si no quieres atarte a
+Vercel Blob.
+
+```ts
+import sharp from 'sharp';
+
+export async function POST(request: Request) {
+  const entrada = Buffer.from(await request.arrayBuffer());
+
+  const optimizada = await sharp(entrada)
+    .resize({ width: 1200, withoutEnlargement: true })
+    .webp({ quality: 80 })
+    .toBuffer();
+
+  // guarda `optimizada` donde corresponda
+}
+```
+
+Dos advertencias que importan:
+
+- `sharp` llega como dependencia **transitiva** de Next. Si lo usas en tu
+  código, **decláralo en `package.json`**: depender de una transitiva se rompe
+  el día que Next cambie de motor de imágenes.
+- Corre en el runtime Node, no en Edge, y suma peso al arranque en frío. Para
+  subidas ocasionales es intrascendente; para un flujo de alto volumen,
+  conviene medirlo.
+
+#### Opción 3 — `putImage` de Vercel Blob
+
+**Solo tiene sentido si ya estás usando Vercel Blob como almacenamiento.** No
+adoptes Blob únicamente para esto: la Opción 2 consigue lo mismo sin sumar un
+producto.
 
 ```ts
 import { putImage } from '@vercel/blob';
 
-export async function POST(request: Request) {
-  const blob = await putImage('productos/sku-1024.webp', request.body, {
-    access: 'public',
-    optimizeImage: { width: 800, quality: 75, format: 'webp' },
-    cacheControlMaxAge: 60 * 60 * 24 * 365,
-  });
-
-  return Response.json({ url: blob.url });
-}
+const blob = await putImage('productos/sku-1024.webp', request.body, {
+  access: 'public',
+  optimizeImage: { width: 800, quality: 75, format: 'webp' },
+  cacheControlMaxAge: 60 * 60 * 24 * 365,
+});
 ```
 
-Detalles que importan y que no son obvios:
+Detalles que no son obvios:
 
 - **Requiere credenciales OIDC** (`VERCEL_OIDC_TOKEN` + `BLOB_STORE_ID`). Los
   tokens de lectura-escritura **no** se aceptan.
-- Se factura como **una** transformación más una subida a Blob. Comparado con
-  optimizar on-demand, el ahorro es la diferencia entre 1 y N.
+- Se factura como **una** transformación más una subida a Blob. El ahorro
+  frente a optimizar on-demand es la diferencia entre 1 y N.
 - `width` es obligatorio (1–8192). `quality` por defecto 75. `format` opcional:
   si se omite, conserva el formato de origen.
-- Si el resultado optimizado pesara **más** que el original, Vercel guarda el
-  original sin tocar.
+- Si el resultado pesara **más** que el original, Vercel guarda el original.
 - Acepta un `URL` y lo descarga del lado servidor — útil para migrar imágenes
   ya publicadas.
 
 Para lotes o migraciones puntuales existe la CLI, sin escribir código:
 
 ```bash
-vercel blob put-image ./origen/hero.png \
-  --pathname images/hero.webp \
-  --width 1600 --quality 75 --format webp --access public
+vercel blob put-image ./origen/hero.png   --pathname images/hero.webp   --width 1600 --quality 75 --format webp --access public
 ```
 
-Luego esas URLs se consumen con `unoptimized`: ya están optimizadas.
+#### Opción 4 — El transformador de tu proveedor de almacenamiento
+
+Si ya usas Supabase Storage o Cloudinary, ambos transforman por su cuenta. No
+sumes una segunda capa: usa la que ya pagas.
+
+---
+
+Sea cual sea la opción, el consumo después es el mismo: **las URLs resultantes
+se muestran con `unoptimized`**, porque ya están optimizadas. Pasarlas otra vez
+por `next/image` sería pagar dos veces por el mismo trabajo.
 
 ### Regla 5 — Nombres de archivo estables
 
@@ -275,21 +358,26 @@ Y en el código, `unoptimized` o `<img>` para todo lo que ya esté al tamaño en
 que se muestra. El objetivo declarado del perfil A es **cero transformaciones**;
 si queda alguna, debe estar justificada por una medición, no por inercia.
 
-### Perfil B — Sitio mixto: estáticas en cero, dinámicas con `putImage`
+### Perfil B — Sitio mixto: estáticas en cero, dinámicas optimizadas al guardar
 
 Tiendas con panel de administración, perfiles de usuario, cualquier cosa donde
 el contenido visual entre en runtime.
 
 ```
-estáticas  →  /public  +  unoptimized        →  0 transformaciones
-dinámicas  →  putImage al guardar            →  1 transformación por imagen
-           →  se consumen con unoptimized    →  0 adicionales al mostrarlas
+estáticas  →  /public  +  unoptimized         →  0 transformaciones
+dinámicas  →  optimizadas AL GUARDAR          →  0 o 1 operación por imagen
+           →  se consumen con unoptimized     →  0 adicionales al mostrarlas
 ```
 
 El punto clave: **la imagen dinámica se optimiza al entrar al sistema, no al
-salir.** Una foto subida una vez y vista mil veces cuesta una transformación,
-no mil. Define los anchos de almacenamiento al diseñar, igual que definirías
-una columna de base de datos:
+salir.** Una foto subida una vez y vista mil veces cuesta una operación, no
+mil. Con cuál de las cuatro vías de la regla 4 la optimices es secundario, y
+depende de dónde guardes: `sharp` en tu route handler no consume nada de la
+cuota de Vercel y funciona con cualquier almacenamiento; `putImage` solo vale
+la pena si Blob ya es tu almacén.
+
+Define los anchos de almacenamiento al diseñar, igual que definirías una
+columna de base de datos:
 
 ```ts
 const PRESETS = {
@@ -421,9 +509,14 @@ Con esos datos, aplica las ocho reglas de IMAGES.md:
   2. Sube minimumCacheTTL al máximo que tolere el contenido.
   3. Marca unoptimized los grupos cuyo ahorro medido sea menor al 40%, y
      arregla sus fuentes en origen en vez de optimizarlas en producción.
-  4. Para las imágenes de clase B, propón el flujo con putImage: anchos
-     predefinidos, almacenamiento al momento de subir, consumo posterior
-     con unoptimized. Recuerda que putImage exige credenciales OIDC.
+  4. Si —y solo si— el proyecto tiene imágenes de clase B, propón el flujo
+     de optimizar al guardar: anchos predefinidos, optimización al momento
+     de subir, consumo posterior con unoptimized. Elige la vía según dónde
+     guarde el proyecto hoy, sin forzar la adopción de Vercel Blob: sharp en
+     un route handler consigue lo mismo con cualquier almacenamiento, y
+     putImage solo conviene si Blob ya está en uso (además exige
+     credenciales OIDC). Si el proyecto no tiene clase B, dilo y omite el
+     punto en vez de inventar un caso de uso.
   5. Revisa que ningún src lleve query params dinámicos ni hashes
      inestables.
   6. Acota remotePatterns, localPatterns y qualities.
@@ -455,5 +548,9 @@ Reglas de trabajo:
 |---|---|---|---|
 | Dónde vive | `/public` | Vercel Blob | Host de terceros |
 | Cuándo se optimiza | En desarrollo, una vez | Al guardarla, una vez | Nunca si se puede evitar |
+| Con qué | Script con `sharp` en el repo | Navegador, `sharp`, `putImage` o tu proveedor | — |
 | Cómo se muestra | `unoptimized` o `<img>` | `unoptimized` | `next/image` acotado |
-| Costo en producción | **0** | **1 por imagen** | Variable |
+| Costo en producción | **0** | **0 o 1 por imagen** | Variable |
+
+Si tu proyecto solo tiene la primera columna —y es lo más común— el objetivo
+es cero, y las reglas 4 y 6 no te aplican.

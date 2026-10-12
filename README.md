@@ -134,7 +134,11 @@ Documentado en [DESIGN.md](DESIGN.md).
 
 ## Política de imágenes
 
-El estándar de trabajo con imágenes —cómo clasificarlas, cuándo optimizar en
-desarrollo y cuándo usar `putImage`, y cómo verificar que no se consume el
-optimizador de Vercel— está en [IMAGES.md](IMAGES.md). Incluye un prompt para
-aplicar las mismas normas a otro proyecto.
+El estándar de trabajo con imágenes —cómo clasificarlas, qué optimizar en
+desarrollo, qué hacer con las que entran en runtime, y cómo verificar que no se
+consume el optimizador de Vercel— está en [IMAGES.md](IMAGES.md). Incluye un
+prompt para aplicar las mismas normas a otro proyecto.
+
+Este proyecto es un caso puro del Perfil A: todas sus imágenes son estáticas,
+no usa Vercel Blob y no necesita `putImage`. El objetivo aquí es cero
+transformaciones.
